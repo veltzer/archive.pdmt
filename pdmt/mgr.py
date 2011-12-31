@@ -5,6 +5,7 @@ class Mgr:
 		self.graph=pygraph.classes.digraph.digraph()
 		self.nodeHandlers=set()
 		self.edgeHandlers=set()
+		self.config={}
 
 	""" node handling functions start here """
 	def notifyNode(self,node,eventtype):
@@ -51,10 +52,16 @@ class Mgr:
 	def delEventHandler(self,handler):
 		self.nodeHandlers.remove(handler)
 		self.edgeHandlers.remove(handler)
+	
+	""" configuration """
+	def getConfig(self,name):
+		return config[name]
+	def setConfig(self,name,val):
+		config[name]=val
 
 	""" building methods start here """
 	def build(self):
-		pass
+		nodes=self.graph
 
 	""" printing method """
 	def printme(self):

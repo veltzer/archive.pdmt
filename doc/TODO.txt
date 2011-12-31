@@ -1,3 +1,8 @@
+now:
+====
+add configuration for builders and such.
+add builders and make the program compiler.
+
 - create a site using mako for templating.
 	(make install to install the site).
 - bring a python documentation tool and create documentation out of the source code.

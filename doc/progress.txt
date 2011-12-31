@@ -1,0 +1,3 @@
+Milestone one:
+==============
+- get to compiling simple C programs.

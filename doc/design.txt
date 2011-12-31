@@ -1,11 +1,42 @@
-Pdmt is a dependency management tool much like scons but also very different from scons.
+What type of graph should we use?
+=================================
+- seems like a directed graph is the right choice (direction matters in dependency).
+- there is also a "hypergraph" where one edge can connect many. python-pygraph supports
+it. Maybe we should use that ?!?
 
-- pdmt usage is JUST LIKE regular python. Pdmt is a python library first.
-- extending pdmt requires python knowledge and oo knowledge.
-- pdmt has a command line interface.
-- pdmt can be used for continuous builds as it can watch files for changes.
-- pdmt doesn't just work on files. It can work on records from databases too. It can watch remote urls.
+Event handlers:
+===============
+- are pieces of code that can run pre/post node/edge addition/removal.
+- they get a handle to the mgr object when they do and the relevant data
+	(node or edge in question and event type).
+* should a "pre" handler be allowed to prevent the addition/removal of node/edge?
+	it looks like a good idea.
 
-Milestone one:
-==============
-- get to compiling simple C programs.
+Builders:
+=========
+- a builder is something that builds multiple nodes from multiple nodes.
+
+When to check if everything is up to date?
+==========================================
+- when the user wants.
+- when some event arrives (file has changed).
+
+How to decice if something is up to date?
+=========================================
+- depth first traverse the whole graph.
+- on each node ask the node if it is up to date.
+- each node will have a uptodate checker attached to it when it is
+	constructed.
+- one updatedate checker will be the default (get a list of nodes
+	and check the files).
+- when a file is found not to be uptodate it is added to a "not up to date" list.
+
+Avoiding cycles:
+================
+- the python-graph package has a method to find cycles. This should be activated
+on edge addition and on edge addition only as it is the only modification that
+has a chance of closing a cycle. If the new edge will close the cycle then it
+is removed and an error is thrown.
+- maybe in the future we will have a more efficient cycle detection whereby the
+previous cycle detection algorithms will help the new edge addition to do it
+cycle checking faster.

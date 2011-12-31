@@ -44,6 +44,14 @@ class Mgr:
 		self.notifyEdge(edge,'postdel')
 		return edge
 
+	""" general event handlers """
+	def addEventHandler(self,handler):
+		self.nodeHandlers.add(handler)
+		self.edgeHandlers.add(handler)
+	def delEventHandler(self,handler):
+		self.nodeHandlers.remove(handler)
+		self.edgeHandlers.remove(handler)
+
 	""" building methods start here """
 	def build(self):
 		pass

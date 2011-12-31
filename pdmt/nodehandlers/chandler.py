@@ -2,7 +2,7 @@ import pdmt.nodetypes.filenode
 
 class CHandler:
 	def respond(self,mgr,node,eventtype):
-		if eventtype!='postadd':
+		if eventtype!='nodepostadd':
 			return
 		if not isinstance(node,pdmt.nodetypes.filenode.FileNode):
 			return

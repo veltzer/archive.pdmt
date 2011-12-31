@@ -15,14 +15,14 @@ class Mgr:
 	def delNodeHandler(self,handler):
 		self.nodeHandlers.remove(handler)
 	def addNode(self,node):
-		self.notifyNode(node,'preadd')
+		self.notifyNode(node,'nodepreadd')
 		self.graph.add_node(node)
-		self.notifyNode(node,'postadd')
+		self.notifyNode(node,'nodepostadd')
 		return node
 	def delNode(self,node):
-		self.notifyNode(node,'predel')
+		self.notifyNode(node,'nodepredel')
 		self.graph.remove_node(node)
-		self.notifyNode(node,'postdel')
+		self.notifyNode(node,'nodepostdel')
 		return node
 
 	""" edge handling functions start here """
@@ -34,14 +34,14 @@ class Mgr:
 	def delEdgeHandler(self,handler):
 		self.edgeHandlers.remove(handler)
 	def addEdge(self,edge):
-		self.notifyEdge(edge,'preadd')
+		self.notifyEdge(edge,'edgepreadd')
 		self.graph.add_edge(edge)
-		self.notifyEdge(edge,'postadd')
+		self.notifyEdge(edge,'edgepostadd')
 		return edge
 	def delEdge(self,edge):
-		self.notifyEdge(edge,'predel')
+		self.notifyEdge(edge,'edgepredel')
 		self.graph.remove_edge(edge)
-		self.notifyEdge(edge,'postdel')
+		self.notifyEdge(edge,'edgepostdel')
 		return edge
 
 	""" general event handlers """

@@ -1,0 +1,4 @@
+- create a site using mako for templating.
+	(make install to install the site).
+- bring a python documentation tool and create documentation out of the source code.
+	install that documentation onto the site.

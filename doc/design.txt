@@ -9,5 +9,3 @@ Pdmt is a dependency management tool much like scons but also very different fro
 Milestone one:
 ==============
 - get to compiling simple C programs.
-
-	Mark Veltzer, 2012

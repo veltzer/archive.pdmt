@@ -17,7 +17,7 @@ class Mgr:
 	def delHandler(self,handler):
 		self.handlers.remove(handler)
 
-	# modification functions
+	""" modification functions """
 	def addNode(self,node):
 		self.notify(node,'nodepreadd')
 		self.graph.add_node(node)

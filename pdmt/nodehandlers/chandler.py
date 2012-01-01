@@ -11,4 +11,4 @@ class CHandler:
 		newname=node.fname[:node.fname.rfind('.c')]+'.o'
 		newnode=pdmt.nodetypes.filenode.FileNode(newname)
 		mgr.addNode(newnode)
-		mgr.addEdge((node,newnode))
+		mgr.addEdge((newnode,node))

@@ -1,0 +1,21 @@
+This is a document describing efficiency considerations in pdmt
+================================================================
+
+efficiency in message passing
+=============================
+- assumption: most event handlers handle one type of event.
+	Is that right ?!?
+	Could I not write one event handler that will handle all events
+	having to do with C compilation?
+		- Scanning of source code+
+		- c -> o node
+		- adding nodes in a directory.
+	generation, o->exe generation, compilation and linking ?
+- under the assumption that most event handlers do not want to register
+	to all types of events how can we handle this more efficiently?
+	- allow event handlers only to register to certain types of events.
+	- allow event handlers only to register to certain parts of the tree
+		(only events in a "folder" or "subproject").
+	- this way number of event handlers called will remain small.
+	- this requires the construction of an event passing library.
+		(not too complicated).

@@ -58,3 +58,21 @@ An object that contains errors must be created. Any node which encounters
 errors can submit errors and warnings to that object. The node can then
 clear all errors FOR ITSELF ONLY via that object.
 Error object may have line numbers, file number and more.
+
+Cleaning:
+=========
+- how do I clean stuff?
+	The idea is that clean will be an automatic feature.
+	Any node which is not a source node could be cleaned by calling its clean method.
+		all files will inherit the clean method which simply removes the file.
+	I want to be able to see all stuff which is being cleaned and also see how many files
+		are being cleaned.
+
+Integration with source control management systems
+==================================================
+At first stage we will just take the source file list from the source control system.
+I will first integrate with a file system walker and then with git.
+This way I will not need to actually put the file names into the mgr but just tell it
+to scan.
+I could also add a black list feature of stuff that should not be taken as source files.
+	(how about a mark INSIDE the file saying that it is not a source file?)

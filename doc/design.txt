@@ -12,6 +12,17 @@ Event handlers:
 * should a "pre" handler be allowed to prevent the addition/removal of node/edge?
 	it looks like a good idea.
 
+What is in charge of the build?
+===============================
+The idea is that the node knows how to build itself.
+	A source node.
+		- reports that it is always up to date if the file exists.
+		- when asked to build generates a build error.
+			that tells the use that he/she must supply the node externally.
+	A C object node:
+		- reports that it is up to date according to dates of files.
+		- when asked to build it runs the compiler.
+
 Builders:
 =========
 - a builder is something that builds multiple nodes from multiple nodes.

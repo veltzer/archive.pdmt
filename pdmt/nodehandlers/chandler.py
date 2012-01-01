@@ -1,4 +1,4 @@
-import pdmt.nodetypes.filenode
+import pdmt.nodetypes.objectfilenode
 
 class CHandler:
 	def respond(self,mgr,node,eventtype):
@@ -9,6 +9,6 @@ class CHandler:
 		if not node.fname.endswith('.c'):
 			return
 		newname=node.fname[:node.fname.rfind('.c')]+'.o'
-		newnode=pdmt.nodetypes.filenode.FileNode(newname)
+		newnode=pdmt.nodetypes.objectfilenode.ObjectFileNode(newname)
 		mgr.addNode(newnode)
 		mgr.addEdge((newnode,node))

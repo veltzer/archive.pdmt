@@ -2,15 +2,17 @@
 
 import pdmt.mgr
 import pdmt.nodehandlers.chandler
-import pdmt.nodetypes.filenode
+import pdmt.nodetypes.sourcefilenode
 import pdmt.eventhandlers.debugger
-import pygraph.algorithms.searching
+
+debug=False
 
 mgr=pdmt.mgr.Mgr()
 mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
-mgr.addHandler(pdmt.eventhandlers.debugger.Debugger())
-node=pdmt.nodetypes.filenode.FileNode('tests/main.c')
+if debug:
+	mgr.addHandler(pdmt.eventhandlers.debugger.Debugger())
+node=pdmt.nodetypes.sourcefilenode.SourceFileNode('tests/main.c')
 mgr.addNode(node)
-mgr.printme()
-st, pre, post =pygraph.algorithms.searching.depth_first_search(mgr.graph)
-print post
+if debug:
+	mgr.printme()
+mgr.build()

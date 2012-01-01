@@ -1,10 +1,13 @@
 import pygraph.classes.digraph
+import pygraph.algorithms.searching
 
 class Mgr:
 	def __init__(self):
 		self.graph=pygraph.classes.digraph.digraph()
 		self.init_handlers()
 		self.config={}
+		#self.debug=True
+		self.debug=False
 
 	""" listener functions start here """
 	def init_handlers(self):
@@ -45,9 +48,22 @@ class Mgr:
 	def setConfig(self,name,val):
 		config[name]=val
 
+	""" getting all dependencies for a node """
+	def deps(self,node):
+		for n in self.graph[node]:
+			yield n
+
 	""" building methods start here """
 	def build(self):
-		nodes=self.graph
+		(st,pre,post)=pygraph.algorithms.searching.depth_first_search(self.graph)
+		todo=[]
+		for node in post:
+			if self.debug:
+				print 'examining',node
+			if not node.uptodate(self):
+				todo.append(node)
+		print todo
+
 
 	""" printing method """
 	def printme(self):

@@ -70,10 +70,14 @@ class Mgr:
 		return todo
 	def build(self):
 		todo=self.build_todolist()
-		for node in todo:
+		if self.progress and len(todo)>0:
+			print 'going to build',len(todo),'nodes'
+		for num,node in enumerate(todo):
 			if self.progress:
-				print 'building',node
+				print num,'building',node
 			node.build(self)
+		if self.progress and len(todo)==0:
+			print 'nothing to build'
 
 	""" printing method """
 	def printme(self):

@@ -8,5 +8,5 @@ class SourceFileNode(filenode.FileNode):
 		return self.fname
 	def uptodate(self,mgr):
 		return os.path.isfile(self.fname)
-	def build(self):
+	def build(self,mgr):
 		raise ValueError('dont know how to build a source file')

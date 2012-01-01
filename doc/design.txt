@@ -51,3 +51,10 @@ is removed and an error is thrown.
 - maybe in the future we will have a more efficient cycle detection whereby the
 previous cycle detection algorithms will help the new edge addition to do it
 cycle checking faster.
+
+An error handling system:
+=========================
+An object that contains errors must be created. Any node which encounters
+errors can submit errors and warnings to that object. The node can then
+clear all errors FOR ITSELF ONLY via that object.
+Error object may have line numbers, file number and more.

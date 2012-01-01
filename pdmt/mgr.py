@@ -8,6 +8,7 @@ class Mgr:
 		self.config={}
 		#self.debug=True
 		self.debug=False
+		self.progress=True
 
 	""" listener functions start here """
 	def init_handlers(self):
@@ -54,7 +55,11 @@ class Mgr:
 			yield n
 
 	""" building methods start here """
-	def build(self):
+
+	""" this is a method that builds a list of all the nodes that need to be build.
+	It build a real list. Maybe turn it into a generator ?
+	"""
+	def build_todolist(self):
 		(st,pre,post)=pygraph.algorithms.searching.depth_first_search(self.graph)
 		todo=[]
 		for node in post:
@@ -62,8 +67,13 @@ class Mgr:
 				print 'examining',node
 			if not node.uptodate(self):
 				todo.append(node)
-		print todo
-
+		return todo
+	def build(self):
+		todo=self.build_todolist()
+		for node in todo:
+			if self.progress:
+				print 'building',node
+			node.build(self)
 
 	""" printing method """
 	def printme(self):

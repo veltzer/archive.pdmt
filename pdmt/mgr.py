@@ -3,56 +3,42 @@ import pygraph.classes.digraph
 class Mgr:
 	def __init__(self):
 		self.graph=pygraph.classes.digraph.digraph()
-		self.nodeHandlers=set()
-		self.edgeHandlers=set()
+		self.init_handlers()
 		self.config={}
 
-	""" node handling functions start here """
-	def notifyNode(self,node,eventtype):
-		for h in self.nodeHandlers:
-			h.respond(self,node,eventtype)
-	def addNodeHandler(self,handler):
-		self.nodeHandlers.add(handler)
-	def delNodeHandler(self,handler):
-		self.nodeHandlers.remove(handler)
+	""" listener functions start here """
+	def init_handlers(self):
+		self.handlers=set()
+	def notify(self,data,eventtype):
+		for h in self.handlers:
+			h.respond(self,data,eventtype)
+	def addHandler(self,handler):
+		self.handlers.add(handler)
+	def delHandler(self,handler):
+		self.handlers.remove(handler)
+
+	# modification functions
 	def addNode(self,node):
-		self.notifyNode(node,'nodepreadd')
+		self.notify(node,'nodepreadd')
 		self.graph.add_node(node)
-		self.notifyNode(node,'nodepostadd')
+		self.notify(node,'nodepostadd')
 		return node
 	def delNode(self,node):
-		self.notifyNode(node,'nodepredel')
+		self.notify(node,'nodepredel')
 		self.graph.remove_node(node)
-		self.notifyNode(node,'nodepostdel')
+		self.notify(node,'nodepostdel')
 		return node
-
-	""" edge handling functions start here """
-	def notifyEdge(self,edge,eventtype):
-		for h in self.edgeHandlers:
-			h.respond(self,edge,eventtype)
-	def addEdgeHandler(self,handler):
-		self.edgeHandlers.add(handler)
-	def delEdgeHandler(self,handler):
-		self.edgeHandlers.remove(handler)
 	def addEdge(self,edge):
-		self.notifyEdge(edge,'edgepreadd')
+		self.notify(edge,'edgepreadd')
 		self.graph.add_edge(edge)
-		self.notifyEdge(edge,'edgepostadd')
+		self.notify(edge,'edgepostadd')
 		return edge
 	def delEdge(self,edge):
-		self.notifyEdge(edge,'edgepredel')
+		self.notify(edge,'edgepredel')
 		self.graph.remove_edge(edge)
-		self.notifyEdge(edge,'edgepostdel')
+		self.notify(edge,'edgepostdel')
 		return edge
 
-	""" general event handlers """
-	def addEventHandler(self,handler):
-		self.nodeHandlers.add(handler)
-		self.edgeHandlers.add(handler)
-	def delEventHandler(self,handler):
-		self.nodeHandlers.remove(handler)
-		self.edgeHandlers.remove(handler)
-	
 	""" configuration """
 	def getConfig(self,name):
 		return config[name]

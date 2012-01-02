@@ -1,0 +1,4 @@
+The integration for pdmt with inotify is done via the
+python-inotify module. It looks like it's the better choice because
+it was installed by default on my ubuntu and it's a sign that it
+is more widely used.

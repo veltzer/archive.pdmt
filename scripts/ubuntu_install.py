@@ -6,7 +6,10 @@
 import subprocess
 
 packs=[
-	'python-pygraph', # for the graph module
+	'python-pygraph',
+	'python-pyinotify',
+	'python-pyinotify-doc',
+	'python-inotifyx',
 ]
 
 args=['sudo','apt-get','install']

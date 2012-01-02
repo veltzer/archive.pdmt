@@ -1,7 +1,6 @@
 now:
 ====
-add configuration for builders and such.
-add builders and make the program compiler.
+- make the linking stage
 
 - create a site using mako for templating.
 	(make install to install the site).

@@ -52,6 +52,17 @@ is removed and an error is thrown.
 previous cycle detection algorithms will help the new edge addition to do it
 cycle checking faster.
 
+Is a node a source node or not?
+===============================
+This goes out to the philosophical notion of what a source node is.
+A source node in pdmt is simply a node that cannot build itself.
+It is not, as some people may assume, a file with a .c extension or some
+such because a library or object file may well be a source.
+
+Implementation:
+The idea is that each node will declare a "canBuild" attribute and source nodes
+will return False on it.
+
 An error handling system:
 =========================
 An object that contains errors must be created. Any node which encounters

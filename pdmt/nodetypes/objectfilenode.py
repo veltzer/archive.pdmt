@@ -1,7 +1,8 @@
+import buildfilenode
 import filenode
 import subprocess
 
-class ObjectFileNode(filenode.FileNode):
+class ObjectFileNode(buildfilenode.BuildFileNode):
 	def build(self,mgr):
 		args=[]
 		args.append('gcc')

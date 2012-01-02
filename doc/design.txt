@@ -63,6 +63,8 @@ Implementation:
 The idea is that each node will declare a "canBuild" attribute and source nodes
 will return False on it.
 
+TODO: stop having sourcefilenode
+
 An error handling system:
 =========================
 An object that contains errors must be created. Any node which encounters
@@ -78,6 +80,13 @@ Cleaning:
 		all files will inherit the clean method which simply removes the file.
 	I want to be able to see all stuff which is being cleaned and also see how many files
 		are being cleaned.
+- should clean be a node?
+	no it should not. Why? because, unlike building, the order of clean is not important.
+	The whole purpose of holding stuff in node and edges and in a graph is so that graph
+	topology would matter and in the case of clean graph topology DOES NOT matter.
+- I may want to clean only subfolder. This means that I may wish to run the "clean" command
+	only on a subgraph of the entire graph. Enable an easy API to do that (call a command
+	on a subset of the graph).
 
 Integration with source control management systems
 ==================================================
@@ -87,3 +96,15 @@ This way I will not need to actually put the file names into the mgr but just te
 to scan.
 I could also add a black list feature of stuff that should not be taken as source files.
 	(how about a mark INSIDE the file saying that it is not a source file?)
+
+Node which represents a list of folders
+=======================================
+Sometimes we want a node that represents a folder.
+Examples: doxygen generates two folders full of documentation (html and latex)
+	In that case building doxygen is a dependency between all source files in the project
+	and these two folders.
+This special node would:
+	- on clean recursivly remove all folders.
+	- would say that the files in those folders belong to it.
+	- would put .gitignore tags on these folders ?!?
+subclasses of this node could implement doxygen and other similar stuff.

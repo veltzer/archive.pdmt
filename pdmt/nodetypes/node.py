@@ -1,5 +1,5 @@
 class Node:
-	def uptodate(self,mgr):
+	def uptodate(self,mgr,todo):
 		return True
 	def canBuild(self):
 		raise ValueError('must override')

@@ -65,7 +65,7 @@ class Mgr:
 		for node in post:
 			if self.debug:
 				self.msg('examining ['+str(node)+']')
-			if not node.uptodate(self):
+			if not node.uptodate(self,todo):
 				todo.append(node)
 		return todo
 	def msg(self,message):

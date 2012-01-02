@@ -1,7 +1,14 @@
 now:
 ====
-- if I touch the C file the object is created but now the executable.
-	take care of that.
+- do the clean target and command line parsing.
+
+- the todo list is not very effective.
+	it is asked using the "in" operator alot and it is a list - better make it an ordered set.
+		(it does have order).
+	actually - the todo list should be a tree since it does have dependencies and the tree structure
+	could be used for parallelism.
+		(find an algorithm for that).
+- what happens if I touch an object file. that is very weird. think about it.
 
 - create a site using mako for templating.
 	(make install to install the site).

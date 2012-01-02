@@ -6,7 +6,7 @@ class FileNode(node.Node):
 		self.fname=fname
 	def __repr__(self):
 		return self.fname
-	def uptodate(self,mgr):
+	def uptodate(self,mgr,todo):
 		# if the file does not exist then rebuild is needed
 		if not os.path.isfile(self.fname):
 			return False
@@ -14,6 +14,9 @@ class FileNode(node.Node):
 		# must exist
 		rebuild=False
 		for node in mgr.deps(self):
+			if node in todo:
+				rebuild=True
+				break
 			if isinstance(node,FileNode):
 				if os.path.getmtime(node.fname)>os.path.getmtime(self.fname):
 					rebuild=True

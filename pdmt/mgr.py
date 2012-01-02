@@ -64,20 +64,25 @@ class Mgr:
 		todo=[]
 		for node in post:
 			if self.debug:
-				print 'examining',node
+				self.msg('examining '+str(node))
 			if not node.uptodate(self):
 				todo.append(node)
 		return todo
+	def msg(self,message):
+		print 'pdmt:',message
 	def build(self):
 		todo=self.build_todolist()
 		if self.progress and len(todo)>0:
-			print 'going to build',len(todo),'nodes'
+			name='node'
+			if len(todo)>1:
+				name+='s'
+			self.msg('going to build '+str(len(todo))+' '+name)
 		for num,node in enumerate(todo):
 			if self.progress:
-				print num,'building',node
+				self.msg('building '+str(node))
 			node.build(self)
 		if self.progress and len(todo)==0:
-			print 'nothing to build'
+			self.msg('nothing to build')
 
 	""" printing method """
 	def printme(self):

@@ -1,6 +1,7 @@
 now:
 ====
-- make the linking stage
+- if I touch the C file the object is created but now the executable.
+	take care of that.
 
 - create a site using mako for templating.
 	(make install to install the site).

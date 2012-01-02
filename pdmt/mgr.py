@@ -64,7 +64,7 @@ class Mgr:
 		todo=[]
 		for node in post:
 			if self.debug:
-				self.msg('examining '+str(node))
+				self.msg('examining ['+str(node)+']')
 			if not node.uptodate(self):
 				todo.append(node)
 		return todo
@@ -79,7 +79,7 @@ class Mgr:
 			self.msg('going to build '+str(len(todo))+' '+name)
 		for num,node in enumerate(todo):
 			if self.progress:
-				self.msg('building '+str(node))
+				self.msg('building ['+str(node)+']')
 			node.build(self)
 		if self.progress and len(todo)==0:
 			self.msg('nothing to build')

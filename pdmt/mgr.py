@@ -6,9 +6,9 @@ class Mgr:
 		self.graph=pygraph.classes.digraph.digraph()
 		self.init_handlers()
 		self.config={}
-		#self.debug=True
-		self.debug=False
-		self.progress=True
+		#self.dbg=True
+		self.dbg=False
+		self.prog=True
 
 	""" listener functions start here """
 	def init_handlers(self):
@@ -63,27 +63,36 @@ class Mgr:
 		(st,pre,post)=pygraph.algorithms.searching.depth_first_search(self.graph)
 		todo=[]
 		for node in post:
-			if self.debug:
-				self.msg('examining ['+str(node)+']')
+			self.debug('examining ['+str(node)+']')
 			if not node.uptodate(self,todo):
 				todo.append(node)
 		return todo
 	def msg(self,message):
 		print 'pdmt:',message
+	def progress(self,message):
+		if self.prog:
+			self.msg(message)
+	def debug(self,message):
+		if self.dbg:
+			self.msg(message)
 	def build(self):
 		todo=self.build_todolist()
-		if self.progress and len(todo)>0:
+		if len(todo)>0:
 			name='node'
 			if len(todo)>1:
 				name+='s'
-			self.msg('going to build '+str(len(todo))+' '+name)
+			self.progress('going to build '+str(len(todo))+' '+name)
 		for num,node in enumerate(todo):
-			if self.progress:
-				self.msg('building ['+str(node)+']')
+			self.progress('building ['+str(node)+']')
 			node.build(self)
-		if self.progress and len(todo)==0:
-			self.msg('nothing to build')
+		if len(todo)==0:
+			self.progress('nothing to build')
+	def clean(self):
+		self.progress('going to clean')
+		for node in self.graph.nodes():
+			self.debug(node)
+			node.clean()
 
 	""" printing method """
-	def printme(self):
+	def prnt(self):
 		print self.graph

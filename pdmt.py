@@ -7,6 +7,7 @@ import pdmt.nodetypes.sourcefilenode
 import pdmt.nodetypes.objectfilenode
 import pdmt.nodetypes.cexecutablefilenode
 import pdmt.eventhandlers.debugger
+import pdmt.cmdline
 
 mgr=pdmt.mgr.Mgr()
 mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
@@ -14,5 +15,4 @@ mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
 node=mgr.addNode(pdmt.nodetypes.cexecutablefilenode.CExecutableFileNode('tests/main.exe'))
 mgr.addHandler(pdmt.nodehandlers.connector.Connector(node,pdmt.nodetypes.objectfilenode.ObjectFileNode,'^tests/.*\.o$'))
 mgr.addNode(pdmt.nodetypes.sourcefilenode.SourceFileNode('tests/main.c'))
-#mgr.printme()
-mgr.build()
+pdmt.cmdline.parse(mgr)

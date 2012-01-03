@@ -5,3 +5,5 @@ class Node:
 		raise ValueError('must override')
 	def build(self,mgr):
 		raise ValueError('must override')
+	def clean(self):
+		pass

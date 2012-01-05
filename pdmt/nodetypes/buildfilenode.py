@@ -8,4 +8,5 @@ import os
 class BuildFileNode(filenode.FileNode,buildnode.BuildNode):
 	def clean(self):
 		if os.path.isfile(self.fname):
+			print 'unlinking',self.fname
 			os.unlink(self.fname)

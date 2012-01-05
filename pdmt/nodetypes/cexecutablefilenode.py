@@ -1,8 +1,11 @@
 import buildfilenode
 import filenode
 import subprocess
+import pdmt.types
 
 class CExecutableFileNode(buildfilenode.BuildFileNode):
+	def __init__(self,fname):
+		super(CExecutableFileNode,self).__init__(fname,pdmt.types.t_exe)
 	def build(self,mgr):
 		args=[]
 		args.append('gcc')

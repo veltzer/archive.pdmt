@@ -2,10 +2,11 @@ import node
 import os
 
 class FileNode(node.Node):
-	def __init__(self,fname):
-		self.fname=fname
+	def __init__(self,p_fname,p_type):
+		super(FileNode,self).__init__(p_type)
+		self.fname=p_fname
 	def __repr__(self):
-		return self.fname
+		return self.fname+','+self.m_type
 	def uptodate(self,mgr,todo):
 		# if the file does not exist then rebuild is needed
 		if not os.path.isfile(self.fname):

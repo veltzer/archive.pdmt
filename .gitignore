@@ -2,3 +2,7 @@
 *.pyo
 *.o
 *.exe
+MANIFEST
+dist/*
+build/*
+deb_dist/*

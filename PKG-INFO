@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: pdmt
+Version: 1
+Summary: Project Dependency Management Tool
+Home-page: http://veltzer.net/pdmt
+Author: Mark Veltzer
+Author-email: mark.veltzer@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: LGPL
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Building
+Requires: pygraph

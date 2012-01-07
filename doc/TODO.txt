@@ -1,11 +1,6 @@
 now:
 ====
-- get to a situation where I can install and remove my debian package without putting in a passphrase.
-	Do it in ANY WAY YOU SEE FIT.
-	preferably create a signing key which does not require a pass phrase.
-	maybe there is a way for a GPG AGENT to propagate pass sudo? If so user 'mark'
-	could sing for what user 'root' is doing. That would be the best solution.
-	make the reprepro script a pdmt plugin.
+- make the reprepro script a pdmt plugin.
 
 - the todo list is not very effective.
 	it is asked using the "in" operator alot and it is a list - better make it an ordered set.
@@ -14,7 +9,6 @@ now:
 	could be used for parallelism.
 		(find an algorithm for that).
 - what happens if I touch an object file. that is very weird. think about it.
-
 - create a site using mako for templating.
 	(make install to install the site).
 - bring a python documentation tool and create documentation out of the source code.

@@ -1,0 +1,11 @@
+These are notes regarding the rerepro plugin to pdmt:
+- if you want to not need to put a pass phrase each time this
+runs you can use a key without a passphrase in your repository. there may be other options
+but I haven't explored them. see gpg documentation about creating a key without a pass phrase.
+
+TODO:
+support keys with passphrases well. How would I do that?
+	1) don't use sudo - have the repository owned by the user running the script.
+	2) propagate the gpg-agent cross sudo(1). Is that possible?
+	3) cache the passphrase using '/usr/lib/gnupg2/gpg-preset-passphrase'
+	4) feed the passphrase some other way.

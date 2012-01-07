@@ -32,7 +32,7 @@ parser.add_option(
 		"-y","--redirect",
 		help="redirect stdout and stderr",
 		action="store_true",
-		default=False,
+		default=True,
 )
 (options,args)=parser.parse_args()
 if sum([options.install,options.remove,options.dumpunreferenced,options.deleteunreferenced])!=1:

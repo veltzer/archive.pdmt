@@ -24,3 +24,7 @@ full:
 .PHONY: install-deb
 install-deb:
 	sudo dpkg --install deb_dist/python-pdmt_1-1_all.deb
+
+.PHONY: listfiles
+listfiles:
+	dpkg --listfiles python-pdmt

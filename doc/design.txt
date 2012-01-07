@@ -108,3 +108,25 @@ This special node would:
 	- would say that the files in those folders belong to it.
 	- would put .gitignore tags on these folders ?!?
 subclasses of this node could implement doxygen and other similar stuff.
+
+Node types:
+===========
+The main question in this respect is whether or nodes nodes should have
+types?
+Advantages:
+- I could ask:
+	- how many nodes of type "c++" are there?
+	- show me all nodes of type "h"
+- I could create policies like: don't allow files in this folder
+	include files from that folder.
+- I could differentiate between rebuilding a node because of h file
+	change as opposed to source file change as opposed to compiler version
+	change.
+Disadvantages:
+- should every node have just one type? is that enough? Maybe a node should
+	have a collection of tags associated with it?
+
+Should we have a map of sets by which we could quicly get all nodes of a certain
+type?
+Maybe in the future if we see a need for it. Currently no such need arises and the
+performance hit of scanning all the nodes is not noticeble so no such map is maintained.

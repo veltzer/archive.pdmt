@@ -19,7 +19,15 @@ def parse(mgr):
 			action="store_true",
 			default=False,
 	)
+	parser.add_option(
+			"-i","--interactive",
+			help="start interactive mode",
+			action="store_true",
+			default=False,
+	)
 	(options, args) = parser.parse_args()
+	if sum([options.clean,options.build,options.prnt])>1:
+		    parser.error("clean build and prnt are mutually exclusive")
 	#print options, args
 	if options.clean:
 		mgr.clean()

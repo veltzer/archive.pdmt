@@ -1,0 +1,2 @@
+- because there are many reserved names in python and the parser is not that
+	hot then method arguments will be p_[name] (p_type,p_print,...)

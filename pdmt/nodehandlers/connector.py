@@ -1,4 +1,4 @@
-import pdmtcore.nodetypes.objectfilenode
+import pdmt.nodetypes.objectfilenode
 import re
 
 """

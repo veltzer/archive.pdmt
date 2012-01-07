@@ -28,3 +28,6 @@ install-deb:
 .PHONY: listfiles
 listfiles:
 	dpkg --listfiles python-pdmt
+.PHONY: purge
+purge:
+	sudo dpkg --purge python-pdmt

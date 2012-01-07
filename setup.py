@@ -4,7 +4,7 @@ import os
 import distutils.core
 
 dir_list=[]
-for x in os.walk('pdmtcore'):
+for x in os.walk('core'):
 	dir_list.append(x[0])
 
 distutils.core.setup(
@@ -28,6 +28,5 @@ distutils.core.setup(
 	],
 	packages=dir_list,
 	scripts=[
-		"pdmt.py",
         ],
 )

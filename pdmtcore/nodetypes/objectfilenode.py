@@ -1,11 +1,11 @@
 import buildfilenode
 import filenode
 import subprocess
-import pdmt.types
+import pdmtcore.types
 
 class ObjectFileNode(buildfilenode.BuildFileNode):
 	def __init__(self,p_fname):
-		super(ObjectFileNode,self).__init__(p_fname,pdmt.types.t_object)
+		super(ObjectFileNode,self).__init__(p_fname,pdmtcore.types.t_object)
 	def build(self,mgr):
 		args=[]
 		args.append('gcc')

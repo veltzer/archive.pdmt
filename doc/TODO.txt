@@ -1,6 +1,8 @@
 now:
 ====
-- do the clean target and command line parsing.
+- get to a situation where I can install and remove my debian package without putting in a passphrase.
+	Do it in ANY WAY YOU SEE FIT.
+	preferably create a signing key which does not require a pass phrase.
 
 - the todo list is not very effective.
 	it is asked using the "in" operator alot and it is a list - better make it an ordered set.

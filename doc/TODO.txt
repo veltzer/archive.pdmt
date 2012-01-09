@@ -1,5 +1,7 @@
 now:
 ====
+- make the packaging a pdmt plugin (stop using the makefile and eliminate it
+	if possible).
 - make the reprepro script a pdmt plugin.
 
 - the todo list is not very effective.

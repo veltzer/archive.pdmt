@@ -1,2 +1,6 @@
 - because there are many reserved names in python and the parser is not that
 	hot then method arguments will be p_[name] (p_type,p_print,...)
+- name spaces:
+	the name space for pdmt is pdmt.
+	it does not cause problems since a script called pdmt.py should
+	NOT be distributed with the pdmt package (deb, rpm, ...).

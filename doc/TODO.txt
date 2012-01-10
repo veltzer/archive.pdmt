@@ -1,5 +1,6 @@
 now:
 ====
+- add mako suppport in pdmt and create a website for it.
 - make the packaging a pdmt plugin (stop using the makefile and eliminate it
 	if possible).
 - make the reprepro script a pdmt plugin.

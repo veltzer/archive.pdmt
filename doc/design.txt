@@ -130,3 +130,13 @@ Should we have a map of sets by which we could quicly get all nodes of a certain
 type?
 Maybe in the future if we see a need for it. Currently no such need arises and the
 performance hit of scanning all the nodes is not noticeble so no such map is maintained.
+
+parameters:
+===========
+- The idea is that paramters are nodes within the graph.
+	Why is that? To avoid the need to rebuild all nodes once any paramter
+	is changed. Lets say I change a -O2 to -O3 for just one object file it
+	does not require rebuilding the whole graph, just that node and dependant nodes.
+- a special object to handle (read) all parameters will be made. Each paramters should
+	have a date associated with it. That is how we will determine if the output from
+	it needs to be rebuilt.

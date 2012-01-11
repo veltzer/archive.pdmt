@@ -1,60 +1,89 @@
 #!/usr/bin/python
 
 import subprocess
-import optparse
+import argparse
+import sys # for argv
 
-parser=optparse.OptionParser()
-parser.add_option(
-		"-i","--install",
-		help="install package",
-		action="store_true",
+parser=argparse.ArgumentParser(description='manage debian archive')
+parser.add_argument(
+		'--install',
+		help='install package',
+		action='store_true',
 		default=False,
 )
-parser.add_option(
-		"-r","--remove",
-		help="remove package",
-		action="store_true",
+parser.add_argument(
+		'--remove',
+		help='remove package',
+		action='store_true',
 		default=False,
 )
-parser.add_option(
-		"-u","--dumpunreferenced",
-		help="dump unreferenced",
-		action="store_true",
+parser.add_argument(
+		'--dumpunreferenced',
+		help='dump unreferenced',
+		action='store_true',
 		default=False,
 )
-parser.add_option(
-		"-d","--deleteunreferenced",
-		help="delete unreferenced",
-		action="store_true",
+parser.add_argument(
+		'--deleteunreferenced',
+		help='delete unreferenced',
+		action='store_true',
 		default=False,
 )
-parser.add_option(
-		"-y","--redirect",
-		help="redirect stdout and stderr",
-		action="store_true",
+parser.add_argument(
+		'--deb',
+		help='debian file to install',
+		default=None,
+)
+parser.add_argument(
+		'--name',
+		help='cannonical name of debian package to remove',
+		default=None,
+)
+parser.add_argument(
+		'--redirect',
+		help='redirect stdout and stderr',
+		action='store_true',
 		default=True,
 )
-(options,args)=parser.parse_args()
+parser.add_argument(
+		'--component',
+		help='what apt component to work on',
+		default='main',
+)
+parser.add_argument(
+		'--codename',
+		help='what apt component to work on',
+		# TODO - get it from the OS
+		default='oneiric',
+)
+parser.add_argument(
+		'--servicedir',
+		help='what directory to work on',
+		default='/var/www/apt',
+)
+options=parser.parse_args()
 if sum([options.install,options.remove,options.dumpunreferenced,options.deleteunreferenced])!=1:
-	parser.error("must specify")
+	parser.error('must specify')
+if options.install:
+	if options.deb==None:
+		parser.error('must specify --deb')
+if options.remove:
+	if options.deb==None:
+		parser.error('must specify --deb')
 
-# params
-p_debfile='deb_dist/python-pdmt_1-1_all.deb'
-p_debname='python-pdmt'
-p_component='main'
-p_servicedir='/var/www/apt'
-p_codename='oneiric'
-
+if options.install:
+	for x in args:
+		print x
 args=[]
 args.append('sudo');
 args.append('reprepro');
-args.extend(['--basedir',p_servicedir])
+args.extend(['--basedir',options.servicedir])
 if options.install:
-	args.extend(['--component',p_component])
-	args.extend(['includedeb',p_codename,p_debfile])
+	args.extend(['--component',options.component])
+	args.extend(['includedeb',options.codename,options.deb])
 if options.remove:
-	args.extend(['--component',p_component])
-	args.extend(['remove',p_codename,p_debname]);
+	args.extend(['--component',options.component])
+	args.extend(['remove',options.codename,options.name]);
 if options.dumpunreferenced:
 	args.append('dumpunreferenced');
 if options.deleteunreferenced:

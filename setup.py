@@ -20,7 +20,7 @@ def system_check_output(arg):
 	(output,errout)=pr.communicate()
 	status=pr.returncode
 	if status:
-		raise ValueError('error in executing',cmd)
+		raise ValueError('error in executing',arg)
 	return output
 
 if len(sys.argv)==2 and sys.argv[1]=='sdist':

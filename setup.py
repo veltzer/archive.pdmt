@@ -11,9 +11,10 @@ distutils.core.setup(
 	name="pdmt",
 	description="Project Dependency Management Tool",
 	author="Mark Veltzer",
-	author_email="mark.veltzer@gmail.com",
+	# this key is used for signing too
+	author_email="mark@veltzer.net",
 	url="http://veltzer.net/pdmt",
-	version="1",
+	version="2",
 	classifiers=[
 		'Development Status :: 4 - Beta',
 		'Environment :: Console',

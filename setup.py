@@ -9,7 +9,6 @@ import sys # for argv
 # parameters #
 ##############
 check=True
-check=False
 debug=False
 
 ########

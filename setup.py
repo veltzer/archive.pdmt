@@ -3,16 +3,28 @@
 import os # for chdir
 import distutils.core # for setup
 import subprocess # for check_output
+import sys # for argv
 
 ##############
 # parameters #
 ##############
+check=True
+check=False
+debug=False
 
 ########
 # code #
 ########
+if len(sys.argv)==2 and sys.argv[1]=='sdist':
+
+	# check that everything is commited
+	out=subprocess.check_output(['git','status','-s'])
+	if check and out!='':
+		raise ValueError('first commit everything, then call me...')
+
 version=subprocess.check_output(['git','describe']).rstrip()
-print('version is ',version)
+if debug:
+	print('version is ',version)
 name='pdmt-'+version
 
 dir_list=[]
@@ -43,3 +55,7 @@ distutils.core.setup(
 	scripts=[
         ],
 )
+if sys.argv[1]=='sdist':
+	subprocess.check_output(['py2dsc','dist/'+name+'.tar.gz'])
+	os.chdir('deb_dist/'+name)
+	os.system('debuild')

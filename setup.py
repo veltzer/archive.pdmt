@@ -15,14 +15,22 @@ debug=False
 ########
 # code #
 ########
-if len(sys.argv)==2 and sys.argv[1]=='sdist':
+# this function is here because of python2.6 that does not have subprocess.check_output
+def system_check_output(arg):
+	pr=subprocess.Popen(arg,stdout=subprocess.PIPE)
+	(output,errout)=pr.communicate()
+	status=pr.returncode
+	if status:
+		raise ValueError('error in executing',cmd)
+	return output
 
+if len(sys.argv)==2 and sys.argv[1]=='sdist':
 	# check that everything is commited
 	out=subprocess.check_output(['git','status','-s'])
 	if check and out!='':
 		raise ValueError('first commit everything, then call me...')
 
-version=subprocess.check_output(['git','describe']).rstrip()
+version=system_check_output(['git','describe']).rstrip()
 if debug:
 	print('version is ',version)
 name='pdmt-'+version

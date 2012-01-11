@@ -10,6 +10,7 @@ packs=[
 	'python-pyinotify',
 	'python-pyinotify-doc',
 	'python-inotifyx',
+	'python-stdeb',
 ]
 
 args=['sudo','apt-get','install']

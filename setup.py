@@ -2,6 +2,12 @@
 
 import os
 import distutils.core
+import subprocess
+
+# check that everything is commited
+out=subprocess.check_output(['git','status','-s'])
+if out!='':
+	raise ValueError('first commit everything, then call me...')
 
 dir_list=[]
 for x in os.walk('core'):
@@ -14,7 +20,7 @@ distutils.core.setup(
 	# this key is used for signing too
 	author_email="mark@veltzer.net",
 	url="http://veltzer.net/pdmt",
-	version="2",
+	version=subprocess.check_output(['git','describe']),
 	classifiers=[
 		'Development Status :: 4 - Beta',
 		'Environment :: Console',

@@ -18,8 +18,6 @@ build:
 .PHONY: full
 full:
 	./setup.py sdist
-	py2dsc dist/pdmt-1.tar.gz
-	cd deb_dist/pdmt-1; debuild
 
 .PHONY: install-deb
 install-deb:

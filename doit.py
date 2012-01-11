@@ -7,10 +7,16 @@ import subprocess # for check_output
 ##############
 # parameters #
 ##############
+check=True
+check=False
 
 ########
 # code #
 ########
+# check that everything is commited
+out=subprocess.check_output(['git','status','-s'])
+if check and out!='':
+	raise ValueError('first commit everything, then call me...')
 version=subprocess.check_output(['git','describe']).rstrip()
 print('version is ',version)
 name='pdmt-'+version
@@ -43,3 +49,6 @@ distutils.core.setup(
 	scripts=[
         ],
 )
+subprocess.check_output(['py2dsc','dist/'+name+'.tar.gz'])
+os.chdir('deb_dist/'+name)
+os.system('debuild')

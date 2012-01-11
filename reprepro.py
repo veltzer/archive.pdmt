@@ -71,9 +71,6 @@ if options.remove:
 	if options.deb==None:
 		parser.error('must specify --deb')
 
-if options.install:
-	for x in args:
-		print x
 args=[]
 args.append('sudo');
 args.append('reprepro');

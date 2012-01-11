@@ -1,5 +1,7 @@
-now:
-====
+command line parsing:
+=====================
+- move to argparse instead of optparse (optparse is deprecated).
+
 - add mako suppport in pdmt and create a website for it.
 - make the packaging a pdmt plugin (stop using the makefile and eliminate it
 	if possible).

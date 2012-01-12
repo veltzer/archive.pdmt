@@ -5,4 +5,4 @@ class Operation(object):
 	def getName(self):
 		return self.m_name
 	def run(self,nodes):
-		print('operation empty')
+		print('empty operation doing nothing')

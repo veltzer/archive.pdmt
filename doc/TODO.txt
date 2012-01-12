@@ -1,8 +1,5 @@
 command line parsing:
 =====================
-- create a Mako Target node that knows how to run mako and get to running mako stuff.
-	- bring the files from myrepo and run mako on them.
-	- give my own config to the mako processor.
 - add the code from myrepo to create a repository.
 - add hooks to pdmt to enable commands with no relation to the graph.
 	hook the commands in reprepro to them.

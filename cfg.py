@@ -73,3 +73,4 @@ class ns_chandler:
 	p_objectfilesuffix='.o'
 class ns_makohandler:
 	p_sourcefilesuffix='.mako'
+	p_targetdir='makot'

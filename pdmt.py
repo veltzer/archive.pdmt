@@ -11,7 +11,7 @@ import pdmt.nodetypes.cexecutablefilenode
 import pdmt.eventhandlers.debugger
 import pdmt.operations.installaptsite
 import pdmt.cmdline
-import pdmt.types
+import glob
 
 mgr=pdmt.mgr.Mgr()
 mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
@@ -22,20 +22,18 @@ mgr.addHandler(pdmt.nodehandlers.connector.Connector(node,pdmt.nodetypes.objectf
 mgr.addNode(pdmt.nodetypes.cfilenode.CFileNode('tests/main.c'))
 
 # mako stuff
-node=mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/test.mako'))
-
-node1=mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/distributions.mako'))
-node2=mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/index.php.mako'))
-node3=mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/options.mako'))
+nodes=[]
+for name in glob.glob('mako/*.mako'):
+	nodes.append(mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode(name)))
 
 mgr.addOperation(
 	pdmt.operations.installaptsite.InstallAptSite(
 		'installaptsite',
 		'install the apt site',
-		node1,
-		node2,
-		node3),
-	mgr.dependsOn([node1,node2,node3]),
+		nodes[0],
+		nodes[1],
+		nodes[2]),
+	mgr.dependsOn(nodes),
 )
 
 pdmt.cmdline.parse(mgr)

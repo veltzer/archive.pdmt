@@ -3,7 +3,8 @@
 import pdmt.mgr
 import pdmt.nodehandlers.chandler
 import pdmt.nodehandlers.connector
-import pdmt.nodetypes.sourcefilenode
+import pdmt.nodetypes.cfilenode
+import pdmt.nodetypes.makofilenode
 import pdmt.nodetypes.objectfilenode
 import pdmt.nodetypes.cexecutablefilenode
 import pdmt.eventhandlers.debugger
@@ -15,5 +16,6 @@ mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
 #mgr.addHandler(pdmt.eventhandlers.debugger.Debugger())
 node=mgr.addNode(pdmt.nodetypes.cexecutablefilenode.CExecutableFileNode('tests/main.exe'))
 mgr.addHandler(pdmt.nodehandlers.connector.Connector(node,pdmt.nodetypes.objectfilenode.ObjectFileNode,'^tests/.*\.o$'))
-mgr.addNode(pdmt.nodetypes.sourcefilenode.SourceFileNode('tests/main.c',pdmt.types.t_c))
+mgr.addNode(pdmt.nodetypes.cfilenode.CFileNode('tests/main.c'))
+mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/test.mako'))
 pdmt.cmdline.parse(mgr)

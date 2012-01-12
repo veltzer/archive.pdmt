@@ -1,6 +1,10 @@
 import filenode
 import os
 
+"""
+this node represents an source file. Not just C. Any source file
+"""
+
 class SourceFileNode(filenode.FileNode):
 	""" if a source file exists then it is upto date """
 	""" question: why isn't a source file ALWAYS up to date?

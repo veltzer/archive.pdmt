@@ -40,6 +40,12 @@ def parse(mgr):
 			action='store_true',
 			default=False,
 	)
+	parser.add_argument(
+			'--installdeb',
+			help='install the deb package into a repository',
+			action='store_true',
+			default=False,
+	)
 	options=parser.parse_args()
 	if sum([
 		options.clean,
@@ -47,6 +53,7 @@ def parse(mgr):
 		options.dump,
 		options.install,
 		options.deb,
+		options.installdeb,
 	])!=1:
 		parser.error('must specify one of clean,build,dump,install,deb')
 	if options.clean:
@@ -59,3 +66,5 @@ def parse(mgr):
 		utils.installer.doit()
 	if options.deb:
 		utils.debmaker.doit()
+	if options.installdeb:
+		utils.reprepro.doit()

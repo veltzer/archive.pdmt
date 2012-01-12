@@ -1,5 +1,8 @@
 command line parsing:
 =====================
+- add the code from myrepo to create a repository.
+- add hooks to pdmt to enable commands with no relation to the graph.
+	hook the commands in reprepro to them.
 - get ridd of the makefile by adding:
 	pdmt clean hooks.
 		- one hook to remove all files of a certain extension.

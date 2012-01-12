@@ -1,14 +1,16 @@
 import pdmt.nodetypes.objectfilenode
+import pdmt.nodetypes.cfilenode
+
+import pdmt.config
+import config
 
 class CHandler:
 	def respond(self,mgr,node,eventtype):
 		if eventtype!='nodepostadd':
 			return
-		if not isinstance(node,pdmt.nodetypes.filenode.FileNode):
+		if not isinstance(node,pdmt.nodetypes.cfilenode.CFileNode):
 			return
-		if not node.fname.endswith('.c'):
-			return
-		newname=node.fname[:node.fname.rfind('.c')]+'.o'
+		newname=node.fname[:node.fname.rfind(config.ns_chandler.p_sourcefilesuffix)]+config.ns_chandler.p_objectfilesuffix
 		newnode=pdmt.nodetypes.objectfilenode.ObjectFileNode(newname)
 		mgr.addNode(newnode)
 		mgr.addEdge((newnode,node))

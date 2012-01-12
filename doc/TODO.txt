@@ -1,7 +1,7 @@
 command line parsing:
 =====================
-- define the deployment of the apt site as such an operation.
-- create the deb package as part of pdmt.
+- make sure that we build the nodes that ops depend on.
+- create the deb package as part of pdmt (with dependencies)
 - define installation of the package as depending on the deb package.
 
 - get ridd of setup.py (it should a part of the module that knows how to create

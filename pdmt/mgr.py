@@ -111,10 +111,11 @@ class Mgr:
 		self.opbyname[op.getName()]=op
 		self.opnodes[op]=nodes
 	def runOperation(self,p_name):
-		self.progress('running operation ['+p_name+']')
 		op=self.opbyname[p_name]
 		nodes=self.opnodes[op]
-		# TODO: build the nodes
+		# TODO: build just the nodes we need, not all of them
+		self.build()
+		self.progress('running operation ['+p_name+']')
 		op.run(nodes)
 	""" print all operations """
 	def dumpoperations(self):

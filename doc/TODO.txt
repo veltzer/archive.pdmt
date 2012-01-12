@@ -1,6 +1,5 @@
-command line parsing:
-=====================
-- make sure that we build the nodes that ops depend on.
+Now:
+====
 - create the deb package as part of pdmt (with dependencies)
 - define installation of the package as depending on the deb package.
 

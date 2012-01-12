@@ -1,6 +1,6 @@
 <VirtualHost *>
-	DocumentRoot GPP_SERVICE_DIR 
-	ServerName GPP_HOSTNAME
+	DocumentRoot ${pdmt.config.ns_reprepro.p_servicedir} 
+	ServerName ${pdmt.config.ns_reprepro.p_hostname}
 	ErrorLog /var/log/apache2/error.log
  
         LogLevel warn
@@ -9,7 +9,7 @@
         ServerSignature On
  
         # Allow directory listings so that people can browse the repository from their browser too
-        <Directory "GPP_SERVICE_DIR">
+        <Directory "${pdmt.config.ns_reprepro.p_servicedir}">
                 Options Indexes FollowSymLinks MultiViews
                 DirectoryIndex index.html
                 AllowOverride Options
@@ -18,14 +18,14 @@
         </Directory>
  
         # Hide the conf/ directory for all repositories
-        <Directory "GPP_SERVICE_DIR/*/conf">
+        <Directory "${pdmt.config.ns_reprepro.p_servicedir}/*/conf">
                 Order allow,deny
                 Deny from all
                 Satisfy all
         </Directory>
  
         # Hide the db/ directory for all repositories
-        <Directory "GPP_SERVICE_DIR/*/db">
+        <Directory "${pdmt.config.ns_reprepro.p_servicedir}/*/db">
                 Order allow,deny
                 Deny from all
                 Satisfy all

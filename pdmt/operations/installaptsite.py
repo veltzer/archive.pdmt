@@ -1,7 +1,6 @@
 import operation
 
 import pdmt.config
-import config
 
 import pdmt.utils.fileops
 import pdmt.utils.subproc
@@ -19,8 +18,8 @@ $ chgrp $USER -R /var/www
 class InstallAptSite(operation.Operation):
 	def run(self,nodes):
 		# the if is needed to avoid an exception
-		serv=config.ns_reprepro.p_servicedir
-		conf=os.path.join(serv,config.ns_reprepro.p_conf)
+		serv=pdmt.config.ns_reprepro.p_servicedir
+		conf=os.path.join(serv,pdmt.config.ns_reprepro.p_conf)
 		pdmt.utils.fileops.rmtreesoft(serv)
 		pdmt.utils.fileops.mkdircopysoft('makot/distributions',conf)
 		pdmt.utils.fileops.mkdircopysoft('makot/options',conf)
@@ -31,5 +30,5 @@ class InstallAptSite(operation.Operation):
 			'--armour',
 			'--export',
 			'--output',
-			os.path.join(serv,config.ns_reprepro.p_keyname),
+			os.path.join(serv,pdmt.config.ns_reprepro.p_keyname),
 		])

@@ -2,15 +2,13 @@ import pygraph.classes.digraph
 #import pygraph.classes.graph
 import pygraph.algorithms.searching
 
+import pdmt.config
+
 class Mgr:
 	def __init__(self):
 		self.graph=pygraph.classes.digraph.digraph()
 		#self.graph=pygraph.classes.graph.graph()
 		self.init_handlers()
-		self.config={}
-		#self.dbg=True
-		self.dbg=False
-		self.prog=True
 		self.opnodes={}
 		self.opbyname={}
 
@@ -49,12 +47,6 @@ class Mgr:
 		self.notify(edge,'edgepostdel')
 		return edge
 
-	""" configuration """
-	def getConfig(self,name):
-		return config[name]
-	def setConfig(self,name,val):
-		config[name]=val
-
 	""" getting all dependencies for a node """
 	def deps(self,node):
 		for n in self.graph[node]:
@@ -76,10 +68,10 @@ class Mgr:
 	def msg(self,message):
 		print 'pdmt:',message
 	def progress(self,message):
-		if self.prog:
+		if pdmt.config.ns_mgr.p_prog:
 			self.msg(message)
 	def debug(self,message):
-		if self.dbg:
+		if pdmt.config.ns_mgr.p_dbg:
 			self.msg(message)
 	def build(self):
 		todo=self.build_todolist()

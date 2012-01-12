@@ -1,9 +1,9 @@
-Origin: ${config.ns_reprepro.p_fullname} 
-Label: ${config.ns_reprepro.p_hostname} 
-Codename: ${config.ns_reprepro.p_codename} 
-Architectures: ${config.ns_reprepro.p_architectures} 
-Components: ${config.ns_reprepro.p_components} 
-Description: ${config.ns_reprepro.p_hostname} originating packages
-SignWith: ${config.ns_reprepro.p_key} 
-#DebOverride: override.${config.ns_reprepro.p_codename}
-#DscOverride: override.${config.ns_reprepro.p_codename}
+Origin: ${pdmt.config.ns_reprepro.p_fullname} 
+Label: ${pdmt.config.ns_reprepro.p_hostname} 
+Codename: ${pdmt.config.ns_reprepro.p_codename} 
+Architectures: ${pdmt.config.ns_reprepro.p_architectures} 
+Components: ${pdmt.config.ns_reprepro.p_components} 
+Description: ${pdmt.config.ns_reprepro.p_hostname} originating packages
+SignWith: ${pdmt.config.ns_reprepro.p_key} 
+#DebOverride: override.${pdmt.config.ns_reprepro.p_codename}
+#DscOverride: override.${pdmt.config.ns_reprepro.p_codename}

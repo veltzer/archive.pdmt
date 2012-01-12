@@ -3,7 +3,6 @@ import makofilenode
 import pdmt.types
 
 import pdmt.config
-import config
 
 import mako.template
 import mako.lookup
@@ -27,5 +26,5 @@ class MakotFileNode(buildfilenode.BuildFileNode):
 			# python 3
 			#file.write((template.render_unicode(attributes={})))
 			# python 2
-			file.write(template.render(config=config))
+			file.write(template.render(pdmt=pdmt))
 		pdmt.utils.fileops.chmod(p_output,0o0444)

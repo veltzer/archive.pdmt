@@ -1,3 +1,3 @@
-# ${pdmt.config.ns_reprepro.p_hostname} APT repository
-deb http://${pdmt.config.ns_reprepro.p_hostname}/${pdmt.config.ns_reprepro.p_folder} ${pdmt.config.ns_reprepro.p_codename} ${pdmt.config.ns_reprepro.p_component}
-deb-src http://${pdmt.config.ns_reprepro.p_hostname}/${pdmt.config.ns_reprepro.p_folder} ${pdmt.config.ns_reprepro.p_codename} ${pdmt.config.ns_reprepro.p_component}
+# ${pdmt.config.ns_distrib.p_domain} APT repository
+deb ${pdmt.config.ns_apt.p_url} ${pdmt.config.ns_reprepro.p_codename} ${pdmt.config.ns_reprepro.p_component}
+deb-src ${pdmt.config.ns_apt.p_url} ${pdmt.config.ns_reprepro.p_codename} ${pdmt.config.ns_reprepro.p_component}

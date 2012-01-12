@@ -14,38 +14,26 @@ class Reprepro(operation.Operation):
 		if pdmt.config.ns_reprepro.p_sudo:
 			args.append('sudo');
 		args.append('reprepro');
-		args.extend(['--basedir',pdmt.config.ns_reprepro.p_servicedir])
+		args.extend(['--basedir',pdmt.config.ns_apt.p_abs_dir])
 		args.extend(['--component',pdmt.config.ns_reprepro.p_component])
 		args.extend(['includedeb',pdmt.config.ns_reprepro.p_codename,DEB])
-		kw={}
-		if pdmt.config.ns_reprepro.p_redirect:
-			kw['stderr']=open('/dev/null')
-			kw['stdout']=open('/dev/null')
-		pdmt.utils.subproc.check_call(args,**kw)
+		pdmt.utils.subproc.check_call(args)
 	def remove():
 		args=[]
 		if pdmt.config.ns_reprepro.p_sudo:
 			args.append('sudo');
 		args.append('reprepro');
-		args.extend(['--basedir',pdmt.config.ns_reprepro.p_servicedir])
+		args.extend(['--basedir',pdmt.config.ns_apt.p_abs_dir])
 		args.extend(['--component',pdmt.config.ns_reprepro.p_component])
 		args.extend(['remove',pdmt.config.ns_reprepro.p_codename,NAME]);
-		kw={}
-		if pdmt.config.ns_reprepro.p_redirect:
-			kw['stderr']=open('/dev/null')
-			kw['stdout']=open('/dev/null')
-		pdmt.utils.subproc.check_call(args,**kw)
+		pdmt.utils.subproc.check_call(args)
 	def command(name):
 		args=[]
 		if pdmt.config.ns_reprepro.p_sudo:
 			args.append('sudo');
 		args.append('reprepro');
 		args.append(name);
-		kw={}
-		if pdmt.config.ns_reprepro.p_redirect:
-			kw['stderr']=open('/dev/null')
-			kw['stdout']=open('/dev/null')
-		pdmt.utils.subproc.check_call(args,**kw)
+		pdmt.utils.subproc.check_call(args)
 	def makerepo():
 		pass
 	def dumpunreferenced():

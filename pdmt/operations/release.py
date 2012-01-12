@@ -23,7 +23,7 @@ debug=True
 # unless you are doing development on this script...
 check=True
 # what is the name of the project?
-project=pdmt.config.ns_install.p_name
+project=pdmt.config.ns_product.p_name
 
 def doit():
 	out=pdmt.utils.subproc.check_output(['git','status','-s'])

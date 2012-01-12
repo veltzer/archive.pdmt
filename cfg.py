@@ -63,9 +63,9 @@ class ns_install:
 	]
 class ns_reprepro:
 	p_sudo=True
-	p_servicedir='/var/www/apt'
 	p_conf='conf'
 	p_folder='apt'
+	p_servicedir='/var/www/'+p_folder
 	p_component='main'
 	p_components='main'
 	p_codename=system_check_output(['lsb_release','--codename','--short']).rstrip()
@@ -77,6 +77,8 @@ class ns_reprepro:
 	p_key='6752126F'
 	p_keyname='public_key.gpg'
 	p_architectures='i386 source'
+	p_name='veltzer.net'
+	p_url='http://'+p_name+'/'+p_folder
 class ns_chandler:
 	p_sourcefilesuffix='.c'
 	p_objectfilesuffix='.o'

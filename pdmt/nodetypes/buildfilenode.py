@@ -7,6 +7,6 @@ import os
 """
 class BuildFileNode(filenode.FileNode,buildnode.BuildNode):
 	def clean(self):
-		if os.path.isfile(self.fname):
-			print('unlinking [{name}]'.format(name=self.fname))
-			os.unlink(self.fname)
+		if os.path.isfile(self.m_fname):
+			print('unlinking [{name}]'.format(name=self.m_fname))
+			os.unlink(self.m_fname)

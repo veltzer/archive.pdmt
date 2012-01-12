@@ -12,10 +12,10 @@ class SourceFileNode(filenode.FileNode):
 	an error. Well - is it this methods part to check that the file
 	exists ?!? I don't think so. This methods name is called "uptodate"
 	and not "verify" or something... """
-	def uptodate(self,mgr,todo):
+	def uptodate(self,todo):
 		return True;
-#		return os.path.isfile(self.fname)
+#		return os.path.isfile(self.m_fname)
 	def canBuild(self):
 		return False
-	def build(self,mgr):
+	def build(self):
 		raise ValueError('dont know how to build a source file')

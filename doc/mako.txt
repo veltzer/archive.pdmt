@@ -1,0 +1,11 @@
+This file documents the integration between pdmt and the mako templating system
+===============================================================================
+Pdmt can use the mako templating system to create files out of pdmt configuration
+variables.
+
+Pdmt also has automatic dependency analysis to determine what each mako template
+needs as far as configuration goes.
+
+How is this automatic dependcy analysis mechanism implemented?
+Pdmt injects a variable with __get__ detection and so understands exactly what
+	each template needs.

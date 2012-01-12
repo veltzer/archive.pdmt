@@ -29,11 +29,13 @@ class Mgr:
 	def addNode(self,node):
 		self.notify(node,'nodepreadd')
 		self.graph.add_node(node)
+		node.setMgr(self)
 		self.notify(node,'nodepostadd')
 		return node
 	def delNode(self,node):
 		self.notify(node,'nodepredel')
 		self.graph.remove_node(node)
+		node.setMgr(None)
 		self.notify(node,'nodepostdel')
 		return node
 	def addEdge(self,edge):
@@ -68,7 +70,7 @@ class Mgr:
 		todo=[]
 		for node in post:
 			self.debug('examining ['+str(node)+']')
-			if not node.uptodate(self,todo):
+			if not node.uptodate(todo):
 				todo.append(node)
 		return todo
 	def msg(self,message):
@@ -88,7 +90,7 @@ class Mgr:
 			self.progress('going to build '+str(len(todo))+' '+name)
 		for num,node in enumerate(todo):
 			self.progress('building ['+str(node)+']')
-			node.build(self)
+			node.build()
 		if len(todo)==0:
 			self.progress('nothing to build')
 	def clean(self):

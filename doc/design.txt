@@ -140,3 +140,6 @@ parameters:
 - a special object to handle (read) all parameters will be made. Each paramters should
 	have a date associated with it. That is how we will determine if the output from
 	it needs to be rebuilt.
+
+names of nodes:
+===============

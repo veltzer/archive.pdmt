@@ -28,6 +28,14 @@ def system_pipe(list1,list2,out=None):
 	status=pr2.returncode
 	if status:
 		raise ValueError('error in executing',list2)
+# this function is here because of python2.6 that does not have subprocess.check_output
+def system_check_output(arg):
+	pr=subprocess.Popen(arg,stdout=subprocess.PIPE)
+	(output,errout)=pr.communicate()
+	status=pr.returncode
+	if status:
+		raise ValueError('error in executing',arg)
+	return output
 
 if __name__=='__main__':
 	try:

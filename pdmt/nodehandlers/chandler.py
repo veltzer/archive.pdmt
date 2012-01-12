@@ -10,7 +10,7 @@ class CHandler:
 			return
 		if not isinstance(node,pdmt.nodetypes.cfilenode.CFileNode):
 			return
-		newname=node.fname[:node.fname.rfind(config.ns_chandler.p_sourcefilesuffix)]+config.ns_chandler.p_objectfilesuffix
+		newname=node.m_fname[:node.m_fname.rfind(config.ns_chandler.p_sourcefilesuffix)]+config.ns_chandler.p_objectfilesuffix
 		newnode=pdmt.nodetypes.objectfilenode.ObjectFileNode(newname)
 		mgr.addNode(newnode)
 		mgr.addEdge((newnode,node))

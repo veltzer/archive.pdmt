@@ -1,0 +1,5 @@
+The idea is that the nodes will be able to easily access the manager.
+It does not seem to hinder anything as I don't forsee a situation where a single node will be in more than one manager.
+Actually even the fact that the manager is not a singleton is an overkill because I can
+hardly forsee a situation where there is more than one manager.
+So each node should have access to the manager it is a part of.

@@ -1,5 +1,5 @@
 import buildfilenode
-import filenode
+import cfilenode
 import subprocess
 import pdmt.types
 
@@ -13,6 +13,6 @@ class ObjectFileNode(buildfilenode.BuildFileNode):
 		args.append('-o')
 		args.append(self.fname)
 		for node in mgr.deps(self):
-			if isinstance(node,filenode.FileNode):
+			if isinstance(node,cfilenode.CFileNode):
 				args.append(node.fname)
 		subprocess.check_call(args)

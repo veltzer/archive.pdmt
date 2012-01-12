@@ -1,5 +1,5 @@
 import pdmt.nodetypes.makofilenode
-import pdmt.nodetypes.unknownfilenode
+import pdmt.nodetypes.makotfilenode
 
 import pdmt.config
 import config
@@ -11,6 +11,6 @@ class MakoHandler:
 		if not isinstance(node,pdmt.nodetypes.makofilenode.MakoFileNode):
 			return
 		newname=node.fname[:node.fname.rfind(config.ns_makohandler.p_sourcefilesuffix)]
-		newnode=pdmt.nodetypes.unknownfilenode.UnknownFileNode(newname)
+		newnode=pdmt.nodetypes.makotfilenode.MakotFileNode(newname)
 		mgr.addNode(newnode)
 		mgr.addEdge((newnode,node))

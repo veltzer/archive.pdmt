@@ -10,6 +10,8 @@ def system_check_output(arg):
 		raise ValueError('error in executing',arg)
 	return output
 
+class ns_pdmt:
+	p_version=system_check_output(['git','describe']).rstrip()
 class ns_release:
 	p_email=True
 	p_tweet=False

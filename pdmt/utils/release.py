@@ -10,10 +10,9 @@
 # - try to use a better git interface (there are native python git interfaces).
 
 # this is for running the various commands that we need
-import subprocess
+import pdmt.utils.subproc
 import os # for getcwd
 import releasemanager
-import subproc
 
 ##############
 # parameters #
@@ -27,10 +26,10 @@ check=True
 project=os.getcwd().split('/')[-1]
 
 def doit():
-	out=subprocess.check_output(['git','status','-s'])
+	out=pdmt.utils.subproc.check_output(['git','status','-s'])
 	if check and out!='':
 		raise ValueError('first commit everything, then call me...')
-	tag=subprocess.check_output(['git','describe','--abbrev=0']).strip()
+	tag=pdmt.utils.subproc.check_output(['git','describe','--abbrev=0']).strip()
 	tag=int(tag)
 	if debug:
 		print 'old tag is '+str(tag)
@@ -38,12 +37,12 @@ def doit():
 	if debug:
 		print 'new tag is '+str(tag)
 	# tag the new tag
-	subprocess.check_output(['git','tag','-s','-m',project+' version '+str(tag),str(tag)])
+	pdmt.utils.subproc.check_output(['git','tag','-s','-m',project+' version '+str(tag),str(tag)])
 	# new name
 	newname=project+'-'+str(tag)
 	print('newname is',newname)
-	subprocess.check_call(['make','clean'])
-	subprocess.check_call(['make','install'])
+	pdmt.utils.subproc.check_call(['make','clean'])
+	pdmt.utils.subproc.check_call(['make','install'])
 	pdmt.utils.subproc.system_pipe(
 		[
 			'git',

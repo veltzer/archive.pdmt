@@ -1,3 +1,7 @@
+"""
+This is the base class of all operations within the system
+"""
+
 class Operation(object):
 	def __init__(self,p_name,p_description):
 		self.m_name=p_name
@@ -5,4 +9,4 @@ class Operation(object):
 	def getName(self):
 		return self.m_name
 	def run(self,nodes):
-		print('empty operation doing nothing')
+		raise ValueError('must override the operation')

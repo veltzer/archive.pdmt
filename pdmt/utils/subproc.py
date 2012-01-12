@@ -11,10 +11,9 @@ import subprocess
 import sys
 
 import pdmt.config
-import config
 
 def debug(msg):
-	if config.ns_subproc.p_debug:
+	if pdmt.config.ns_subproc.p_debug:
 		print(msg)
 def system_pipe(list1,list2,out=None):
 	debug('system_pipe ['+list1+','+list2+','+out+']')
@@ -50,9 +49,6 @@ def check_output(arg,**kw):
 def check_call(arg,**kw):
 	debug('check_call ['+str(arg)+']')
 	subprocess.check_call(arg,**kw)
-def system(arg):
-	debug('system ['+str(arg)+']')
-	os.system(arg)
 
 if __name__=='__main__':
 	try:

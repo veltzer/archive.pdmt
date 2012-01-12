@@ -3,13 +3,12 @@ The idea of this package is that all file operations will go through here
 If this will be the case then it will be very easy to debug all file operations.
 """
 import pdmt.config
-import config
 
 import shutil
 import os
 
 def debug(msg):
-	if config.ns_fileops.p_debug:
+	if pdmt.config.ns_fileops.p_debug:
 		print(msg)
 def rmtree(p_dir):
 	debug('rmtree ['+p_dir+']')

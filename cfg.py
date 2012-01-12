@@ -82,3 +82,6 @@ class ns_fileops:
 class ns_subproc:
 	p_debug=True
 	p_debug=False
+class ns_mgr:
+	p_dbg=False
+	p_prog=True

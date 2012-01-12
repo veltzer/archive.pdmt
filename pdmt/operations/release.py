@@ -1,9 +1,9 @@
-#!/usr/bin/python
-
 # this is a release script.
 # it runs git status -s in order to see that everything is commited.
 # it then tags the current tree with one + the old tag.
 # it then cleans and then rebuilds everything and puts the results in the output.
+
+# TODO: turn this into an operation
 
 # TODO:
 # - add integration with twitter and facebook to announce new versions.
@@ -11,8 +11,8 @@
 
 # this is for running the various commands that we need
 import pdmt.utils.subproc
-import os # for getcwd
 import releasemanager
+import pdmt.config
 
 ##############
 # parameters #
@@ -23,7 +23,7 @@ debug=True
 # unless you are doing development on this script...
 check=True
 # what is the name of the project?
-project=os.getcwd().split('/')[-1]
+project=pdmt.config.ns_install.p_name
 
 def doit():
 	out=pdmt.utils.subproc.check_output(['git','status','-s'])

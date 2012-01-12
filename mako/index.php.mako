@@ -1,19 +1,19 @@
 <html>
 	<body>
-		<h1>Welcome to the ${config.ns_reprepro.p_name} APT repository</h1>
+		<h1>Welcome to the ${pdmt.config.ns_reprepro.p_name} APT repository</h1>
 		<p>
 		I hold various packages here for my own usage and you are welcome to use them too.
-		My packages are for ${config.ns_reprepro.p_codename}/${config.ns_reprepro.p_id} only. It may also work on debian but this is not guaranteed.
+		My packages are for ${pdmt.config.ns_reprepro.p_codename}/${pdmt.config.ns_reprepro.p_id} only. It may also work on debian but this is not guaranteed.
 		If you want to use my repository you have to add it to your system as a source of packages.
 		Here is how you do that.
 		<ul>
 			<li>
 				Add my key to your apt-key keyring.
-				My key id is <b>${config.ns_reprepro.p_key}</b>.
-				You can get it from <a href="http://${config.ns_reprepro.p_hostname}/${config.ns_reprepro.p_folder}/${config.ns_reprepro.p_keyname}">here</a>.
+				My key id is <b>${pdmt.config.ns_reprepro.p_key}</b>.
+				You can get it from <a href="http://${pdmt.config.ns_reprepro.p_hostname}/${pdmt.config.ns_reprepro.p_folder}/${pdmt.config.ns_reprepro.p_keyname}">here</a>.
 				<pre style="font-weight:bold;">
-wget http://${config.ns_reprepro.p_hostname}/${config.ns_reprepro.p_folder}/${config.ns_reprepro.p_keyname}
-sudo apt-key add ${config.ns_reprepro.p_keyname}
+wget http://${pdmt.config.ns_reprepro.p_hostname}/${pdmt.config.ns_reprepro.p_folder}/${pdmt.config.ns_reprepro.p_keyname}
+sudo apt-key add ${pdmt.config.ns_reprepro.p_keyname}
 				</pre>
 			</li>
 			<li>
@@ -27,9 +27,9 @@ sudo apt-key list
 				or add a file like /etc/apt/sources.list.d/veltzer.net.list containing them. You do have to
 				call the file .list (I don't know why...).
 				<pre style="font-weight:bold;">
-# ${config.ns_reprepro.p_hostname} APT repository
-deb http://${config.ns_reprepro.p_hostname}/${config.ns_reprepro.p_folder} ${config.ns_reprepro.p_codename} ${config.ns_reprepro.p_component}
-deb-src http://${config.ns_reprepro.p_hostname}/${config.ns_reprepro.p_folder} ${config.ns_reprepro.p_codename} ${config.ns_reprepro.p_component}
+# ${pdmt.config.ns_reprepro.p_hostname} APT repository
+deb http://${pdmt.config.ns_reprepro.p_hostname}/${pdmt.config.ns_reprepro.p_folder} ${pdmt.config.ns_reprepro.p_codename} ${pdmt.config.ns_reprepro.p_component}
+deb-src http://${pdmt.config.ns_reprepro.p_hostname}/${pdmt.config.ns_reprepro.p_folder} ${pdmt.config.ns_reprepro.p_codename} ${pdmt.config.ns_reprepro.p_component}
 				</pre>
 			</li>
 			<li>
@@ -47,7 +47,7 @@ sudo apt-get install python-pdmt
 		</ul>
 		</p>
 		<p>
-		Another option for using my packages is to just browse the <a href="${config.ns_reprepro.p_url}/pool">repository</a> and download the ones you want
+		Another option for using my packages is to just browse the <a href="${pdmt.config.ns_reprepro.p_url}/pool">repository</a> and download the ones you want
 		and then install them using <b>dpkg --install [package name]</b>.
 		<h1>An uptodate list of packages in my repository:</h1>
 		<?php
@@ -76,7 +76,7 @@ sudo apt-get install python-pdmt
 				getDirectoryRec($path,$level,$arr);
 				return $arr;
 			}
-			$arr=getDirectory($path='${config.ns_reprepro.p_servicedir}/pool');
+			$arr=getDirectory($path='${pdmt.config.ns_reprepro.p_servicedir}/pool');
 			if(count($arr)==0) {
 				echo '<b>no packages available at this time</b>';
 			} else {

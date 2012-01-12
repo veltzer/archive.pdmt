@@ -39,11 +39,11 @@ class ns_product:
 	p_cannonical='python-'+p_name
 # person related parameters
 class ns_person:
-	p_author='Mark Veltzer'
+	p_name='Mark Veltzer'
 	# this key is used for signing...
 	p_email='mark@veltzer.net'
 	p_keyid='6752126F'
-	p_fullname=p_author+' <'+p_email+'>'
+	p_fullname=p_name+' <'+p_email+'>'
 # distribution related parameters
 class ns_distrib:
 	p_domain=pdmt.utils.boot.system_check_output(['hostname','--domain']).rstrip()
@@ -81,7 +81,7 @@ class ns_release:
 	p_email=False
 	p_tweet=True
 	p_subject='A new version of '+ns_product.p_name+' is out'
-	p_from=ns_product.p_name+' author: '+ns_person.p_author
+	p_from=ns_product.p_name+' author: '+ns_person.p_name
 	p_to=[
 		ns_person.p_email,
 		'shay@hinbit.com',

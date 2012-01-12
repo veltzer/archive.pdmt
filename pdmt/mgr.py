@@ -88,7 +88,12 @@ class Mgr:
 		if len(todo)==0:
 			self.progress('nothing to build')
 	def clean(self):
-		self.progress('going to clean')
+		lst=self.graph.nodes()
+		if len(lst)>0:
+			name='node'
+			if len(lst)>1:
+				name+='s'
+		self.progress('going to clean '+str(len(lst))+' '+name)
 		for node in self.graph.nodes():
 			self.debug(node)
 			node.clean()

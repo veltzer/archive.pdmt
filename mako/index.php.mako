@@ -1,6 +1,6 @@
 <html>
 	<body>
-		<h1>Welcome to the veltzer.net APT repository</h1>
+		<h1>Welcome to the ${config.ns_reprepro.p_name} APT repository</h1>
 		<p>
 		I hold various packages here for my own usage and you are welcome to use them too.
 		My packages are for ${config.ns_reprepro.p_codename}/${config.ns_reprepro.p_id} only. It may also work on debian but this is not guaranteed.
@@ -47,7 +47,7 @@ sudo apt-get install python-pdmt
 		</ul>
 		</p>
 		<p>
-		Another option for using my packages is to just browse the <a href="http://veltzer.net/apt/pool">repository</a> and download the ones you want
+		Another option for using my packages is to just browse the <a href="${config.ns_reprepro.p_url}/pool">repository</a> and download the ones you want
 		and then install them using <b>dpkg --install [package name]</b>.
 		<h1>An uptodate list of packages in my repository:</h1>
 		<?php
@@ -77,11 +77,15 @@ sudo apt-get install python-pdmt
 				return $arr;
 			}
 			$arr=getDirectory($path='${config.ns_reprepro.p_servicedir}/pool');
-			echo '<ul>';
-			foreach($arr as $x) {
-				echo '<li>'.$x.'</li>';
+			if(count($arr)==0) {
+				echo '<b>no packages available at this time</b>';
+			} else {
+				echo '<ul>';
+				foreach($arr as $x) {
+					echo '<li>'.$x.'</li>';
+				}
+				echo '</ul>';
 			}
-			echo '</ul>';
 		?>
 		<h1>Why should you want any of these packages ?</h1>
 		<p>

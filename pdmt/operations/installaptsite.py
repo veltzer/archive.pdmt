@@ -5,13 +5,11 @@ import config
 
 import os
 import shutil
+import subprocess
 
 class InstallAptSite(operation.Operation):
-	def __init__(self,p_name,p_description,p_node1,p_node2,p_node3):
+	def __init__(self,p_name,p_description):
 		super(InstallAptSite,self).__init__(p_name,p_description)
-		self.m_node1=p_node1
-		self.m_node2=p_node2
-		self.m_node3=p_node3
 	def run(self,nodes):
 		# the if is needed to avoid an exception
 		serv=config.ns_reprepro.p_servicedir
@@ -20,3 +18,14 @@ class InstallAptSite(operation.Operation):
 			shutil.rmtree(serv)
 		os.mkdir(serv)
 		os.mkdir(conf)
+		shutil.copy('makot/distributions',conf)
+		shutil.copy('makot/options',conf)
+		shutil.copy('makot/index.php',serv)
+		os.mkdir(os.path.join(serv,'pool'))
+		subprocess.check_output([
+			'gpg',
+			'--armour',
+			'--export',
+			'--output',
+			os.path.join(serv,config.ns_reprepro.p_keyname),
+		])

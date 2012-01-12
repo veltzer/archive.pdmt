@@ -22,9 +22,16 @@ class MakotFileNode(buildfilenode.BuildFileNode):
 		output_encoding='utf-8'
 		mylookup=mako.lookup.TemplateLookup(directories=['.'],input_encoding=input_encoding,output_encoding=output_encoding)
 		template=mako.template.Template(filename=p_input,lookup=mylookup,output_encoding=output_encoding,input_encoding=input_encoding)
-		with open(p_output,'w') as file:
-			# python 3
-			#file.write((template.render_unicode(attributes={})))
-			# python 2
+		file=open(p_output,'w')
+		# python 3
+		#file.write((template.render_unicode(attributes={})))
+		# python 2
+		try:
 			file.write(template.render(pdmt=pdmt))
+		except Exception,e:
+			file.close()
+			pdmt.utils.fileops.unlinksoft(p_output)
+			# TODO: self.error(e)
+			raise e
+		file.close()
 		pdmt.utils.fileops.chmod(p_output,0o0444)

@@ -18,7 +18,7 @@ $ chgrp $USER -R /var/www
 class InstallAptSite(operation.Operation):
 	def run(self,nodes):
 		# the if is needed to avoid an exception
-		serv=pdmt.config.ns_reprepro.p_servicedir
+		serv=pdmt.config.ns_apt.p_abs_dir
 		conf=os.path.join(serv,pdmt.config.ns_reprepro.p_conf)
 		pdmt.utils.fileops.rmtreesoft(serv)
 		pdmt.utils.fileops.mkdircopysoft('makot/distributions',conf)

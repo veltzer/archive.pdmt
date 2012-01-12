@@ -16,7 +16,7 @@ class DebMaker(operation.Operation):
 		if out!='':
 			raise ValueError('first commit everything, then call me...')
 		pdmt.utils.subproc.check_output(['python','setup.py','sdist'])
-		name=pdmt.config.ns_install.p_name+'-'+pdmt.config.ns_install.p_version
+		name=pdmt.config.ns_product.p_name+'-'+pdmt.config.ns_product.p_version
 		pdmt.utils.subproc.check_output(['py2dsc','dist/'+name+'.tar.gz'])
 		# save the current directory
 		cdir=pdmt.utils.osw.getcwd()

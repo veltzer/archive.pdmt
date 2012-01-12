@@ -1,10 +1,11 @@
 command line parsing:
 =====================
-- move to argparse instead of optparse (optparse is deprecated).
-
+- get ridd of the makefile by adding:
+	pdmt clean hooks.
+		- one hook to remove all files of a certain extension.
+		- one hook to remove a set of folders recursivly.
 - add mako suppport in pdmt and create a website for it.
-- make the packaging a pdmt plugin (stop using the makefile and eliminate it
-	if possible).
+
 - make the reprepro script a pdmt plugin.
 
 - the todo list is not very effective.

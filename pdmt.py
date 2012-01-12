@@ -9,10 +9,14 @@ import pdmt.nodetypes.makofilenode
 import pdmt.nodetypes.objectfilenode
 import pdmt.nodetypes.cexecutablefilenode
 import pdmt.eventhandlers.debugger
+import pdmt.cmdline
+
+import glob
+
 import pdmt.operations.installaptsite
 import pdmt.operations.installer
-import pdmt.cmdline
-import glob
+import pdmt.operations.debmaker
+import pdmt.operations.reprepro
 
 mgr=pdmt.mgr.Mgr()
 mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
@@ -38,6 +42,20 @@ mgr.addOperation(
 	pdmt.operations.installer.Installer(
 		'installer',
 		'install prereqs',
+	),
+	mgr.dependsOn([]),
+)
+mgr.addOperation(
+	pdmt.operations.debmaker.DebMaker(
+		'debmaker',
+		'make a debian package',
+	),
+	mgr.dependsOn([]),
+)
+mgr.addOperation(
+	pdmt.operations.reprepro.Reprepro(
+		'deb installer',
+		'install the package into the repository',
 	),
 	mgr.dependsOn([]),
 )

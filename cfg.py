@@ -55,5 +55,7 @@ class ns_install:
 		'Topic :: Software Development :: Building',
 	]
 	p_scripts=[
-		'config.py',
+	]
+	p_data_files=[
+		'cfg.py',
 	]

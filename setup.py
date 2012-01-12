@@ -64,5 +64,10 @@ distutils.core.setup(
 )
 if sys.argv[1]=='sdist':
 	subprocess.check_output(['py2dsc','dist/'+name+'.tar.gz'])
+	# save the current directory
+	cdir=os.getcwd()
+	# change to 'deb_dist' and run 'debuild'
 	os.chdir('deb_dist/'+name)
 	os.system('debuild')
+	# return to the current directory
+	os.chdir(cdir)

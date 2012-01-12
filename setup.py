@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
-import config # for all parameters
+import pdmt.config # to load the config
+import config # to get the config
 import distutils.core # for setup
 
 distutils.core.setup(
@@ -14,4 +15,5 @@ distutils.core.setup(
 	requires=config.ns_install.p_require,
 	packages=config.ns_install.p_dir_list,
 	scripts=config.ns_install.p_scripts,
+	data_files=config.ns_install.p_data_files,
 )

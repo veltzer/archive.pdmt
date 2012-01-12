@@ -4,6 +4,7 @@ configuration
 """
 
 import subprocess
+import pdmt.config
 import config
 
 def doit():

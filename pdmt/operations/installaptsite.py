@@ -16,8 +16,6 @@ $ chgrp $USER -R /var/www
 """
 
 class InstallAptSite(operation.Operation):
-	def __init__(self,p_name,p_description):
-		super(InstallAptSite,self).__init__(p_name,p_description)
 	def run(self,nodes):
 		# the if is needed to avoid an exception
 		serv=config.ns_reprepro.p_servicedir

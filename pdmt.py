@@ -10,6 +10,7 @@ import pdmt.nodetypes.objectfilenode
 import pdmt.nodetypes.cexecutablefilenode
 import pdmt.eventhandlers.debugger
 import pdmt.operations.installaptsite
+import pdmt.operations.installer
 import pdmt.cmdline
 import glob
 
@@ -32,6 +33,13 @@ mgr.addOperation(
 		'install the apt site',
 	),
 	mgr.dependsOn(nodes),
+)
+mgr.addOperation(
+	pdmt.operations.installer.Installer(
+		'installer',
+		'install prereqs',
+	),
+	mgr.dependsOn([]),
 )
 
 pdmt.cmdline.parse(mgr)

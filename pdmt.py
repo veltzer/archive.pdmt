@@ -36,7 +36,8 @@ mgr.addOperation(
 		'installaptsite',
 		'install the apt site',
 	),
-	mgr.dependsOn(nodes),
+	#mgr.dependsOn(nodes),
+	mgr.dependsOn([]),
 )
 mgr.addOperation(
 	pdmt.operations.installer.Installer(

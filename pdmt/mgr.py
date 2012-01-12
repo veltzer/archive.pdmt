@@ -1,11 +1,11 @@
-#import pygraph.classes.digraph
-import pygraph.classes.graph
+import pygraph.classes.digraph
+#import pygraph.classes.graph
 import pygraph.algorithms.searching
 
 class Mgr:
 	def __init__(self):
-		#self.graph=pygraph.classes.digraph.digraph()
-		self.graph=pygraph.classes.graph.graph()
+		self.graph=pygraph.classes.digraph.digraph()
+		#self.graph=pygraph.classes.graph.graph()
 		self.init_handlers()
 		self.config={}
 		#self.dbg=True

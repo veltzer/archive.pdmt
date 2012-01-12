@@ -55,7 +55,7 @@ mgr.addOperation(
 )
 mgr.addOperation(
 	pdmt.operations.reprepro.Reprepro(
-		'deb installer',
+		'debinstaller',
 		'install the package into the repository',
 	),
 	mgr.dependsOn([]),

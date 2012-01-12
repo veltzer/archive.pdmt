@@ -39,12 +39,12 @@ for x in os.walk('pdmt'):
 	dir_list.append(x[0])
 
 distutils.core.setup(
-	name="pdmt",
-	description="Project Dependency Management Tool",
-	author="Mark Veltzer",
+	name='pdmt',
+	description='Project Dependency Management Tool',
+	author='Mark Veltzer',
 	# this key is used for signing too
-	author_email="mark@veltzer.net",
-	url="http://veltzer.net/pdmt",
+	author_email='mark@veltzer.net',
+	url='http://veltzer.net/pdmt',
 	version=version,
 	classifiers=[
 		'Development Status :: 4 - Beta',
@@ -56,7 +56,7 @@ distutils.core.setup(
 		'Topic :: Software Development :: Building',
 	],
 	requires=[
-		"pygraph",
+		'pygraph',
 	],
 	packages=dir_list,
 	scripts=[

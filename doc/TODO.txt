@@ -1,5 +1,9 @@
 command line parsing:
 =====================
+- add an options to do an operation which depends on a set of nodes
+	then define the deployment of the apt site as such an operation.
+- get ridd of setup.py (it should a part of the module that knows how to create
+	the deb package).
 - add the code from myrepo to create a repository.
 - add hooks to pdmt to enable commands with no relation to the graph.
 	hook the commands in reprepro to them.

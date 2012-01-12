@@ -69,3 +69,5 @@ class ns_reprepro:
 class ns_chandler:
 	p_sourcefilesuffix='.c'
 	p_objectfilesuffix='.o'
+class ns_makohandler:
+	p_sourcefilesuffix='.mako'

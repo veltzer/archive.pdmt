@@ -45,7 +45,7 @@ def system_check_output(arg):
 	return output
 def check_output(arg,**kw):
 	debug('check_output ['+str(arg)+']')
-	subprocess.check_output(arg,**kw)
+	return subprocess.check_output(arg,**kw)
 def check_call(arg,**kw):
 	debug('check_call ['+str(arg)+']')
 	subprocess.check_call(arg,**kw)

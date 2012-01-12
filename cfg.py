@@ -63,11 +63,19 @@ class ns_install:
 	]
 class ns_reprepro:
 	p_sudo=True
-	p_serverdir='/var/www/apt'
+	p_servicedir='/var/www/apt'
+	p_folder='apt'
 	p_component='main'
+	p_components='main'
 	p_codename=system_check_output(['lsb_release','--codename','--short']).rstrip()
 	p_redirect=True
 	p_cannonical='python-pdmt'
+	p_id=system_check_output(['lsb_release','--id','-s']).rstrip()
+	p_hostname=system_check_output(['hostname','--domain']).rstrip()
+	p_fullname='Mark Veltzer <mark.veltzer@gmail.com>'
+	p_key='6752126F'
+	p_keyname='public_key.gpg'
+	p_architectures='i386 source'
 class ns_chandler:
 	p_sourcefilesuffix='.c'
 	p_objectfilesuffix='.o'

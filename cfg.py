@@ -59,3 +59,13 @@ class ns_install:
 	p_data_files=[
 		'cfg.py',
 	]
+class ns_reprepro:
+	p_sudo=True
+	p_serverdir='/var/www/apt'
+	p_component='main'
+	p_codename=system_check_output(['lsb_release','--codename','--short']).rstrip()
+	p_redirect=True
+	p_cannonical='python-pdmt'
+class ns_chandler:
+	p_sourcefilesuffix='.c'
+	p_objectfilesuffix='.o'

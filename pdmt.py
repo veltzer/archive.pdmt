@@ -19,5 +19,11 @@ mgr.addHandler(pdmt.nodehandlers.makohandler.MakoHandler())
 node=mgr.addNode(pdmt.nodetypes.cexecutablefilenode.CExecutableFileNode('tests/main.exe'))
 mgr.addHandler(pdmt.nodehandlers.connector.Connector(node,pdmt.nodetypes.objectfilenode.ObjectFileNode,'^tests/.*\.o$'))
 mgr.addNode(pdmt.nodetypes.cfilenode.CFileNode('tests/main.c'))
+
+# mako stuff
 mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/test.mako'))
+mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/distributions.mako'))
+mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/index.php.mako'))
+mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode('mako/options.mako'))
+
 pdmt.cmdline.parse(mgr)

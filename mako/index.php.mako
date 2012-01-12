@@ -3,17 +3,17 @@
 		<h1>Welcome to the veltzer.net APT repository</h1>
 		<p>
 		I hold various packages here for my own usage and you are welcome to use them too.
-		My packages are for GPP_CODENAME/GPP_ID only. It may also work on debian but this is not guaranteed.
+		My packages are for ${config.ns_reprepro.p_codename}/${config.ns_reprepro.p_id} only. It may also work on debian but this is not guaranteed.
 		If you want to use my repository you have to add it to your system as a source of packages.
 		Here is how you do that.
 		<ul>
 			<li>
 				Add my key to your apt-key keyring.
-				My key id is <b>GPP_KEY</b>.
-				You can get it from <a href="http://GPP_HOSTNAME/GPP_FOLDER/GPP_KEYNAME">here</a>.
+				My key id is <b>${config.ns_reprepro.p_key}</b>.
+				You can get it from <a href="http://${config.ns_reprepro.p_hostname}/${config.ns_reprepro.p_folder}/${config.ns_reprepro.p_keyname}">here</a>.
 				<pre style="font-weight:bold;">
-wget http://GPP_HOSTNAME/GPP_FOLDER/GPP_KEYNAME
-sudo apt-key add GPP_KEYNAME
+wget http://${config.ns_reprepro.p_hostname}/${config.ns_reprepro.p_folder}/${config.ns_reprepro.p_keyname}
+sudo apt-key add ${config.ns_reprepro.p_keyname}
 				</pre>
 			</li>
 			<li>
@@ -27,9 +27,9 @@ sudo apt-key list
 				or add a file like /etc/apt/sources.list.d/veltzer.net.list containing them. You do have to
 				call the file .list (I don't know why...).
 				<pre style="font-weight:bold;">
-# GPP_HOSTNAME APT repository
-deb http://GPP_HOSTNAME/GPP_FOLDER GPP_CODENAME GPP_COMPONENT
-deb-src http://GPP_HOSTNAME/GPP_FOLDER GPP_CODENAME GPP_COMPONENT
+# ${config.ns_reprepro.p_hostname} APT repository
+deb http://${config.ns_reprepro.p_hostname}/${config.ns_reprepro.p_folder} ${config.ns_reprepro.p_codename} ${config.ns_reprepro.p_component}
+deb-src http://${config.ns_reprepro.p_hostname}/${config.ns_reprepro.p_folder} ${config.ns_reprepro.p_codename} ${config.ns_reprepro.p_component}
 				</pre>
 			</li>
 			<li>
@@ -76,7 +76,7 @@ sudo apt-get install python-pdmt
 				getDirectoryRec($path,$level,$arr);
 				return $arr;
 			}
-			$arr=getDirectory($path='GPP_SERVICE_DIR/pool');
+			$arr=getDirectory($path='${config.ns_reprepro.p_servicedir}/pool');
 			echo '<ul>';
 			foreach($arr as $x) {
 				echo '<li>'.$x.'</li>';

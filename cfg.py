@@ -11,7 +11,7 @@ class ns_product:
 	p_description='Project Dependency Management Tool'
 	# source code package where the code is
 	p_package='pdmt'
-	p_pack_list=pdmt.utils.boot.dir_list(p_package)
+	p_packages=pdmt.utils.boot.dir_list(p_package)
 	p_deps=[
 		'python-pygraph',
 		'python-pyinotify',

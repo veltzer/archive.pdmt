@@ -99,5 +99,5 @@ class Mgr:
 			node.clean()
 
 	""" printing method """
-	def prnt(self):
+	def dump(self):
 		print self.graph

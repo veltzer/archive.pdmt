@@ -1,14 +1,18 @@
-import pygraph.classes.digraph
+#import pygraph.classes.digraph
+import pygraph.classes.graph
 import pygraph.algorithms.searching
 
 class Mgr:
 	def __init__(self):
-		self.graph=pygraph.classes.digraph.digraph()
+		#self.graph=pygraph.classes.digraph.digraph()
+		self.graph=pygraph.classes.graph.graph()
 		self.init_handlers()
 		self.config={}
 		#self.dbg=True
 		self.dbg=False
 		self.prog=True
+		self.opnodes={}
+		self.opbyname={}
 
 	""" listener functions start here """
 	def init_handlers(self):
@@ -97,7 +101,25 @@ class Mgr:
 		for node in self.graph.nodes():
 			self.debug(node)
 			node.clean()
+	def dependsOn(self,nodes):
+		ret=[]
+		for node in nodes:
+			for n in self.graph[node]:
+				ret.append(n)
+		return ret
+	def addOperation(self,op,nodes):
+		self.opbyname[op.getName()]=op
+		self.opnodes[op]=nodes
+	def runOperation(self,p_name):
+		op=self.opbyname[p_name]
+		nodes=self.opnodes[op]
+		# TODO: build the nodes
+		op.run(nodes)
 
 	""" printing method """
-	def dump(self):
+	def dumpgraph(self):
 		print self.graph
+	""" print all operations """
+	def dumpoperations(self):
+		for x in self.operations:
+			print x

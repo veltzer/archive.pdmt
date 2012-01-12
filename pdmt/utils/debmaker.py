@@ -1,5 +1,6 @@
 import subprocess
 import os
+import config
 
 def doit():
 	# check that everything is commited

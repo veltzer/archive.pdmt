@@ -54,3 +54,6 @@ class ns_install:
 		'Programming Language :: Python',
 		'Topic :: Software Development :: Building',
 	]
+	p_scripts=[
+		'config.py',
+	]

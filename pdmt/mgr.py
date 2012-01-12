@@ -115,11 +115,11 @@ class Mgr:
 		nodes=self.opnodes[op]
 		# TODO: build the nodes
 		op.run(nodes)
+	""" print all operations """
+	def dumpoperations(self):
+		for x in self.opbyname:
+			print x
 
 	""" printing method """
 	def dumpgraph(self):
 		print self.graph
-	""" print all operations """
-	def dumpoperations(self):
-		for x in self.operations:
-			print x

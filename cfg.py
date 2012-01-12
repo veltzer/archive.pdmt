@@ -64,6 +64,7 @@ class ns_install:
 class ns_reprepro:
 	p_sudo=True
 	p_servicedir='/var/www/apt'
+	p_conf='conf'
 	p_folder='apt'
 	p_component='main'
 	p_components='main'

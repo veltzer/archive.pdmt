@@ -1,3 +1,15 @@
+import os
+import subprocess
+
+# this function is here because of python2.6 that does not have subprocess.check_output
+def system_check_output(arg):
+	pr=subprocess.Popen(arg,stdout=subprocess.PIPE)
+	(output,errout)=pr.communicate()
+	status=pr.returncode
+	if status:
+		raise ValueError('error in executing',arg)
+	return output
+
 class ns_release:
 	p_email=True
 	p_tweet=False
@@ -13,10 +25,32 @@ class ns_release:
 	p_debug=True
 	p_usetls=True
 class ns_install:
+	p_name='pdmt'
+	p_description='Project Dependency Management Tool'
+	p_author='Mark Veltzer'
+	# this key is used for signing...
+	p_email='mark@veltzer.net'
+	p_dir_list=[]
+	for x in os.walk('pdmt'):
+		p_dir_list.append(x[0])
 	p_deps=[
 		'python-pygraph',
 		'python-pyinotify',
 		'python-pyinotify-doc',
 		'python-inotifyx',
 		'python-stdeb',
+	]
+	p_require=[
+		'pygraph',
+	]
+	p_version=system_check_output(['git','describe']).rstrip()
+	p_url='http://veltzer.net/pdmt'
+	p_classifiers=[
+		'Development Status :: 4 - Beta',
+		'Environment :: Console',
+		'Intended Audience :: Developers',
+		'License :: OSI Approved :: LGPL',
+		'Operating System :: POSIX',
+		'Programming Language :: Python',
+		'Topic :: Software Development :: Building',
 	]

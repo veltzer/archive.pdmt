@@ -3,9 +3,10 @@ import operation
 import pdmt.config
 import config
 
+import pdmt.utils.fileops
+import pdmt.utils.subproc
+
 import os
-import shutil
-import subprocess
 
 """
 In order for this plugin to work you have to make your web folder 
@@ -20,15 +21,12 @@ class InstallAptSite(operation.Operation):
 		# the if is needed to avoid an exception
 		serv=config.ns_reprepro.p_servicedir
 		conf=os.path.join(serv,config.ns_reprepro.p_conf)
-		if os.path.isdir(serv):
-			shutil.rmtree(serv)
-		os.mkdir(serv)
-		os.mkdir(conf)
-		shutil.copy('makot/distributions',conf)
-		shutil.copy('makot/options',conf)
-		shutil.copy('makot/index.php',serv)
-		os.mkdir(os.path.join(serv,'pool'))
-		subprocess.check_output([
+		pdmt.utils.fileops.rmtreesoft(serv)
+		pdmt.utils.fileops.mkdircopysoft('makot/distributions',conf)
+		pdmt.utils.fileops.mkdircopysoft('makot/options',conf)
+		pdmt.utils.fileops.mkdircopysoft('makot/index.php',serv)
+		pdmt.utils.fileops.mkdir(os.path.join(serv,'pool'))
+		pdmt.utils.subproc.check_output([
 			'gpg',
 			'--armour',
 			'--export',

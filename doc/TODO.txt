@@ -1,5 +1,9 @@
 Now:
 ====
+- do a pdmt.utils.fileops package that will have debug capability.
+
+- add scanners that know about dependencies between nodes.
+	handle errors in scanners.
 - create the deb package as part of pdmt (with dependencies)
 - define installation of the package as depending on the deb package.
 

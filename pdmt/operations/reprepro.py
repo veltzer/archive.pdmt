@@ -1,6 +1,6 @@
 import operation
 
-import subprocess
+import pdmt.utils.subproc
 import pdmt.config
 import config
 
@@ -22,7 +22,7 @@ class Reprepro(operation.Operation):
 		if config.ns_reprepro.p_redirect:
 			kw['stderr']=open('/dev/null')
 			kw['stdout']=open('/dev/null')
-		subprocess.check_call(args,**kw)
+		pdmt.utils.subproc.check_call(args,**kw)
 	def remove():
 		args=[]
 		if config.ns_reprepro.p_sudo:
@@ -35,7 +35,7 @@ class Reprepro(operation.Operation):
 		if config.ns_reprepro.p_redirect:
 			kw['stderr']=open('/dev/null')
 			kw['stdout']=open('/dev/null')
-		subprocess.check_call(args,**kw)
+		pdmt.utils.subproc.check_call(args,**kw)
 	def command(name):
 		args=[]
 		if config.ns_reprepro.p_sudo:
@@ -46,7 +46,7 @@ class Reprepro(operation.Operation):
 		if config.ns_reprepro.p_redirect:
 			kw['stderr']=open('/dev/null')
 			kw['stdout']=open('/dev/null')
-		subprocess.check_call(args,**kw)
+		pdmt.utils.subproc.check_call(args,**kw)
 	def makerepo():
 		pass
 	def dumpunreferenced():

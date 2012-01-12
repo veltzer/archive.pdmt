@@ -1,6 +1,6 @@
 import buildfilenode
 import cfilenode
-import subprocess
+import pdmt.utils.subproc
 import pdmt.types
 
 class ObjectFileNode(buildfilenode.BuildFileNode):
@@ -14,4 +14,4 @@ class ObjectFileNode(buildfilenode.BuildFileNode):
 		args.append(self.m_fname)
 		for node in self.getSourcesOfType(cfilenode.CFileNode):
 			args.append(node.m_fname)
-		subprocess.check_call(args)
+		pdmt.utils.subproc.check_call(args)

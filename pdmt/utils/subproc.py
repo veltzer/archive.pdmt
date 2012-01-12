@@ -9,7 +9,15 @@ This function receives two lists to serve as the new processes
 """
 import subprocess
 import sys
+
+import pdmt.config
+import config
+
+def debug(msg):
+	if config.ns_subproc.p_debug:
+		print(msg)
 def system_pipe(list1,list2,out=None):
+	debug('system_pipe ['+list1+','+list2+','+out+']')
 	pr1=subprocess.Popen(
 		list1,
 		stdout=subprocess.PIPE,
@@ -36,6 +44,15 @@ def system_check_output(arg):
 	if status:
 		raise ValueError('error in executing',arg)
 	return output
+def check_output(arg,**kw):
+	debug('check_output ['+str(arg)+']')
+	subprocess.check_output(arg,**kw)
+def check_call(arg,**kw):
+	debug('check_call ['+str(arg)+']')
+	subprocess.check_call(arg,**kw)
+def system(arg):
+	debug('system ['+str(arg)+']')
+	os.system(arg)
 
 if __name__=='__main__':
 	try:

@@ -7,6 +7,14 @@ import os
 import shutil
 import subprocess
 
+"""
+In order for this plugin to work you have to make your web folder 
+be writable by the user running pdmt.
+You can do this with:
+$ chmod g+w -R /var/www
+$ chgrp $USER -R /var/www
+"""
+
 class InstallAptSite(operation.Operation):
 	def __init__(self,p_name,p_description):
 		super(InstallAptSite,self).__init__(p_name,p_description)

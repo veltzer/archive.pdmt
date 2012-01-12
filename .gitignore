@@ -7,3 +7,4 @@ PKG-INFO
 dist/*
 build/*
 deb_dist/*
+makot/*

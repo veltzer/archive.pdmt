@@ -13,4 +13,5 @@ distutils.core.setup(
 	classifiers=config.ns_install.p_classifiers,
 	requires=config.ns_install.p_require,
 	packages=config.ns_install.p_dir_list,
+	scripts=config.ns_install.p_scripts,
 )

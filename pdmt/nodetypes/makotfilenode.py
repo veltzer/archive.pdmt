@@ -12,12 +12,11 @@ import os # for os.chmod, os.unlink
 class MakotFileNode(buildfilenode.BuildFileNode):
 	def __init__(self,p_fname):
 		super(MakotFileNode,self).__init__(p_fname,pdmt.types.t_makot)
-	def build(self,mgr):
-		for node in mgr.deps(self):
-			if isinstance(node,makofilenode.MakoFileNode):
-				p_input=node.fname
-				break
-		p_output=self.fname
+	def deps(self):
+		p_input=getSingleSourceOfType(self,makofilenode.MakoFileNode)
+	def build(self):
+		p_input=self.getSourceOfType(makofilenode.MakoFileNode).m_fname
+		p_output=self.m_fname
 		# remove the old file
 		try:
 			os.unlink(p_output)
@@ -28,12 +27,11 @@ class MakotFileNode(buildfilenode.BuildFileNode):
 		output_encoding='utf-8'
 		mylookup=mako.lookup.TemplateLookup(directories=['.'],input_encoding=input_encoding,output_encoding=output_encoding)
 		template=mako.template.Template(filename=p_input,lookup=mylookup,output_encoding=output_encoding,input_encoding=input_encoding)
-		file=open(p_output,'w')
-		# python 3
-		#file.write((template.render_unicode(attributes={})))
-		# python 2
-		file.write(template.render(config=config))
-		file.close()
+		with open(p_output,'w') as file:
+			# python 3
+			#file.write((template.render_unicode(attributes={})))
+			# python 2
+			file.write(template.render(config=config))
 		# python 3
 		#os.chmod(p_output,0o0444)
 		# python 2

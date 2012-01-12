@@ -19,6 +19,6 @@ class Connector:
 			return
 		if not isinstance(node,self.typefilter):
 			return
-		if not self.regexp.match(node.fname):
+		if not self.regexp.match(node.m_fname):
 			return
 		mgr.addEdge((self.cnode,node))

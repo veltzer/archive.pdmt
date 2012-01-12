@@ -1,17 +1,9 @@
 import os
 import subprocess
-
-# this function is here because of python2.6 that does not have subprocess.check_output
-def system_check_output(arg):
-	pr=subprocess.Popen(arg,stdout=subprocess.PIPE)
-	(output,errout)=pr.communicate()
-	status=pr.returncode
-	if status:
-		raise ValueError('error in executing',arg)
-	return output
+import pdmt.utils.subproc
 
 class ns_pdmt:
-	p_version=system_check_output(['git','describe']).rstrip()
+	p_version=pdmt.utils.subproc.system_check_output(['git','describe']).rstrip()
 class ns_release:
 	p_email=True
 	p_tweet=False
@@ -45,7 +37,7 @@ class ns_install:
 	p_require=[
 		'pygraph',
 	]
-	p_version=system_check_output(['git','describe']).rstrip()
+	p_version=pdmt.utils.subproc.system_check_output(['git','describe']).rstrip()
 	p_url='http://veltzer.net/pdmt'
 	p_classifiers=[
 		'Development Status :: 4 - Beta',
@@ -68,11 +60,11 @@ class ns_reprepro:
 	p_servicedir='/var/www/'+p_folder
 	p_component='main'
 	p_components='main'
-	p_codename=system_check_output(['lsb_release','--codename','--short']).rstrip()
+	p_codename=pdmt.utils.subproc.system_check_output(['lsb_release','--codename','--short']).rstrip()
 	p_redirect=True
 	p_cannonical='python-pdmt'
-	p_id=system_check_output(['lsb_release','--id','-s']).rstrip()
-	p_hostname=system_check_output(['hostname','--domain']).rstrip()
+	p_id=pdmt.utils.subproc.system_check_output(['lsb_release','--id','-s']).rstrip()
+	p_hostname=pdmt.utils.subproc.system_check_output(['hostname','--domain']).rstrip()
 	p_fullname='Mark Veltzer <mark.veltzer@gmail.com>'
 	p_key='6752126F'
 	p_keyname='public_key.gpg'

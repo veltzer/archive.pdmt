@@ -3,11 +3,26 @@
 class Node(object):
 	def __init__(self,p_type):
 		self.m_type=p_type
-	def uptodate(self,mgr,todo):
+	def setMgr(self,p_mgr):
+		self.m_mgr=p_mgr
+	def uptodate(self,todo):
 		return True
 	def canBuild(self):
 		raise ValueError('must override')
-	def build(self,mgr):
+	def build(self):
 		raise ValueError('must override')
 	def clean(self):
 		pass
+	def getDeps(self):
+		return self.m_mgr.deps(self)
+	def getSourcesOfType(self,p_type):
+		ret=[]
+		for node in self.getDeps():
+			if isinstance(node,p_type):
+				ret.append(node)
+		return ret
+	def getSourceOfType(self,p_type):
+		ret=self.getSourcesOfType(p_type)
+		if len(ret)!=1:
+			raise ValueError('too many sources')
+		return ret[0]

@@ -4,22 +4,22 @@ import os
 class FileNode(node.Node):
 	def __init__(self,p_fname,p_type):
 		super(FileNode,self).__init__(p_type)
-		self.fname=p_fname
+		self.m_fname=p_fname
 	def __repr__(self):
-		return self.fname+','+self.m_type
-	def uptodate(self,mgr,todo):
+		return self.m_fname+','+self.m_type
+	def uptodate(self,todo):
 		# if the file does not exist then rebuild is needed
-		if not os.path.isfile(self.fname):
+		if not os.path.isfile(self.m_fname):
 			return False
 		# the file exists so lets compare dates, all source files
 		# must exist
 		rebuild=False
-		for node in mgr.deps(self):
+		for node in self.getDeps():
 			if node in todo:
 				rebuild=True
 				break
 			if isinstance(node,FileNode):
-				if os.path.getmtime(node.fname)>os.path.getmtime(self.fname):
+				if os.path.getmtime(node.m_fname)>os.path.getmtime(self.m_fname):
 					rebuild=True
 					break
 		return not rebuild

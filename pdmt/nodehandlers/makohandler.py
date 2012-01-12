@@ -12,9 +12,9 @@ class MakoHandler:
 			return
 		if not isinstance(node,pdmt.nodetypes.makofilenode.MakoFileNode):
 			return
-		name=node.fname[:node.fname.rfind(config.ns_makohandler.p_sourcefilesuffix)]
+		name=node.m_fname[:node.m_fname.rfind(config.ns_makohandler.p_sourcefilesuffix)]
 		newname=os.path.join(config.ns_makohandler.p_targetdir,os.path.basename(name))
-		#newname=node.fname[:node.fname.rfind(config.ns_makohandler.p_sourcefilesuffix)]
+		#newname=node.m_fname[:node.m_fname.rfind(config.ns_makohandler.p_sourcefilesuffix)]
 		newnode=pdmt.nodetypes.makotfilenode.MakotFileNode(newname)
 		mgr.addNode(newnode)
 		mgr.addEdge((newnode,node))

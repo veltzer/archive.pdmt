@@ -35,7 +35,7 @@ deb-src ${pdmt.config.ns_apt.p_url} ${pdmt.config.ns_reprepro.p_codename} ${pdmt
 			<li>
 				In one command you could do:
 				<pre style="font-weight:bold;">
-				wget -q -O - wget http://${pdmt.config.ns_distrib.p_domain}/${pdmt.config.ns_apt.p_rel_dir}/${pdmt.config.ns_reprepro.p_keyname} | sudo apt-key add -
+wget -q -O - wget http://${pdmt.config.ns_distrib.p_domain}/${pdmt.config.ns_apt.p_rel_dir}/${pdmt.config.ns_reprepro.p_keyname} | sudo apt-key add -
 				</pre>
 			<li>
 				Now you need to update your package repository:

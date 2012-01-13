@@ -1,5 +1,8 @@
 Now:
 ====
+- in the index.php.mako file use better variables (for the name of the apt site for instance).
+- change the name of the apt machine to apt.veltzer.net
+	and make sure I can access it.
 - remove the makot folder and see pdmt crash.
 	fix it
 - get to pdmt.pl --showgraph that shows the pdmt graph visually.

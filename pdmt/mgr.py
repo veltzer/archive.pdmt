@@ -1,6 +1,8 @@
 import pygraph.classes.digraph
 #import pygraph.classes.graph
 import pygraph.algorithms.searching
+import pygraph.readwrite.dot
+import gv
 
 import pdmt.config
 
@@ -117,5 +119,15 @@ class Mgr:
 			print x
 
 	""" printing method """
-	def dumpgraph(self):
-		print self.graph
+	def printgraph(self):
+		print(self.graph)
+	def dotgraph(self):
+		dot=pygraph.readwrite.dot.write(self.graph)
+		f=open('/tmp/graph.dot','w')
+		f.write(dot)
+		f.close()
+		#gvv=gv.readstring(dot)
+		#gv.layout(gvv,'dot')
+		#gv.render(gvv,'png','/tmp/graph.png')
+		#gv.render(gvv,'svg','/tmp/graph.svg')
+		#gv.render(gvv,'svg','/tmp/graph.svg')

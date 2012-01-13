@@ -14,7 +14,7 @@ import pdmt.cmdline
 import glob
 
 import pdmt.operations.installaptsite
-import pdmt.operations.installer
+import pdmt.operations.depsinstaller
 import pdmt.operations.debmaker
 import pdmt.operations.reprepro
 
@@ -40,8 +40,8 @@ mgr.addOperation(
 	mgr.dependsOn([]),
 )
 mgr.addOperation(
-	pdmt.operations.installer.Installer(
-		'installer',
+	pdmt.operations.depsinstaller.DepsInstaller(
+		'depsinstaller',
 		'install prereqs',
 	),
 	mgr.dependsOn([]),

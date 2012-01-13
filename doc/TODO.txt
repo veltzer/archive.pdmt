@@ -1,6 +1,6 @@
 Now:
 ====
-- do a pdmt.utils.fileops package that will have debug capability.
+- get to pdmt.pl --showgraph that shows the pdmt graph visually.
 
 - add scanners that know about dependencies between nodes.
 	handle errors in scanners.

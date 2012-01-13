@@ -18,6 +18,8 @@ class ns_product:
 		'python-pyinotify-doc',
 		'python-inotifyx',
 		'python-stdeb',
+		'python-pygraphviz',
+		'libgv-python',
 	]
 	p_require=[
 		'pygraph',

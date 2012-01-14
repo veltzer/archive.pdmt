@@ -106,6 +106,8 @@ class Mgr:
 	def addOperation(self,op,nodes):
 		self.opbyname[op.getName()]=op
 		self.opnodes[op]=nodes
+	def hasOperation(self,p_name):
+		return p_name in self.opbyname
 	def runOperation(self,p_name):
 		op=self.opbyname[p_name]
 		nodes=self.opnodes[op]
@@ -113,10 +115,8 @@ class Mgr:
 		self.build()
 		self.progress('running operation ['+p_name+']')
 		op.run(nodes)
-	""" print all operations """
-	def dumpoperations(self):
-		for x in self.opbyname:
-			print x
+	def getOperations(self):
+		return self.opbyname
 
 	""" printing method """
 	def printgraph(self):

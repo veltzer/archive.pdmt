@@ -64,6 +64,8 @@ class ns_apt:
 	p_id=pdmt.utils.boot.system_check_output(['lsb_release','--id','-s']).rstrip()
 	p_keyname='public_key.gpg'
 	p_architectures='i386 source'
+	p_file_sources=os.path.join(p_abs_dir,'dists',p_codename,p_component,'source','Sources.gz')
+	p_file_binary=os.path.join(p_abs_dir,'dists',p_codename,p_component,'binary-i386','Packages')
 class ns_chandler:
 	p_sourcefilesuffix='.c'
 	p_objectfilesuffix='.o'

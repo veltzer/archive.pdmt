@@ -34,3 +34,7 @@ class InstallAptSite(operation.Operation):
 			final_key,
 		])
 		pdmt.utils.fileops.chmod(final_key,0o0444)
+		# the creation of the next two files is so people could start using the site although
+		# it is empty
+		pdmt.utils.fileops.create_empty_filegz(pdmt.config.ns_apt.p_file_sources)
+		pdmt.utils.fileops.create_empty_file(pdmt.config.ns_apt.p_file_binary)

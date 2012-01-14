@@ -6,6 +6,7 @@ import pdmt.config
 
 import shutil
 import os
+import gzip
 
 def debug(msg):
 	if pdmt.config.ns_fileops.p_debug:
@@ -50,3 +51,9 @@ def mkdircopysoft(p_file,p_dir):
 def chmod(p_file,p_mode):
 	debug('chmod ['+p_file+','+str(p_mode)+']')
 	os.chmod(p_file,p_mode)
+def create_empty_file(p_file):
+	f=open(p_file,'w')
+	f.close()
+def create_empty_filegz(p_file):
+	f=gzip.open(p_file,'w')
+	f.close()

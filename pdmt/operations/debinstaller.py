@@ -16,7 +16,7 @@ class DebInstaller(operation.Operation):
 		args.append('reprepro');
 		args.extend(['--basedir',pdmt.config.ns_apt.p_abs_dir])
 		args.extend(['--component',pdmt.config.ns_apt.p_component])
-		args.extend(['includedeb',pdmt.config.ns_apt.p_codename,config.ns_distrib.p_deb_file])
+		args.extend(['includedeb',pdmt.config.ns_apt.p_codename,pdmt.config.ns_apt.p_deb_file])
 		pdmt.utils.subproc.check_call(args)
 	def remove():
 		args=[]

@@ -24,11 +24,13 @@ class InstallAptSite(operation.Operation):
 		pdmt.utils.fileops.mkdircopysoft('makot/distributions',conf)
 		pdmt.utils.fileops.mkdircopysoft('makot/options',conf)
 		pdmt.utils.fileops.mkdircopysoft('makot/index.php',serv)
-		pdmt.utils.fileops.mkdir(os.path.join(serv,'pool'))
+		#pdmt.utils.fileops.mkdir(os.path.join(serv,'pool'))
+		final_key=os.path.join(serv,pdmt.config.ns_apt.p_keyname)
 		pdmt.utils.subproc.check_output([
 			'gpg',
 			'--armour',
 			'--export',
 			'--output',
-			os.path.join(serv,pdmt.config.ns_apt.p_keyname),
+			final_key,
 		])
+		pdmt.utils.fileops.chmod(final_key,0o0444)

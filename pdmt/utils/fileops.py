@@ -52,8 +52,12 @@ def chmod(p_file,p_mode):
 	debug('chmod ['+p_file+','+str(p_mode)+']')
 	os.chmod(p_file,p_mode)
 def create_empty_file(p_file):
+	debug('create_empty_file ['+p_file+']')
+	_mkdirsoft(os.path.split(p_file)[0])
 	f=open(p_file,'w')
 	f.close()
 def create_empty_filegz(p_file):
+	debug('create_empty_filegz ['+p_file+']')
+	_mkdirsoft(os.path.split(p_file)[0])
 	f=gzip.open(p_file,'w')
 	f.close()

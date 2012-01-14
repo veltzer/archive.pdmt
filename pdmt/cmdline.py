@@ -1,3 +1,4 @@
+from __future__ import print_function
 import argparse
 import sys
 import pdmt.config
@@ -32,7 +33,7 @@ def parse(mgr):
 			default=False,
 	)
 	parser.add_argument(
-			'--dumpoperations',
+			'--showops',
 			help='dump operations',
 			action='store_true',
 			default=False,
@@ -52,7 +53,7 @@ def parse(mgr):
 	)
 	options=parser.parse_args()
 	if debug:
-		print options
+		print(options)
 		sys.exit(1)
 	runop_int=0
 	if options.runop is not None:
@@ -62,11 +63,11 @@ def parse(mgr):
 		options.build,
 		options.printgraph,
 		options.dotgraph,
-		options.dumpoperations,
+		options.showops,
 		options.showconfig,
 		runop_int,
 	])!=1:
-		parser.error('must specify one of clean,build,printgraph,dotgraph,dumpoperations,showconfig,runop')
+		parser.error('must specify one of clean,build,printgraph,dotgraph,showops,showconfig,runop')
 	if options.clean:
 		mgr.clean()
 	if options.build:
@@ -75,9 +76,17 @@ def parse(mgr):
 		mgr.printgraph()
 	if options.dotgraph:
 		mgr.dotgraph()
-	if options.dumpoperations:
-		mgr.dumpoperations()
+	if options.showops:
+		print('here is the list');
+		for x in mgr.getOperations():
+			print('\t',x)
 	if options.showconfig:
 		pdmt.config.show()
 	if options.runop:
-		mgr.runOperation(options.runop)
+		if mgr.hasOperation(options.runop):
+			mgr.runOperation(options.runop)
+		else:
+			print('no such operation',options.runop);
+			print('here is the list');
+			for x in mgr.getOperations():
+				print('\t',x)

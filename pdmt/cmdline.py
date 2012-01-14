@@ -1,5 +1,6 @@
 import argparse
 import sys
+import pdmt.config
 
 # see documentation in http://docs.python.org/library/argparse.html
 
@@ -37,6 +38,12 @@ def parse(mgr):
 			default=False,
 	)
 	parser.add_argument(
+			'--showconfig',
+			help='show the config (after processing)',
+			action='store_true',
+			default=False,
+	)
+	parser.add_argument(
 			'--runop',
 			metavar='operation',
 			help='run an operation',
@@ -56,6 +63,7 @@ def parse(mgr):
 		options.printgraph,
 		options.dotgraph,
 		options.dumpoperations,
+		options.showconfig,
 		runop_int,
 	])!=1:
 		parser.error('must specify one of clean,build,printgraph,dotgraph,dumpoperations,runop')
@@ -69,5 +77,7 @@ def parse(mgr):
 		mgr.dotgraph()
 	if options.dumpoperations:
 		mgr.dumpoperations()
+	if options.showconfig:
+		pdmt.config.show()
 	if options.runop:
 		mgr.runOperation(options.runop)

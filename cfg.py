@@ -55,7 +55,8 @@ class ns_apt:
 	p_rel_dir='apt'
 	p_abs_dir='/var/www/'+p_rel_dir
 	p_url='http://'+ns_distrib.p_domain+'/'+p_rel_dir
-class ns_reprepro:
+class ns_debinstaller:
+	p_deb_file='deb_dist/'+ns_product.p_cannonical+'-'+ns_product.p_version+'-1_all.deb'
 	p_sudo=False
 	p_conf='conf'
 	p_component='main'

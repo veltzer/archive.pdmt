@@ -16,7 +16,7 @@ import glob
 import pdmt.operations.installaptsite
 import pdmt.operations.depsinstaller
 import pdmt.operations.debmaker
-import pdmt.operations.reprepro
+import pdmt.operations.debinstaller
 
 mgr=pdmt.mgr.Mgr()
 mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
@@ -54,7 +54,7 @@ mgr.addOperation(
 	mgr.dependsOn([]),
 )
 mgr.addOperation(
-	pdmt.operations.reprepro.Reprepro(
+	pdmt.operations.debinstaller.DebInstaller(
 		'debinstaller',
 		'install the package into the repository',
 	),

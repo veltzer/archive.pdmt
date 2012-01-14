@@ -66,7 +66,7 @@ def parse(mgr):
 		options.showconfig,
 		runop_int,
 	])!=1:
-		parser.error('must specify one of clean,build,printgraph,dotgraph,dumpoperations,runop')
+		parser.error('must specify one of clean,build,printgraph,dotgraph,dumpoperations,showconfig,runop')
 	if options.clean:
 		mgr.clean()
 	if options.build:

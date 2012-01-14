@@ -11,25 +11,25 @@ This module handles publishing and unpublishing a deb package from an apt reposi
 class DebInstaller(operation.Operation):
 	def run(self,nodes):
 		args=[]
-		if pdmt.config.ns_debinstaller.p_sudo:
+		if pdmt.config.ns_apt.p_sudo:
 			args.append('sudo');
 		args.append('reprepro');
 		args.extend(['--basedir',pdmt.config.ns_apt.p_abs_dir])
-		args.extend(['--component',pdmt.config.ns_debinstaller.p_component])
-		args.extend(['includedeb',pdmt.config.ns_debinstaller.p_codename,config.ns_distrib.p_deb_file])
+		args.extend(['--component',pdmt.config.ns_apt.p_component])
+		args.extend(['includedeb',pdmt.config.ns_apt.p_codename,config.ns_distrib.p_deb_file])
 		pdmt.utils.subproc.check_call(args)
 	def remove():
 		args=[]
-		if pdmt.config.ns_debinstaller.p_sudo:
+		if pdmt.config.ns_apt.p_sudo:
 			args.append('sudo');
 		args.append('reprepro');
 		args.extend(['--basedir',pdmt.config.ns_apt.p_abs_dir])
-		args.extend(['--component',pdmt.config.ns_debinstaller.p_component])
-		args.extend(['remove',pdmt.config.ns_debinstaller.p_codename,NAME]);
+		args.extend(['--component',pdmt.config.ns_apt.p_component])
+		args.extend(['remove',pdmt.config.ns_apt.p_codename,NAME]);
 		pdmt.utils.subproc.check_call(args)
 	def command(name):
 		args=[]
-		if pdmt.config.ns_debinstaller.p_sudo:
+		if pdmt.config.ns_apt.p_sudo:
 			args.append('sudo');
 		args.append('reprepro');
 		args.append(name);

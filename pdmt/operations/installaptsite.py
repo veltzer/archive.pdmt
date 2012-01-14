@@ -19,7 +19,7 @@ class InstallAptSite(operation.Operation):
 	def run(self,nodes):
 		# the if is needed to avoid an exception
 		serv=pdmt.config.ns_apt.p_abs_dir
-		conf=os.path.join(serv,pdmt.config.ns_reprepro.p_conf)
+		conf=os.path.join(serv,pdmt.config.ns_apt.p_conf)
 		pdmt.utils.fileops.rmtreesoft(serv)
 		pdmt.utils.fileops.mkdircopysoft('makot/distributions',conf)
 		pdmt.utils.fileops.mkdircopysoft('makot/options',conf)
@@ -30,5 +30,5 @@ class InstallAptSite(operation.Operation):
 			'--armour',
 			'--export',
 			'--output',
-			os.path.join(serv,pdmt.config.ns_reprepro.p_keyname),
+			os.path.join(serv,pdmt.config.ns_apt.p_keyname),
 		])

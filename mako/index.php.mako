@@ -3,17 +3,17 @@
 		<h1>Welcome to the ${pdmt.config.ns_distrib.p_domain} APT repository</h1>
 		<p>
 		I hold various packages here for my own usage and you are welcome to use them too.
-		My packages are for ${pdmt.config.ns_reprepro.p_codename}/${pdmt.config.ns_reprepro.p_id} only. It may also work on debian but this is not guaranteed.
+		My packages are for ${pdmt.config.ns_apt.p_codename}/${pdmt.config.ns_apt.p_id} only. It may also work on debian but this is not guaranteed.
 		If you want to use my repository you have to add it to your system as a source of packages.
 		Here is how you do that.
 		<ul>
 			<li>
 				Add my key to your apt-key keyring.
 				My key id is <b>${pdmt.config.ns_person.p_keyid}</b>.
-				You can get it from <a href="http://${pdmt.config.ns_distrib.p_domain}/${pdmt.config.ns_apt.p_rel_dir}/${pdmt.config.ns_reprepro.p_keyname}">here</a>.
+				You can get it from <a href="http://${pdmt.config.ns_distrib.p_domain}/${pdmt.config.ns_apt.p_rel_dir}/${pdmt.config.ns_apt.p_keyname}">here</a>.
 				<pre style="font-weight:bold;">
-wget http://${pdmt.config.ns_distrib.p_domain}/${pdmt.config.ns_apt.p_rel_dir}/${pdmt.config.ns_reprepro.p_keyname}
-sudo apt-key add ${pdmt.config.ns_reprepro.p_keyname}
+wget http://${pdmt.config.ns_distrib.p_domain}/${pdmt.config.ns_apt.p_rel_dir}/${pdmt.config.ns_apt.p_keyname}
+sudo apt-key add ${pdmt.config.ns_apt.p_keyname}
 				</pre>
 			</li>
 			<li>
@@ -28,14 +28,14 @@ sudo apt-key list
 				call the file .list (I don't know why...).
 				<pre style="font-weight:bold;">
 # ${pdmt.config.ns_distrib.p_domain} APT repository
-deb ${pdmt.config.ns_apt.p_url} ${pdmt.config.ns_reprepro.p_codename} ${pdmt.config.ns_reprepro.p_component}
-deb-src ${pdmt.config.ns_apt.p_url} ${pdmt.config.ns_reprepro.p_codename} ${pdmt.config.ns_reprepro.p_component}
+deb ${pdmt.config.ns_apt.p_url} ${pdmt.config.ns_apt.p_codename} ${pdmt.config.ns_apt.p_component}
+deb-src ${pdmt.config.ns_apt.p_url} ${pdmt.config.ns_apt.p_codename} ${pdmt.config.ns_apt.p_component}
 				</pre>
 			</li>
 			<li>
 				In one command you could do:
 				<pre style="font-weight:bold;">
-wget -q -O - wget http://${pdmt.config.ns_distrib.p_domain}/${pdmt.config.ns_apt.p_rel_dir}/${pdmt.config.ns_reprepro.p_keyname} | sudo apt-key add -
+wget -q -O - wget http://${pdmt.config.ns_distrib.p_domain}/${pdmt.config.ns_apt.p_rel_dir}/${pdmt.config.ns_apt.p_keyname} | sudo apt-key add -
 				</pre>
 			<li>
 				Now you need to update your package repository:

@@ -1,5 +1,7 @@
 Now:
 ====
+- use pdmt in fastlog and see how it goes.
+
 - in the index.php.mako file use better variables (for the name of the apt site for instance).
 - change the name of the apt machine to apt.veltzer.net
 	and make sure I can access it.

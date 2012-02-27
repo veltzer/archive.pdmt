@@ -6,7 +6,7 @@ writing of the pdmt config
 
 It intentionaly will duplicate code in other utils since it is a boot strapper.
 """
-# this function is here because of python2.6 that does not have subprocess.check_output
+# this function is here because python2.6 does not have subprocess.check_output
 def system_check_output(arg):
 	pr=subprocess.Popen(arg,stdout=subprocess.PIPE)
 	(output,errout)=pr.communicate()

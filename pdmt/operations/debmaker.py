@@ -10,6 +10,12 @@ This operation knows how to make a debian package.
 """
 
 class DebMaker(operation.Operation):
+	def __init__(self):
+		operation.Operation.__init__(
+			self,
+			'debmaker',
+			'make a debian package',
+		)
 	def run(self,nodes):
 		# check that everything is commited
 		out=pdmt.utils.subproc.check_output(['git','status','-s'])

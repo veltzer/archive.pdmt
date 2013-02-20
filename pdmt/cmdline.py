@@ -78,8 +78,8 @@ def parse(mgr):
 		mgr.dotgraph()
 	if options.showops:
 		print('here is the list');
-		for x in mgr.getOperations():
-			print('\t',x)
+		for op_name,op_val in mgr.getOperations().items():
+			print('\t',op_name,',',op_val.getDescription())
 	if options.showconfig:
 		pdmt.config.show()
 	if options.runop:

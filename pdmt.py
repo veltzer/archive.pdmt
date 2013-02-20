@@ -12,16 +12,19 @@ import pdmt.eventhandlers.debugger
 import pdmt.cmdline
 
 import glob
+import os # for os.environ
 
 import pdmt.operations.installaptsite
 import pdmt.operations.depsinstaller
 import pdmt.operations.debmaker
 import pdmt.operations.debinstaller
+import pdmt.operations.hello
 
 mgr=pdmt.mgr.Mgr()
 mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
 mgr.addHandler(pdmt.nodehandlers.makohandler.MakoHandler())
-#mgr.addHandler(pdmt.eventhandlers.debugger.Debugger())
+if os.environ.has_key("PDMT_DEBUG"):
+	mgr.addHandler(pdmt.eventhandlers.debugger.Debugger())
 node=mgr.addNode(pdmt.nodetypes.cexecutablefilenode.CExecutableFileNode('tests/main.exe'))
 mgr.addHandler(pdmt.nodehandlers.connector.Connector(node,pdmt.nodetypes.objectfilenode.ObjectFileNode,'^tests/.*\.o$'))
 mgr.addNode(pdmt.nodetypes.cfilenode.CFileNode('tests/main.c'))
@@ -32,32 +35,24 @@ for name in glob.glob('mako/*.mako'):
 	nodes.append(mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode(name)))
 
 mgr.addOperation(
-	pdmt.operations.installaptsite.InstallAptSite(
-		'installaptsite',
-		'install the apt site',
-	),
+	pdmt.operations.installaptsite.InstallAptSite(),
 	#mgr.dependsOn(nodes),
 	mgr.dependsOn([]),
 )
 mgr.addOperation(
-	pdmt.operations.depsinstaller.DepsInstaller(
-		'depsinstaller',
-		'install prereqs',
-	),
+	pdmt.operations.depsinstaller.DepsInstaller(),
 	mgr.dependsOn([]),
 )
 mgr.addOperation(
-	pdmt.operations.debmaker.DebMaker(
-		'debmaker',
-		'make a debian package',
-	),
+	pdmt.operations.debmaker.DebMaker(),
 	mgr.dependsOn([]),
 )
 mgr.addOperation(
-	pdmt.operations.debinstaller.DebInstaller(
-		'debinstaller',
-		'install the package into the repository',
-	),
+	pdmt.operations.debinstaller.DebInstaller(),
+	mgr.dependsOn([]),
+)
+mgr.addOperation(
+	pdmt.operations.hello.Hello(),
 	mgr.dependsOn([]),
 )
 

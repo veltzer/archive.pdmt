@@ -8,5 +8,7 @@ class Operation(object):
 		self.m_description=p_description
 	def getName(self):
 		return self.m_name
+	def getDescription(self):
+		return self.m_description
 	def run(self,nodes):
 		raise ValueError('must override the operation')

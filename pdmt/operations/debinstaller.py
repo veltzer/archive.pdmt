@@ -9,6 +9,12 @@ This module handles publishing and unpublishing a deb package from an apt reposi
 	Mark Veltzer <mark@veltzer.net>
 """
 class DebInstaller(operation.Operation):
+	def __init__(self):
+		operation.Operation.__init__(
+			self,
+			'debinstaller',
+			'install the package into the repository',
+		);
 	def run(self,nodes):
 		args=[]
 		if pdmt.config.ns_apt.p_sudo:

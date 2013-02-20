@@ -16,6 +16,12 @@ $ chgrp $USER -R /var/www
 """
 
 class InstallAptSite(operation.Operation):
+	def __init__(self):
+		operation.Operation.__init__(
+			self,
+			'installaptsite',
+			'install the apt site',
+		)
 	def run(self,nodes):
 		# the if is needed to avoid an exception
 		serv=pdmt.config.ns_apt.p_abs_dir

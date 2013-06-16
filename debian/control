@@ -1,7 +1,7 @@
 Source: python-pdmt
 Section: devel
 Priority: optional
-Maintainer: Mark Veltzer (ghantoos) 
+Maintainer: Mark Veltzer <mark@veltzer.net>
 Build-Depends: debhelper (>=7.0.50~), python-support (>= 0.6), python-all-dev
 Standards-Version: 3.8.4
 

@@ -6,12 +6,25 @@ import pdmt.utils.boot
 class ns_pdmt:
 	p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
 class ns_product:
+	p_license='GPL'
 	p_name='pdmt'
 	p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
 	p_description='Project Dependency Management Tool'
+	p_long_description='Project Dependency Management Tool long description'
+	p_keywords=[
+		'make',
+		'pdmt',
+		'scons',
+		'build',
+		'tool',
+	]
+	p_platforms="UNIX"
 	# source code package where the code is
 	p_package='pdmt'
 	p_packages=pdmt.utils.boot.dir_list(p_package)
+	p_package_dir={
+		'pdmt':'pdmt',
+	}
 	p_deps=[
 		'python-pygraph',
 		'python-pyinotify',
@@ -21,7 +34,7 @@ class ns_product:
 		'python-pygraphviz',
 		'libgv-python',
 	]
-	p_require=[
+	p_requires=[
 		'pygraph',
 	]
 	p_classifiers=[

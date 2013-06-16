@@ -10,6 +10,6 @@
 /build/*
 /deb_dist/*
 /debian/files
-/debian/python-pdmt.debhelper.log
-/debian/python-pdmt.substvars
-/debian/python-pdmt/
+/debian/pdmt.debhelper.log
+/debian/pdmt.substvars
+/debian/pdmt/

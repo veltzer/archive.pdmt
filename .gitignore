@@ -2,10 +2,14 @@
 *.pyo
 *.o
 *.exe
-MANIFEST
-PKG-INFO
-makot/*
+/makot/*
 
-dist/*
-build/*
-deb_dist/*
+/MANIFEST
+/PKG-INFO
+/dist/*
+/build/*
+/deb_dist/*
+/debian/files
+/debian/python-pdmt.debhelper.log
+/debian/python-pdmt.substvars
+/debian/python-pdmt/

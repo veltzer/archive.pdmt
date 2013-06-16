@@ -14,6 +14,7 @@ packs=[
 	'fakeroot',
 	'cdbs',
 	'git-buildpackage',
+	'python-all-dev',
 ]
 
 args=['sudo','apt-get','install']

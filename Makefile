@@ -2,13 +2,13 @@
 all:
 	$(info tell me something more specific)
 
-.PHONY: clean
-clean:
+.PHONY: clean_old
+clean_old:
 	rm -rf `find . -name "*.pyc"` `find . -name "*.o"` `find . -name "*.exe"`
 	rm -rf build dist deb_dist
 
-.PHONY: clean_full
-clean_full:
+.PHONY: clean
+clean:
 	git clean -xdf
 
 .PHONY: sdist
@@ -33,3 +33,6 @@ listfiles:
 .PHONY: purge
 purge:
 	sudo dpkg --purge python-pdmt
+.PHONY: contents
+contents:
+	dpkg --contents ../python-pdmt_1_all.deb

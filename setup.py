@@ -18,7 +18,7 @@ distutils.core.setup(
 	version=pdmt.config.ns_product.p_version,
 	requires=pdmt.config.ns_product.p_requires,
 	scripts=pdmt.config.ns_product.p_scripts,
-	package_dir=pdmt.config.ns_product.p_packages_dir,
+	package_dir=pdmt.config.ns_product.p_package_dir,
 	packages=pdmt.config.ns_product.p_packages,
 	data_files=pdmt.config.ns_product.p_data_files,
 	classifiers=pdmt.config.ns_product.p_classifiers,

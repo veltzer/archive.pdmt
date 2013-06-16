@@ -8,6 +8,7 @@ Standards-Version: 3.9.4
 Package: pdmt
 Architecture: all
 Homepage: http://veltzer.net/pdmt
+Depends: ${misc:Depends}
 Description: pdmt
  Here you should put a long description your package. This line *MUST* (this is
  for default printing) begin with a single space.

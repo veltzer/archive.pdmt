@@ -4,7 +4,8 @@
 *.exe
 MANIFEST
 PKG-INFO
+makot/*
+
 dist/*
 build/*
 deb_dist/*
-makot/*

@@ -21,7 +21,10 @@ build:
 
 .PHONY: deb
 deb:
-	git-buildpackage
+	git clean -xdf
+	python setup.py sdist --dist-dir=../ --prune
+	dpkg-buildpackage -i -I -rfakeroot
+#git-buildpackage
 
 .PHONY: install-deb
 install-deb:

@@ -21,6 +21,7 @@ build:
 
 .PHONY: deb
 deb:
+	rm -f ../pdmt-* ../pdmt_*
 	git clean -xdf
 	python setup.py sdist --dist-dir=../ --prune
 	dpkg-buildpackage -i -I -rfakeroot

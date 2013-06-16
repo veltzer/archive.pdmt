@@ -21,7 +21,8 @@ class ns_product:
 	p_platforms="UNIX"
 	# source code package where the code is
 	p_package='pdmt'
-	p_packages=pdmt.utils.boot.dir_list(p_package)
+	p_packages=[ 'pdmt' ]
+	#pdmt.utils.boot.dir_list(p_package)
 	p_package_dir={
 		'pdmt':'pdmt',
 	}

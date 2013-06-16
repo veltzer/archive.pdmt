@@ -1,4 +1,1 @@
-include README
-include PKG-INFO
-include LICENSE
 recursive-include pdmt *.py

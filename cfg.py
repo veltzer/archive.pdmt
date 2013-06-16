@@ -34,6 +34,7 @@ class ns_product:
 		'Topic :: Software Development :: Building',
 	]
 	p_scripts=[
+		'pdmt.py',
 	]
 	p_data_files=[
 		'cfg.py',

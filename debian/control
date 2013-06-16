@@ -1,5 +1,5 @@
 Source: python-pdmt
-Section: comm
+Section: devel
 Priority: optional
 Maintainer: Mark Veltzer (ghantoos) 
 Build-Depends: debhelper (>=7.0.50~), python-support (>= 0.6), cdbs (>= 0.4.49), python-all-dev
@@ -8,7 +8,7 @@ Standards-Version: 3.8.4
 
 Package: python-pdmt
 Architecture: all
-Homepage: http://yourprojectshomepade.com/
+Homepage: http://veltzer.net/pdmt
 XB-Python-Version: ${python:Versions}
 Depends: ${misc:Depends}, ${python:Depends}
 Description: python-pdmt

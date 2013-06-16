@@ -3,14 +3,11 @@ Section: devel
 Priority: optional
 Maintainer: Mark Veltzer (ghantoos) 
 Build-Depends: debhelper (>=7.0.50~), python-support (>= 0.6), python-all-dev
-XS-Python-Version: >=2.4
 Standards-Version: 3.8.4
 
 Package: python-pdmt
 Architecture: all
 Homepage: http://veltzer.net/pdmt
-XB-Python-Version: ${python:Versions}
-Depends: ${misc:Depends}, ${python:Depends}
 Description: python-pdmt
  Here you should put a long description your package. This line *MUST* (this is
  for default printing) begin with a single space.

@@ -9,6 +9,6 @@ Package: pdmt
 Architecture: all
 Homepage: http://veltzer.net/pdmt
 Depends: ${misc:Depends}
-Description: pdmt
+Description: project dependency management tool
  Here you should put a long description your package. This line *MUST* (this is
  for default printing) begin with a single space.

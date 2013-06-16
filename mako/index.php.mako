@@ -46,7 +46,7 @@ sudo apt-get update
 			<li>
 				You can now starting installing my packages. For example:
 				<pre style="font-weight:bold;">
-sudo apt-get install python-pdmt
+sudo apt-get install pdmt
 				</pre>
 			</li>
 		</ul>

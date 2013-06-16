@@ -25,14 +25,14 @@ deb:
 
 .PHONY: install-deb
 install-deb:
-	sudo dpkg --install deb_dist/python-pdmt_1-1_all.deb
+	sudo dpkg --install deb_dist/pdmt_1-1_all.deb
 
 .PHONY: listfiles
 listfiles:
-	dpkg --listfiles python-pdmt
+	dpkg --listfiles pdmt
 .PHONY: purge
 purge:
-	sudo dpkg --purge python-pdmt
+	sudo dpkg --purge pdmt
 .PHONY: contents
 contents:
-	dpkg --contents ../python-pdmt_1_all.deb
+	dpkg --contents ../pdmt_1_all.deb

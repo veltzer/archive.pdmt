@@ -1,13 +1,13 @@
-Source: python-pdmt
+Source: pdmt
 Section: devel
 Priority: optional
 Maintainer: Mark Veltzer <mark@veltzer.net>
 Build-Depends: debhelper (>=7.0.50~), python-support (>= 0.6), python-all-dev
 Standards-Version: 3.9.4
 
-Package: python-pdmt
+Package: pdmt
 Architecture: all
 Homepage: http://veltzer.net/pdmt
-Description: python-pdmt
+Description: pdmt
  Here you should put a long description your package. This line *MUST* (this is
  for default printing) begin with a single space.

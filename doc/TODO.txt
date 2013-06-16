@@ -1,5 +1,7 @@
 Now:
 ====
+- create the pdmt .deb package and an automated way to put it in my repository.
+
 - use pdmt in fastlog and see how it goes.
 
 - in the index.php.mako file use better variables (for the name of the apt site for instance).

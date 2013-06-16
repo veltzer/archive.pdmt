@@ -7,6 +7,10 @@ clean:
 	rm -rf `find . -name "*.pyc"` `find . -name "*.o"` `find . -name "*.exe"`
 	rm -rf build dist deb_dist
 
+.PHONY: clean_full
+clean_full:
+	git clean -xdf
+
 .PHONY: sdist
 sdist:
 	./setup.py sdist
@@ -15,9 +19,9 @@ sdist:
 build:
 	./setup.py build
 
-.PHONY: full
-full:
-	./setup.py sdist
+.PHONY: deb
+deb:
+	git-buildpackage
 
 .PHONY: install-deb
 install-deb:

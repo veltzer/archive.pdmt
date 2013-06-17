@@ -26,6 +26,7 @@ distutils.core.setup(
 	#package_dir=pdmt.config.ns_product.p_package_dir,
 	#packages=pdmt.config.ns_product.p_packages,
 	packages=setuptools.find_packages(),
+	namespace_packages=pdmt.config.ns_product.p_namespace_packages,
 	data_files=pdmt.config.ns_product.p_data_files,
 	classifiers=pdmt.config.ns_product.p_classifiers,
 )

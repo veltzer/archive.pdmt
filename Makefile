@@ -1,6 +1,10 @@
 .PHONY: all
 all:
-	python setup.py sdist
+	python setup.py
+
+.PHONY: install
+install:
+	python setup.py install
 
 .PHONY: clean_old
 clean_old:

@@ -1,6 +1,6 @@
 .PHONY: all
 all:
-	$(info tell me something more specific)
+	python setup.py build
 
 .PHONY: clean_old
 clean_old:

@@ -2,6 +2,7 @@
 
 import pdmt.config # for configuration
 import distutils.core # for setup
+import setuptools # for find_packages
 
 distutils.core.setup(
 	name=pdmt.config.ns_product.p_name,
@@ -18,9 +19,10 @@ distutils.core.setup(
 	version=pdmt.config.ns_product.p_version,
 	requires=pdmt.config.ns_product.p_requires,
 	scripts=pdmt.config.ns_product.p_scripts,
-	#py_modules=pdmt.config.ns_product.p_packages,
+	py_modules=pdmt.config.ns_product.p_packages,
 	#package_dir=pdmt.config.ns_product.p_package_dir,
-	packages=pdmt.config.ns_product.p_packages,
+	#packages=pdmt.config.ns_product.p_packages,
+	packages=setuptools.find_packages(),
 	data_files=pdmt.config.ns_product.p_data_files,
 	classifiers=pdmt.config.ns_product.p_classifiers,
 )

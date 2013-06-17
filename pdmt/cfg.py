@@ -51,7 +51,6 @@ class ns_product:
 		'pdmt.py',
 	]
 	p_data_files=[
-		'cfg.py',
 	]
 	p_cannonical='python-'+p_name
 # person related parameters

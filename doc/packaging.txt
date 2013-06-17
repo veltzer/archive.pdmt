@@ -1,0 +1,3 @@
+notes about python packaging:
+=============================
+- the version of the package file created comes from the debian/changelog!

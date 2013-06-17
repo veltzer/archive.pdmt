@@ -3,6 +3,9 @@
 import pdmt.config # for configuration
 import distutils.core # for setup
 import setuptools # for find_packages
+import sys
+
+print "sys.argv is",sys.argv
 
 distutils.core.setup(
 	name=pdmt.config.ns_product.p_name,

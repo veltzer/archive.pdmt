@@ -1,18 +1,19 @@
 
 from __future__ import print_function
 
-import pygraph.classes.digraph
+#import pygraph.classes.digraph
 #import pygraph.classes.graph
-import pygraph.algorithms.searching
-import pygraph.readwrite.dot
-import gv
-
+#import pygraph.algorithms.searching
+#import pygraph.readwrite.dot
+#import gv
+import pdmt.graph
 import pdmt.config
 
 class Mgr:
 	def __init__(self):
-		self.graph=pygraph.classes.digraph.digraph()
+		#self.graph=pygraph.classes.digraph.digraph()
 		#self.graph=pygraph.classes.graph.graph()
+		self.graph=pdmt.graph.Graph()
 		self.init_handlers()
 		self.opnodes={}
 		self.opbyname={}
@@ -91,13 +92,13 @@ class Mgr:
 		if len(todo)==0:
 			self.progress('nothing to build')
 	def clean(self):
-		lst=self.graph.nodes()
-		if len(lst)>0:
+		lst_len=self.graph.get_nodes_num()
+		if lst_len>0:
 			name='node'
-			if len(lst)>1:
+			if lst_len>1:
 				name+='s'
-		self.progress('going to clean '+str(len(lst))+' '+name)
-		for node in self.graph.nodes():
+		self.progress('going to clean '+str(lst_len)+' '+name)
+		for node in self.graph.get_nodes():
 			self.debug(node)
 			node.clean()
 	def dependsOn(self,nodes):

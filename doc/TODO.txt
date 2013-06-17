@@ -1,6 +1,5 @@
 Now:
 ====
-- clean up all the rest of the lintian errors
 - create the pdmt .deb package and an automated way to put it in my repository.
 
 - use pdmt in fastlog and see how it goes.

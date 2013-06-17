@@ -19,16 +19,17 @@ sdist:
 build:
 	./setup.py build
 
-.PHONY: deb
-deb:
+.PHONY: deb2
+deb2:
+	$(error dont use this)
 	rm -f ../pdmt-* ../pdmt_*
 	git clean -xdf
 	python setup.py sdist --dist-dir=../ --prune
 #	python setup.py sdist --dist-dir=../
 	dpkg-buildpackage -i -I -rfakeroot
 
-.PHONY: deb2
-deb2:
+.PHONY: deb
+deb:
 	rm -f ../pdmt-* ../pdmt_*
 	git clean -xdf
 	git-buildpackage

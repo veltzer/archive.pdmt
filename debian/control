@@ -6,6 +6,7 @@ Build-Depends: debhelper (>=9), python-support (>= 0.6), python-all
 Standards-Version: 3.9.4
 
 Package: pdmt
+Version: 1.1
 Architecture: all
 Homepage: http://veltzer.net/pdmt
 Depends: ${misc:Depends}

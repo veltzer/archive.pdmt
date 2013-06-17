@@ -4,8 +4,6 @@
 *.exe
 /makot/*
 
-/MANIFEST
-/PKG-INFO
 /dist/*
 /build/*
 /deb_dist/*
@@ -13,3 +11,4 @@
 /debian/pdmt.debhelper.log
 /debian/pdmt.substvars
 /debian/pdmt/
+/pdmt.egg-info

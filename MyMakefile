@@ -24,6 +24,7 @@ deb:
 	rm -f ../pdmt-* ../pdmt_*
 	git clean -xdf
 	python setup.py sdist --dist-dir=../ --prune
+#	python setup.py sdist --dist-dir=../
 	dpkg-buildpackage -i -I -rfakeroot
 #git-buildpackage
 

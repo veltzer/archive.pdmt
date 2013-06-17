@@ -1,5 +1,6 @@
 Now:
 ====
+- why does the version of the package come from? Solve this!
 - create the pdmt .deb package and an automated way to put it in my repository.
 
 - use pdmt in fastlog and see how it goes.

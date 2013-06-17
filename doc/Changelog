@@ -1,7 +1,1 @@
-2011/12/31  Mark Veltzer  <mark.veltzer@gmail.com>
-
-* initial coding of the basic classes. Still lots of work to do here.
-
-2012/1/12  Mark Veltzer  <mark.veltzer@gmail.com>
-
-* moved to argparse instead of optparse
+I do not maintain a changelog. Look at the git changelog instead.

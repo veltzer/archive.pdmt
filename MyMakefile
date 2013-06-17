@@ -37,6 +37,7 @@ deb:
 	rm -f ../pdmt-* ../pdmt_*
 	git clean -xdf
 	git-buildpackage
+	mv ../pdmt_* ~/packages/
 
 .PHONY: install-deb
 install-deb:

@@ -22,6 +22,7 @@ class ns_product:
 	# source code package where the code is
 	p_package='pdmt'
 	p_packages=[ 'pdmt' ]
+	p_namespace_packages=[ 'pdmt' ]
 	#pdmt.utils.boot.dir_list(p_package)
 	p_package_dir={
 		'pdmt':'pdmt',

@@ -1,3 +1,6 @@
+
+from __future__ import print_function
+
 import pygraph.classes.digraph
 #import pygraph.classes.graph
 import pygraph.algorithms.searching
@@ -68,7 +71,7 @@ class Mgr:
 				todo.append(node)
 		return todo
 	def msg(self,message):
-		print 'pdmt:',message
+		print('pdmt:',message)
 	def progress(self,message):
 		if pdmt.config.ns_mgr.p_prog:
 			self.msg(message)

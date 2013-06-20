@@ -10,5 +10,4 @@ Architecture: all
 Homepage: http://veltzer.net/pdmt
 Depends: ${misc:Depends}
 Description: project dependency management tool
- Here you should put a long description your package. This line *MUST* (this is
- for default printing) begin with a single space.
+ Pdmt is a dependency management tool: it helps you build large scale projects.

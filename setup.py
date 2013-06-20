@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import pdmt.config # for configuration
 import distutils.core # for setup

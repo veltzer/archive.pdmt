@@ -2,6 +2,10 @@
 A graph module written in python
 """
 
+from __future__ import print_function
+
+print("in class graph")
+
 class Graph:
 	def __init__(self):
 		self.nodes=set()

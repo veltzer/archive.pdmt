@@ -2,7 +2,7 @@ Source: pdmt
 Section: devel
 Priority: optional
 Maintainer: Mark Veltzer <mark@veltzer.net>
-Build-Depends: debhelper (>=9), python3-support (>= 0.6), python3-all
+Build-Depends: debhelper (>=9), python-support (>= 0.6), python3-all
 Standards-Version: 3.9.4
 
 Package: pdmt

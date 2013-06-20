@@ -1,15 +1,15 @@
-import operation
+import pdmt.operations.operation
 
 """
 A simple hello world operation (prints hello world on the screen)
 """
 
-class Hello(operation.Operation):
+class Hello(pdmt.operations.operation.Operation):
 	def __init__(self):
-		operation.Operation.__init__(
+		pdmt.operations.operation.Operation.__init__(
 			self,
 			"hello",
 			"print hello on the screen",
 		)
 	def run(self,nodes):
-		print "Hello, World!\n";
+		print("Hello, World!\n");

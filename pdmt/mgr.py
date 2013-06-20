@@ -1,11 +1,5 @@
-
 from __future__ import print_function
 
-#import pygraph.classes.digraph
-#import pygraph.classes.graph
-#import pygraph.algorithms.searching
-#import pygraph.readwrite.dot
-#import gv
 import pdmt.graph
 import pdmt.config
 

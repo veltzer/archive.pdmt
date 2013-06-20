@@ -1,4 +1,4 @@
-import operation
+import pdmt.operations.operation
 
 import pdmt.config
 
@@ -9,9 +9,9 @@ import pdmt.utils.osw
 This operation knows how to make a debian package.
 """
 
-class DebMaker(operation.Operation):
+class DebMaker(pdmt.operations.operation.Operation):
 	def __init__(self):
-		operation.Operation.__init__(
+		pdmt.operations.operation.Operation.__init__(
 			self,
 			'debmaker',
 			'make a debian package',

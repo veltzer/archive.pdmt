@@ -1,9 +1,9 @@
-import buildfilenode
-import cfilenode
+import pdmt.nodetypes.buildfilenode
+import pdmt.nodetypes.cfilenode
 import pdmt.utils.subproc
 import pdmt.types
 
-class ObjectFileNode(buildfilenode.BuildFileNode):
+class ObjectFileNode(pdmt.nodetypes.buildfilenode.BuildFileNode):
 	def __init__(self,p_fname):
 		super(ObjectFileNode,self).__init__(p_fname,pdmt.types.t_object)
 	def build(self):

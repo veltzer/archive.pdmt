@@ -57,7 +57,7 @@ if __name__=='__main__':
 			['ls','-l','foo'],
 			['wc','-l'],
 		);
-	except ValueError,e:
+	except ValueError as e:
 		print('ok, got error for first command',e)
 	try:
 		# test error in second command
@@ -65,7 +65,7 @@ if __name__=='__main__':
 			['ls','-l'],
 			['wc','-l','--stam'],
 		);
-	except ValueError,e:
+	except ValueError as e:
 		print('ok, got error for second command',e)
 	# test output
 	system_pipe(

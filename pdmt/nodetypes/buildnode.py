@@ -1,6 +1,6 @@
-import node
+import pdmt.nodetypes.node
 import os
 
-class BuildNode(node.Node):
+class BuildNode(pdmt.nodetypes.node.Node):
 	def canBuild(self):
 		return True

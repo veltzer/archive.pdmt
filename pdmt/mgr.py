@@ -1,5 +1,3 @@
-from __future__ import print_function
-
 import pdmt.graph
 import pdmt.config
 
@@ -22,6 +20,11 @@ class Mgr:
 		self.handlers.add(handler)
 	def delHandler(self,handler):
 		self.handlers.remove(handler)
+
+	""" getting all dependencies for a node """
+	def deps(self,node):
+		for n in self.graph.get_adjacent_for_node(node):
+			yield n
 
 	""" modification functions """
 	def addNode(self,node):
@@ -47,20 +50,14 @@ class Mgr:
 		self.notify(edge,'edgepostdel')
 		return edge
 
-	""" getting all dependencies for a node """
-	def deps(self,node):
-		for n in self.graph[node]:
-			yield n
-
 	""" building methods start here """
 
 	""" this is a method that builds a list of all the nodes that need to be build.
 	It build a real list. Maybe turn it into a generator ?
 	"""
 	def build_todolist(self):
-		(st,pre,post)=pygraph.algorithms.searching.depth_first_search(self.graph)
 		todo=[]
-		for node in post:
+		for node in self.graph.dfs():
 			self.debug('examining ['+str(node)+']')
 			if not node.uptodate(todo):
 				todo.append(node)

@@ -12,6 +12,6 @@ class ObjectFileNode(pdmt.nodetypes.buildfilenode.BuildFileNode):
 		args.append('-c')
 		args.append('-o')
 		args.append(self.m_fname)
-		for node in self.getSourcesOfType(cfilenode.CFileNode):
+		for node in self.getSourcesOfType(pdmt.nodetypes.cfilenode.CFileNode):
 			args.append(node.m_fname)
 		pdmt.utils.subproc.check_call(args)

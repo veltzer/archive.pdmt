@@ -11,6 +11,6 @@ class CExecutableFileNode(pdmt.nodetypes.buildfilenode.BuildFileNode):
 		args.append('gcc')
 		args.append('-o')
 		args.append(self.m_fname)
-		for node in self.getSourcesOfType(objectfilenode.ObjectFileNode):
+		for node in self.getSourcesOfType(pdmt.nodetypes.objectfilenode.ObjectFileNode):
 			args.append(node.m_fname)
 		pdmt.utils.subproc.check_call(args)

@@ -1,13 +1,13 @@
 """
 A graph module written in python
 """
-
-from __future__ import print_function
+import pdmt.stack
 
 class Graph:
 	def __init__(self):
 		self.nodes=set()
 		self.edges=dict()
+		self.check=True
 		self.check=False
 	def check_have_node(self,node):
 		if self.check:
@@ -42,13 +42,14 @@ class Graph:
 		self.check_have_node(to)
 		self.check_havent_edge(fr,to)
 		self.edges[fr].add(to)
+		#print('adding edge',fr,'to',to)
 	def remove_edge(self,edge):
 		(fr,to)=edge
 		self.check_have_node(fr)
 		self.check_have_node(to)
 		self.check_have_edge(fr,to)
 		self.edges[fr].remove(to)
-	def get_deps_for(self,node):
+	def get_adjacent_for_node(self,node):
 		for node in self.edges[node]:
 			yield node
 	def get_nodes(self):
@@ -56,3 +57,28 @@ class Graph:
 			yield node
 	def get_nodes_num(self):
 		return len(self.nodes)
+	""" depth first search algorithm """
+	def dfs(self):
+		visited=set()
+		for node in self.get_nodes():
+			if not node in visited:
+				for v in self.dfs_unvisited_node(visited,node):
+					yield v
+	def dfs_unvisited_node(self,visited,v):
+		if v in visited:
+			return
+		visited.add(v)
+		for w in self.get_adjacent_for_node(v):
+			for s in self.dfs_unvisited_node(visited,w):
+				yield s
+			if not w in visited:
+				yield w
+		yield v
+			
+
+if __name__ == '__main__':
+	g=Graph()
+	g.add_node('a')
+	g.add_node('b')
+	for node in g.dfs():
+		print(node)

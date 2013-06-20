@@ -14,7 +14,7 @@ class MakotFileNode(pdmt.nodetypes.buildfilenode.BuildFileNode):
 	def deps(self):
 		p_input=getSingleSourceOfType(self,makofilenode.MakoFileNode)
 	def build(self):
-		p_input=self.getSourceOfType(makofilenode.MakoFileNode).m_fname
+		p_input=self.getSourceOfType(pdmt.nodetypes.makofilenode.MakoFileNode).m_fname
 		p_output=self.m_fname
 		# remove the old file
 		pdmt.utils.fileops.unlinksoft(p_output)
@@ -27,7 +27,7 @@ class MakotFileNode(pdmt.nodetypes.buildfilenode.BuildFileNode):
 		#file.write((template.render_unicode(attributes={})))
 		# python 2
 		try:
-			file.write(template.render(pdmt=pdmt))
+			file.write(str(template.render(pdmt=pdmt)))
 		except Exception as e:
 			file.close()
 			pdmt.utils.fileops.unlinksoft(p_output)

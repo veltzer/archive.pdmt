@@ -8,6 +8,6 @@ Standards-Version: 3.9.4
 Package: pdmt
 Architecture: all
 Homepage: http://veltzer.net/pdmt
-Depends: ${misc:Depends}
+Depends: ${misc:Depends} ${python:Depends}
 Description: project dependency management tool
  Pdmt is a dependency management tool: it helps you build large scale projects.

@@ -1,5 +1,5 @@
-import buildfilenode
-import makofilenode
+import pdmt.nodetypes.buildfilenode
+import pdmt.nodetypes.makofilenode
 import pdmt.types
 
 import pdmt.config
@@ -8,7 +8,7 @@ import mako.template
 import mako.lookup
 import pdmt.utils.fileops
 
-class MakotFileNode(buildfilenode.BuildFileNode):
+class MakotFileNode(pdmt.nodetypes.buildfilenode.BuildFileNode):
 	def __init__(self,p_fname):
 		super(MakotFileNode,self).__init__(p_fname,pdmt.types.t_makot)
 	def deps(self):
@@ -28,7 +28,7 @@ class MakotFileNode(buildfilenode.BuildFileNode):
 		# python 2
 		try:
 			file.write(template.render(pdmt=pdmt))
-		except Exception,e:
+		except Exception as e:
 			file.close()
 			pdmt.utils.fileops.unlinksoft(p_output)
 			# TODO: self.error(e)

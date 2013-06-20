@@ -1,4 +1,4 @@
-import operation
+import pdmt.operations.operation
 
 import pdmt.config
 
@@ -8,9 +8,9 @@ import pdmt.utils.subproc
 This module installs dependencies for a package. Dependencies are gotten via
 configuration
 """
-class DepsInstaller(operation.Operation):
+class DepsInstaller(pdmt.operations.operation.Operation):
 	def __init__(self):
-		operation.Operation.__init__(
+		pdmt.operations.operation.Operation.__init__(
 			self,
 			'depsinstaller',
 			'install prereqs',

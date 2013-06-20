@@ -1,4 +1,4 @@
-import operation
+import pdmt.operations.operation
 
 import pdmt.utils.subproc
 import pdmt.config
@@ -8,9 +8,9 @@ This module handles publishing and unpublishing a deb package from an apt reposi
 
 	Mark Veltzer <mark@veltzer.net>
 """
-class DebInstaller(operation.Operation):
+class DebInstaller(pdmt.operations.operation.Operation):
 	def __init__(self):
-		operation.Operation.__init__(
+		pdmt.operations.operation.Operation.__init__(
 			self,
 			'debinstaller',
 			'install the package into the repository',

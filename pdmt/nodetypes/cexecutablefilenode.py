@@ -1,9 +1,9 @@
-import buildfilenode
-import objectfilenode
+import pdmt.nodetypes.buildfilenode
+import pdmt.nodetypes.objectfilenode
 import pdmt.utils.subproc
 import pdmt.types
 
-class CExecutableFileNode(buildfilenode.BuildFileNode):
+class CExecutableFileNode(pdmt.nodetypes.buildfilenode.BuildFileNode):
 	def __init__(self,p_fname):
 		super(CExecutableFileNode,self).__init__(p_fname,pdmt.types.t_exe)
 	def build(self):

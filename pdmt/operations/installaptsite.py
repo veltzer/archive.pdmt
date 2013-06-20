@@ -1,4 +1,4 @@
-import operation
+import pdmt.operations.operation
 
 import pdmt.config
 
@@ -15,9 +15,9 @@ $ chmod g+w -R /var/www
 $ chgrp $USER -R /var/www
 """
 
-class InstallAptSite(operation.Operation):
+class InstallAptSite(pdmt.operations.operation.Operation):
 	def __init__(self):
-		operation.Operation.__init__(
+		pdmt.operations.operation.Operation.__init__(
 			self,
 			'installaptsite',
 			'install the apt site',

@@ -1,7 +1,7 @@
-import node
+import pdmt.nodetypes.node
 import os
 
-class FileNode(node.Node):
+class FileNode(pdmt.nodetypes.node.Node):
 	def __init__(self,p_fname,p_type):
 		super(FileNode,self).__init__(p_type)
 		self.m_fname=p_fname

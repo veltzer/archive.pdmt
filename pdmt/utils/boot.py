@@ -13,7 +13,7 @@ def system_check_output(arg):
 	status=pr.returncode
 	if status:
 		raise ValueError('error in executing',arg)
-	return output
+	return str(output)
 def dir_list(arg):
 	p_dir_list=[]
 	for x in os.walk(arg):

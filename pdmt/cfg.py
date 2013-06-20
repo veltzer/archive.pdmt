@@ -28,16 +28,16 @@ class ns_product:
 		'pdmt':'pdmt',
 	}
 	p_deps=[
-		'python-pygraph',
-		'python-pyinotify',
-		'python-pyinotify-doc',
-		'python-inotifyx',
-		'python-stdeb',
-		'python-pygraphviz',
-		'libgv-python',
+	#	'python-pygraph',
+	#	'python-pyinotify',
+	#	'python-pyinotify-doc',
+	#	'python-inotifyx',
+	#	'python-stdeb',
+	#	'python-pygraphviz',
+	#	'libgv-python',
 	]
 	p_requires=[
-		'pygraph',
+	#	'pygraph',
 	]
 	p_classifiers=[
 		'Development Status :: 4 - Beta',

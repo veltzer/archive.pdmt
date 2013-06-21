@@ -11,6 +11,7 @@
 /debian/pdmt.substvars
 /debian/pdmt/
 /debian/patches
+/debian/files
 .pc
 #/pdmt.egg-info
 build-indep

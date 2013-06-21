@@ -19,8 +19,12 @@ distutils.core.setup(
 	url='http://www.veltzer.net/pdmt',
 	license='LGPL',
 	platforms=[
-		'ALL'
+		'ALL',
 	],
+	#py_modules=[
+	#	'pdmt',
+	#],
+	packages=setuptools.find_packages(),
 	version='2.2',
 	classifiers=[
 		'Development Status :: 4 - Beta',

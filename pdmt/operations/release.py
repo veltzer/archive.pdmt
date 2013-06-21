@@ -32,10 +32,10 @@ def doit():
 	tag=pdmt.utils.subproc.check_output(['git','describe','--abbrev=0']).strip()
 	tag=int(tag)
 	if debug:
-		print 'old tag is '+str(tag)
+		print('old tag is '+str(tag))
 	tag+=1
 	if debug:
-		print 'new tag is '+str(tag)
+		print('new tag is '+str(tag))
 	# tag the new tag
 	pdmt.utils.subproc.check_output(['git','tag','-s','-m',project+' version '+str(tag),str(tag)])
 	# new name

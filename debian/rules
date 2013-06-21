@@ -21,10 +21,11 @@ build-indep:
 
 .PHONY: install
 install:
-	dh_installdirs
-	python3 setup.py install \
-		--single-version-externally-managed \
-		--root $(CURDIR)/debian/pdmt
+	python3 setup.py install --root debian/pdmt
+#	dh_installdirs
+#	python3 setup.py install \
+#		--single-version-externally-managed \
+#		--root $(CURDIR)/debian/pdmt
 
 .PHONY: binary-indep
 binary-indep: build install

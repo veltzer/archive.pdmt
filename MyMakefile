@@ -22,6 +22,10 @@ sdist:
 .PHONY: build
 build:
 	./setup.py build
+.PHONY: debianize
+debianize:
+	\rm -rf debian/source
+	python2 ./setup.py --command-packages=stdeb.command debianize
 
 .PHONY: deb2
 deb2:

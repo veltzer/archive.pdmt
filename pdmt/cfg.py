@@ -18,7 +18,7 @@ class ns_product:
 		'build',
 		'tool',
 	]
-	p_platforms="UNIX"
+	p_platforms='UNIX'
 	# source code package where the code is
 	p_package='pdmt'
 	p_packages=[ 'pdmt' ]

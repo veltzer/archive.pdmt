@@ -12,6 +12,7 @@
 /debian/pdmt/
 /debian/patches
 /debian/files
+/debian/pdmt.*.debhelper
 .pc
 /pdmt.egg-info
 build-indep

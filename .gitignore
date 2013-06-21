@@ -13,5 +13,5 @@
 /debian/patches
 /debian/files
 .pc
-#/pdmt.egg-info
+/pdmt.egg-info
 build-indep

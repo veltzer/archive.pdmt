@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: pdmt
+Version: 2.2
+Summary: Project Dependency Management Tool
+Home-page: http://www.veltzer.net
+Author: Mark Veltzer
+Author-email: mark@veltzer.net
+License: GPL
+Description: Project Dependency Management Tool long description
+Keywords: make,pdmt,scons,build,tool
+Platform: UNIX
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: LGPL
+Classifier: Operating System :: POSIX
+Classifier: Programming Language :: Python
+Classifier: Topic :: Software Development :: Building

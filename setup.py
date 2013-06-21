@@ -1,32 +1,44 @@
 #!/usr/bin/python3
 
-import pdmt.config # for configuration
 import distutils.core # for setup
-import setuptools # for find_packages
-#import sys
-
-#print "sys.argv is",sys.argv
+#import setuptools # for find_packages
 
 distutils.core.setup(
-	name=pdmt.config.ns_product.p_name,
-	description=pdmt.config.ns_product.p_description,
-	long_description=pdmt.config.ns_product.p_long_description,
-	author=pdmt.config.ns_person.p_name,
-	author_email=pdmt.config.ns_person.p_email,
-	maintainer=pdmt.config.ns_person.p_name,
-	maintainer_email=pdmt.config.ns_person.p_email,
-	keywords=pdmt.config.ns_product.p_keywords,
-	url=pdmt.config.ns_distrib.p_url_website,
-	license=pdmt.config.ns_product.p_license,
-	platforms=pdmt.config.ns_product.p_platforms,
-	version=pdmt.config.ns_product.p_version,
-	requires=pdmt.config.ns_product.p_requires,
-	scripts=pdmt.config.ns_product.p_scripts,
-	py_modules=pdmt.config.ns_product.p_packages,
+	name='pdmt',
+	description='Project Dependency Management Tool',
+	long_description='Project Dependency Management Tool long description',
+	author='Mark Veltzer',
+	author_email='mark@veltzer.net',
+	maintainer='Mark Veltzer',
+	maintainer_email='mark@veltzer.net',
+	keywords=[
+		'make',
+		'pdmt',
+		'scons',
+		'build',
+		'tool',
+	],
+	url='http://www.veltzer.net',
+	license='GPL',
+	platforms='UNIX',
+	version='2.2',
+	requires=[],
+	scripts=[],
+	#py_modules=[
+	#	'pdmt'
+	#],
 	#package_dir=pdmt.config.ns_product.p_package_dir,
 	#packages=pdmt.config.ns_product.p_packages,
-	packages=setuptools.find_packages(),
+	#packages=setuptools.find_packages(),
 	#namespace_packages=pdmt.config.ns_product.p_namespace_packages,
-	data_files=pdmt.config.ns_product.p_data_files,
-	classifiers=pdmt.config.ns_product.p_classifiers,
+	data_files=[],
+	classifiers=[
+		'Development Status :: 4 - Beta',
+		'Environment :: Console',
+		'Intended Audience :: Developers',
+		'License :: OSI Approved :: LGPL',
+		'Operating System :: POSIX',
+		'Programming Language :: Python',
+		'Topic :: Software Development :: Building',
+	]
 )

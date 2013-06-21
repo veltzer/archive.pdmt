@@ -10,4 +10,6 @@
 /debian/pdmt.debhelper.log
 /debian/pdmt.substvars
 /debian/pdmt/
-/pdmt.egg-info
+/debian/patches
+.pc
+#/pdmt.egg-info

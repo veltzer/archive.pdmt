@@ -7,7 +7,6 @@
 /dist/*
 /build/*
 /deb_dist/*
-/debian/files
 /debian/pdmt.debhelper.log
 /debian/pdmt.substvars
 /debian/pdmt/

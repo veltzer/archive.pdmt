@@ -24,14 +24,14 @@ class MakotFileNode(pdmt.nodetypes.buildfilenode.BuildFileNode):
 		template=mako.template.Template(filename=p_input,lookup=mylookup,output_encoding=output_encoding,input_encoding=input_encoding)
 		file=open(p_output,'w')
 		# python 3
-		file.write((template.render_unicode(attributes={})))
+		#file.write((template.render_unicode(attributes={})))
 		# python 2
-		#try:
-		#	file.write(str(template.render(pdmt=pdmt)))
-		#except Exception as e:
-		#	file.close()
-		#	pdmt.utils.fileops.unlinksoft(p_output)
+		try:
+			file.write(str(template.render(pdmt=pdmt)))
+		except Exception as e:
+			file.close()
+			pdmt.utils.fileops.unlinksoft(p_output)
 		#	# TODO: self.error(e)
-		#	raise e
+			raise e
 		file.close()
 		pdmt.utils.fileops.chmod(p_output,0o0444)

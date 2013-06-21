@@ -2,4 +2,4 @@
 # -*- makefile -*-
 
 %:
-	dh_python3 $@
+	dh $@

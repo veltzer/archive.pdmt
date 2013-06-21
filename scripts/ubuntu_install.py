@@ -7,14 +7,15 @@ import subprocess # for check_call
 
 packs=[
 	# packages needed to build .debs from python code
+	'devscripts',
+	'python-all-dev',
+	'python-stdeb',
 	'build-essential',
 	'dpkg-dev',
 	'debhelper',
-	'devscripts',
 	'fakeroot',
 	'cdbs',
 	'git-buildpackage',
-	'python-all-dev',
 ]
 
 args=['sudo','apt-get','install']

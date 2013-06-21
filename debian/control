@@ -1,13 +1,12 @@
 Source: pdmt
-Section: devel
-Priority: optional
 Maintainer: Mark Veltzer <mark@veltzer.net>
-Build-Depends: debhelper (>=9), python-support (>= 0.6), python3
-Standards-Version: 3.9.4
+Section: python
+Priority: optional
+Build-Depends: python-setuptools (>= 0.6b3), python-all (>= 2.6.6-3), debhelper (>= 7)
+Standards-Version: 3.9.1
 
-Package: pdmt
+Package: python-pdmt
 Architecture: all
-Homepage: http://veltzer.net/pdmt
 Depends: ${misc:Depends}, ${python:Depends}
-Description: project dependency management tool
- Pdmt is a dependency management tool: it helps you build large scale projects.
+Description: Project Dependency Management Tool
+ Project Dependency Management Tool long description

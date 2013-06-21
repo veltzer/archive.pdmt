@@ -40,7 +40,7 @@ deb2:
 deb:
 	rm -f ../pdmt-* ../pdmt_*
 	git clean -xdf
-	git-buildpackage
+	git-buildpackage --git-ignore-new
 	mv ../pdmt_* ~/packages/
 
 .PHONY: install-deb

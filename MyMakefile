@@ -53,6 +53,7 @@ listfiles:
 .PHONY: purge
 purge:
 	sudo dpkg --purge pdmt
-.PHONY: contents
-contents:
-	dpkg --contents ../pdmt_1_all.deb
+.PHONY: results
+results:
+	dpkg --contents ~/packages/pdmt_2.2_all.deb
+	dpkg --info ~/packages/pdmt_2.2_all.deb

@@ -1,6 +1,9 @@
 Now:
 ====
-- create the pdmt .deb package and an automated way to put it in my repository.
+- add a git clean op to pdmt.
+- make pdmt build from full git clean.
+
+- use pdmt in linuxapi and see how it goes.
 
 - use pdmt in fastlog and see how it goes.
 

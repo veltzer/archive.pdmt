@@ -19,6 +19,7 @@ import pdmt.operations.depsinstaller
 import pdmt.operations.debmaker
 import pdmt.operations.debinstaller
 import pdmt.operations.hello
+import pdmt.operations.gitclean
 
 mgr=pdmt.mgr.Mgr()
 mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
@@ -53,6 +54,10 @@ mgr.addOperation(
 )
 mgr.addOperation(
 	pdmt.operations.hello.Hello(),
+	mgr.dependsOn([]),
+)
+mgr.addOperation(
+	pdmt.operations.gitclean.GitClean(),
 	mgr.dependsOn([]),
 )
 

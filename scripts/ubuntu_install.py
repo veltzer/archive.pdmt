@@ -8,6 +8,7 @@ import subprocess # for check_call
 packs=[
 	# packages needed to build .debs from python code
 	'devscripts',
+	'python-pydot', # for dot graph generation
 	'python-all-dev',
 	'python-stdeb',
 	'build-essential',

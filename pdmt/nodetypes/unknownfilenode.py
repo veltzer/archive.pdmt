@@ -1,4 +1,4 @@
-import sourcefilenode
+import pdmt.nodetypes.sourcefilenode
 import pdmt.types
 
 """
@@ -8,6 +8,6 @@ When you don't know what it is that you are producing (check for instance
 the mako module).
 """
 
-class UnknownFileNode(sourcefilenode.SourceFileNode):
+class NodeType(pdmt.nodetypes.sourcefilenode.NodeType):
 	def __init__(self,fname):
-		super(UnknownFileNode,self).__init__(fname,pdmt.types.t_unknown)
+		super().__init__(fname,pdmt.types.t_unknown)

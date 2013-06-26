@@ -1,18 +1,17 @@
-import pdmt.operations.operation
+import pdmt.operation
 import pdmt.utils.subproc
 
 """
 A git cleaninng op
 """
 
-class GitClean(pdmt.operations.operation.Operation):
+class Operation(pdmt.operation.Operation):
 	def __init__(self):
-		pdmt.operations.operation.Operation.__init__(
-			self,
-			"gitclean",
-			"very forceful git clean of a repository",
+		super().__init__(
+			'gitclean',
+			'very forceful git clean of a repository',
 		)
-	def run(self,nodes):
+	def run(self):
 		args=[]
 		args.append('git');
 		args.append('clean');

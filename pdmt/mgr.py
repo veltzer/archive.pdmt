@@ -1,13 +1,12 @@
 import pdmt.graph
 import pdmt.config
+import pkgutil
+import importlib
 
 class Mgr:
 	def __init__(self):
-		#self.graph=pygraph.classes.digraph.digraph()
-		#self.graph=pygraph.classes.graph.graph()
 		self.graph=pdmt.graph.Graph()
 		self.init_handlers()
-		self.opnodes={}
 		self.opbyname={}
 
 	""" listener functions start here """
@@ -23,6 +22,8 @@ class Mgr:
 
 	""" getting all dependencies for a node """
 	def deps(self,node):
+		return [node for node in self.graph.get_adjacent_for_node(node)]
+	def depsYield(self,node):
 		for n in self.graph.get_adjacent_for_node(node):
 			yield n
 
@@ -98,34 +99,43 @@ class Mgr:
 			for n in self.graph[node]:
 				ret.append(n)
 		return ret
-	def addOperation(self,op,nodes):
+
+	""" operations """
+	def addOperation(self,op):
 		self.opbyname[op.getName()]=op
-		self.opnodes[op]=nodes
 	def hasOperation(self,p_name):
 		return p_name in self.opbyname
 	def runOperation(self,p_name):
-		op=self.opbyname[p_name]
-		nodes=self.opnodes[op]
-		# TODO: build just the nodes we need, not all of them
-		self.build()
+		#self.build()
 		self.progress('running operation ['+p_name+']')
-		op.run(nodes)
+		op=self.opbyname[p_name]
+		op.run()
 	def getOperations(self):
 		return self.opbyname
 
-	""" printing method """
+	""" printing methods """
 	def printgraph(self):
 		self.graph.print_dot();
 	def dotgraph(self):
 		self.graph.print_dot();
-		"""
-		dot=pygraph.readwrite.dot.write(self.graph)
-		f=open('/tmp/graph.dot','w')
-		f.write(dot)
-		f.close()
-		"""
-		#gvv=gv.readstring(dot)
-		#gv.layout(gvv,'dot')
-		#gv.render(gvv,'png','/tmp/graph.png')
-		#gv.render(gvv,'svg','/tmp/graph.svg')
-		#gv.render(gvv,'svg','/tmp/graph.svg')
+
+	""" helper functions to load all plugins """
+	def loadAllOps(self):
+		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/operations/'],prefix='pdmt.operations.'):
+			module=importlib.import_module(modname)
+			x=eval(modname+'.Operation()')
+			self.addOperation(
+				x
+			)
+	def loadAllTypes(self):
+		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/nodetypes/'],prefix='pdmt.nodetypes.'):
+			#print(modname)
+			module=importlib.import_module(modname)
+	def loadAllHandlers(self):
+		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/nodehandlers/'],prefix='pdmt.nodehandlers.'):
+			#print(modname)
+			module=importlib.import_module(modname)
+	def loadAllEventHandlers(self):
+		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/eventhandlers/'],prefix='pdmt.eventhandlers.'):
+			#print(modname)
+			module=importlib.import_module(modname)

@@ -1,10 +1,7 @@
-import pdmt.operations.operation
-
+import pdmt.operation
 import pdmt.config
-
 import pdmt.utils.fileops
 import pdmt.utils.subproc
-
 import os
 
 """
@@ -15,14 +12,13 @@ $ chmod g+w -R /var/www
 $ chgrp $USER -R /var/www
 """
 
-class InstallAptSite(pdmt.operations.operation.Operation):
+class Operation(pdmt.operation.Operation):
 	def __init__(self):
-		pdmt.operations.operation.Operation.__init__(
-			self,
+		super().__init__(
 			'installaptsite',
 			'install the apt site',
 		)
-	def run(self,nodes):
+	def run(self):
 		# the if is needed to avoid an exception
 		serv=pdmt.config.ns_apt.p_abs_dir
 		conf=os.path.join(serv,pdmt.config.ns_apt.p_conf)

@@ -1,9 +1,9 @@
 import pdmt.nodetypes.node
 import os
 
-class FileNode(pdmt.nodetypes.node.Node):
+class NodeType(pdmt.nodetypes.node.NodeType):
 	def __init__(self,p_fname,p_type):
-		super(FileNode,self).__init__(p_type)
+		super().__init__(p_type)
 		self.m_fname=p_fname
 	def __repr__(self):
 		return self.m_fname+','+self.m_type
@@ -18,7 +18,7 @@ class FileNode(pdmt.nodetypes.node.Node):
 			if node in todo:
 				rebuild=True
 				break
-			if isinstance(node,FileNode):
+			if isinstance(node,pdmt.nodetypes.filenode.NodeType):
 				if os.path.getmtime(node.m_fname)>os.path.getmtime(self.m_fname):
 					rebuild=True
 					break

@@ -1,64 +1,29 @@
 #!/usr/bin/python3
 
 import pdmt.mgr
-import pdmt.nodehandlers.chandler
-import pdmt.nodehandlers.makohandler
-import pdmt.nodehandlers.connector
-import pdmt.nodetypes.cfilenode
-import pdmt.nodetypes.makofilenode
-import pdmt.nodetypes.objectfilenode
-import pdmt.nodetypes.cexecutablefilenode
-import pdmt.eventhandlers.debugger
 import pdmt.cmdline
-
-import glob
-import os # for os.environ
-
-import pdmt.operations.installaptsite
-import pdmt.operations.depsinstaller
-import pdmt.operations.debmaker
-import pdmt.operations.debinstaller
-import pdmt.operations.hello
-import pdmt.operations.gitclean
+import glob # for glob
+import os # for environ
 
 mgr=pdmt.mgr.Mgr()
-mgr.addHandler(pdmt.nodehandlers.chandler.CHandler())
-mgr.addHandler(pdmt.nodehandlers.makohandler.MakoHandler())
+mgr.loadAllOps()
+mgr.loadAllTypes()
+mgr.loadAllHandlers()
+mgr.loadAllEventHandlers()
+
 if os.environ.get("PDMT_DEBUG") != None:
-	mgr.addHandler(pdmt.eventhandlers.debugger.Debugger())
-node=mgr.addNode(pdmt.nodetypes.cexecutablefilenode.CExecutableFileNode('tests/main.exe'))
-mgr.addHandler(pdmt.nodehandlers.connector.Connector(node,pdmt.nodetypes.objectfilenode.ObjectFileNode,'^tests/.*\.o$'))
-mgr.addNode(pdmt.nodetypes.cfilenode.CFileNode('tests/main.c'))
+	mgr.addHandler(pdmt.eventhandlers.debugger.EventHandler())
+
+# c stuff
+mgr.addHandler(pdmt.nodehandlers.chandler.NodeHandler())
+node=mgr.addNode(pdmt.nodetypes.cexecutablefilenode.NodeType('tests/main.exe'))
+mgr.addHandler(pdmt.nodehandlers.connector.NodeHandler(node,pdmt.nodetypes.objectfilenode.NodeType,'^tests/.*\.o$'))
+mgr.addNode(pdmt.nodetypes.cfilenode.NodeType('tests/main.c'))
 
 # mako stuff
+mgr.addHandler(pdmt.nodehandlers.makohandler.NodeHandler())
 nodes=[]
 for name in glob.glob('mako/*.mako'):
-	nodes.append(mgr.addNode(pdmt.nodetypes.makofilenode.MakoFileNode(name)))
-
-mgr.addOperation(
-	pdmt.operations.installaptsite.InstallAptSite(),
-	#mgr.dependsOn(nodes),
-	mgr.dependsOn([]),
-)
-mgr.addOperation(
-	pdmt.operations.depsinstaller.DepsInstaller(),
-	mgr.dependsOn([]),
-)
-mgr.addOperation(
-	pdmt.operations.debmaker.DebMaker(),
-	mgr.dependsOn([]),
-)
-mgr.addOperation(
-	pdmt.operations.debinstaller.DebInstaller(),
-	mgr.dependsOn([]),
-)
-mgr.addOperation(
-	pdmt.operations.hello.Hello(),
-	mgr.dependsOn([]),
-)
-mgr.addOperation(
-	pdmt.operations.gitclean.GitClean(),
-	mgr.dependsOn([]),
-)
+	nodes.append(mgr.addNode(pdmt.nodetypes.makofilenode.NodeType(name)))
 
 pdmt.cmdline.parse(mgr)

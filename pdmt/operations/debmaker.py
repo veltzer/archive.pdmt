@@ -1,7 +1,5 @@
-import pdmt.operations.operation
-
+import pdmt.operation
 import pdmt.config
-
 import pdmt.utils.subproc
 import pdmt.utils.osw
 
@@ -9,14 +7,13 @@ import pdmt.utils.osw
 This operation knows how to make a debian package.
 """
 
-class DebMaker(pdmt.operations.operation.Operation):
+class Operation(pdmt.operation.Operation):
 	def __init__(self):
-		pdmt.operations.operation.Operation.__init__(
-			self,
+		super().__init__(
 			'debmaker',
 			'make a debian package',
 		)
-	def run(self,nodes):
+	def run(self):
 		# check that everything is commited
 		out=pdmt.utils.subproc.check_output(['git','status','-s'])
 		if out!='':

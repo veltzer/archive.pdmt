@@ -10,5 +10,5 @@ class Operation(object):
 		return self.m_name
 	def getDescription(self):
 		return self.m_description
-	def run(self,nodes):
+	def run(self):
 		raise ValueError('must override the operation')

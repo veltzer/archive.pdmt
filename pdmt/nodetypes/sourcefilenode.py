@@ -5,7 +5,7 @@ import os
 this node represents an source file. Not just C. Any source file
 """
 
-class SourceFileNode(pdmt.nodetypes.filenode.FileNode):
+class NodeType(pdmt.nodetypes.filenode.NodeType):
 	""" if a source file exists then it is upto date """
 	""" question: why isn't a source file ALWAYS up to date?
 	answer: what if the source file went missing? We want to trigger
@@ -17,5 +17,7 @@ class SourceFileNode(pdmt.nodetypes.filenode.FileNode):
 #		return os.path.isfile(self.m_fname)
 	def canBuild(self):
 		return False
+	def clean(self):
+		pass
 	def build(self):
 		raise ValueError('dont know how to build a source file')

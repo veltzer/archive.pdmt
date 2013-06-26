@@ -93,8 +93,8 @@ class ns_subproc:
 	p_debug=True
 	p_debug=False
 class ns_mgr:
-	p_dbg=False
 	p_prog=True
+	p_dbg=False
 class ns_release:
 	p_email=False
 	p_tweet=True

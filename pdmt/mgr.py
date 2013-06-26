@@ -115,12 +115,15 @@ class Mgr:
 
 	""" printing method """
 	def printgraph(self):
-		print(self.graph)
+		self.graph.print_dot();
 	def dotgraph(self):
+		self.graph.print_dot();
+		"""
 		dot=pygraph.readwrite.dot.write(self.graph)
 		f=open('/tmp/graph.dot','w')
 		f.write(dot)
 		f.close()
+		"""
 		#gvv=gv.readstring(dot)
 		#gv.layout(gvv,'dot')
 		#gv.render(gvv,'png','/tmp/graph.png')

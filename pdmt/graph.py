@@ -2,6 +2,7 @@
 A graph module written in python
 """
 import pdmt.stack
+#import pydot
 
 class Graph:
 	def __init__(self):
@@ -55,6 +56,10 @@ class Graph:
 	def get_nodes(self):
 		for node in self.nodes:
 			yield node
+	def get_edges(self):
+		for fr in self.get_nodes():
+			for to in self.get_adjacent_for_node(fr):
+				yield (fr,to)
 	def get_nodes_num(self):
 		return len(self.nodes)
 	""" depth first search algorithm """
@@ -74,7 +79,37 @@ class Graph:
 			if not w in visited:
 				yield w
 		yield v
-			
+	"""
+	dump the graph in dot notation
+
+	References:
+	http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29
+	"""
+	def print_dot(self):
+		# header
+		print('digraph pdmt {')
+		id=1
+		nodetoid={}
+		for node in self.get_nodes():
+			print(id,'[shape=box,label="'+str(node)+'"]',sep='')
+			nodetoid[node]=id
+			id+=1
+		for (fr,to) in self.get_edges():
+			print(nodetoid[fr],'->',nodetoid[to],';',sep='')
+		print('}')
+	"""
+	def print_dot(self):
+		graph = pydot.Dot(graph_type='digraph')
+		id=1
+		nodetoid={}
+		for node in self.get_nodes():
+			graph.add_node(pydot.Node(id))
+			nodetoid[node]=id
+			id+=1
+		for (fr,to) in self.get_edges():
+			graph.add_edge(pydot.Edge(nodetoid[fr], nodetoid[to]))
+		graph.write_png('/tmp/graph.png')
+	"""
 
 if __name__ == '__main__':
 	g=Graph()

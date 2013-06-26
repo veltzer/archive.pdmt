@@ -1,7 +1,7 @@
 Now:
 ====
-- add a git clean op to pdmt.
 - make pdmt build from full git clean.
+	(add prebuild or something)
 
 - use pdmt in linuxapi and see how it goes.
 

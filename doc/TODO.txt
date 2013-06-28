@@ -2,9 +2,6 @@
 	(runs dot on it and shows the result)
 - get to test.py --showgraph that shows the pdmt graph visually.
 
-- make pdmt build from full git clean.
-	(add prebuild or something to make folders)
-
 - use pdmt in linuxapi and see how it goes.
 - use pdmt in fastlog and see how it goes.
 

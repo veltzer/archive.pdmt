@@ -1,5 +1,6 @@
 import pdmt.graph
 import pdmt.config
+import pdmt.cmdline
 import pkgutil
 import importlib
 
@@ -50,6 +51,10 @@ class Mgr:
 		self.graph.remove_edge(edge)
 		self.notify(edge,'edgepostdel')
 		return edge
+	def buildNode(self,node):
+		self.notify(node,'nodeprebuild')
+		node.build()
+		self.notify(node,'nodepostbuild')
 
 	""" building methods start here """
 
@@ -80,7 +85,7 @@ class Mgr:
 			self.progress('going to build '+str(len(todo))+' '+name)
 		for num,node in enumerate(todo):
 			self.progress('building ['+str(node)+']')
-			node.build()
+			self.buildNode(node)
 		if len(todo)==0:
 			self.progress('nothing to build')
 	def clean(self):
@@ -139,3 +144,5 @@ class Mgr:
 		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/eventhandlers/'],prefix='pdmt.eventhandlers.'):
 			#print(modname)
 			module=importlib.import_module(modname)
+	def parseCmdline(self):
+		pdmt.cmdline.parse(self)

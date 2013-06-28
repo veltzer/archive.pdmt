@@ -1,6 +1,7 @@
 - do a target which shows the graph in dot format graphically.
 	(runs dot on it and shows the result)
-- get to pdmt.py --showgraph that shows the pdmt graph visually.
+- get to test.py --showgraph that shows the pdmt graph visually.
+
 - make pdmt build from full git clean.
 	(add prebuild or something to make folders)
 

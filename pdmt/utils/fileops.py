@@ -33,31 +33,32 @@ def unlinksoft(p_file):
 def mkdir(p_dir):
 	debug('mkdir ['+p_dir+']')
 	os.mkdir(p_dir)
-def _mkdirsoft(p_dir):
+def mkdirparent(p_dir):
+	debug('mkdirparent ['+p_dir+']')
 	to_create=[]
-	while not os.path.isdir(p_dir):
+	while not os.path.isdir(p_dir) and not p_dir=='':
 		to_create.append(p_dir)
-		p_dir=os.path.split(p_dir)[0]
-	to_create.reverse()
-	for x in to_create:
-		os.mkdir(x)
-def mkdirsoft(p_dir):
-	debug('mkdirsoft ['+p_dir+']')
-	_mkdirsoft(p_dir)
+		p_dir=os.path.dirname(p_dir)
+	for directory in reversed(to_create):
+		os.mkdir(directory)
+def mkdirparent_file(p_file):
+	debug('mkdirparent_file ['+p_file+']')
+	p_dir=os.path.dirname(p_file)
+	mkdirparent(p_dir)
 def mkdircopysoft(p_file,p_dir):
 	debug('mkdircopysoft ['+p_file+','+p_dir+']')
-	_mkdirsoft(p_dir)
+	mkdirparent(p_dir)
 	shutil.copy(p_file,p_dir)
 def chmod(p_file,p_mode):
 	debug('chmod ['+p_file+','+str(p_mode)+']')
 	os.chmod(p_file,p_mode)
 def create_empty_file(p_file):
 	debug('create_empty_file ['+p_file+']')
-	_mkdirsoft(os.path.split(p_file)[0])
+	mkdirparent(os.path.split(p_file)[0])
 	f=open(p_file,'w')
 	f.close()
 def create_empty_filegz(p_file):
 	debug('create_empty_filegz ['+p_file+']')
-	_mkdirsoft(os.path.split(p_file)[0])
+	mkdirparent(os.path.split(p_file)[0])
 	f=gzip.open(p_file,'w')
 	f.close()

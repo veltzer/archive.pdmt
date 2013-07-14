@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import pdmt.mgr
+import pdmt.mgr # for Mgr
 import glob # for glob
 
 mgr=pdmt.mgr.Mgr()

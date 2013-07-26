@@ -16,3 +16,8 @@
 .pc
 /pdmt.egg-info
 build-indep
+
+# docbook stuff
+*.pdf
+*.fo
+*.stamp

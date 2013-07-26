@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book version="5.0" xmlns='http://docbook.org/ns/docbook'>
+	<title>My Example Book</title>
+	<titleabbrev>Example</titleabbrev>
+	<info>
+		<author>
+		<personname>
+		<firstname>Nathan</firstname>
+		<surname>Good</surname>
+		</personname>
+		</author>
+	</info>
+	<preface>
+		<title>Required Preface</title>
+		<para>You will like my book (I think).</para>
+	</preface>
+	<chapter>
+		<title>Your First Chapter</title>
+		<para>You must include at least one chapter in your book.</para>
+		<para>Here is another paragraph.</para>
+		<important>
+			<para>This is some really important text.</para>
+		</important>
+		<tip>
+			<para>Look both ways before crossing the street!</para>
+		</tip>
+		<caution>
+			<para>
+				Liberal use of <code>new</code> in loops can cause performance issues!
+			</para>
+		</caution>
+		<example>
+			<title>Example 1</title>
+			<programlisting>
+				String something = "Something";
+			</programlisting>        
+		</example>
+	</chapter>
+</book>

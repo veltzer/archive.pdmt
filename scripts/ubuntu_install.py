@@ -17,6 +17,16 @@ packs=[
 	'fakeroot',
 	'cdbs',
 	'git-buildpackage',
+
+	# docbook stuff
+	'docbook5-xml',
+	'docbook-xsl-ns',
+	#'docbook5-defguide',
+	'xsltproc',
+	'fop',
+	'xmlto',
+	'libxml2-utils',
+	'xmlstarlet',
 ]
 
 args=['sudo','apt-get','install']

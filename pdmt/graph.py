@@ -1,7 +1,6 @@
 """
 A graph module written in python
 """
-import pdmt.stack
 #import pydot
 
 class Graph:
@@ -43,7 +42,6 @@ class Graph:
 		self.check_have_node(to)
 		self.check_havent_edge(fr,to)
 		self.edges[fr].add(to)
-		#print('adding edge',fr,'to',to)
 	def remove_edge(self,edge):
 		(fr,to)=edge
 		self.check_have_node(fr)

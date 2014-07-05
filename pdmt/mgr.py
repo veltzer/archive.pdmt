@@ -3,12 +3,16 @@ import pdmt.config
 import pdmt.cmdline
 import pkgutil
 import importlib
+import inspect # for isclass
+import pdmt.api
 
 class Mgr:
-	def __init__(self):
+	def __init__(self, loadinternalplugins=True):
 		self.graph=pdmt.graph.Graph()
 		self.init_handlers()
 		self.opbyname={}
+		if loadinternalplugins:
+			self.loadInternalPlugins()
 
 	""" listener functions start here """
 	def init_handlers(self):
@@ -34,23 +38,19 @@ class Mgr:
 		self.graph.add_node(node)
 		node.setMgr(self)
 		self.notify(node,'nodepostadd')
-		return node
 	def delNode(self,node):
 		self.notify(node,'nodepredel')
 		self.graph.remove_node(node)
 		node.setMgr(None)
 		self.notify(node,'nodepostdel')
-		return node
 	def addEdge(self,edge):
 		self.notify(edge,'edgepreadd')
 		self.graph.add_edge(edge)
 		self.notify(edge,'edgepostadd')
-		return edge
 	def delEdge(self,edge):
 		self.notify(edge,'edgepredel')
 		self.graph.remove_edge(edge)
 		self.notify(edge,'edgepostdel')
-		return edge
 	def buildNode(self,node):
 		self.notify(node,'nodeprebuild')
 		node.build()
@@ -105,7 +105,7 @@ class Mgr:
 				ret.append(n)
 		return ret
 
-	""" operations """
+	""" plugins """
 	def addOperation(self,op):
 		self.opbyname[op.getName()]=op
 	def hasOperation(self,p_name):
@@ -125,24 +125,20 @@ class Mgr:
 		self.graph.print_dot();
 
 	""" helper functions to load all plugins """
-	def loadAllOps(self):
-		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/operations/'],prefix='pdmt.operations.'):
+	def loadPlugins(self, folder, namespace):
+		for importer, modname, ispkg in pkgutil.walk_packages(
+				path=[folder],
+				prefix=namespace,
+			):
 			module=importlib.import_module(modname)
-			x=eval(modname+'.Operation()')
-			self.addOperation(
-				x
-			)
-	def loadAllTypes(self):
-		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/nodetypes/'],prefix='pdmt.nodetypes.'):
-			#print(modname)
-			module=importlib.import_module(modname)
-	def loadAllHandlers(self):
-		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/nodehandlers/'],prefix='pdmt.nodehandlers.'):
-			#print(modname)
-			module=importlib.import_module(modname)
-	def loadAllEventHandlers(self):
-		for importer, modname, ispkg in pkgutil.walk_packages(path=['pdmt/eventhandlers/'],prefix='pdmt.eventhandlers.'):
-			#print(modname)
-			module=importlib.import_module(modname)
+			for x in module.__dict__:
+				curr=module.__dict__[x]
+				if inspect.isclass(curr) and issubclass(curr, pdmt.api.Operation):
+					m=curr()
+					self.addOperation(m)
+	def loadInternalPlugins(self):
+		self.loadPlugins('pdmt/plugins/', 'pdmt.plugins.')
+
+	""" command line parsing """
 	def parseCmdline(self):
 		pdmt.cmdline.parse(self)

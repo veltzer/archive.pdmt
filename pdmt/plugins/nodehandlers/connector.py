@@ -1,5 +1,5 @@
-import pdmt.nodehandler
-import pdmt.nodetypes.objectfilenode
+import pdmt.api
+import pdmt.plugins.nodetypes.objectfilenode
 import re
 
 """
@@ -10,7 +10,7 @@ given to it at construction.
 TODO: It should also listen for the removal of the node given to it
 and remove itself when it is removed.
 """
-class NodeHandler(pdmt.nodehandler.NodeHandler):
+class NodeHandler(pdmt.api.NodeHandler):
 	def __init__(self,cnode,typefilter,regexp):
 		self.cnode=cnode
 		self.typefilter=typefilter

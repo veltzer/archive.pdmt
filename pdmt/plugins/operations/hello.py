@@ -1,10 +1,10 @@
-import pdmt.operation
+import pdmt.api
 
 """
 A simple hello world operation (prints hello world on the screen)
 """
 
-class Operation(pdmt.operation.Operation):
+class Operation(pdmt.api.Operation):
 	def __init__(self):
 		super().__init__(
 			'hello',

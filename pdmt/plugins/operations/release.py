@@ -1,4 +1,4 @@
-import pdmt.operation
+import pdmt.api
 
 # this is a release script.
 # it runs git status -s in order to see that everything is commited.
@@ -27,7 +27,7 @@ check=True
 # what is the name of the project?
 project=pdmt.config.ns_product.p_name
 
-class Operation(pdmt.operation.Operation):
+class Operation(pdmt.api.Operation):
 	def __init__(self):
 		super().__init__(
 			'release',

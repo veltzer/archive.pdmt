@@ -1,4 +1,4 @@
-import pdmt.operation
+import pdmt.api
 import pdmt.config
 import pdmt.utils.fileops
 import pdmt.utils.subproc
@@ -12,7 +12,7 @@ $ chmod g+w -R /var/www
 $ chgrp $USER -R /var/www
 """
 
-class Operation(pdmt.operation.Operation):
+class Operation(pdmt.api.Operation):
 	def __init__(self):
 		super().__init__(
 			'installaptsite',

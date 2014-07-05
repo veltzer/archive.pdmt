@@ -1,5 +1,5 @@
-import pdmt.nodetypes.buildfilenode
-import pdmt.nodetypes.makofilenode
+import pdmt.plugins.nodetypes.buildfilenode
+import pdmt.plugins.nodetypes.makofilenode
 import pdmt.types
 
 import pdmt.config
@@ -8,13 +8,13 @@ import mako.template
 import mako.lookup
 import pdmt.utils.fileops
 
-class NodeType(pdmt.nodetypes.buildfilenode.NodeType):
+class NodeType(pdmt.plugins.nodetypes.buildfilenode.NodeType):
 	def __init__(self,p_fname):
 		super().__init__(p_fname,pdmt.types.t_makot)
 	def deps(self):
 		p_input=getSingleSourceOfType(self,makofilenode.MakoFileNode)
 	def build(self):
-		p_input=self.getSourceOfType(pdmt.nodetypes.makofilenode.NodeType).m_fname
+		p_input=self.getSourceOfType(pdmt.plugins.nodetypes.makofilenode.NodeType).m_fname
 		p_output=self.m_fname
 		# remove the old file
 		pdmt.utils.fileops.unlinksoft(p_output)

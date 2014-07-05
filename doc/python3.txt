@@ -1,4 +1,4 @@
-This is the status on supporting python3 for this package:
+This package is python3 only.
 
-We cannot yet move to python3 because ubuntu does not carry
-the python-pygraph package for python3.
+We had issues with pygraph which we used in older version and which
+was not available for python3. These issues are over.

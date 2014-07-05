@@ -1,7 +1,7 @@
-import pdmt.nodetypes.node
+import pdmt.api
 import os
 
-class NodeType(pdmt.nodetypes.node.NodeType):
+class NodeType(pdmt.api.NodeType):
 	def __init__(self,p_fname,p_type):
 		super().__init__(p_type)
 		self.m_fname=p_fname

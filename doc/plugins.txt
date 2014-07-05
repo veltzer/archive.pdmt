@@ -1,0 +1,11 @@
+pdmt is heavily based on the concept of a plugin.
+A plugin is just a .py file which uses the pdmt API and defines
+any type of object that pdmt can use (nodehandlers, builder and more).
+
+The idea is to have an API for pdmt to load plugins.
+PDMT will scan a folder for plugins and if it finds files which have
+objects of the right type it will just load and register those plugins.
+
+The user should NOT organize plugins into folders according to their
+type etc. The user could also write a one python file with two or
+three plugins. This should be supported.

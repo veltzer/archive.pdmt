@@ -1,13 +1,14 @@
 import argparse # for ArgumentParser
-import sys # for exit
+import sys # for exit, argv
 
-# see documentation in http://docs.python.org/library/argparse.html
+"""
+argparse seems to be the right argument parser for python
+see documentation in http://docs.python.org/library/argparse.html
+"""
 
 ##############
 # parameters #
 ##############
-debug=False
-
 def parse(mgr):
 	parser=argparse.ArgumentParser(description='Project Dependency Management Tool')
 	parser.add_argument(
@@ -16,9 +17,9 @@ def parse(mgr):
 			action='store_true',
 			default=False,
 	)
+	# all other arguments are gathered into options.args
+	parser.add_argument('args', nargs=argparse.REMAINDER)
 	options=parser.parse_args()
-	if debug:
-		print('options are',options)
 	mysum=sum([
                 options.printnodes,
         ])
@@ -28,4 +29,7 @@ def parse(mgr):
 		mgr.build()
 	else:
 		if options.printnodes:
-			mgr.graph.printnodes()
+			if options.args:
+				parser.error('no free args with --printnodes {0}'.format(str(options.args)))
+			else:
+				mgr.graph.printnodes()

@@ -2,14 +2,12 @@ import pdmt.api
 import os
 
 class NodeType(pdmt.api.NodeType):
-	def __init__(self,p_fname,p_type):
-		super().__init__(p_type)
-		self.m_fname=p_fname
-	def __repr__(self):
-		return self.m_fname+','+self.m_type
+	def __init__(self, type=None, name=None, proto=None):
+		super().__init__(type=type, name=name, proto=proto)
+		self.proto='file'
 	def uptodate(self,todo):
 		# if the file does not exist then rebuild is needed
-		if not os.path.isfile(self.m_fname):
+		if not os.path.isfile(self.name):
 			return False
 		# the file exists so lets compare dates, all source files
 		# must exist
@@ -19,7 +17,7 @@ class NodeType(pdmt.api.NodeType):
 				rebuild=True
 				break
 			if isinstance(node,pdmt.plugins.nodetypes.filenode.NodeType):
-				if os.path.getmtime(node.m_fname)>os.path.getmtime(self.m_fname):
+				if os.path.getmtime(node.name)>os.path.getmtime(self.name):
 					rebuild=True
 					break
 		return not rebuild

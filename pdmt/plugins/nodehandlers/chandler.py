@@ -9,7 +9,7 @@ class NodeHandler(pdmt.api.NodeHandler):
 			return
 		if not isinstance(node,pdmt.plugins.nodetypes.cfilenode.NodeType):
 			return
-		newname=node.m_fname[:node.m_fname.rfind(pdmt.config.ns_chandler.p_sourcefilesuffix)]+pdmt.config.ns_chandler.p_objectfilesuffix
-		newnode=pdmt.plugins.nodetypes.objectfilenode.NodeType(newname)
+		newname=node.name[:node.name.rfind(pdmt.config.ns_chandler.p_sourcefilesuffix)]+pdmt.config.ns_chandler.p_objectfilesuffix
+		newnode=pdmt.plugins.nodetypes.objectfilenode.NodeType(name=newname)
 		mgr.addNode(newnode)
 		mgr.addEdge((newnode,node))

@@ -1,10 +1,27 @@
 # the inheritance from 'object' is very important to get the __class__
 # and other stuff we need in order for OO to work properly...
 class NodeType(object):
-	def __init__(self,p_type):
-		self.m_type=p_type
-	def setMgr(self,p_mgr):
-		self.m_mgr=p_mgr
+	def __init__(self, type=None, name=None, proto=None):
+		super().__init__()
+		if type is None:
+			self.type='unset'
+		else:
+			self.type=type
+		if proto is None:
+			self.proto='node'
+		else:
+			self.proto=proto
+		if name is None:
+			self.name='unset'
+		else:
+			self.name=name
+	def get_name(self):
+		return '{proto}/{name}'.format(
+			proto=self.proto,
+			name=self.name
+		)
+	def setMgr(self,mgr):
+		self.mgr=mgr
 	def uptodate(self,todo):
 		raise ValueError('must override')
 	def canBuild(self):
@@ -14,18 +31,18 @@ class NodeType(object):
 	def clean(self):
 		raise ValueError('must override')
 	def getDeps(self):
-		return self.m_mgr.deps(self)
+		return self.mgr.deps(self)
 	def getDepsYield(self):
-		for node in self.m_mgr.depsYield(self):
+		for node in self.mgr.depsYield(self):
 			yield node
-	def getSourcesOfType(self,p_type):
+	def getSourcesOfType(self,type):
 		ret=[]
 		for node in self.getDeps():
-			if isinstance(node,p_type):
+			if isinstance(node,type):
 				ret.append(node)
 		return ret
-	def getSourceOfType(self,p_type):
-		ret=self.getSourcesOfType(p_type)
+	def getSourceOfType(self,type):
+		ret=self.getSourcesOfType(type)
 		if len(ret)!=1:
 			raise ValueError('too many sources')
 		return ret[0]
@@ -35,14 +52,14 @@ This is the base class of all operations within the system
 """
 class Operation(object):
 	def __init__(self,p_name,p_description):
-		self.m_name=p_name
-		self.m_description=p_description
+		self.name=p_name
+		self.description=p_description
 	def getName(self):
-		return self.m_name
+		return self.name
 	def getDescription(self):
-		return self.m_description
+		return self.description
 	def run(self):
-		raise ValueError('must override the operation')
+		raise ValueError('must override')
 
 
 """

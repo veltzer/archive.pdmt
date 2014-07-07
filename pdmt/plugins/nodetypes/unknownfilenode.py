@@ -9,5 +9,4 @@ the mako module).
 """
 
 class NodeType(pdmt.plugins.nodetypes.sourcefilenode.NodeType):
-	def __init__(self,fname):
-		super().__init__(fname,pdmt.types.t_unknown)
+	pass

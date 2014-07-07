@@ -1,5 +1,5 @@
-import pdmt.plugins.nodetypes.filenode
-import os
+import pdmt.plugins.nodetypes.filenode # for NodeType
+import os.path # for isfile
 
 """
 this node represents an source file. Not just C. Any source file
@@ -14,7 +14,7 @@ class NodeType(pdmt.plugins.nodetypes.filenode.NodeType):
 	and not "verify" or something... """
 	def uptodate(self,todo):
 		return True
-#		return os.path.isfile(self.m_fname)
+#		return os.path.isfile(self.name)
 	def canBuild(self):
 		return False
 	def clean(self):

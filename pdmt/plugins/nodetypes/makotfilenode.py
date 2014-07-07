@@ -9,13 +9,11 @@ import mako.lookup
 import pdmt.utils.fileops
 
 class NodeType(pdmt.plugins.nodetypes.buildfilenode.NodeType):
-	def __init__(self,p_fname):
-		super().__init__(p_fname,pdmt.types.t_makot)
 	def deps(self):
 		p_input=getSingleSourceOfType(self,makofilenode.MakoFileNode)
 	def build(self):
-		p_input=self.getSourceOfType(pdmt.plugins.nodetypes.makofilenode.NodeType).m_fname
-		p_output=self.m_fname
+		p_input=self.getSourceOfType(pdmt.plugins.nodetypes.makofilenode.NodeType).name
+		p_output=self.name
 		# remove the old file
 		pdmt.utils.fileops.unlinksoft(p_output)
 		input_encoding='utf-8'

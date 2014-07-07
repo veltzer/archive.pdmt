@@ -8,4 +8,4 @@ class NodeHandler(pdmt.api.NodeHandler):
 			return
 		if not isinstance(node,pdmt.plugins.nodetypes.buildfilenode.NodeType):
 			return
-		pdmt.utils.fileops.mkdirparent_file(node.m_fname)
+		pdmt.utils.fileops.mkdirparent_file(node.name)

@@ -1,11 +1,3 @@
-urgent:
-=======
-- improve the bash auto complete feature of pdmt.
-	do not have it rely on bash functions.
-	do everything in python.
-	have a --bashcomplete flag to pdmt and do the prefix
-	analysis myself -> then the bash script will be shorter.
-
 - use pdmt in linuxapi and see how it goes.
 - use pdmt in fastlog and see how it goes.
 

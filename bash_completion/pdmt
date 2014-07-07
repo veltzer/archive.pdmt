@@ -4,10 +4,6 @@
 pdmt_complete()
 {
 	local cur=${COMP_WORDS[COMP_CWORD]}
-	local list=$($HOME/git/branches/pdmt/test.py --printnodes)
-	#echo "cur is " $cur
-	#echo "list is " $list
-	COMPREPLY=( $(compgen -W "$list" -- $cur) )
-	#echo "COMPREPLY is " $COMPREPLY
+	COMPREPLY=( $($HOME/git/branches/pdmt/test.py --bashcomplete "$cur") )
 }
 complete -F pdmt_complete test.py 

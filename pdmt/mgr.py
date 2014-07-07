@@ -5,6 +5,7 @@ import pkgutil # for walk_packages
 import importlib # for import_module
 import inspect # for isclass
 import pdmt.utils.lang # for plural
+import pdmt.api # for Event.prebuild, Event.postbuild
 
 class Mgr:
 	def __init__(self, loadinternalplugins=True, cache=None):
@@ -48,23 +49,23 @@ class Mgr:
 
 	""" modification functions """
 	def addNode(self,node):
-		self.notify(node,'nodepreadd')
+		self.notify(node, pdmt.api.Event.nodepreadd)
 		self.graph.add_node(node)
 		node.setMgr(self)
-		self.notify(node,'nodepostadd')
+		self.notify(node, pdmt.api.Event.nodepostadd)
 	def delNode(self,node):
-		self.notify(node,'nodepredel')
+		self.notify(node, pdmt.api.Event.nodepredel)
 		self.graph.remove_node(node)
 		node.setMgr(None)
-		self.notify(node,'nodepostdel')
+		self.notify(node, pdmt.api.Event.nodepostdel)
 	def addEdge(self,edge):
-		self.notify(edge,'edgepreadd')
+		self.notify(edge, pdmt.api.Event.edgepreadd)
 		self.graph.add_edge(edge)
-		self.notify(edge,'edgepostadd')
+		self.notify(edge, pdmt.api.Event.edgepostadd)
 	def delEdge(self,edge):
-		self.notify(edge,'edgepredel')
+		self.notify(edge, pdmt.api.Event.edgepredel)
 		self.graph.remove_edge(edge)
-		self.notify(edge,'edgepostdel')
+		self.notify(edge, pdmt.api.Event.edgepostdel)
 
 	""" debugging methods """
 
@@ -95,9 +96,9 @@ class Mgr:
 				todo.append(node)
 		return todo
 	def buildNode(self,node):
-		self.notify(node,'nodeprebuild')
+		self.notify(node, pdmt.api.Event.nodeprebuild)
 		node.build()
-		self.notify(node,'nodepostbuild')
+		self.notify(node, pdmt.api.Event.nodepostbuild)
 	def build_node_list(self, node_list):
 		self.progress('going to scan [{len}] {plural}...'.format(
 			len=len(node_list),

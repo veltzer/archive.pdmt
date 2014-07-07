@@ -1,11 +1,11 @@
-import pdmt.api
-import pdmt.plugins.nodetypes.cfilenode
-import pdmt.plugins.nodetypes.objectfilenode
+import pdmt.api # for Event.nodepostadd, NodeHandler
+import pdmt.plugins.nodetypes.cfilenode # for NodeType
+import pdmt.plugins.nodetypes.objectfilenode # for NodeType
 import pdmt.config
 
 class NodeHandler(pdmt.api.NodeHandler):
 	def respond(self,mgr,node,eventtype):
-		if eventtype!='nodepostadd':
+		if eventtype!=pdmt.api.Event.nodepostadd:
 			return
 		if not isinstance(node,pdmt.plugins.nodetypes.cfilenode.NodeType):
 			return

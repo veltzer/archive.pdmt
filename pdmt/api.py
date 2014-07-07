@@ -1,3 +1,5 @@
+import enum
+
 # the inheritance from 'object' is very important to get the __class__
 # and other stuff we need in order for OO to work properly...
 class NodeType(object):
@@ -78,3 +80,15 @@ class Cache(object):
 		raise ValueError('must override')
 	def put_filename(self, checksum, filename):
 		raise ValueError('must override')
+
+class Event(enum.Enum):
+	nodepreadd=1
+	nodepostadd=2
+	nodepredel=3
+	nodepostdel=4
+	edgepreadd=5
+	edgepostadd=6
+	edgepredel=7
+	edgepostdel=8
+	nodeprebuild=9
+	nodepostbuild=10

@@ -4,6 +4,6 @@
 pdmt_complete()
 {
 	local cur=${COMP_WORDS[COMP_CWORD]}
-	COMPREPLY=( $($HOME/git/branches/pdmt/test.py --bashcomplete "$cur") )
+	COMPREPLY=( $($HOME/git/branches/pdmt/pdmt.py --bashcomplete "$cur") )
 }
-complete -F pdmt_complete test.py 
+complete -F pdmt_complete pdmt.py

@@ -1,18 +1,28 @@
 import pdmt.graph
 import pdmt.config
 import pdmt.cmdline
-import pkgutil
-import importlib
+import pkgutil # for walk_packages
+import importlib # for import_module
 import inspect # for isclass
-import pdmt.api
+import pdmt.utils.lang # for plural
 
 class Mgr:
-	def __init__(self, loadinternalplugins=True):
+	def __init__(self, loadinternalplugins=True, cache=None):
 		self.graph=pdmt.graph.Graph()
 		self.init_handlers()
 		self.opbyname={}
 		if loadinternalplugins:
 			self.loadInternalPlugins()
+		#if cache is None:
+		#	self.cache=pdmt.plugins.cache.null.NullCache()
+		#else:
+		#	self.cache=cache
+
+	""" cache methods """
+	def get_cache(self):
+		return self.cache
+	def set_cache(self, cache):
+		self.cache=cache
 
 	""" listener functions start here """
 	def init_handlers(self):
@@ -79,44 +89,18 @@ class Mgr:
 	def build(self):
 		todo=self.build_todolist()
 		if len(todo)>0:
-			name='node'
-			if len(todo)>1:
-				name+='s'
-			self.progress('going to build '+str(len(todo))+' '+name)
-		for num,node in enumerate(todo):
-			self.progress('building ['+str(node)+']')
-			self.buildNode(node)
-		if len(todo)==0:
+			self.progress('going to build '+str(len(todo))+' '+pdmt.utils.lang.plural('node', len(todo)))
+			for num,node in enumerate(todo):
+				self.progress('building ['+str(node)+']')
+				self.buildNode(node)
+		else:
 			self.progress('nothing to build')
-	def clean(self):
-		lst_len=self.graph.get_nodes_num()
-		if lst_len>0:
-			name='node'
-			if lst_len>1:
-				name+='s'
-		self.progress('going to clean '+str(lst_len)+' '+name)
-		for node in self.graph.get_nodes():
-			self.debug(node)
-			node.clean()
 	def dependsOn(self,nodes):
 		ret=[]
 		for node in nodes:
 			for n in self.graph[node]:
 				ret.append(n)
 		return ret
-
-	""" plugins """
-	def addOperation(self,op):
-		self.opbyname[op.getName()]=op
-	def hasOperation(self,p_name):
-		return p_name in self.opbyname
-	def runOperation(self,p_name):
-		#self.build()
-		self.progress('running operation ['+p_name+']')
-		op=self.opbyname[p_name]
-		op.run()
-	def getOperations(self):
-		return self.opbyname
 
 	""" printing methods """
 	def dotgraph(self):
@@ -131,9 +115,6 @@ class Mgr:
 			module=importlib.import_module(modname)
 			for x in module.__dict__:
 				curr=module.__dict__[x]
-				if inspect.isclass(curr) and issubclass(curr, pdmt.api.Operation):
-					m=curr()
-					self.addOperation(m)
 	def loadInternalPlugins(self):
 		self.loadPlugins('pdmt/plugins/', 'pdmt.plugins.')
 

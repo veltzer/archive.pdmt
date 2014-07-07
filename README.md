@@ -9,5 +9,5 @@ Pdmt is a dependency management tool much like scons but also very different fro
 	It can watch remote urls.
 	It has dependency on configuration as well.
 
-	Mark Veltzer, 2012-2013
+	Mark Veltzer, 2012-2014
 	mark.veltzer@gmail.com

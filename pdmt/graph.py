@@ -109,7 +109,8 @@ class Graph(object):
 		print('}')
 	def printnodes(self):
 		for node in self.get_nodes():
-			print(node.get_name())
+			if node.canBuild():
+				print(node.get_name())
 
 class NamedGraph(Graph):
 	def __init__(self):

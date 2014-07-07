@@ -154,3 +154,43 @@ For instance:
 would build one executable file.
 	pdmt.py --build type://c_exe
 would build all c executables
+
+versions of tools
+=================
+description of the problem: when we run a build the build wakes up on a machine and does not know
+if the tools are of the right type. We need to check the versions of the tools.
+
+question: do we check the versions of the tools on each built?
+
+Answer: Possible.  It seems that the time to check the versions of the tools are not that long.
+	We could also have a flag to turn off this behaviour.
+
+question: what is the version of gcc? is it just gcc --version? the version of the package gcc
+	in ubuntu? timestamp of /usr/bin/gcc? let the user decide?
+
+Answer: all of them? configurable by the user?
+
+question: if we don't check the versions of the tools on each build can we guarantee a
+reliable build?
+
+Answer: no. Someone can change the compiler, linker etc. We can use the compilers timestamp of checksum
+but the compiler is a huge beast and if someone changed some plugin to the compiler we will not find
+out about it.
+
+Question: what if we check the package of the compiler? that seems good enough. could we create a dependency
+	between the package version and the compiler?
+
+cache design
+============
+pdmt should use a cache.
+There could be many implementations of a cache:
+nullCache - doesnt store or retrieve anything
+filecache - stores files like git by sha1
+dbcache - ???
+
+The API of a cache:
+put_file(checksum, filename)
+has_checksum(checksum)
+get_file(checksum, filename)
+
+The cache could use hardlinks if that is more efficient.

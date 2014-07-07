@@ -6,8 +6,8 @@ import glob # for glob
 mgr=pdmt.mgr.Mgr()
 
 # debugging
-mgr.addHandler(pdmt.plugins.eventhandlers.debugger.EventHandler())
-mgr.addHandler(pdmt.plugins.nodehandlers.dirmaker.NodeHandler())
+#mgr.addHandler(pdmt.plugins.eventhandlers.debugger.EventHandler())
+#mgr.addHandler(pdmt.plugins.nodehandlers.dirmaker.NodeHandler())
 
 # c stuff
 mgr.addHandler(pdmt.plugins.nodehandlers.chandler.NodeHandler())

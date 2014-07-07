@@ -61,3 +61,14 @@ This is the base class of all event handlers within the system
 class EventHandler(object):
 	def respond(self,pdmt,data,eventtype):
 		raise ValueError('must override')
+
+"""
+This is the cache handler
+"""
+class Cache(object):
+	def has_checksum(self, checksum):
+		raise ValueError('must override')
+	def get_filename(self, checksum, filename):
+		raise ValueError('must override')
+	def put_filename(self, checksum, filename):
+		raise ValueError('must override')

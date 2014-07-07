@@ -22,6 +22,7 @@ def copy(p_file,p_dir):
 	debug('copy ['+p_file+','+p_dir+']')
 	shutil.copy(p_file,p_dir)
 def unlink(p_file):
+	print('unlinking [{name}]'.format(name=p_file))
 	debug('unlink ['+p_file+']')
 	os.unlink(p_file)
 def unlinksoft(p_file):

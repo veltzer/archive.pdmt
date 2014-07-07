@@ -9,5 +9,4 @@ import pdmt.utils.fileops
 class NodeType(pdmt.plugins.nodetypes.filenode.NodeType,pdmt.plugins.nodetypes.buildnode.NodeType):
 	def clean(self):
 		if os.path.isfile(self.m_fname):
-			print('unlinking [{name}]'.format(name=self.m_fname))
 			pdmt.utils.fileops.unlink(self.m_fname)

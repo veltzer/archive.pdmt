@@ -1,7 +1,6 @@
 """
 A graph module written in python
 """
-#import pydot
 
 class Graph:
 	def __init__(self):
@@ -96,9 +95,3 @@ class Graph:
 			print(nodetoid[fr],'->',nodetoid[to],';',sep='')
 		print('}')
 
-if __name__ == '__main__':
-	g=Graph()
-	g.add_node('a')
-	g.add_node('b')
-	for node in g.dfs():
-		print(node)

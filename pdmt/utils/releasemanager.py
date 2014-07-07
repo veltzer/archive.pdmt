@@ -53,9 +53,3 @@ class ReleaseManager:
 			send_email()
 		if(p_tweet):
 			send_tweet()
-
-if __name__=='__main__':
-	rm=ReleaseManager()
-	#rm.release()
-	#rm.send_email()
-	rm.send_tweet()

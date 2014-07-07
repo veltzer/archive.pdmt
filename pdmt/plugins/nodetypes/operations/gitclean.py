@@ -1,11 +1,10 @@
-import pdmt.api
 import pdmt.utils.subproc
 
 """
 A git cleaninng op
 """
 
-class Operation(pdmt.api.Operation):
+class Operation(object):
 	def __init__(self):
 		super().__init__(
 			'gitclean',

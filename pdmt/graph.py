@@ -101,7 +101,7 @@ class Graph(object):
 		id=1
 		nodetoid={}
 		for node in self.get_nodes():
-			print(id,'[shape=box,label="'+str(node)+'"]',sep='')
+			print(id,'[shape=box,label="'+node.get_name()+'"]',sep='')
 			nodetoid[node]=id
 			id+=1
 		for (fr,to) in self.get_edges():

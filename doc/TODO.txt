@@ -1,31 +1,5 @@
 urgent:
 =======
-- turn all operations into nodes
-	add a connector node.
-		like all in 'make'
-		it will connect any nodes I want
-		make it the default.
-	add default stuff to build.
-		how do we specify the default stuff?
-	add clean node and build it from the command line.
-	remove the operation API.
-	allow to say what we build from the command line
-	(we need them to depend on nodes anyway).
-	they should have a name and I should be able to build
-	them from the command line.
-	this turns the entire system ugly.
-	clean could be such a node and removed from Mgr.
-
-- make it so the default, without parameters command to pdmt is
-	--build. Make it so you can specify file names
-	on the command line which will be built.
-- add bash competions to pdmt so that target names will be completed
-	automatically.
-
-- do a target which shows the graph in dot format graphically.
-	(runs dot on it and shows the result)
-- get to test.py --showgraph that shows the pdmt graph visually.
-
 - use pdmt in linuxapi and see how it goes.
 - use pdmt in fastlog and see how it goes.
 

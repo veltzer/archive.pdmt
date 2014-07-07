@@ -1,4 +1,3 @@
-import pdmt.api
 import pdmt.config
 import pdmt.utils.subproc
 
@@ -6,7 +5,7 @@ import pdmt.utils.subproc
 This module installs dependencies for a package. Dependencies are gotten via
 configuration
 """
-class Operation(pdmt.api.Operation):
+class Operation(object):
 	def __init__(self):
 		super().__init__(
 			'depsinstaller',

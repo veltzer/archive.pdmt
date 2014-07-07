@@ -17,8 +17,11 @@ class NodeHandler(pdmt.api.NodeHandler):
 	def respond(self,mgr,node,eventtype):
 		if eventtype!='nodepostadd':
 			return
+		#print('t2 connecting ',self.cnode.get_name())
 		if not isinstance(node,self.typefilter):
 			return
+		#print('t1 connecting ',self.cnode.get_name(), node.get_name())
 		if not self.regexp.match(node.name):
 			return
+		#print('connecting ',self.cnode.get_name(), node.get_name())
 		mgr.addEdge((self.cnode,node))

@@ -93,7 +93,7 @@ class ns_fileops:
 	p_debug=False
 class ns_subproc:
 	p_debug=True
-	p_debug=False
+	#p_debug=False
 class ns_mgr:
 	p_prog=True
 	p_dbg=False

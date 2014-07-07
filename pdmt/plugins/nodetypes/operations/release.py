@@ -1,5 +1,3 @@
-import pdmt.api
-
 # this is a release script.
 # it runs git status -s in order to see that everything is commited.
 # it then tags the current tree with one + the old tag.
@@ -27,7 +25,7 @@ check=True
 # what is the name of the project?
 project=pdmt.config.ns_product.p_name
 
-class Operation(pdmt.api.Operation):
+class Operation(object):
 	def __init__(self):
 		super().__init__(
 			'release',

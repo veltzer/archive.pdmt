@@ -1,10 +1,8 @@
-import pdmt.api
-
 """
 Show the config of Pdmt
 """
 
-class Operation(pdmt.api.Operation):
+class Operation(object):
 	def __init__(self):
 		super().__init__(
 			'hello',

@@ -1,4 +1,3 @@
-import pdmt.api
 import pdmt.config
 import pdmt.utils.subproc
 import pdmt.utils.osw
@@ -7,7 +6,7 @@ import pdmt.utils.osw
 This operation knows how to make a debian package.
 """
 
-class Operation(pdmt.api.Operation):
+class Operation(object):
 	def __init__(self):
 		super().__init__(
 			'debmaker',

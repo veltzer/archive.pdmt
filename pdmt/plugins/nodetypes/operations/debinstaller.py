@@ -7,7 +7,7 @@ This module handles publishing and unpublishing a deb package from an apt reposi
 
 	Mark Veltzer <mark@veltzer.net>
 """
-class Operation(pdmt.api.Operation):
+class Operation(object):
 	def __init__(self):
 		super().__init__(
 			'debinstaller',

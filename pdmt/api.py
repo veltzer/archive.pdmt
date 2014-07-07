@@ -52,21 +52,6 @@ class NodeType(object):
 		return ret[0]
 
 """
-This is the base class of all operations within the system
-"""
-class Operation(object):
-	def __init__(self,p_name,p_description):
-		self.name=p_name
-		self.description=p_description
-	def getName(self):
-		return self.name
-	def getDescription(self):
-		return self.description
-	def run(self):
-		raise ValueError('must override')
-
-
-"""
 This is the base class of all node handlers within the system
 """
 

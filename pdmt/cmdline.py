@@ -26,7 +26,10 @@ def parse(mgr):
 	if mysum>1:
 		parser.error('only one option at a time')
 	if mysum==0:
-		mgr.build()
+		if options.args:
+			mgr.build_node_names(options.args)
+		else:
+			mgr.build()
 	else:
 		if options.printnodes:
 			if options.args:

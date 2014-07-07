@@ -1,6 +1,13 @@
 urgent:
 =======
 - turn all operations into nodes
+	add a connector node.
+		like all in 'make'
+		it will connect any nodes I want
+		make it the default.
+	add default stuff to build.
+		how do we specify the default stuff?
+	add clean node and build it from the command line.
 	remove the operation API.
 	allow to say what we build from the command line
 	(we need them to depend on nodes anyway).

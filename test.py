@@ -22,4 +22,9 @@ mgr.addHandler(pdmt.plugins.nodehandlers.makohandler.NodeHandler())
 for name in glob.glob('mako/*.mako'):
 	mgr.addNode(pdmt.plugins.nodetypes.makofilenode.NodeType(name))
 
+# clean stuff
+mgr.addNode(pdmt.plugins.nodetypes.operations.clean.NodeType())
+
+mgr.setDefaultNodeList([node_exe])
+
 mgr.parseCmdline()

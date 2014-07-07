@@ -26,6 +26,7 @@ def unlink(p_file):
 	debug('unlink ['+p_file+']')
 	os.unlink(p_file)
 def unlinksoft(p_file):
+	print('unlinking [{name}]'.format(name=p_file))
 	debug('unlinksoft ['+p_file+']')
 	try:
 		os.unlink(p_file)

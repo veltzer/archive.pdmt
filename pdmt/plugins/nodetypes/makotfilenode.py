@@ -15,7 +15,7 @@ class NodeType(pdmt.plugins.nodetypes.buildfilenode.NodeType):
 		p_input=self.getSourceOfType(pdmt.plugins.nodetypes.makofilenode.NodeType).name
 		p_output=self.name
 		# remove the old file
-		pdmt.utils.fileops.unlinksoft(p_output)
+		#pdmt.utils.fileops.unlinksoft(p_output)
 		input_encoding='utf-8'
 		output_encoding='utf-8'
 		mylookup=mako.lookup.TemplateLookup(directories=['.'],input_encoding=input_encoding,output_encoding=output_encoding)

@@ -11,12 +11,16 @@ class Mgr:
 		self.graph=pdmt.graph.NamedGraph()
 		self.init_handlers()
 		self.opbyname={}
+		self.defaultNodeList=[]
 		if loadinternalplugins:
 			self.loadInternalPlugins()
 		#if cache is None:
 		#	self.cache=pdmt.plugins.cache.null.NullCache()
 		#else:
 		#	self.cache=cache
+
+	def setDefaultNodeList(self, nodelist):
+		self.defaultNodeList=nodelist
 
 	""" cache methods """
 	def get_cache(self):
@@ -83,9 +87,9 @@ class Mgr:
 	references:
 	http://en.wikipedia.org/wiki/Topological_sorting
 	"""
-	def build_todolist(self):
+	def build_todolist(self, node_list):
 		todo=[]
-		for node in self.graph.dfs():
+		for node in self.graph.dfs(node_list=node_list):
 			self.debug('examining ['+str(node)+']')
 			if not node.uptodate(todo):
 				todo.append(node)
@@ -94,23 +98,40 @@ class Mgr:
 		self.notify(node,'nodeprebuild')
 		node.build()
 		self.notify(node,'nodepostbuild')
-	def build(self):
+	def build_node_list(self, node_list):
+		self.progress('going to scan [{len}] {plural}...'.format(
+			len=len(node_list),
+			plural=pdmt.utils.lang.plural('node', len(node_list)),
+		))
 		todo=self.build_todolist()
+	def build_node_names(self, names):
+		node_list=[]
+		for name in names:
+			if self.graph.has_name(name):
+				node_list.append(self.graph.get_node_by_name(name))
+			else:
+				raise ValueError('do not have node of name', name)
+		self.build(node_list)
+	def build(self, node_list=None):
+		self.progress('going to scan [{len}] {plural}...'.format(
+			len=self.graph.get_node_num(),
+			plural=pdmt.utils.lang.plural('node', self.graph.get_node_num()),
+		))
+		if node_list is None:
+			node_list=self.defaultNodeList
+		todo=self.build_todolist(node_list)
 		len_todo=len(todo)
-		if len_todo>0:
-			self.progress('going to build [{len_todo}] {plural}...'.format(
+		self.progress('going to build [{len_todo}] {plural}...'.format(
+			len_todo=len_todo,
+			plural=pdmt.utils.lang.plural('node', len_todo),
+		))
+		for num,node in enumerate(todo):
+			self.progress('building ({num}/{len_todo}) [{name}]'.format(
+				num=num+1,
 				len_todo=len_todo,
-				plural=pdmt.utils.lang.plural('node', len_todo)
+				name=node.get_name(),
 			))
-			for num,node in enumerate(todo):
-				self.progress('building ({num}/{len_todo}) [{name}]'.format(
-					num=num+1,
-					len_todo=len_todo,
-					name=node.get_name(),
-				))
-				self.buildNode(node)
-		else:
-			self.progress('nothing to build')
+			self.buildNode(node)
 
 	""" helper functions to load all plugins """
 	def loadPlugins(self, folder, namespace):

@@ -1,7 +1,7 @@
 # the inheritance from 'object' is very important to get the __class__
 # and other stuff we need in order for OO to work properly...
 class NodeType(object):
-	def __init__(self, type=None, name=None, proto=None):
+	def __init__(self, type=None, name=None, description=None, proto=None):
 		super().__init__()
 		if type is None:
 			self.type='unset'
@@ -15,6 +15,10 @@ class NodeType(object):
 			self.name='unset'
 		else:
 			self.name=name
+		if description is None:
+			self.description='unset'
+		else:
+			self.description=description
 	def get_name(self):
 		return '{proto}/{name}'.format(
 			proto=self.proto,

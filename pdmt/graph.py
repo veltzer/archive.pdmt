@@ -61,7 +61,7 @@ class Graph(object):
 		for fr in self.get_nodes():
 			for to in self.get_adjacent_for_node(fr):
 				yield (fr,to)
-	def get_nodes_num(self):
+	def get_node_num(self):
 		return len(self.nodes)
 	""" dependency for many nodes (not sure this works) """
 	def dependsOn(self,nodes):
@@ -71,9 +71,11 @@ class Graph(object):
 				ret.append(n)
 		return ret
 	""" depth first search algorithm """
-	def dfs(self):
+	def dfs(self, node_list=None):
 		visited=set()
-		for node in self.get_nodes():
+		if node_list is None:
+			node_list=self.get_nodes()
+		for node in node_list:
 			if not node in visited:
 				for v in self.dfs_unvisited_node(visited,node):
 					yield v
@@ -119,3 +121,7 @@ class NamedGraph(Graph):
 	def remove_node(self,node):
 		Graph.remove_node(self, node)
 		del self.map[node.get_name()]
+	def has_name(self, name):
+		return name in self.map
+	def get_node_by_name(self, name):
+		return self.map[name]

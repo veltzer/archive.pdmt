@@ -55,7 +55,7 @@ install:
 
 .PHONY: clean_old
 clean_old:
-	rm -rf `find . -name "*.pyc"` `find . -name "*.o"` `find . -name "*.exe"`
+	rm -rf `find . -name "*.pyc"` `find . -name "*.o"` `find . -name "*.elf"`
 	rm -rf build dist deb_dist
 
 .PHONY: clean
@@ -111,3 +111,13 @@ debug:
 	$(info DOCBOOK_STP is $(DOCBOOK_STP))
 	$(info DOCBOOK_FO is $(DOCBOOK_FO))
 	$(info DOCBOOK_PDF is $(DOCBOOK_PDF))
+
+.PHONY: check_main
+check_main:
+	@-git grep __main -- "*.py"
+.PHONY: check_semicol
+check_semicol:
+	@-git grep ";$$" -- "*.py"
+
+.PHONY: check_all
+check_all: check_main check_semicol

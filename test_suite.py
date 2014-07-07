@@ -32,9 +32,9 @@ class TestSequenceFunctions(unittest.TestCase):
 		for x in s.foreach():
 			l.append(x)
 		self.assertEqual(l, [3,4,5])
-		self.assertEqual(5, s.pop());
-		self.assertEqual(4, s.pop());
-		self.assertEqual(3, s.pop());
+		self.assertEqual(5, s.pop())
+		self.assertEqual(4, s.pop())
+		self.assertEqual(3, s.pop())
 	@unittest.skip("subproc testing disabled for now")
 	def test_subproc(self):
 		try:
@@ -42,7 +42,7 @@ class TestSequenceFunctions(unittest.TestCase):
 			pdmt.utils.subproc.system_pipe(
 				['ls','-l','/etc/passwd'],
 				['wc','-l'],
-			);
+			)
 		except ValueError as e:
 			print('ok, got error for first command',e)
 		try:
@@ -50,7 +50,7 @@ class TestSequenceFunctions(unittest.TestCase):
 			pdmt.utils.subproc.system_pipe(
 				['ls','-l'],
 				['wc','-l','--stam'],
-			);
+			)
 		except ValueError as e:
 			print('ok, got error for second command',e)
 		# test output
@@ -58,6 +58,6 @@ class TestSequenceFunctions(unittest.TestCase):
 			['ls','-l'],
 			['wc','-l'],
 			out=open('/dev/null','w'),
-		);
+		)
 
 unittest.main()

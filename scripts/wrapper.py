@@ -13,7 +13,7 @@ def system_check_output(args):
 	if status:
 		print output
 		print errout
-		sys.exit(status);
+		sys.exit(status)
 		#raise ValueError('error in executing',args)
 
 if len(sys.argv)<1:

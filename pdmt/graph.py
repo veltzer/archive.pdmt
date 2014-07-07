@@ -8,6 +8,13 @@ class Graph:
 		self.edges=dict()
 		self.check=True
 		#self.check=False
+	def dependsOn(self,nodes):
+		ret=[]
+		for node in nodes:
+			for n in self[node]:
+				ret.append(n)
+		return ret
+	""" checking methods """
 	def check_have_node(self,node):
 		if self.check:
 			if not node in self.nodes:

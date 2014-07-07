@@ -11,17 +11,21 @@ debug=False
 def parse(mgr):
 	parser=argparse.ArgumentParser(description='Project Dependency Management Tool')
 	parser.add_argument(
-			'--build',
-			help='build project',
+			'--printnodes',
+			help='print all the node names',
 			action='store_true',
-			default=True,
+			default=False,
 	)
 	options=parser.parse_args()
 	if debug:
-		print(options)
-	if sum([
-		options.build,
-	])!=1:
-		parser.error('must specify one of build,showconfig')
-	if options.build:
+		print('options are',options)
+	mysum=sum([
+                options.printnodes,
+        ])
+	if mysum>1:
+		parser.error('only one option at a time')
+	if mysum==0:
 		mgr.build()
+	else:
+		if options.printnodes:
+			mgr.graph.printnodes()

@@ -101,4 +101,6 @@ class Graph:
 		for (fr,to) in self.get_edges():
 			print(nodetoid[fr],'->',nodetoid[to],';',sep='')
 		print('}')
-
+	def printnodes(self):
+		for node in self.get_nodes():
+			print(node)

@@ -221,3 +221,10 @@ most nodes are not going to implement "clean" anyway (all of them will
 derive it from a parent node).
 
 Conclusion: it's not such a big deal.
+
+Think about building in processes and in our own process
+========================================================
+Some stuff builds out of our process (gcc etc)
+Some stuff in our own process (mako)
+This means that when we do multi-processing we may run into issues.
+TBD

@@ -1,4 +1,4 @@
-import pdmt.graph
+import pdmt.graph # for NamedGraph
 import pdmt.config
 import pdmt.cmdline
 import pkgutil # for walk_packages
@@ -8,7 +8,7 @@ import pdmt.utils.lang # for plural
 
 class Mgr:
 	def __init__(self, loadinternalplugins=True, cache=None):
-		self.graph=pdmt.graph.Graph()
+		self.graph=pdmt.graph.NamedGraph()
 		self.init_handlers()
 		self.opbyname={}
 		if loadinternalplugins:
@@ -103,10 +103,10 @@ class Mgr:
 				plural=pdmt.utils.lang.plural('node', len_todo)
 			))
 			for num,node in enumerate(todo):
-				self.progress('building ({num}/{len_todo}) [{node}]'.format(
+				self.progress('building ({num}/{len_todo}) [{name}]'.format(
 					num=num+1,
 					len_todo=len_todo,
-					node=node,
+					name=node.get_name(),
 				))
 				self.buildNode(node)
 		else:

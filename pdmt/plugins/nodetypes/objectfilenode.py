@@ -4,13 +4,11 @@ import pdmt.utils.subproc
 import pdmt.types
 
 class NodeType(pdmt.plugins.nodetypes.buildfilenode.NodeType):
-	def __init__(self, p_fname):
-		super().__init__(p_fname,pdmt.types.t_object)
 	def build(self):
 		args=[]
 		args.append('gcc')
 		args.append('-c')
 		args.append('-o')
-		args.append(self.m_fname)
-		args.append(self.getSourceOfType(pdmt.plugins.nodetypes.cfilenode.NodeType).m_fname)
+		args.append(self.name)
+		args.append(self.getSourceOfType(pdmt.plugins.nodetypes.cfilenode.NodeType).name)
 		pdmt.utils.subproc.check_call(args)

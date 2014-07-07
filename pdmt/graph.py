@@ -1,19 +1,16 @@
 """
 A graph module written in python
+
+This is the core graph module for pdmt.
+Make sure it is efficient.
 """
 
-class Graph:
+class Graph(object):
 	def __init__(self):
 		self.nodes=set()
 		self.edges=dict()
 		self.check=True
 		#self.check=False
-	def dependsOn(self,nodes):
-		ret=[]
-		for node in nodes:
-			for n in self[node]:
-				ret.append(n)
-		return ret
 	""" checking methods """
 	def check_have_node(self,node):
 		if self.check:
@@ -66,6 +63,13 @@ class Graph:
 				yield (fr,to)
 	def get_nodes_num(self):
 		return len(self.nodes)
+	""" dependency for many nodes (not sure this works) """
+	def dependsOn(self,nodes):
+		ret=[]
+		for node in nodes:
+			for n in self[node]:
+				ret.append(n)
+		return ret
 	""" depth first search algorithm """
 	def dfs(self):
 		visited=set()
@@ -103,4 +107,15 @@ class Graph:
 		print('}')
 	def printnodes(self):
 		for node in self.get_nodes():
-			print(node)
+			print(node.get_name())
+
+class NamedGraph(Graph):
+	def __init__(self):
+		Graph.__init__(self)
+		self.map={}
+	def add_node(self,node):
+		Graph.add_node(self, node)
+		self.map[node.get_name()]=node
+	def remove_node(self,node):
+		Graph.remove_node(self, node)
+		del self.map[node.get_name()]

@@ -1,6 +1,5 @@
-import pdmt.api
-import pdmt.plugins.nodetypes.objectfilenode
-import re
+import pdmt.api # for NodeHandler
+import re # for compile
 
 """
 This is a node connector. It listens for 'nodepostadd' events
@@ -20,6 +19,6 @@ class NodeHandler(pdmt.api.NodeHandler):
 			return
 		if not isinstance(node,self.typefilter):
 			return
-		if not self.regexp.match(node.m_fname):
+		if not self.regexp.match(node.name):
 			return
 		mgr.addEdge((self.cnode,node))

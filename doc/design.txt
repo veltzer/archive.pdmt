@@ -32,7 +32,7 @@ When to check if everything is up to date?
 - when the user wants.
 - when some event arrives (file has changed).
 
-How to decice if something is up to date?
+How to decide if something is up to date?
 =========================================
 - depth first traverse the whole graph.
 - on each node ask the node if it is up to date.
@@ -128,6 +128,7 @@ Disadvantages:
 
 Should we have a map of sets by which we could quicly get all nodes of a certain
 type?
+================================================================================
 Maybe in the future if we see a need for it. Currently no such need arises and the
 performance hit of scanning all the nodes is not noticeble so no such map is maintained.
 
@@ -140,6 +141,10 @@ parameters:
 - a special object to handle (read) all parameters will be made. Each paramters should
 	have a date associated with it. That is how we will determine if the output from
 	it needs to be rebuilt.
+- how will the parameters be stored.
+	they can be stored in a special folder called "parameters" where each parameter
+	will be stored in it's own file with the mod time of that file as the time stamp.
+	later other types of stores (RDMBS) could be added.
 
 names of nodes:
 ===============
@@ -149,4 +154,3 @@ For instance:
 would build one executable file.
 	pdmt.py --build type://c_exe
 would build all c executables
-

@@ -1,3 +1,13 @@
+- turn all operations into nodes
+	(we need them to depend on nodes anyway).
+	they should have a name and I should be able to build
+	them from the command line.
+- make it so the default, without parameters command to pdmt is
+	--build. Make it so you can specify file names
+	on the command line which will be built.
+- add bash competions to pdmt so that target names will be completed
+	automatically.
+
 - do a target which shows the graph in dot format graphically.
 	(runs dot on it and shows the result)
 - get to test.py --showgraph that shows the pdmt graph visually.

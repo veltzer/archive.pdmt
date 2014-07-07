@@ -95,19 +95,6 @@ class Graph:
 		for (fr,to) in self.get_edges():
 			print(nodetoid[fr],'->',nodetoid[to],';',sep='')
 		print('}')
-	"""
-	def print_dot(self):
-		graph = pydot.Dot(graph_type='digraph')
-		id=1
-		nodetoid={}
-		for node in self.get_nodes():
-			graph.add_node(pydot.Node(id))
-			nodetoid[node]=id
-			id+=1
-		for (fr,to) in self.get_edges():
-			graph.add_edge(pydot.Edge(nodetoid[fr], nodetoid[to]))
-		graph.write_png('/tmp/graph.png')
-	"""
 
 if __name__ == '__main__':
 	g=Graph()

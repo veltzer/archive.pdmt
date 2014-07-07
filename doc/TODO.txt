@@ -1,6 +1,8 @@
 urgent:
 =======
+- add a testing framework for pdmt and see that it works.
 - turn all operations into nodes
+	allow to say what we build from the command line
 	(we need them to depend on nodes anyway).
 	they should have a name and I should be able to build
 	them from the command line.

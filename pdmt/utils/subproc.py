@@ -16,7 +16,7 @@ def debug(msg):
 	if pdmt.config.ns_subproc.p_debug:
 		print(msg)
 def system_pipe(list1,list2,out=None):
-	debug('system_pipe ['+list1+','+list2+','+out+']')
+	debug('system_pipe ['+str(list1)+','+str(list2)+','+str(out)+']')
 	pr1=subprocess.Popen(
 		list1,
 		stdout=subprocess.PIPE,
@@ -50,26 +50,3 @@ def check_call(arg,**kw):
 	debug('check_call ['+str(arg)+']')
 	subprocess.check_call(arg,**kw)
 
-if __name__=='__main__':
-	try:
-		# test error in first command
-		system_pipe(
-			['ls','-l','foo'],
-			['wc','-l'],
-		);
-	except ValueError as e:
-		print('ok, got error for first command',e)
-	try:
-		# test error in second command
-		system_pipe(
-			['ls','-l'],
-			['wc','-l','--stam'],
-		);
-	except ValueError as e:
-		print('ok, got error for second command',e)
-	# test output
-	system_pipe(
-		['ls','-l'],
-		['wc','-l'],
-		out=open('/dev/null','w'),
-	);

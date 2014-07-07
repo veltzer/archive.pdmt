@@ -11,4 +11,4 @@ class Operation(pdmt.api.Operation):
 			'print hello on the screen',
 		)
 	def run(self):
-		print('Hello, World!\n');
+		print('Hello, World!\n')

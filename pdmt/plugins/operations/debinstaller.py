@@ -12,12 +12,12 @@ class Operation(pdmt.api.Operation):
 		super().__init__(
 			'debinstaller',
 			'install the package into the repository',
-		);
+		)
 	def run(self):
 		args=[]
 		if pdmt.config.ns_apt.p_sudo:
-			args.append('sudo');
-		args.append('reprepro');
+			args.append('sudo')
+		args.append('reprepro')
 		args.extend(['--basedir',pdmt.config.ns_apt.p_abs_dir])
 		args.extend(['--component',pdmt.config.ns_apt.p_component])
 		args.extend(['includedeb',pdmt.config.ns_apt.p_codename,pdmt.config.ns_apt.p_deb_file])
@@ -25,22 +25,22 @@ class Operation(pdmt.api.Operation):
 	def remove():
 		args=[]
 		if pdmt.config.ns_apt.p_sudo:
-			args.append('sudo');
-		args.append('reprepro');
+			args.append('sudo')
+		args.append('reprepro')
 		args.extend(['--basedir',pdmt.config.ns_apt.p_abs_dir])
 		args.extend(['--component',pdmt.config.ns_apt.p_component])
-		args.extend(['remove',pdmt.config.ns_apt.p_codename,NAME]);
+		args.extend(['remove',pdmt.config.ns_apt.p_codename,NAME])
 		pdmt.utils.subproc.check_call(args)
 	def command(name):
 		args=[]
 		if pdmt.config.ns_apt.p_sudo:
-			args.append('sudo');
-		args.append('reprepro');
-		args.append(name);
+			args.append('sudo')
+		args.append('reprepro')
+		args.append(name)
 		pdmt.utils.subproc.check_call(args)
 	def makerepo():
 		pass
 	def dumpunreferenced():
 		command('dumpunreferenced')
 	def deleteunreferenced():
-		command('deleteunreferenced');
+		command('deleteunreferenced')

@@ -13,7 +13,7 @@ class Operation(pdmt.api.Operation):
 		)
 	def run(self):
 		args=[]
-		args.append('git');
-		args.append('clean');
-		args.append('-xdf');
+		args.append('git')
+		args.append('clean')
+		args.append('-xdf')
 		pdmt.utils.subproc.check_call(args)

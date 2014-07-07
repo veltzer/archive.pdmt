@@ -61,23 +61,9 @@ class Mgr:
 		self.notify(edge,'edgepredel')
 		self.graph.remove_edge(edge)
 		self.notify(edge,'edgepostdel')
-	def buildNode(self,node):
-		self.notify(node,'nodeprebuild')
-		node.build()
-		self.notify(node,'nodepostbuild')
 
-	""" building methods start here """
+	""" debugging methods """
 
-	""" this is a method that builds a list of all the nodes that need to be build.
-	It build a real list. Maybe turn it into a generator ?
-	"""
-	def build_todolist(self):
-		todo=[]
-		for node in self.graph.dfs():
-			self.debug('examining ['+str(node)+']')
-			if not node.uptodate(todo):
-				todo.append(node)
-		return todo
 	def msg(self,message):
 		print('pdmt:',message)
 	def progress(self,message):
@@ -86,25 +72,45 @@ class Mgr:
 	def debug(self,message):
 		if pdmt.config.ns_mgr.p_dbg:
 			self.msg(message)
+
+	""" building methods start here """
+
+	"""
+	this is a method that builds a list of all the nodes that need to be build.
+	It builds a real list. Maybe turn it into a generator ?
+	The fact that it builds a list is bad since a list is ok for serial building
+	but not for parallel.
+	references:
+	http://en.wikipedia.org/wiki/Topological_sorting
+	"""
+	def build_todolist(self):
+		todo=[]
+		for node in self.graph.dfs():
+			self.debug('examining ['+str(node)+']')
+			if not node.uptodate(todo):
+				todo.append(node)
+		return todo
+	def buildNode(self,node):
+		self.notify(node,'nodeprebuild')
+		node.build()
+		self.notify(node,'nodepostbuild')
 	def build(self):
 		todo=self.build_todolist()
-		if len(todo)>0:
-			self.progress('going to build '+str(len(todo))+' '+pdmt.utils.lang.plural('node', len(todo)))
+		len_todo=len(todo)
+		if len_todo>0:
+			self.progress('going to build [{len_todo}] {plural}...'.format(
+				len_todo=len_todo,
+				plural=pdmt.utils.lang.plural('node', len_todo)
+			))
 			for num,node in enumerate(todo):
-				self.progress('building ['+str(node)+']')
+				self.progress('building ({num}/{len_todo}) [{node}]'.format(
+					num=num+1,
+					len_todo=len_todo,
+					node=node,
+				))
 				self.buildNode(node)
 		else:
 			self.progress('nothing to build')
-	def dependsOn(self,nodes):
-		ret=[]
-		for node in nodes:
-			for n in self.graph[node]:
-				ret.append(n)
-		return ret
-
-	""" printing methods """
-	def dotgraph(self):
-		self.graph.print_dot();
 
 	""" helper functions to load all plugins """
 	def loadPlugins(self, folder, namespace):

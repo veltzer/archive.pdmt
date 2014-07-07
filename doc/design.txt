@@ -150,7 +150,7 @@ names of nodes:
 ===============
 we need to have a prn (Pdmt Resource Name).
 For instance:
-	pdmt.py --build file://out/my.elf
+	pdmt.py file://out/my.elf
 would build one executable file.
 	pdmt.py --build type://c_exe
 would build all c executables

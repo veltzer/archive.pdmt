@@ -13,7 +13,7 @@ class NodeType(pdmt.plugins.nodetypes.filenode.NodeType):
 	exists ?!? I don't think so. This methods name is called "uptodate"
 	and not "verify" or something... """
 	def uptodate(self,todo):
-		return True;
+		return True
 #		return os.path.isfile(self.m_fname)
 	def canBuild(self):
 		return False

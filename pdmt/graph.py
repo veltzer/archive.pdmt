@@ -8,15 +8,15 @@ class Graph:
 		self.nodes=set()
 		self.edges=dict()
 		self.check=True
-		self.check=False
+		#self.check=False
 	def check_have_node(self,node):
 		if self.check:
-			if node in self.nodes:
+			if not node in self.nodes:
 				raise ValueError("already have node",node)
 	def check_havent_node(self,node):
 		if self.check:
-			if not node in self.nodes:
-				raise ValueError("dont have node",node)
+			if node in self.nodes:
+				raise ValueError("already have node",node)
 	""" assumes that fr and to are nodes """
 	def check_havent_edge(self,fr,to):
 		if self.check:
@@ -29,11 +29,11 @@ class Graph:
 				raise ValueError("dont have edge",fr,to)
 	""" assumes that fr and to are nodes """
 	def add_node(self,node):
-		self.check_have_node(node)
+		self.check_havent_node(node)
 		self.nodes.add(node)
 		self.edges[node]=set()
 	def remove_node(self,node):
-		self.check_havent_node(node)
+		self.check_have_node(node)
 		self.nodes.remove(node)
 		del self.edges[node]
 	def add_edge(self,edge):

@@ -119,8 +119,6 @@ class Mgr:
 		return self.opbyname
 
 	""" printing methods """
-	def printgraph(self):
-		self.graph.print_dot();
 	def dotgraph(self):
 		self.graph.print_dot();
 

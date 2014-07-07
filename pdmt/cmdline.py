@@ -20,12 +20,6 @@ def parse(mgr):
 			default=False,
 	)
 	parser.add_argument(
-			'--printgraph',
-			help='print the graph (may be long)',
-			action='store_true',
-			default=False,
-	)
-	parser.add_argument(
 			'--dotgraph',
 			help='write the graph to a .dot file',
 			action='store_true',
@@ -60,19 +54,16 @@ def parse(mgr):
 	if sum([
 		options.clean,
 		options.build,
-		options.printgraph,
 		options.dotgraph,
 		options.showops,
 		options.showconfig,
 		runop_int,
 	])!=1:
-		parser.error('must specify one of clean,build,printgraph,dotgraph,showops,showconfig,runop')
+		parser.error('must specify one of clean,build,dotgraph,showops,showconfig,runop')
 	if options.clean:
 		mgr.clean()
 	if options.build:
 		mgr.build()
-	if options.printgraph:
-		mgr.printgraph()
 	if options.dotgraph:
 		mgr.dotgraph()
 	if options.showops:

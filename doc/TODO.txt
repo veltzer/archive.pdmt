@@ -5,7 +5,7 @@ urgent:
 	they should have a name and I should be able to build
 	them from the command line.
 	this turns the entire system ugly.
-	clean could be such a node.
+	clean could be such a node and removed from Mgr.
 
 - make it so the default, without parameters command to pdmt is
 	--build. Make it so you can specify file names

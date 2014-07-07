@@ -12,16 +12,15 @@ see documentation in http://docs.python.org/library/argparse.html
 def parse(mgr):
 	parser=argparse.ArgumentParser(description='Project Dependency Management Tool')
 	parser.add_argument(
-			'--printnodes',
+			'--bashcomplete',
+			nargs=1,
 			help='print all the node names',
-			action='store_true',
-			default=False,
 	)
 	# all other arguments are gathered into options.args
 	parser.add_argument('args', nargs=argparse.REMAINDER)
 	options=parser.parse_args()
 	mysum=sum([
-                options.printnodes,
+                options.bashcomplete is not None,
         ])
 	if mysum>1:
 		parser.error('only one option at a time')
@@ -31,8 +30,8 @@ def parse(mgr):
 		else:
 			mgr.build()
 	else:
-		if options.printnodes:
+		if options.bashcomplete is not None:
 			if options.args:
-				parser.error('no free args with --printnodes {0}'.format(str(options.args)))
+				parser.error('no free args with --bashcomplete {0}'.format(str(options.args)))
 			else:
-				mgr.graph.printnodes()
+				mgr.graph.bashcomplete(options.bashcomplete[0])

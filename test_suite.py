@@ -11,6 +11,7 @@ import unittest # for TestCase
 import pdmt.graph # for Graph
 import pdmt.stack # for Stack
 import pdmt.utils.subproc # for system_pipe
+import pdmt.utils.string # for common_prefix
 
 class TestSequenceFunctions(unittest.TestCase):
 	def setUp(self):
@@ -59,5 +60,8 @@ class TestSequenceFunctions(unittest.TestCase):
 			['wc','-l'],
 			out=open('/dev/null','w'),
 		)
+	def test_common_prefix(self):
+		self.assertEqual('abra', pdmt.utils.string.common_prefix('abrakadabra', 'abracom'))
+		self.assertEqual('file', pdmt.utils.string.common_prefix('file', 'files'))
 
 unittest.main()

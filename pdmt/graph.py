@@ -4,6 +4,7 @@ A graph module written in python
 This is the core graph module for pdmt.
 Make sure it is efficient.
 """
+import pdmt.utils.string # for common_prefix
 
 class Graph(object):
 	def __init__(self):
@@ -107,10 +108,24 @@ class Graph(object):
 		for (fr,to) in self.get_edges():
 			print(nodetoid[fr],'->',nodetoid[to],';',sep='')
 		print('}')
-	def printnodes(self):
+	def bashcomplete(self, prefix):
 		for node in self.get_nodes():
-			if node.canBuild():
+			if node.canBuild() and node.get_name().startswith(prefix):
 				print(node.get_name())
+	def bashcomplete_with_prefix(self, prefix):
+		common=None
+		l=[]
+		for node in self.get_nodes():
+			if node.canBuild() and node.get_name().startswith(prefix):
+				if common is None:
+					common=node.get_name()
+				else:
+					common=pdmt.utils.string.common_prefix(common, node.get_name())
+				l.append(node.get_name())
+				print(node.get_name())
+		print(common)
+		for x in l:
+			print(x)
 
 class NamedGraph(Graph):
 	def __init__(self):

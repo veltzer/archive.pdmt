@@ -4,11 +4,13 @@
 import pdmt.utils.boot
 
 class ns_pdmt:
-	p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
+	# we do describe --all because git will fail without the --all if it
+	# does not have annotated tags
+	p_version=pdmt.utils.boot.system_check_output(['git','describe','--all']).rstrip()
 class ns_product:
 	p_license='GPL'
 	p_name='pdmt'
-	p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
+	p_version=pdmt.utils.boot.system_check_output(['git','describe','--all']).rstrip()
 	p_description='Project Dependency Management Tool'
 	p_long_description='Project Dependency Management Tool long description'
 	p_keywords=[

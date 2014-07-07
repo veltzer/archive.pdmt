@@ -30,7 +30,7 @@ class TestSequenceFunctions(unittest.TestCase):
 		s.push(4)
 		s.push(5)
 		l=[]
-		for x in s.foreach():
+		for x in s.yield():
 			l.append(x)
 		self.assertEqual(l, [3,4,5])
 		self.assertEqual(5, s.pop())

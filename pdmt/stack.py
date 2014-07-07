@@ -7,6 +7,6 @@ class Stack(object):
 		self.storage.append(p)
 	def pop(self):
 		return self.storage.pop()
-	def foreach(self):
+	def yield(self):
 		for x in self.storage:
 			yield x

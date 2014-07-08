@@ -19,7 +19,12 @@ mgr.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
 mgr.setDefaultNodeList([node_all])
 
 # c stuff
-mgr.addHandler(pdmt.plugins.nodehandlers.chandler.NodeHandler())
+mgr.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
+	type=pdmt.plugins.nodes.cfile.NodeType,
+	suffix='.o',
+	same_folder=True,
+	target_type=pdmt.plugins.nodes.objectfile.NodeType,
+))
 node_exe=pdmt.plugins.nodes.cexecutablefile.NodeType(name='tests/main.elf')
 mgr.addNode(node_exe)
 mgr.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
@@ -31,7 +36,13 @@ node_c=pdmt.plugins.nodes.cfile.NodeType(name='tests/main.c')
 mgr.addNode(node_c)
 
 # mako stuff
-mgr.addHandler(pdmt.plugins.nodehandlers.makohandler.NodeHandler())
+mgr.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
+	type=pdmt.plugins.nodes.makofile.NodeType,
+	suffix='',
+	same_folder=False,
+	folder='makot',
+	target_type=pdmt.plugins.nodes.makotfile.NodeType,
+))
 for name in glob.glob('mako/*.mako'):
 	mgr.addNode(pdmt.plugins.nodes.makofile.NodeType(name))
 

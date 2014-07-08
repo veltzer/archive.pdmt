@@ -2,6 +2,11 @@
 	this gives a very bad error to the user.
 	do an error mechanism and use it to display
 	a nice error messsage to the user.
+- allow to build all nodes of a type from the command line.
+	the idea is to have a prn like "type://objectfile".
+	will this be a real node that all object files will point to?
+	This seems like a clean solution but will have RAM issues.
+	This could be achieved by writing one listener and registering it.
 - move all remaining operations to nodes.
 - in the bash auto-complete if we hit "file[TAB]" then we see completions with ONLY
 	what is after the TAB. Weird. Fix it.

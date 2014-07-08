@@ -7,6 +7,10 @@
 	will this be a real node that all object files will point to?
 	This seems like a clean solution but will have RAM issues.
 	This could be achieved by writing one listener and registering it.
+- operations and parameters.
+	operations (like "print dot graph") should be able to get parameters
+	These parameters could be supplied from the command line.
+	That will make operations much more powerful.
 - move all remaining operations to nodes.
 - in the bash auto-complete if we hit "file[TAB]" then we see completions with ONLY
 	what is after the TAB. Weird. Fix it.

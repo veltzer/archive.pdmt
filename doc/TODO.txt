@@ -1,4 +1,11 @@
+- try pdmt.py blablabla
+	this gives a very bad error to the user.
+	do an error mechanism and use it to display
+	a nice error messsage to the user.
+- unite chandler and mako to one. they basically do the same thing.
 - move all remaining operations to nodes.
+- in the bash auto-complete if we hit "file[TAB]" then we see completions with ONLY
+	what is after the TAB. Weird. Fix it.
 
 - use pdmt in linuxapi and see how it goes.
 - use pdmt in fastlog and see how it goes.

@@ -108,6 +108,13 @@ class Graph(object):
 		for (fr,to) in self.get_edges():
 			print(nodetoid[fr],'->',nodetoid[to],';',sep='')
 		print('}')
+	def listnodes(self):
+		l=[]
+		for node in self.get_nodes():
+			if node.canBuild():
+				l.append(node.get_name())
+		for name in sorted(l):
+			print(name)
 	def bashcomplete(self, prefix):
 		for node in self.get_nodes():
 			if node.canBuild() and node.get_name().startswith(prefix):

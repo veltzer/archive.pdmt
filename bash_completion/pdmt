@@ -1,9 +1,13 @@
 # references:
 # http://fahdshariff.blogspot.co.il/2011/04/writing-your-own-bash-completion.html
+# being able to handle colon in bash completions:
+# http://stackoverflow.com/questions/10528695/how-to-reset-comp-wordbreaks-without-effecting-other-completion-script
 
 pdmt_complete()
 {
-	local cur=${COMP_WORDS[COMP_CWORD]}
+	local cur
+	_get_comp_words_by_ref -n : cur
 	COMPREPLY=( $($HOME/git/branches/pdmt/pdmt.py --bashcomplete "$cur") )
+	__ltrim_colon_completions "$cur"
 }
 complete -F pdmt_complete pdmt.py

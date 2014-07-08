@@ -1,4 +1,5 @@
 import enum
+import pdmt.prl # for create
 
 # the inheritance from 'object' is very important to get the __class__
 # and other stuff we need in order for OO to work properly...
@@ -22,11 +23,11 @@ class NodeType(object):
 		else:
 			self.description=description
 	def get_name(self):
-		return '{proto}/{name}'.format(
+		return pdmt.prl.create(
 			proto=self.proto,
 			name=self.name
 		)
-	def setMgr(self,mgr):
+	def setMgr(self, mgr):
 		self.mgr=mgr
 	def uptodate(self,todo):
 		raise ValueError('must override')

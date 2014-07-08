@@ -1,11 +1,11 @@
-import pdmt.plugins.nodetypes.filenode # for NodeType
+import pdmt.plugins.nodes.file # for NodeType
 import os.path # for isfile
 
 """
 this node represents an source file. Not just C. Any source file
 """
 
-class NodeType(pdmt.plugins.nodetypes.filenode.NodeType):
+class NodeType(pdmt.plugins.nodes.file.NodeType):
 	""" if a source file exists then it is upto date """
 	""" question: why isn't a source file ALWAYS up to date?
 	answer: what if the source file went missing? We want to trigger

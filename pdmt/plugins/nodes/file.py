@@ -16,7 +16,7 @@ class NodeType(pdmt.api.NodeType):
 			if node in todo:
 				rebuild=True
 				break
-			if isinstance(node,pdmt.plugins.node.file.NodeType):
+			if isinstance(node,pdmt.plugins.nodes.file.NodeType):
 				if os.path.getmtime(node.name)>os.path.getmtime(self.name):
 					rebuild=True
 					break

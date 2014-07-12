@@ -1,14 +1,15 @@
-import cmd # for Cmd
+import cmd2 # for Cmd
 import os # for system
 import pdmt.config # for ns_pdmt
 import pdmt.utils.printer # for print_msg
+import sys # for argv
 
 '''
 references:
 http://bioportal.weizmann.ac.il/course/python/PyMOTW/PyMOTW/docs/cmd/index.html
 '''
 
-class Pdmt(cmd.Cmd):
+class Pdmt(cmd2.Cmd):
 	def __init__(self, mgr):
 		super().__init__()
 		self.mgr=mgr
@@ -128,8 +129,10 @@ class Pdmt(cmd.Cmd):
 		os.system(arg)
 
 def go(mgr):
+	sys.argv.remove('--tui')
 	ins=Pdmt(mgr)
 	banner='Welcome to pdmt [{0}]...'.format(
 		pdmt.config.ns_pdmt.p_version,
 	)
-	ins.cmdloop(banner)
+	ins.print(banner)
+	ins.cmdloop()

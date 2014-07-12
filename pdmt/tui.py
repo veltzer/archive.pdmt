@@ -31,14 +31,16 @@ class Pdmt(cmd.Cmd):
 		print('graph has [{0}] edges'.format(
 			self.mgr.graph.get_edge_num(),
 		))
-	def complete_build(self, text, line, begidx, endidx):
+	def complete_nodes(self, text, line, begidx, endidx, canbuild):
 		parts=line.split()
 		if len(parts)==1:
 			last_arg=''
 		else:
 			last_arg=parts[-1]
-		completions=self.mgr.graph.get_completions(last_arg)
+		completions=self.mgr.graph.get_completions(last_arg, canbuild)
 		return [c[len(last_arg)-len(text):] for c in completions]
+	def complete_build(self, text, line, begidx, endidx):
+		return self.complete_nodes(text, line, begidx, endidx, True)
 	def help_build(self):
 		print('build [nodes]: build nodes')
 	def do_build(self, arg):
@@ -63,6 +65,22 @@ class Pdmt(cmd.Cmd):
 				node=self.mgr.graph.get_node_by_name(name)
 				print(node.get_name())
 				for an in self.mgr.graph.get_adjacent_for_node(node):
+					print('\t'+an.get_name())
+	def complete_whatdependson(self, text, line, begidx, endidx):
+		return self.complete_nodes(text, line, begidx, endidx, False)
+	def help_whatdependson(self):
+		print('whatdependson [nodes]: show what nodes depend on nodes (1 level)')
+	def do_whatdependson(self, arg):
+		names=arg.split()
+		errors=self.mgr.verify_node_names(names, False)
+		if errors:
+			for error in errors:
+				print(error)
+		else:
+			for name in names:
+				node=self.mgr.graph.get_node_by_name(name)
+				print(node.get_name())
+				for an in self.mgr.graph.get_rv_for_node(node):
 					print('\t'+an.get_name())
 	def help_exit(self):
 		print('exit pdmt shell')

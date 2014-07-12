@@ -3,6 +3,10 @@ A graph module written in python
 
 This is the core graph module for pdmt.
 Make sure it is efficient.
+
+Properties:
+- this graph is directed
+- it holds edges in two directions (to answer reverse questions quickly)
 '''
 import pdmt.utils.string # for common_prefix
 
@@ -10,6 +14,7 @@ class Graph(object):
 	def __init__(self):
 		self.nodes=set()
 		self.edges=dict()
+		self.edges_rv=dict()
 		self.edges_num=0
 		self.check=True
 		#self.check=False
@@ -37,6 +42,7 @@ class Graph(object):
 		self.check_havent_node(node)
 		self.nodes.add(node)
 		self.edges[node]=set()
+		self.edges_rv[node]=set()
 	def remove_node(self,node):
 		self.check_have_node(node)
 		self.nodes.remove(node)
@@ -47,6 +53,7 @@ class Graph(object):
 		self.check_have_node(to)
 		self.check_havent_edge(fr,to)
 		self.edges[fr].add(to)
+		self.edges_rv[to].add(fr)
 		self.edges_num+=1
 	def remove_edge(self,edge):
 		(fr,to)=edge
@@ -54,9 +61,13 @@ class Graph(object):
 		self.check_have_node(to)
 		self.check_have_edge(fr,to)
 		self.edges[fr].remove(to)
+		self.edges_rv[to].remove(fr)
 		self.edges_num-=1
 	def get_adjacent_for_node(self,node):
 		for node in self.edges[node]:
+			yield node
+	def get_rv_for_node(self,node):
+		for node in self.edges_rv[node]:
 			yield node
 	def get_nodes(self):
 		for node in self.nodes:
@@ -120,14 +131,18 @@ class Graph(object):
 				l.append(node.get_name())
 		for name in sorted(l):
 			print(name)
-	def get_completions(self, prefix):
+	def get_completions(self, prefix, canbuild):
 		completions=[]
 		for node in self.get_nodes():
-			if node.canBuild() and node.get_name().startswith(prefix):
-				completions.append(node.get_name())
+			if canbuild:
+				if node.canBuild() and node.get_name().startswith(prefix):
+					completions.append(node.get_name())
+			else:
+				if node.get_name().startswith(prefix):
+					completions.append(node.get_name())
 		return completions
 	def bashcomplete(self, prefix):
-		completions=self.get_completions(prefix)
+		completions=self.get_completions(prefix, True)
 		for completion in completions:
 			print(completion)
 	def bashcomplete_with_prefix(self, prefix):

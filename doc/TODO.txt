@@ -23,7 +23,6 @@
 		(introduce the idea of deduced nodes).
 		- rescan the file and create h nodes and the like.
 	this is very similar to auto generated files.
-	
 - do "tsemach" like plugins.
 	give a name to such things.
 	document them. 

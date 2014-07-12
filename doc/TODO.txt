@@ -1,13 +1,15 @@
+- do a filesystem interface module.
+	one with caching and one without.
+	hook pdmt to one or the other according to config.
+	It should know about existing/nonexisting files,
+		modification times and in the future
+		perhaps globs and directory entries as well.
 - performance of os.path.getmtime().
 	1) this is always a syscall (prove it!).
 	2) try to cache these at the software level.
 - in the tui do: blabla
 	see the error message.
 	fix this to be nicer.
-- use cmd2 for the tui.
-	It has timing support out of the box.
-	and I need that so that every build will be timed etc.
-	and it also has other features.
 - do "tsemach" like plugins.
 	give a name to such things.
 	document them. 

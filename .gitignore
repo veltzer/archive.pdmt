@@ -13,11 +13,13 @@
 /debian/patches
 /debian/files
 /debian/pdmt.*.debhelper
-.pc
+/.pc
 /pdmt.egg-info
-build-indep
+/build-indep
 
 # docbook stuff
 *.pdf
 *.fo
 *.stamp
+
+/.pdmt.gdbm

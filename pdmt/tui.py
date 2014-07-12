@@ -28,6 +28,13 @@ class Pdmt(cmd.Cmd):
 			return True
 		else:
 			return False
+	def help_shownodes(self):
+		self.print('show all nodes in the current graph')
+	def do_shownodes(self, arg):
+		if self.no_args('stats', arg):
+			return
+		for node in self.mgr.graph.get_nodes():
+			self.raw_print(node.get_name())
 	def help_stats(self):
 		self.print('show stats for the current graph')
 	def do_stats(self, arg):
@@ -39,6 +46,12 @@ class Pdmt(cmd.Cmd):
 		self.print('graph has [{0}] edges'.format(
 			self.mgr.graph.get_edge_num(),
 		))
+	def help_tsall(self):
+		self.print('print all time stamp entries')
+	def do_tsall(self, arg):
+		if self.no_args('stats', arg):
+			return
+		pdmt.plugins.nodes.ts.print_all_entries()
 	def help_build(self):
 		self.print('build the default target')
 	def do_build(self, arg):

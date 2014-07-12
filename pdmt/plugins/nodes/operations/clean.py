@@ -11,12 +11,13 @@ class NodeType(pdmt.plugins.nodes.operation.NodeType):
 		super().__init__(type=type, name='clean', proto=proto)
 		self.description='clean all nodes'
 	def build(self):
-		lst_len=self.mgr.graph.get_node_num()
+		build_list=self.mgr.graph.get_build_node_list_sorted()
+		lst_len=len(build_list)
 		self.mgr.progress('going to clean [{lst_len}] {plural}...'.format(
 			lst_len=lst_len,
 			plural=pdmt.utils.lang.plural('node', lst_len),
 		))
-		for i,node in enumerate(self.mgr.graph.get_nodes()):
+		for i,node in enumerate(build_list):
 			pdmt.utils.printer.print_msg('cleaning ({num}/{len_todo}) [{name}]'.format(
 				num=i+1,
 				len_todo=lst_len,

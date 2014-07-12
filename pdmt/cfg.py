@@ -89,6 +89,7 @@ class ns_makohandler:
 class ns_fileops:
 	p_debug=True
 	p_debug=False
+	p_print=False
 class ns_subproc:
 	p_debug=True
 	p_debug=False

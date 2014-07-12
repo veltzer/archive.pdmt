@@ -1,4 +1,4 @@
-import pdmt.graph # for NamedGraph
+import pdmt.graph # for PdmtGraph
 import pdmt.config
 import pdmt.cmdline
 import pkgutil # for walk_packages
@@ -10,7 +10,7 @@ import pdmt.exceptions # for CommandLineInputException
 
 class Mgr:
 	def __init__(self, loadinternalplugins=True, cache=None):
-		self.graph=pdmt.graph.NamedGraph()
+		self.graph=pdmt.graph.PdmtGraph()
 		self.init_handlers()
 		self.opbyname={}
 		self.defaultNodeList=[]

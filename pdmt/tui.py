@@ -28,13 +28,12 @@ class Pdmt(cmd.Cmd):
 			return True
 		else:
 			return False
-	def help_shownodes(self):
+	def help_listnodes(self):
 		self.print('show all nodes in the current graph')
-	def do_shownodes(self, arg):
+	def do_listnodes(self, arg):
 		if self.no_args('stats', arg):
 			return
-		for node in self.mgr.graph.get_nodes():
-			self.raw_print(node.get_name())
+		self.mgr.graph.listnodes()
 	def help_stats(self):
 		self.print('show stats for the current graph')
 	def do_stats(self, arg):
@@ -52,6 +51,12 @@ class Pdmt(cmd.Cmd):
 		if self.no_args('stats', arg):
 			return
 		pdmt.plugins.nodes.ts.print_all_entries()
+	def help_clean(self):
+		self.print('clean everything')
+	def do_clean(self, arg):
+		if self.no_args('stats', arg):
+			return
+		self.mgr.build_node_names(['op://clean'])
 	def help_build(self):
 		self.print('build the default target')
 	def do_build(self, arg):

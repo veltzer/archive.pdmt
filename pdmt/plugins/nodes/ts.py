@@ -31,7 +31,8 @@ class NodeType(pdmt.api.NodeType):
 		dbm[self.name]=str(time.time())
 	def clean(self):
 		global dbm
-		del dbm[self.name]
+		if self.name in dbm:
+			del dbm[self.name]
 
 
 ''' a method to debug this module '''

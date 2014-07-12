@@ -9,6 +9,7 @@ Properties:
 - it holds edges in two directions (to answer reverse questions quickly)
 '''
 import pdmt.utils.string # for common_prefix
+import pdmt.utils.printer # for print_raw
 
 class Graph(object):
 	def __init__(self):
@@ -106,6 +107,22 @@ class Graph(object):
 			if not w in visited:
 				yield w
 		yield v
+class NamedGraph(Graph):
+	def __init__(self):
+		Graph.__init__(self)
+		self.map={}
+	def add_node(self,node):
+		Graph.add_node(self, node)
+		self.map[node.get_name()]=node
+	def remove_node(self,node):
+		Graph.remove_node(self, node)
+		del self.map[node.get_name()]
+	def has_name(self, name):
+		return name in self.map
+	def get_node_by_name(self, name):
+		return self.map[name]
+		
+class PdmtGraph(NamedGraph):
 	'''
 	dump the graph in dot notation
 
@@ -130,7 +147,7 @@ class Graph(object):
 			if node.canBuild():
 				l.append(node.get_name())
 		for name in sorted(l):
-			print(name)
+			pdmt.utils.printer.print_raw(name)
 	def get_completions(self, prefix, canbuild):
 		completions=[]
 		for node in self.get_nodes():
@@ -160,17 +177,14 @@ class Graph(object):
 		for x in l:
 			print(x)
 
-class NamedGraph(Graph):
-	def __init__(self):
-		Graph.__init__(self)
-		self.map={}
-	def add_node(self,node):
-		Graph.add_node(self, node)
-		self.map[node.get_name()]=node
-	def remove_node(self,node):
-		Graph.remove_node(self, node)
-		del self.map[node.get_name()]
-	def has_name(self, name):
-		return name in self.map
-	def get_node_by_name(self, name):
-		return self.map[name]
+	''' make a list of nodes which are build nodes '''
+	def get_build_node_list(self):
+		retlist=[]
+		for node in self.get_nodes():
+			if node.canBuild():
+				retlist.append(node)
+		return retlist
+	def get_build_node_list_sorted(self):
+		retlist=self.get_build_node_list()
+		retlist.sort(key=lambda x: x.get_name())
+		return retlist

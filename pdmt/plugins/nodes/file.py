@@ -14,4 +14,4 @@ class NodeType(pdmt.api.NodeType):
 		if not os.path.isfile(self.name):
 			return float(0)
 		else:
-			return os.path.getmtime(self.name)
+			return pdmt.utils.fileops.getmtime(self.name)

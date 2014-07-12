@@ -4,12 +4,26 @@
 	It should know about existing/nonexisting files,
 		modification times and in the future
 		perhaps globs and directory entries as well.
-- performance of os.path.getmtime().
-	1) this is always a syscall (prove it!).
-	2) try to cache these at the software level.
 - in the tui do: blabla
 	see the error message.
 	fix this to be nicer.
+- start working on h files.
+	write a node which is dependant on a c node.
+	it scans the C node (in python code with no pre-processor)
+	and writes the results to disk with it's own date.
+	It uses an gdbm for that.
+	Any object file which is created from the C node will be
+	dependant on that node as well.
+	It also creates h file nodes for all of the files that it
+	finds and connects the newly created node to those h files.
+	on update of the C file it:
+		- removes the old edges that it created,
+		- removed any h files nodes that they are connected to
+		if they are deduced files and their ref-count is 0.
+		(introduce the idea of deduced nodes).
+		- rescan the file and create h nodes and the like.
+	this is very similar to auto generated files.
+	
 - do "tsemach" like plugins.
 	give a name to such things.
 	document them. 

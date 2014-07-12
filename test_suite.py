@@ -30,13 +30,13 @@ class TestSequenceFunctions(unittest.TestCase):
 		s.push(4)
 		s.push(5)
 		l=[]
-		for x in s.yield():
+		for x in s.yield_all():
 			l.append(x)
 		self.assertEqual(l, [3,4,5])
 		self.assertEqual(5, s.pop())
 		self.assertEqual(4, s.pop())
 		self.assertEqual(3, s.pop())
-	@unittest.skip("subproc testing disabled for now")
+	@unittest.skip('subproc testing disabled for now')
 	def test_subproc(self):
 		try:
 			# test error in first command

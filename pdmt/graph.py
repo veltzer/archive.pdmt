@@ -16,21 +16,21 @@ class Graph(object):
 	def check_have_node(self,node):
 		if self.check:
 			if not node in self.nodes:
-				raise ValueError("already have node",node)
+				raise ValueError('already have node',node)
 	def check_havent_node(self,node):
 		if self.check:
 			if node in self.nodes:
-				raise ValueError("already have node",node)
+				raise ValueError('already have node',node)
 	''' assumes that fr and to are nodes '''
 	def check_havent_edge(self,fr,to):
 		if self.check:
 			if to in self.edges[fr]:
-				raise ValueError("already have edge",fr,to)
+				raise ValueError('already have edge',fr,to)
 	''' assumes that fr and to are nodes '''
 	def check_have_edge(self,fr,to):
 		if self.check:
 			if not to in self.edges[fr]:
-				raise ValueError("dont have edge",fr,to)
+				raise ValueError('dont have edge',fr,to)
 	''' assumes that fr and to are nodes '''
 	def add_node(self,node):
 		self.check_havent_node(node)

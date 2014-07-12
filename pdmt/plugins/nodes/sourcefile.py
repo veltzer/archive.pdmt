@@ -10,8 +10,8 @@ class NodeType(pdmt.plugins.nodes.file.NodeType):
 	''' question: why isn't a source file ALWAYS up to date?
 	answer: what if the source file went missing? We want to trigger
 	an error. Well - is it this methods part to check that the file
-	exists ?!? I don't think so. This methods name is called "uptodate"
-	and not "verify" or something... '''
+	exists ?!? I don't think so. This methods name is called *uptodate*
+	and not *verify* or something... '''
 	def uptodate(self,todo):
 		return True
 #		return os.path.isfile(self.name)

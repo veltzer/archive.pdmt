@@ -32,9 +32,11 @@ class Pdmt(cmd.Cmd):
 			self.mgr.graph.get_edge_num(),
 		))
 	def complete_build(self, text, line, begidx, endidx):
-		last_arg=line.split()[-1]
-		if last_arg=='build':
+		parts=line.split()
+		if len(parts)==1:
 			last_arg=''
+		else:
+			last_arg=parts[-1]
 		completions=self.mgr.graph.get_completions(last_arg)
 		return [c[len(last_arg)-len(text):] for c in completions]
 	def help_build(self):
@@ -47,6 +49,21 @@ class Pdmt(cmd.Cmd):
 				print(error)
 		else:
 			self.mgr.build_node_names(names)
+	complete_depends=complete_build
+	def help_depends(self):
+		print('depends [nodes]: show what do nodes depend on (1 level)')
+	def do_depends(self, arg):
+		names=arg.split()
+		errors=self.mgr.verify_node_names(names, False)
+		if errors:
+			for error in errors:
+				print(error)
+		else:
+			for name in names:
+				node=self.mgr.graph.get_node_by_name(name)
+				print(node.get_name())
+				for an in self.mgr.graph.get_adjacent_for_node(node):
+					print('\t'+an.get_name())
 	def help_exit(self):
 		print('exit pdmt shell')
 	def do_exit(self, arg):

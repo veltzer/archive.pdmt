@@ -1,3 +1,13 @@
+- think about phony targets.
+	Should they not store their timestamps in some db?
+	If they do then I will not see them get built.
+	I think this approach will be better than the current
+	one.
+	Allow both.
+	Create timestamp (ts://all) which will be like
+	phony but will store it's last modified time
+	in a persistant hash table.
+	use that instead of the phony targets.
 - do "tsemach" like plugins.
 	they have two parts to their running.
 	one part can create new nodes in the graph and connect them.
@@ -9,16 +19,6 @@
 		we want to link all of the outputs into a library.
 	remember that when we run the "create nodes" part of the plugin
 	we must remove all previous nodes.
-- think about phony targets.
-	Should they not store their timestamps in some db?
-	If they do then I will not see them get built.
-	I think this approach will be better than the current
-	one.
-	Allow both.
-	Create timestamp (ts://all) which will be like
-	phony but will store it's last modified time
-	in a persistant hash table.
-	use that instead of the phony targets.
 - start building porcelain over the API to make it easier for users to use.
 	I should get to a situation where the pdmt.py file is REALLY
 	REALLY easy to understand.

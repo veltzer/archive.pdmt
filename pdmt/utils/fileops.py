@@ -4,9 +4,11 @@ If this will be the case then it will be very easy to debug all file operations.
 '''
 import pdmt.config
 
-import shutil
-import os
-import gzip
+import shutil # for rmtree, copy
+import os # for unlink, mkdir, chmod
+import os.path # for isdir, dirname, split
+import gzip # for open
+import pdmt.utils.printer # for print_msg
 
 def debug(msg):
 	if pdmt.config.ns_fileops.p_debug:
@@ -22,16 +24,16 @@ def copy(p_file,p_dir):
 	debug('copy ['+p_file+','+p_dir+']')
 	shutil.copy(p_file,p_dir)
 def unlink(p_file):
-	print('unlinking [{name}]'.format(name=p_file))
+	pdmt.utils.printer.print_msg('unlinking [{name}]'.format(name=p_file))
 	debug('unlink ['+p_file+']')
 	os.unlink(p_file)
 def unlinksoft(p_file):
-	print('unlinksoft [{name}]'.format(name=p_file))
 	debug('unlinksoft ['+p_file+']')
-	try:
+	if os.path.isfile(p_file):
+		pdmt.utils.printer.print_msg('unlinksoft [{name}] (really)'.format(name=p_file))
 		os.unlink(p_file)
-	except:
-		pass
+	else:
+		pdmt.utils.printer.print_msg('unlinksoft [{name}] (notthere)'.format(name=p_file))
 def mkdir(p_dir):
 	debug('mkdir ['+p_dir+']')
 	os.mkdir(p_dir)

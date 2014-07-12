@@ -29,14 +29,25 @@ class NodeType(object):
 		)
 	def setMgr(self, mgr):
 		self.mgr=mgr
-	def uptodate(self,todo):
-		raise ValueError('must override')
+	def needbuild(self,todo):
+		# lets compare dates
+		rebuild=False
+		for node in self.getDeps():
+			if node in todo:
+				rebuild=True
+				break
+			if node.get_lmt()>self.get_lmt():
+				rebuild=True
+				break
+		return rebuild
 	def canBuild(self):
 		raise ValueError('must override')
 	def build(self):
 		raise ValueError('must override')
 	def clean(self):
 		raise ValueError('must override')
+	def get_lmt(self):
+		return float(0)
 	def getDeps(self):
 		return self.mgr.deps(self)
 	def getDepsYield(self):
@@ -74,6 +85,7 @@ class EventHandler(object):
 '''
 This is the cache handler
 '''
+
 class Cache(object):
 	def has_checksum(self, checksum):
 		raise ValueError('must override')
@@ -82,6 +94,10 @@ class Cache(object):
 	def put_filename(self, checksum, filename):
 		raise ValueError('must override')
 
+'''
+These are events which a user of the core can register
+to
+'''
 class Event(enum.Enum):
 	nodepreadd=1
 	nodepostadd=2

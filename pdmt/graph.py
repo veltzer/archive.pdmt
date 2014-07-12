@@ -10,6 +10,7 @@ Properties:
 '''
 import pdmt.utils.string # for common_prefix
 import pdmt.utils.printer # for print_raw
+import sys # for getsizeof
 
 class Graph(object):
 	def __init__(self):
@@ -19,6 +20,19 @@ class Graph(object):
 		self.edges_num=0
 		self.check=True
 		#self.check=False
+	''' memory size function '''
+	def getsizeof(self):
+		count=0
+		count+=sys.getsizeof(self.nodes)
+		for curr in self.nodes:
+			count+=sys.getsizeof(curr)
+		count+=sys.getsizeof(self.edges)
+		for curr in self.edges:
+			count+=sys.getsizeof(curr)
+		count+=sys.getsizeof(self.edges_rv)
+		for curr in self.edges_rv:
+			count+=sys.getsizeof(curr)
+		return count
 	''' checking methods '''
 	def check_have_node(self,node):
 		if self.check:

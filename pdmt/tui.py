@@ -32,7 +32,7 @@ class Pdmt(cmd2.Cmd):
 	def help_listnodes(self):
 		self.print('show all nodes in the current graph')
 	def do_listnodes(self, arg):
-		if self.no_args('stats', arg):
+		if self.no_args('listnodes', arg):
 			return
 		self.mgr.graph.listnodes()
 	def help_stats(self):
@@ -49,19 +49,25 @@ class Pdmt(cmd2.Cmd):
 	def help_tsall(self):
 		self.print('print all time stamp entries')
 	def do_tsall(self, arg):
-		if self.no_args('stats', arg):
+		if self.no_args('tsall', arg):
 			return
 		pdmt.plugins.nodes.ts.print_all_entries()
+	def help_getsizeof(self):
+		self.print('print the size that the graph takes in bytes')
+	def do_getsizeof(self, arg):
+		if self.no_args('getsizeof', arg):
+			return
+		self.print('getsizeof is [{0}]'.format(self.mgr.graph.getsizeof()))
 	def help_clean(self):
 		self.print('clean everything')
 	def do_clean(self, arg):
-		if self.no_args('stats', arg):
+		if self.no_args('clean', arg):
 			return
 		self.mgr.build_node_names(['op://clean'])
 	def help_build(self):
 		self.print('build the default target')
 	def do_build(self, arg):
-		if self.no_args('stats', arg):
+		if self.no_args('build', arg):
 			return
 		self.mgr.build()
 	def complete_nodes(self, text, line, begidx, endidx, canbuild):

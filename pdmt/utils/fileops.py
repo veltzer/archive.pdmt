@@ -6,7 +6,7 @@ If this will be the case then it will be very easy to debug all file operations.
 import pdmt.config # for ns_fileops
 import shutil # for rmtree, copy
 import os # for unlink, mkdir, chmod
-import os.path # for isdir, dirname, split
+import os.path # for isdir, dirname, split, getmtime
 import gzip # for open
 import pdmt.utils.printer # for print_msg
 
@@ -56,9 +56,11 @@ def unlinksoft(filename):
 		else:
 			print_msg('unlinksoft [{name}] (notthere)'.format(name=filename))
 def checkexist_and_updatecache(filename):
+	global files, mtimes
 	if not os.path.isfile(filename):
 		raise ValueError('do not have file after build', filename)
 	files[filename]=True
+	mtimes[filename]=os.path.getmtime(filename)
 def mkdir(p_dir):
 	debug('mkdir ['+p_dir+']')
 	os.mkdir(p_dir)
@@ -91,3 +93,11 @@ def create_empty_filegz(p_file):
 	mkdirparent(os.path.split(p_file)[0])
 	f=gzip.open(p_file,'w')
 	f.close()
+mtimes=dict()
+def getmtime(filename):
+	if filename in mtimes:
+		return mtimes[filename]
+	else:
+		ret=os.path.getmtime(filename)
+		mtimes[filename]=ret
+		return ret

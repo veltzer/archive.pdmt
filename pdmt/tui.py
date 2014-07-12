@@ -1,6 +1,7 @@
 import cmd # for Cmd
 import os # for system
 import pdmt.config # for ns_pdmt
+import pdmt.utils.printer # for print_msg
 
 '''
 references:
@@ -12,23 +13,30 @@ class Pdmt(cmd.Cmd):
 		super().__init__()
 		self.mgr=mgr
 		self.prompt='pdmt> '
+	''' all prints should go through this method '''
+	def print(self, msg):
+		pdmt.utils.printer.print_msg(msg)
+	''' special print function for special situations when you don't
+	want anything special added '''
+	def raw_print(self, msg):
+		print(msg)
 	def postcmd(self, stop, line):
 		return stop
 	def no_args(self, cmd, arg):
 		if arg!='':
-			print('command [{0}] does not take any arguments'.format(cmd))
+			self.print('command [{0}] does not take any arguments'.format(cmd))
 			return True
 		else:
 			return False
 	def help_stats(self):
-		print('show stats for the current graph')
+		self.print('show stats for the current graph')
 	def do_stats(self, arg):
 		if self.no_args('stats', arg):
 			return
-		print('graph has [{0}] nodes'.format(
+		self.print('graph has [{0}] nodes'.format(
 			self.mgr.graph.get_node_num(),
 		))
-		print('graph has [{0}] edges'.format(
+		self.print('graph has [{0}] edges'.format(
 			self.mgr.graph.get_edge_num(),
 		))
 	def complete_nodes(self, text, line, begidx, endidx, canbuild):
@@ -42,56 +50,56 @@ class Pdmt(cmd.Cmd):
 	def complete_build(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, True)
 	def help_build(self):
-		print('build [nodes]: build nodes')
+		self.print('build [nodes]: build nodes')
 	def do_build(self, arg):
 		names=arg.split()
 		errors=self.mgr.verify_node_names(names, False)
 		if errors:
 			for error in errors:
-				print(error)
+				self.print(error)
 		else:
 			self.mgr.build_node_names(names)
 	complete_depends=complete_build
 	def help_depends(self):
-		print('depends [nodes]: show what do nodes depend on (1 level)')
+		self.print('depends [nodes]: show what do nodes depend on (1 level)')
 	def do_depends(self, arg):
 		names=arg.split()
 		errors=self.mgr.verify_node_names(names, False)
 		if errors:
 			for error in errors:
-				print(error)
+				self.print(error)
 		else:
 			for name in names:
 				node=self.mgr.graph.get_node_by_name(name)
-				print(node.get_name())
+				self.raw_print(node.get_name())
 				for an in self.mgr.graph.get_adjacent_for_node(node):
-					print('\t'+an.get_name())
+					self.raw_print('\t'+an.get_name())
 	def complete_whatdependson(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False)
 	def help_whatdependson(self):
-		print('whatdependson [nodes]: show what nodes depend on nodes (1 level)')
+		self.print('whatdependson [nodes]: show what nodes depend on nodes (1 level)')
 	def do_whatdependson(self, arg):
 		names=arg.split()
 		errors=self.mgr.verify_node_names(names, False)
 		if errors:
 			for error in errors:
-				print(error)
+				self.print(error)
 		else:
 			for name in names:
 				node=self.mgr.graph.get_node_by_name(name)
-				print(node.get_name())
+				self.raw_print(node.get_name())
 				for an in self.mgr.graph.get_rv_for_node(node):
-					print('\t'+an.get_name())
+					self.raw_print('\t'+an.get_name())
 	def help_exit(self):
-		print('exit pdmt shell')
+		self.print('exit pdmt shell')
 	def do_exit(self, arg):
 		return True
 	help_EOF=help_exit
 	def do_EOF(self, arg):
-		print()
+		self.raw_print('')
 		return True
 	def help_shell(self):
-		print('run a shell command')
+		self.print('run a shell command')
 	def do_shell(self, arg):
 		os.system(arg)
 

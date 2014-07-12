@@ -93,7 +93,7 @@ class Mgr:
 		todo=[]
 		for node in self.graph.dfs(node_list=node_list):
 			self.debug('examining ['+str(node)+']')
-			if not node.uptodate(todo):
+			if node.needbuild(todo):
 				todo.append(node)
 		return todo
 	def buildNode(self,node):

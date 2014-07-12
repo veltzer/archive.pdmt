@@ -9,8 +9,8 @@ class NodeType(pdmt.api.NodeType):
 	def __init__(self, type=None, name=None, proto=None):
 		super().__init__(type=type, name=name, proto=proto)
 		self.proto='op'
-	def uptodate(self,todo):
-		return False
+	def needbuild(self,todo):
+		return True
 	def canBuild(self):
 		return True
 	def clean(self):

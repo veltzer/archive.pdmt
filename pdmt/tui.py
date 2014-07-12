@@ -39,6 +39,12 @@ class Pdmt(cmd.Cmd):
 		self.print('graph has [{0}] edges'.format(
 			self.mgr.graph.get_edge_num(),
 		))
+	def help_build(self):
+		self.print('build the default target')
+	def do_build(self, arg):
+		if self.no_args('stats', arg):
+			return
+		self.mgr.build()
 	def complete_nodes(self, text, line, begidx, endidx, canbuild):
 		parts=line.split()
 		if len(parts)==1:
@@ -47,11 +53,11 @@ class Pdmt(cmd.Cmd):
 			last_arg=parts[-1]
 		completions=self.mgr.graph.get_completions(last_arg, canbuild)
 		return [c[len(last_arg)-len(text):] for c in completions]
-	def complete_build(self, text, line, begidx, endidx):
+	def complete_buildnodes(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, True)
-	def help_build(self):
-		self.print('build [nodes]: build nodes')
-	def do_build(self, arg):
+	def help_buildnodes(self):
+		self.print('buildnodes [nodes]: build nodes by specific names')
+	def do_buildnodes(self, arg):
 		names=arg.split()
 		errors=self.mgr.verify_node_names(names, False)
 		if errors:
@@ -59,7 +65,7 @@ class Pdmt(cmd.Cmd):
 				self.print(error)
 		else:
 			self.mgr.build_node_names(names)
-	complete_depends=complete_build
+	complete_depends=complete_buildnodes
 	def help_depends(self):
 		self.print('depends [nodes]: show what do nodes depend on (1 level)')
 	def do_depends(self, arg):

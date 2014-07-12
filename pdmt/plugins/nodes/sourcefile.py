@@ -10,14 +10,15 @@ class NodeType(pdmt.plugins.nodes.file.NodeType):
 	''' question: why isn't a source file ALWAYS up to date?
 	answer: what if the source file went missing? We want to trigger
 	an error. Well - is it this methods part to check that the file
-	exists ?!? I don't think so. This methods name is called *uptodate*
+	exists ?!? I don't think so. This methods name is called *needbuild*
 	and not *verify* or something... '''
-	def uptodate(self,todo):
-		return True
-#		return os.path.isfile(self.name)
+	def needbuild(self,todo):
+		return False
+#		return not os.path.isfile(self.name)
 	def canBuild(self):
 		return False
 	def clean(self):
 		pass
+	''' maybe we can checkout the source files...:) ?!? '''
 	def build(self):
 		raise ValueError('dont know how to build a source file')

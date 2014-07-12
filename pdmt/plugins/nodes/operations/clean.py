@@ -1,5 +1,6 @@
 import pdmt.plugins.nodes.operation # for NodeType
 import pdmt.utils.lang # for plural
+import pdmt.utils.printer # for print_msg
 
 '''
 A generic clean node for Pdmt
@@ -15,5 +16,10 @@ class NodeType(pdmt.plugins.nodes.operation.NodeType):
 			lst_len=lst_len,
 			plural=pdmt.utils.lang.plural('node', lst_len),
 		))
-		for node in self.mgr.graph.get_nodes():
+		for i,node in enumerate(self.mgr.graph.get_nodes()):
+			pdmt.utils.printer.print_msg('cleaning ({num}/{len_todo}) [{name}]'.format(
+				num=i+1,
+				len_todo=lst_len,
+				name=node.get_name(),
+			))
 			node.clean()

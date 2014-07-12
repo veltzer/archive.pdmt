@@ -1,4 +1,6 @@
 import cmd # for Cmd
+import os # for system
+import pdmt.config # for ns_pdmt
 
 class Pdmt(cmd.Cmd):
 	def __init__(self, mgr):
@@ -16,9 +18,12 @@ class Pdmt(cmd.Cmd):
 	def do_EOF(self, arg):
 		print()
 		return True
+	def do_shell(self, arg):
+		os.system(arg)
 
 def go(mgr):
 	ins=Pdmt(mgr)
-	banner='welcome to pdmt...'
-	#print(dir(ins))
+	banner='Welcome to pdmt [{0}]...'.format(
+		pdmt.config.ns_pdmt.p_version,
+	)
 	ins.cmdloop(banner)

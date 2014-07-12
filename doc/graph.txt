@@ -1,1 +1,5 @@
 In order to build pdmt we will need a python graph object.
+
+I had issues with pygraph and so I built my own graph object.
+We should recosider this descision since python3 now carries
+pygraph.

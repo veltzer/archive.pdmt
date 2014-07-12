@@ -1,29 +1,16 @@
 Operations in PDMT
 ==================
-Operations are pieces of code that depend on certain pdmt nodes.
+Operations are nodes that depend on certain pdmt nodes.
 
 How do you write an operation?
 ==============================
-1) you write the code for it (python class).
+1) you write the code for it (python class of node type).
 2) you attach it to pdmt telling pdmt on which nodes it depends on.
 - you can now run your operation from the command line.
 When you run an operation pdmt will first make sure that the nodes in question are
-up to date and then will run the operation. When the nodes
+up to date and then will run the operation.
 
 So what is the difference between an operation and a node?
 ==========================================================
-- an operation does not produce a new node.
 - pdmt does not remmember nor check the time stamp associated with the operation.
 - this means that you are alone responsible for running the operation.
-
-Is it better to write an operation or a node?
-=============================================
-- node is better since:
-	1) it is more fine grained.
-	2) other nodes can depend on it.
-	3) it gets run automatically.
-
-So why are there operations?
-============================
-- for lazy people who don't want to write new nodes.
-- for stuff which is not in your regular build path (packaging, testing etc). Even this could be done, and better be done, as nodes.

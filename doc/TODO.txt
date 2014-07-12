@@ -1,7 +1,16 @@
+- performance of os.path.getmtime().
+	1) this is always a syscall (prove it!).
+	2) try to cache these at the software level.
 - in the tui do: blabla
 	see the error message.
 	fix this to be nicer.
+- use cmd2 for the tui.
+	It has timing support out of the box.
+	and I need that so that every build will be timed etc.
+	and it also has other features.
 - do "tsemach" like plugins.
+	give a name to such things.
+	document them. 
 	they have two parts to their running.
 	one part can create new nodes in the graph and connect them.
 	the other knows how to build those nodes.
@@ -15,15 +24,6 @@
 - start building porcelain over the API to make it easier for users to use.
 	I should get to a situation where the pdmt.py file is REALLY
 	REALLY easy to understand.
-- do pdmt.py operations://clean and see the output.
-	It does not go through the standard printer class.
-	It is not obvious that the messages are coming from pdmt.
-	show if files are really removed or not (that's good output).
-- look at unlinksoft. It's performance is horrible since
-	it may be called a lot when the file is not there
-	(pdmt.py operations://clean followed by pdmt.py operations://clean).
-	It needs to check if the file is there and only then do the unlink.
-	Time it and have a module with timings.
 - allow to build all nodes of a type from the command line.
 	the idea is to have a prn like "type://objectfile".
 	will this be a real node that all object files will point to?

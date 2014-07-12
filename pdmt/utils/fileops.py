@@ -30,13 +30,31 @@ def unlink(p_file):
 	print_msg('unlinking [{name}]'.format(name=p_file))
 	debug('unlink ['+p_file+']')
 	os.unlink(p_file)
-def unlinksoft(p_file):
+def unlinksoft_straight(p_file):
 	debug('unlinksoft ['+p_file+']')
 	if os.path.isfile(p_file):
 		print_msg('unlinksoft [{name}] (really)'.format(name=p_file))
 		os.unlink(p_file)
 	else:
 		print_msg('unlinksoft [{name}] (notthere)'.format(name=p_file))
+files=dict()
+def unlinksoft(filename):
+	global files
+	if filename not in files:
+		if os.path.isfile(filename):
+			print_msg('unlinksoft [{name}] (really)'.format(name=filename))
+			os.unlink(filename)
+			files[filename]=False
+		else:
+			print_msg('unlinksoft [{name}] (notthere)'.format(name=filename))
+			files[filename]=False
+	else:
+		if files[filename]==True:
+			print_msg('unlinksoft [{name}] (really)'.format(name=filename))
+			os.unlink(filename)
+			files[filename]=False
+		else:
+			print_msg('unlinksoft [{name}] (notthere)'.format(name=filename))
 def mkdir(p_dir):
 	debug('mkdir ['+p_dir+']')
 	os.mkdir(p_dir)

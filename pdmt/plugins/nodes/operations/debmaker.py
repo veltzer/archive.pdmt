@@ -1,10 +1,10 @@
 import pdmt.config
 import pdmt.utils.subproc
-import pdmt.utils.osw
+import os # for chdir, getcwd
 
-"""
+'''
 This operation knows how to make a debian package.
-"""
+'''
 
 class Operation(object):
 	def __init__(self):
@@ -21,9 +21,9 @@ class Operation(object):
 		name=pdmt.config.ns_product.p_name+'-'+pdmt.config.ns_product.p_version
 		pdmt.utils.subproc.check_output(['py2dsc','dist/'+name+'.tar.gz'])
 		# save the current directory
-		cdir=pdmt.utils.osw.getcwd()
+		cdir=os.getcwd()
 		# change to 'deb_dist' and run 'debuild'
-		pdmt.utils.osw.chdir('deb_dist/'+name)
+		os.chdir('deb_dist/'+name)
 		pdmt.utils.subproc.check_call('debuild')
 		# return to the current directory
-		pdmt.utils.osw.chdir(cdir)
+		os.chdir(cdir)

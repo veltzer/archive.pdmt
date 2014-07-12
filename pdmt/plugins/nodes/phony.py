@@ -1,10 +1,10 @@
 import pdmt.api # for NodeType
 
-"""
+'''
 This node represents a node which is not on disk or in any persistent storage.
 It is usually used to connect other nodes.
 like .PHONY in gnake...:)
-"""
+'''
 
 class NodeType(pdmt.api.NodeType):
 	def __init__(self, type=None, name=None, proto=None):

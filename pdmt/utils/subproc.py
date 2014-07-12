@@ -1,12 +1,12 @@
-"""
+'''
 This module helps in running two commands with a pipe between them.
 
 	Mark Veltzer <mark@veltzer.net>
-"""
+'''
 
-"""
+'''
 This function receives two lists to serve as the new processes
-"""
+'''
 import subprocess
 import sys
 

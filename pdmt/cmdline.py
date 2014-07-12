@@ -1,14 +1,11 @@
 import argparse # for ArgumentParser
-import sys # for exit, argv
+import pdmt.exceptions # for CommandLineInputException
 
-"""
+'''
 argparse seems to be the right argument parser for python
 see documentation in http://docs.python.org/library/argparse.html
-"""
+'''
 
-##############
-# parameters #
-##############
 def parse(mgr):
 	parser=argparse.ArgumentParser(description='Project Dependency Management Tool')
 	parser.add_argument(
@@ -33,6 +30,10 @@ def parse(mgr):
 		parser.error('only one option at a time')
 	if mysum==0:
 		if options.nodes:
+			try:
+				mgr.verify_node_names(options.nodes)
+			except pdmt.exceptions.CommandLineInputException as e:
+				e.print_and_exit()
 			mgr.build_node_names(options.nodes)
 		else:
 			mgr.build()

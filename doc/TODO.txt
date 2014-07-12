@@ -1,7 +1,3 @@
-- try pdmt.py blablabla
-	this gives a very bad error to the user.
-	do an error mechanism and use it to display
-	a nice error messsage to the user.
 - allow to build all nodes of a type from the command line.
 	the idea is to have a prn like "type://objectfile".
 	will this be a real node that all object files will point to?

@@ -2,11 +2,12 @@ import pdmt.api
 import pdmt.utils.subproc
 import pdmt.config
 
-"""
+'''
 This module handles publishing and unpublishing a deb package from an apt repository
 
 	Mark Veltzer <mark@veltzer.net>
-"""
+'''
+
 class Operation(object):
 	def __init__(self):
 		super().__init__(

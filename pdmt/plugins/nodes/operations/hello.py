@@ -1,6 +1,6 @@
-"""
+'''
 A simple hello world operation (prints hello world on the screen)
-"""
+'''
 
 class Operation(object):
 	def __init__(self):

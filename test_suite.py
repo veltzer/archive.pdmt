@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
-"""
+'''
 Test suite for pdmt.
 
 Documentation for unittest for python3 is here:
 https://docs.python.org/3/library/unittest.html
-"""
+'''
 
 import unittest # for TestCase
 import pdmt.graph # for Graph

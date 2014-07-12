@@ -1,4 +1,5 @@
 This package is python3 only.
 
 We had issues with pygraph which we used in older version and which
-was not available for python3. These issues are over.
+was not available for python3. These issues are over since we are using
+our own graph implementation.

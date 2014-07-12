@@ -1,7 +1,7 @@
 What type of graph should we use?
 =================================
 - seems like a directed graph is the right choice (direction matters in dependency).
-- there is also a "hypergraph" where one edge can connect many. python-pygraph supports
+- there is also a "hypergraph" where one edge can connect many. python3-pygraph supports
 it. Maybe we should use that ?!?
 
 Event handlers:
@@ -189,6 +189,9 @@ There could be many implementations of a cache:
 nullCache - doesnt store or retrieve anything
 filecache - stores files like git by sha1
 dbcache - ???
+network server cache - where you can cache results for an entire
+	company.
+	webdav?
 
 The API of a cache:
 put_file(checksum, filename)

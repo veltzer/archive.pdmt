@@ -1,0 +1,7 @@
+This is a guide about how to use bash completion for pdmt
+=========================================================
+- copy bash_completion/pdmt from the pdmt distribution to ~/.bash_completion.d
+- to your ~/.bashrc add the following line (if its not there already):
+	source ~/.bash_completion.d/*
+- now run a new shell and try:
+	pdmt.py [TAB]

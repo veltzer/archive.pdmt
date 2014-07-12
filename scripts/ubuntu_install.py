@@ -29,6 +29,14 @@ packs=[
 	'xmlstarlet',
 	'python3-cmd2',
 	'python-cmd2',
+
+	# inotify
+	'python-pyinotify',
+	'python3-pyinotify',
+	'python-pyinotify-doc',
+
+	# graph
+	'python3-pygraph',
 ]
 
 args=['sudo','apt-get','install']

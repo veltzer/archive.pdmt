@@ -3,13 +3,13 @@ import pdmt.utils.fileops
 import pdmt.utils.subproc
 import os
 
-"""
+'''
 In order for this plugin to work you have to make your web folder 
 be writable by the user running pdmt.
 You can do this with:
 $ chmod g+w -R /var/www
 $ chgrp $USER -R /var/www
-"""
+'''
 
 class Operation(object):
 	def __init__(self):

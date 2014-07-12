@@ -1,6 +1,7 @@
-"""
+'''
 This package handles file name manipulations
-"""
+'''
+
 import os.path # for join, basename
 
 ''' remove the suffix from the original file and replace it with the new suffix. return the result '''

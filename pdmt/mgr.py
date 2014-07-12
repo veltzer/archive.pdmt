@@ -6,6 +6,7 @@ import importlib # for import_module
 import inspect # for isclass
 import pdmt.utils.lang # for plural
 import pdmt.api # for Event.prebuild, Event.postbuild
+import pdmt.exceptions # for CommandLineInputException
 
 class Mgr:
 	def __init__(self, loadinternalplugins=True, cache=None):
@@ -23,13 +24,13 @@ class Mgr:
 	def setDefaultNodeList(self, nodelist):
 		self.defaultNodeList=nodelist
 
-	""" cache methods """
+	''' cache methods '''
 	def get_cache(self):
 		return self.cache
 	def set_cache(self, cache):
 		self.cache=cache
 
-	""" listener functions start here """
+	''' listener functions start here '''
 	def init_handlers(self):
 		self.handlers=set()
 	def notify(self,data,eventtype):
@@ -40,14 +41,14 @@ class Mgr:
 	def delHandler(self,handler):
 		self.handlers.remove(handler)
 
-	""" getting all dependencies for a node """
+	''' getting all dependencies for a node '''
 	def deps(self,node):
 		return [node for node in self.graph.get_adjacent_for_node(node)]
 	def depsYield(self,node):
 		for n in self.graph.get_adjacent_for_node(node):
 			yield n
 
-	""" modification functions """
+	''' modification functions '''
 	def addNode(self,node):
 		self.notify(node, pdmt.api.Event.nodepreadd)
 		self.graph.add_node(node)
@@ -67,7 +68,7 @@ class Mgr:
 		self.graph.remove_edge(edge)
 		self.notify(edge, pdmt.api.Event.edgepostdel)
 
-	""" debugging methods """
+	''' debugging methods '''
 
 	def msg(self,message):
 		print('pdmt:',message)
@@ -78,16 +79,16 @@ class Mgr:
 		if pdmt.config.ns_mgr.p_dbg:
 			self.msg(message)
 
-	""" building methods start here """
+	''' building methods start here '''
 
-	"""
+	'''
 	this is a method that builds a list of all the nodes that need to be build.
 	It builds a real list. Maybe turn it into a generator ?
 	The fact that it builds a list is bad since a list is ok for serial building
 	but not for parallel.
 	references:
 	http://en.wikipedia.org/wiki/Topological_sorting
-	"""
+	'''
 	def build_todolist(self, node_list):
 		todo=[]
 		for node in self.graph.dfs(node_list=node_list):
@@ -105,14 +106,15 @@ class Mgr:
 			plural=pdmt.utils.lang.plural('node', len(node_list)),
 		))
 		todo=self.build_todolist()
-	def build_node_names(self, names):
-		node_list=[]
+	def verify_node_names(self, names):
+		errors=[]
 		for name in names:
-			if self.graph.has_name(name):
-				node_list.append(self.graph.get_node_by_name(name))
-			else:
-				raise ValueError('do not have node of name', name)
-		self.build(node_list)
+			if not self.graph.has_name(name):
+				errors.append('do not have node of name [{0}]'.format(name))
+		if errors:
+			raise pdmt.exceptions.CommandLineInputException(errors)
+	def build_node_names(self, names):
+		self.build((self.graph.get_node_by_name(name) for name in names))
 	def build(self, node_list=None):
 		self.progress('going to scan [{len}] {plural}...'.format(
 			len=self.graph.get_node_num(),
@@ -134,7 +136,7 @@ class Mgr:
 			))
 			self.buildNode(node)
 
-	""" helper functions to load all plugins """
+	''' helper functions to load all plugins '''
 	def loadPlugins(self, folder, namespace):
 		for importer, modname, ispkg in pkgutil.walk_packages(
 				path=[folder],
@@ -146,6 +148,6 @@ class Mgr:
 	def loadInternalPlugins(self):
 		self.loadPlugins('pdmt/plugins/', 'pdmt.plugins.')
 
-	""" command line parsing """
+	''' command line parsing '''
 	def parseCmdline(self):
 		pdmt.cmdline.parse(self)

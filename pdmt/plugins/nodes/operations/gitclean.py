@@ -2,9 +2,9 @@ import pdmt.plugins.nodes.operation # for NodeType
 import pdmt.utils.lang # for plural
 import pdmt.utils.subproc # for check_call
 
-"""
+'''
 A git cleaninng op
-"""
+'''
 
 class NodeType(pdmt.plugins.nodes.operation.NodeType):
 	def __init__(self, type=None, name=None, proto=None):

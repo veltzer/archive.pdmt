@@ -1,6 +1,6 @@
-"""
+'''
 Show the config of Pdmt
-"""
+'''
 
 class Operation(object):
 	def __init__(self):

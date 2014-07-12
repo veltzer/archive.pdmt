@@ -1,9 +1,9 @@
-"""
+'''
 A graph module written in python
 
 This is the core graph module for pdmt.
 Make sure it is efficient.
-"""
+'''
 import pdmt.utils.string # for common_prefix
 
 class Graph(object):
@@ -12,7 +12,7 @@ class Graph(object):
 		self.edges=dict()
 		self.check=True
 		#self.check=False
-	""" checking methods """
+	''' checking methods '''
 	def check_have_node(self,node):
 		if self.check:
 			if not node in self.nodes:
@@ -21,17 +21,17 @@ class Graph(object):
 		if self.check:
 			if node in self.nodes:
 				raise ValueError("already have node",node)
-	""" assumes that fr and to are nodes """
+	''' assumes that fr and to are nodes '''
 	def check_havent_edge(self,fr,to):
 		if self.check:
 			if to in self.edges[fr]:
 				raise ValueError("already have edge",fr,to)
-	""" assumes that fr and to are nodes """
+	''' assumes that fr and to are nodes '''
 	def check_have_edge(self,fr,to):
 		if self.check:
 			if not to in self.edges[fr]:
 				raise ValueError("dont have edge",fr,to)
-	""" assumes that fr and to are nodes """
+	''' assumes that fr and to are nodes '''
 	def add_node(self,node):
 		self.check_havent_node(node)
 		self.nodes.add(node)
@@ -64,14 +64,14 @@ class Graph(object):
 				yield (fr,to)
 	def get_node_num(self):
 		return len(self.nodes)
-	""" dependency for many nodes (not sure this works) """
+	''' dependency for many nodes (not sure this works) '''
 	def dependsOn(self,nodes):
 		ret=[]
 		for node in nodes:
 			for n in self[node]:
 				ret.append(n)
 		return ret
-	""" depth first search algorithm """
+	''' depth first search algorithm '''
 	def dfs(self, node_list=None):
 		visited=set()
 		if node_list is None:
@@ -90,12 +90,12 @@ class Graph(object):
 			if not w in visited:
 				yield w
 		yield v
-	"""
+	'''
 	dump the graph in dot notation
 
 	References:
 	http://en.wikipedia.org/wiki/DOT_%28graph_description_language%29
-	"""
+	'''
 	def print_dot(self):
 		# header
 		print('digraph pdmt {')

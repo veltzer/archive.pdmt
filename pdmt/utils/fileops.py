@@ -1,7 +1,7 @@
-"""
+'''
 The idea of this package is that all file operations will go through here
 If this will be the case then it will be very easy to debug all file operations.
-"""
+'''
 import pdmt.config
 
 import shutil

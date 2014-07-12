@@ -1,4 +1,4 @@
-import enum
+import enum # for Enum
 import pdmt.prl # for create
 
 # the inheritance from 'object' is very important to get the __class__
@@ -54,26 +54,26 @@ class NodeType(object):
 			raise ValueError('too many sources')
 		return ret[0]
 
-"""
+'''
 This is the base class of all node handlers within the system
-"""
+'''
 
 class NodeHandler(object):
 	def respond(self,mgr,node,eventtype):
 		raise ValueError('must override')
 
 
-"""
+'''
 This is the base class of all event handlers within the system
-"""
+'''
 
 class EventHandler(object):
 	def respond(self,pdmt,data,eventtype):
 		raise ValueError('must override')
 
-"""
+'''
 This is the cache handler
-"""
+'''
 class Cache(object):
 	def has_checksum(self, checksum):
 		raise ValueError('must override')

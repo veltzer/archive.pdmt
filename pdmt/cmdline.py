@@ -1,5 +1,6 @@
 import argparse # for ArgumentParser
 import pdmt.exceptions # for CommandLineInputException
+import pdmt.tui # for go
 
 '''
 argparse seems to be the right argument parser for python
@@ -17,7 +18,13 @@ def parse(mgr):
 		'--listnodes',
 		action='store_true',
 		default=False,
-		help='help to do bash completions',
+		help='list all nodes in the graph',
+	)
+	parser.add_argument(
+		'--tui',
+		action='store_true',
+		default=False,
+		help='run a command line text user interface',
 	)
 	# all other arguments are gathered into options.nodes
 	parser.add_argument('nodes', nargs=argparse.REMAINDER)
@@ -25,6 +32,7 @@ def parse(mgr):
 	mysum=sum([
                 options.bashcomplete is not None,
 		options.listnodes,
+		options.tui,
         ])
 	if mysum>1:
 		parser.error('only one option at a time')
@@ -45,3 +53,5 @@ def parse(mgr):
 				mgr.graph.bashcomplete(options.bashcomplete[0])
 		if options.listnodes:
 			mgr.graph.listnodes()
+		if options.tui:
+			pdmt.tui.go(mgr)

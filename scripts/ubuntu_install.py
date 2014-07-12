@@ -27,6 +27,8 @@ packs=[
 	'xmlto',
 	'libxml2-utils',
 	'xmlstarlet',
+	'python3-cmd2',
+	'python-cmd2',
 ]
 
 args=['sudo','apt-get','install']

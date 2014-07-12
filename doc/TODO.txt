@@ -1,3 +1,11 @@
+- do pdmt.py operations://clean and see the output.
+	It does not go through the standard printer class.
+	It is not obvious that the messages are coming from pdmt.
+- look at unlinksoft. It's performance is horrible since
+	it may be called a lot when the file is not there
+	(pdmt.py operations://clean followed by pdmt.py operations://clean).
+	It needs to check if the file is there and only then do the unlink.
+	Time it and have a module with timings.
 - allow to build all nodes of a type from the command line.
 	the idea is to have a prn like "type://objectfile".
 	will this be a real node that all object files will point to?

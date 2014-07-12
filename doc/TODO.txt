@@ -1,13 +1,6 @@
-- think about phony targets.
-	Should they not store their timestamps in some db?
-	If they do then I will not see them get built.
-	I think this approach will be better than the current
-	one.
-	Allow both.
-	Create timestamp (ts://all) which will be like
-	phony but will store it's last modified time
-	in a persistant hash table.
-	use that instead of the phony targets.
+- in the tui do: blabla
+	see the error message.
+	fix this to be nicer.
 - do "tsemach" like plugins.
 	they have two parts to their running.
 	one part can create new nodes in the graph and connect them.

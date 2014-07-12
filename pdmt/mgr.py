@@ -14,6 +14,7 @@ class Mgr:
 		self.init_handlers()
 		self.opbyname={}
 		self.defaultNodeList=[]
+		self.plugins=[]
 		if loadinternalplugins:
 			self.loadInternalPlugins()
 		#if cache is None:
@@ -145,11 +146,18 @@ class Mgr:
 				prefix=namespace,
 			):
 			module=importlib.import_module(modname)
-			for x in module.__dict__:
-				curr=module.__dict__[x]
+			if 'init' in module.__dict__:
+				module.init()
+			self.plugins.append(module)
 	def loadInternalPlugins(self):
 		self.loadPlugins('pdmt/plugins/', 'pdmt.plugins.')
 
 	''' command line parsing '''
 	def parseCmdline(self):
 		pdmt.cmdline.parse(self)
+
+	'''shutdown method to clean up, currently does nothing'''
+	def shutdown(self):
+		for module in reversed(self.plugins):
+			if 'fini' in module.__dict__:
+				module.fini()

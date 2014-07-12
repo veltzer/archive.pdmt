@@ -4,7 +4,7 @@ import pdmt.utils.subproc
 import pdmt.types
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
-	def build(self):
+	def filebuild(self):
 		args=[]
 		args.append('gcc')
 		args.append('-c')

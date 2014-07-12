@@ -44,6 +44,8 @@ class NodeType(object):
 		raise ValueError('must override')
 	def build(self):
 		raise ValueError('must override')
+	def canClean(self):
+		raise ValueError('must override')
 	def clean(self):
 		raise ValueError('must override')
 	def get_lmt(self):

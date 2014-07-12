@@ -3,7 +3,7 @@ import pdmt.plugins.nodes.objectfile # for NodeType
 import pdmt.utils.subproc # for check_call
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
-	def build(self):
+	def filebuild(self):
 		args=[]
 		args.append('gcc')
 		args.append('-o')

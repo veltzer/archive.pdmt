@@ -188,3 +188,14 @@ class PdmtGraph(NamedGraph):
 		retlist=self.get_build_node_list()
 		retlist.sort(key=lambda x: x.get_name())
 		return retlist
+	''' make a list of nodes which are clean nodes '''
+	def get_clean_node_list(self):
+		retlist=[]
+		for node in self.get_nodes():
+			if node.canClean():
+				retlist.append(node)
+		return retlist
+	def get_clean_node_list_sorted(self):
+		retlist=self.get_clean_node_list()
+		retlist.sort(key=lambda x: x.get_name())
+		return retlist

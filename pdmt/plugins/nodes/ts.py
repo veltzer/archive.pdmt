@@ -23,12 +23,17 @@ class NodeType(pdmt.api.NodeType):
 		super().__init__(type=type, name=name, proto=proto)
 		self.proto='ts'
 	def get_lmt(self):
-		return float(dbm[self.name])
+		if self.name in dbm:
+			return float(dbm[self.name])
+		else:
+			return float(0)
 	def canBuild(self):
 		return True
 	def build(self):
 		global dbm
 		dbm[self.name]=str(time.time())
+	def canClean(self):
+		return True
 	def clean(self):
 		global dbm
 		if self.name in dbm:

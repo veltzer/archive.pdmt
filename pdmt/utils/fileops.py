@@ -55,6 +55,10 @@ def unlinksoft(filename):
 			files[filename]=False
 		else:
 			print_msg('unlinksoft [{name}] (notthere)'.format(name=filename))
+def checkexist_and_updatecache(filename):
+	if not os.path.isfile(filename):
+		raise ValueError('do not have file after build', filename)
+	files[filename]=True
 def mkdir(p_dir):
 	debug('mkdir ['+p_dir+']')
 	os.mkdir(p_dir)

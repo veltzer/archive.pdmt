@@ -158,6 +158,13 @@ class PdmtGraph(NamedGraph):
 	def listnodes(self):
 		l=[]
 		for node in self.get_nodes():
+			l.append(node.get_name())
+		l.sort()
+		for name in l:
+			pdmt.utils.printer.print_raw(name)
+	def listbuildnodes(self):
+		l=[]
+		for node in self.get_nodes():
 			if node.canBuild():
 				l.append(node.get_name())
 		for name in sorted(l):

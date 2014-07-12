@@ -29,6 +29,12 @@ class Pdmt(cmd2.Cmd):
 			return True
 		else:
 			return False
+	def help_listbuildnodes(self):
+		self.print('show all build nodes in the current graph')
+	def do_listbuildnodes(self, arg):
+		if self.no_args('listbuildnodes', arg):
+			return
+		self.mgr.graph.listbuildnodes()
 	def help_listnodes(self):
 		self.print('show all nodes in the current graph')
 	def do_listnodes(self, arg):

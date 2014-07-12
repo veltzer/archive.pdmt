@@ -10,6 +10,7 @@ class Graph(object):
 	def __init__(self):
 		self.nodes=set()
 		self.edges=dict()
+		self.edges_num=0
 		self.check=True
 		#self.check=False
 	''' checking methods '''
@@ -46,12 +47,14 @@ class Graph(object):
 		self.check_have_node(to)
 		self.check_havent_edge(fr,to)
 		self.edges[fr].add(to)
+		self.edges_num+=1
 	def remove_edge(self,edge):
 		(fr,to)=edge
 		self.check_have_node(fr)
 		self.check_have_node(to)
 		self.check_have_edge(fr,to)
 		self.edges[fr].remove(to)
+		self.edges_num-=1
 	def get_adjacent_for_node(self,node):
 		for node in self.edges[node]:
 			yield node
@@ -64,6 +67,8 @@ class Graph(object):
 				yield (fr,to)
 	def get_node_num(self):
 		return len(self.nodes)
+	def get_edge_num(self):
+		return self.edges_num
 	''' dependency for many nodes (not sure this works) '''
 	def dependsOn(self,nodes):
 		ret=[]
@@ -115,10 +120,16 @@ class Graph(object):
 				l.append(node.get_name())
 		for name in sorted(l):
 			print(name)
-	def bashcomplete(self, prefix):
+	def get_completions(self, prefix):
+		completions=[]
 		for node in self.get_nodes():
 			if node.canBuild() and node.get_name().startswith(prefix):
-				print(node.get_name())
+				completions.append(node.get_name())
+		return completions
+	def bashcomplete(self, prefix):
+		completions=self.get_completions(prefix)
+		for completion in completions:
+			print(completion)
 	def bashcomplete_with_prefix(self, prefix):
 		common=None
 		l=[]

@@ -106,13 +106,15 @@ class Mgr:
 			plural=pdmt.utils.lang.plural('node', len(node_list)),
 		))
 		todo=self.build_todolist()
-	def verify_node_names(self, names):
+	def verify_node_names(self, names, doexit):
 		errors=[]
 		for name in names:
 			if not self.graph.has_name(name):
 				errors.append('do not have node of name [{0}]'.format(name))
-		if errors:
+		if errors and doexit:
 			raise pdmt.exceptions.CommandLineInputException(errors)
+		else:
+			return errors
 	def build_node_names(self, names):
 		self.build((self.graph.get_node_by_name(name) for name in names))
 	def build(self, node_list=None):

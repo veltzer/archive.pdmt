@@ -1,3 +1,13 @@
+- do a zip node
+	it only updates the files which are really updated.
+	show how this could be done easily with pdmt.
+	look at the zip.txt notes file I have for how to do this.
+	we need to think about what happens when the graph changes
+	and a file goes away.
+- do a tar node
+	In the documentation state that since updating
+	specific files in tar archives is impossible without
+	a lot of overhead then we just create the entire tar archive.
 - do a filesystem interface module.
 	one with caching and one without.
 	hook pdmt to one or the other according to config.

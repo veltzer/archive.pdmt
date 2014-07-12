@@ -1,0 +1,7 @@
+The issue of pdmt and RAM is very important because we may hold
+very large graphs in RAM.
+
+We already implemented the 'getsizeof' method for the graph (you
+can use it via the tui).
+
+We may want to take a look at python3-memprof module.

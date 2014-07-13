@@ -41,6 +41,15 @@ class Pdmt(cmd2.Cmd):
 		if self.no_args('listnodes', arg):
 			return
 		self.mgr.graph.listnodes()
+	def help_listall(self):
+		self.print('show the current graph')
+	def do_listall(self, arg):
+		if self.no_args('listall', arg):
+			return
+		for node in self.mgr.graph.get_nodes():
+			self.raw_print(node.get_name())
+			for an in self.mgr.graph.get_adjacent_for_node(node):
+				self.raw_print('\t'+an.get_name())
 	def help_stats(self):
 		self.print('show stats for the current graph')
 	def do_stats(self, arg):

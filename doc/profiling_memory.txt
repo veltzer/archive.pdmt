@@ -1,7 +1,18 @@
 The issue of pdmt and RAM is very important because we may hold
 very large graphs in RAM.
 
-We already implemented the 'getsizeof' method for the graph (you
+ideas:
+- We already implemented the 'getsizeof' method for the graph (you
 can use it via the tui).
+- Maybe we could just look at the operating system reports for the python
+process?
+- We may want to take a look at python3-memprof module.
+- other modules (see ubuntu_install.py)
+- see references below
+- use the flyweight pattern for the nodes? It seems ideal.
 
-We may want to take a look at python3-memprof module.
+References:
+http://stackoverflow.com/questions/110259/which-python-memory-profiler-is-recommended
+http://stackoverflow.com/questions/749625/python-how-to-estimate-calculate-memory-footprint-of-data-structures
+http://hbfs.wordpress.com/2013/01/08/python-memory-management-part-ii/
+http://pymotw.com/2/sys/limits.html

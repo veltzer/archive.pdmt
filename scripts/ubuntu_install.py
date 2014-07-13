@@ -37,6 +37,17 @@ packs=[
 
 	# graph
 	'python3-pygraph',
+	'python-pygraph',
+	'python-igraph',
+
+	# profiling
+	'python3-objgraph',
+	'python-objgraph',
+	'python-objgraph-doc',
+	'python3-memprof',
+	'python-memprof',
+	'python3-psutil',
+	'python-psutil',
 ]
 
 args=['sudo','apt-get','install']

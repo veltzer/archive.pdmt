@@ -1,3 +1,31 @@
+- do a config system.
+	allow to change a config value via the tui.
+	change CCFLAGS and see that the right thing happens compilation
+	wise.
+- do a soft config system which is better than the current one.
+	this means for pdmt itself and not for the products.
+	this means that when a config value changes it is pdmt
+	that changes it's behaviour but there is no need to
+	rebuild anything.
+	allow to change these soft configs at runtime.
+	make these config declarative as well with descriptions.
+- declarative configs
+	each plugin will decleratively say which config
+	it has using a static method. add descriptions to these
+	configs.
+	start with the compiler and linker which will declare
+	their own configs.
+	We need this as we want to be able to show all plugins
+	and config
+	enable to see all plugins on the tui.
+	enable to see all configs of every plugin in the tui.
+- start thinking about flavours of compilation and how
+	to solve the flavour problem.
+	push this to the user. Don't worry - we will have procelain.
+	make the user do a loop and add object per flavour which
+	depends on the parameters of the flavour.
+	and the same for the executables.
+	create porcelain for this.
 - do a zip node
 	it only updates the files which are really updated.
 	show how this could be done easily with pdmt.

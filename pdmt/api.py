@@ -1,10 +1,11 @@
 import enum # for Enum
 import pdmt.prl # for create
+import pdmt.mgr # for Mgr
 
 # the inheritance from 'object' is very important to get the __class__
 # and other stuff we need in order for OO to work properly...
 class NodeType(object):
-	def __init__(self, type=None, name=None, description=None, proto=None):
+	def __init__(self, type=None, name=None, description=None, proto=None, mgr=None):
 		super().__init__()
 		if type is None:
 			self.type='unset'
@@ -22,13 +23,16 @@ class NodeType(object):
 			self.description='unset'
 		else:
 			self.description=description
+		if mgr is None:
+			self.mgr=pdmt.mgr.Mgr.default
+		else:
+			self.mgr=mgr
+		self.mgr.addNode(self)
 	def get_name(self):
 		return pdmt.prl.create(
 			proto=self.proto,
 			name=self.name
 		)
-	def setMgr(self, mgr):
-		self.mgr=mgr
 	def needbuild(self,todo):
 		# lets compare dates
 		rebuild=False
@@ -55,17 +59,27 @@ class NodeType(object):
 	def getDepsYield(self):
 		for node in self.mgr.depsYield(self):
 			yield node
-	def getSourcesOfType(self,type):
+	def getSourcesOfType(self, type):
 		ret=[]
 		for node in self.getDeps():
 			if isinstance(node,type):
 				ret.append(node)
 		return ret
-	def getSourceOfType(self,type):
+	def getSourceOfType(self, type):
 		ret=self.getSourcesOfType(type)
 		if len(ret)!=1:
 			raise ValueError('too many sources')
 		return ret[0]
+	def getConfigNode(self, name):
+		nodename='cfg://'+name
+		if self.mgr.graph.has_name(nodename):
+			return self.mgr.graph.get_node_by_name(nodename)
+		else:
+			return pdmt.plugins.nodes.cfg.NodeType(name=name)
+	def getConfig(self, name, default):
+		return self.mgr.graph.get_node_by_name('cfg://'+name).get_value(default)
+	def addEdge(self, node):
+		self.mgr.addEdge((self, node))
 
 '''
 This is the base class of all node handlers within the system

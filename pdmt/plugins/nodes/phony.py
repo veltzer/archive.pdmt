@@ -7,9 +7,8 @@ like .PHONY in gmake...:)
 '''
 
 class NodeType(pdmt.api.NodeType):
-	def __init__(self, type=None, name=None, proto=None):
-		super().__init__(type=type, name=name, proto=proto)
-		self.proto='phony'
+	def __init__(self, name=None):
+		super().__init__(type=type, name=name, proto='phony')
 	def needbuild(self,todo):
 		return True
 	def canBuild(self):

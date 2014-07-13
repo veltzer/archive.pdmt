@@ -7,9 +7,8 @@ A generic clean node for Pdmt
 '''
 
 class NodeType(pdmt.plugins.nodes.operation.NodeType):
-	def __init__(self, type=None, name=None, proto=None):
-		super().__init__(type=type, name='clean', proto=proto)
-		self.description='clean all nodes'
+	def __init__(self):
+		super().__init__(name='clean', description='clean all nodes')
 	def build(self):
 		build_list=self.mgr.graph.get_clean_node_list_sorted()
 		lst_len=len(build_list)

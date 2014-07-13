@@ -34,18 +34,23 @@ class NodeType(pdmt.api.NodeType):
 		if self.name in dbm:
 			return self.get_data()[1]
 		else:
-			tup=(time.time(), default)
-			self.set_data(tup)
+			self.set_value(default)
 			return default
+	def set_value(self, value):
+		tup=(time.time(), value)
+		self.set_data(tup)
 	def canBuild(self):
 		return False
 	def canClean(self):
-		#return False
-		return True
+		return False
+		#return True
+	# we don't really want to clean cfg nodes for now...
+	'''
 	def clean(self):
 		global dbm
 		if self.name in dbm:
 			del dbm[self.name]
+	'''
 
 
 ''' a method to debug this module '''

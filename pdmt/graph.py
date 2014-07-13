@@ -170,15 +170,21 @@ class PdmtGraph(NamedGraph):
 				l.append(node.get_name())
 		for name in sorted(l):
 			pdmt.utils.printer.print_raw(name)
-	def get_completions(self, prefix, canbuild):
+	def get_completions(self, prefix, canbuild, onlyName, filter_type):
 		completions=[]
 		for node in self.get_nodes():
-			if canbuild:
-				if node.canBuild() and node.get_name().startswith(prefix):
-					completions.append(node.get_name())
+			if filter_type is not None and not isinstance(node,filter_type):
+				continue
+			if onlyName:
+				m=node.name
 			else:
-				if node.get_name().startswith(prefix):
-					completions.append(node.get_name())
+				m=node.get_name()
+			if canbuild:
+				c=node.canBuild()
+			else:
+				c=True
+			if c and m.startswith(prefix):
+				completions.append(m)
 		return completions
 	def bashcomplete(self, prefix):
 		completions=self.get_completions(prefix, True)

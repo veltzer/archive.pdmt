@@ -14,6 +14,7 @@ class Pdmt(cmd.Cmd):
 		super().__init__()
 		self.mgr=mgr
 		self.prompt='pdmt> '
+
 	''' all prints should go through this method '''
 	def print(self, msg):
 		pdmt.utils.printer.print_msg(msg)
@@ -21,6 +22,10 @@ class Pdmt(cmd.Cmd):
 	want anything special added '''
 	def raw_print(self, msg):
 		print(msg)
+	''' print errors '''
+	def error(self, msg):
+		pdmt.utils.printer.print_msg(msg)
+
 	def postcmd(self, stop, line):
 		return stop
 	def no_args(self, cmd, arg):
@@ -29,6 +34,8 @@ class Pdmt(cmd.Cmd):
 			return True
 		else:
 			return False
+	def check_args(self, arg, num):
+		return len(arg.split())==num
 	def help_listbuildnodes(self):
 		self.print('show all build nodes in the current graph')
 	def do_listbuildnodes(self, arg):
@@ -50,6 +57,37 @@ class Pdmt(cmd.Cmd):
 			self.raw_print(node.get_name())
 			for an in self.mgr.graph.get_adjacent_for_node(node):
 				self.raw_print('\t'+an.get_name())
+	def complete_getcfg(self, text, line, begidx, endidx):
+		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
+	def help_getcfg(self):
+		self.print('get config values')
+	def do_getcfg(self, arg):
+		if not self.check_args(arg, 1):
+			self.error('please supply a cfg name')
+			return
+		name=arg.split()[0].strip()
+		nodename='cfg://'+name
+		if not self.mgr.graph.has_name(nodename):
+			self.error('do not have config named [{0}]'.format(name))
+			return
+		node=self.mgr.graph.get_node_by_name(nodename)
+		self.raw_print(node.get_value(None))
+	def complete_setcfg(self, text, line, begidx, endidx):
+		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
+	def help_setcfg(self):
+		self.print('set config values')
+	def do_setcfg(self, arg):
+		if not self.check_args(arg, 2):
+			self.error('please supply a cfg name and a value')
+			return
+		name=arg.split()[0].strip()
+		value=arg.split()[1].strip()
+		nodename='cfg://'+name
+		if not self.mgr.graph.has_name(nodename):
+			self.error('do not have config named [{0}]'.format(name))
+			return
+		node=self.mgr.graph.get_node_by_name(nodename)
+		node.set_value(value)
 	def help_stats(self):
 		self.print('show stats for the current graph')
 	def do_stats(self, arg):
@@ -91,16 +129,16 @@ class Pdmt(cmd.Cmd):
 		if self.no_args('build', arg):
 			return
 		self.mgr.build()
-	def complete_nodes(self, text, line, begidx, endidx, canbuild):
+	def complete_nodes(self, text, line, begidx, endidx, canbuild, onlyName, filter_type):
 		parts=line.split()
 		if len(parts)==1:
 			last_arg=''
 		else:
 			last_arg=parts[-1]
-		completions=self.mgr.graph.get_completions(last_arg, canbuild)
+		completions=self.mgr.graph.get_completions(last_arg, canbuild, onlyName, filter_type)
 		return [c[len(last_arg)-len(text):] for c in completions]
 	def complete_buildnodes(self, text, line, begidx, endidx):
-		return self.complete_nodes(text, line, begidx, endidx, True)
+		return self.complete_nodes(text, line, begidx, endidx, True, False, None)
 	def help_buildnodes(self):
 		self.print('buildnodes [nodes]: build nodes by specific names')
 	def do_buildnodes(self, arg):
@@ -127,7 +165,7 @@ class Pdmt(cmd.Cmd):
 				for an in self.mgr.graph.get_adjacent_for_node(node):
 					self.raw_print('\t'+an.get_name())
 	def complete_whatdependson(self, text, line, begidx, endidx):
-		return self.complete_nodes(text, line, begidx, endidx, False)
+		return self.complete_nodes(text, line, begidx, endidx, False, False, None)
 	def help_whatdependson(self):
 		self.print('whatdependson [nodes]: show what nodes depend on nodes (1 level)')
 	def do_whatdependson(self, arg):

@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import distutils.core # for setup
 import setuptools # for find_packages
 

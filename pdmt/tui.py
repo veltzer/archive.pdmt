@@ -1,4 +1,4 @@
-import cmd2 # for Cmd
+import cmd # for Cmd
 import os # for system
 import pdmt.config # for ns_pdmt
 import pdmt.utils.printer # for print_msg
@@ -9,7 +9,7 @@ references:
 http://bioportal.weizmann.ac.il/course/python/PyMOTW/PyMOTW/docs/cmd/index.html
 '''
 
-class Pdmt(cmd2.Cmd):
+class Pdmt(cmd.Cmd):
 	def __init__(self, mgr):
 		super().__init__()
 		self.mgr=mgr
@@ -61,12 +61,18 @@ class Pdmt(cmd2.Cmd):
 		self.print('graph has [{0}] edges'.format(
 			self.mgr.graph.get_edge_num(),
 		))
-	def help_tsall(self):
+	def help_ts_print_all_entries(self):
 		self.print('print all time stamp entries')
-	def do_tsall(self, arg):
-		if self.no_args('tsall', arg):
+	def do_ts_print_all_entries(self, arg):
+		if self.no_args('ts_print_all_entries', arg):
 			return
 		pdmt.plugins.nodes.ts.print_all_entries()
+	def help_cfg_print_all_entries(self):
+		self.print('print all cfg entries')
+	def do_cfg_print_all_entries(self, arg):
+		if self.no_args('cfg_print_all_entries', arg):
+			return
+		pdmt.plugins.nodes.cfg.print_all_entries()
 	def help_getsizeof(self):
 		self.print('print the size that the graph takes in bytes')
 	def do_getsizeof(self, arg):

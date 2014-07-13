@@ -22,4 +22,5 @@
 *.fo
 *.stamp
 
-/.pdmt.gdbm
+/.ts.gdbm
+/.cfg.gdbm

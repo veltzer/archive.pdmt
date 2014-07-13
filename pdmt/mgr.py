@@ -9,6 +9,7 @@ import pdmt.api # for Event.prebuild, Event.postbuild
 import pdmt.exceptions # for CommandLineInputException
 
 class Mgr:
+	default=None
 	def __init__(self, loadinternalplugins=True, cache=None):
 		self.graph=pdmt.graph.PdmtGraph()
 		self.init_handlers()
@@ -21,6 +22,7 @@ class Mgr:
 		#	self.cache=pdmt.plugins.cache.null.NullCache()
 		#else:
 		#	self.cache=cache
+		Mgr.default=self
 
 	def setDefaultNodeList(self, nodelist):
 		self.defaultNodeList=nodelist
@@ -53,12 +55,10 @@ class Mgr:
 	def addNode(self,node):
 		self.notify(node, pdmt.api.Event.nodepreadd)
 		self.graph.add_node(node)
-		node.setMgr(self)
 		self.notify(node, pdmt.api.Event.nodepostadd)
 	def delNode(self,node):
 		self.notify(node, pdmt.api.Event.nodepredel)
 		self.graph.remove_node(node)
-		node.setMgr(None)
 		self.notify(node, pdmt.api.Event.nodepostdel)
 	def addEdge(self,edge):
 		self.notify(edge, pdmt.api.Event.edgepreadd)
@@ -117,7 +117,7 @@ class Mgr:
 		else:
 			return errors
 	def build_node_names(self, names):
-		self.build((self.graph.get_node_by_name(name) for name in names))
+		self.build([self.graph.get_node_by_name(name) for name in names])
 	def build(self, node_list=None):
 		self.progress('going to scan [{len}] {plural}...'.format(
 			len=self.graph.get_node_num(),

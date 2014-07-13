@@ -102,6 +102,7 @@ class Graph(object):
 			for n in self[node]:
 				ret.append(n)
 		return ret
+
 	''' depth first search algorithm '''
 	def dfs(self, node_list=None):
 		visited=set()
@@ -123,18 +124,18 @@ class Graph(object):
 		yield v
 class NamedGraph(Graph):
 	def __init__(self):
-		Graph.__init__(self)
-		self.map={}
+		super().__init__()
+		self.mymap={}
 	def add_node(self,node):
-		Graph.add_node(self, node)
-		self.map[node.get_name()]=node
+		super().add_node(node)
+		self.mymap[node.get_name()]=node
 	def remove_node(self,node):
-		Graph.remove_node(self, node)
-		del self.map[node.get_name()]
+		super().remove_node(node)
+		del self.mymap[node.get_name()]
 	def has_name(self, name):
-		return name in self.map
+		return name in self.mymap
 	def get_node_by_name(self, name):
-		return self.map[name]
+		return self.mymap[name]
 		
 class PdmtGraph(NamedGraph):
 	'''

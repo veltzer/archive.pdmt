@@ -1,0 +1,3 @@
+We use cmd and not cmd2 for the tui since cmd2 is amateur.
+for instance, it catches all exceptions and does not report them (stupid, stupid and cause
+me an hours of debugging to understand what the hell was going on!).

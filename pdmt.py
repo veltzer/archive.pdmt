@@ -11,7 +11,6 @@ mgr.addHandler(pdmt.plugins.nodehandlers.dirmaker.NodeHandler())
 
 # the 'all' target
 node_all=pdmt.plugins.nodes.ts.NodeType(name='all')
-mgr.addNode(node_all)
 mgr.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
 	cnode=node_all,
 	type=pdmt.plugins.nodes.buildfile.NodeType,
@@ -26,14 +25,12 @@ mgr.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
 	target_type=pdmt.plugins.nodes.objectfile.NodeType,
 ))
 node_exe=pdmt.plugins.nodes.cexecutablefile.NodeType(name='tests/main.elf')
-mgr.addNode(node_exe)
 mgr.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
 	cnode=node_exe,
 	type=pdmt.plugins.nodes.objectfile.NodeType,
 	regexp='^tests/.*\.o$',
 ))
 node_c=pdmt.plugins.nodes.cfile.NodeType(name='tests/main.c')
-mgr.addNode(node_c)
 
 # mako stuff
 mgr.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
@@ -44,12 +41,12 @@ mgr.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
 	target_type=pdmt.plugins.nodes.makotfile.NodeType,
 ))
 for name in glob.glob('mako/*.mako'):
-	mgr.addNode(pdmt.plugins.nodes.makofile.NodeType(name))
+	pdmt.plugins.nodes.makofile.NodeType(name=name)
 
 # operations
-mgr.addNode(pdmt.plugins.nodes.operations.clean.NodeType())
-mgr.addNode(pdmt.plugins.nodes.operations.print_dot.NodeType())
-mgr.addNode(pdmt.plugins.nodes.operations.gitclean.NodeType())
+pdmt.plugins.nodes.operations.clean.NodeType()
+pdmt.plugins.nodes.operations.print_dot.NodeType()
+pdmt.plugins.nodes.operations.gitclean.NodeType()
 
 mgr.parseCmdline()
 

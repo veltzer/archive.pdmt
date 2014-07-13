@@ -1,0 +1,28 @@
+This document describes the concept of plans in PDMT
+
+- instead of issuing the commands (subproc.check_call), gather them
+	into a plan.
+	This will enable:
+	- the build system to produce a script to build the product
+	even on systems where the build system is not available.
+	- to run the individual parts of the build on different machines
+	(distributed build).
+	- avoid race conditions on the graph structure. Notice that
+	making the build plan is very short (less than 1 minute
+	even for large projects) while building the software is
+	a long time (1 hours - 10 hours on big projects). and also
+	notice that while we are making the build plan we are
+	examining the graph which should not change. So we will
+	need to take a lock over the graph for that time.
+	So it's better to hold the lock for a minute instead of
+	for hours on end.
+
+options for the format of the plan:
+1) simple: just a linear list of things to do.
+2) complex: tree of things to do with dependencies between them.
+
+It is obvious that (2) can be converted easily into (1) (DFS?!?).
+It is also obvious that (2) is more flexible because it will allow
+us to use multi-core/multi-machine better.
+
+descision:

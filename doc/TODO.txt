@@ -1,7 +1,3 @@
-- do a config system.
-	allow to change a config value via the tui.
-	change CCFLAGS and see that the right thing happens compilation
-	wise.
 - do a soft config system which is better than the current one.
 	this means for pdmt itself and not for the products.
 	this means that when a config value changes it is pdmt

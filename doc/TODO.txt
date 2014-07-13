@@ -5,6 +5,7 @@
 	rebuild anything.
 	allow to change these soft configs at runtime.
 	make these config declarative as well with descriptions.
+	* LONG TODO ITEM
 - declarative configs
 	each plugin will decleratively say which config
 	it has using a static method. add descriptions to these

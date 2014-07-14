@@ -2,6 +2,10 @@
 	rsync to other machines
 	and issue remote commands to them.
 - do docbook generation for this project using this project.
+	do it using a new type of node:	TemplateNode
+	it receives a string that it will run for the command
+	where it will replace the source and target with the
+	right paths.
 - do an auto generation example.
 	A single file that generates multiple c output files
 	which then get compiled. 

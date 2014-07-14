@@ -86,7 +86,12 @@ This is the base class of all node handlers within the system
 '''
 
 class NodeHandler(object):
-	def respond(self,mgr,node,eventtype):
+	def __init__(self, mgr=None):
+		if mgr is None:
+			self.mgr=pdmt.mgr.Mgr.default
+		else:
+			self.mgr=mgr
+	def respond(self,data=None,eventtype=None):
 		raise ValueError('must override')
 
 
@@ -95,7 +100,12 @@ This is the base class of all event handlers within the system
 '''
 
 class EventHandler(object):
-	def respond(self,pdmt,data,eventtype):
+	def __init__(self, mgr=None):
+		if mgr is None:
+			self.mgr=pdmt.mgr.Mgr.default
+		else:
+			self.mgr=mgr
+	def respond(self,data=None,eventtype=None):
 		raise ValueError('must override')
 
 '''

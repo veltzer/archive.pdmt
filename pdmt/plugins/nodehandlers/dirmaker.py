@@ -11,9 +11,10 @@ after building each target that it is there.
 '''
 
 class NodeHandler(pdmt.api.NodeHandler):
-	def respond(self,mgr,node,eventtype):
+	def respond(self,data=None,eventtype=None):
 		if eventtype!=pdmt.api.Event.nodeprebuild:
 			return
+		node=data
 		if not isinstance(node,pdmt.plugins.nodes.buildfile.NodeType):
 			return
 		pdmt.utils.fileops.mkdirparent_file(node.name)

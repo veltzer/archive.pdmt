@@ -2,6 +2,6 @@ import pdmt.api # for EventHandler
 import os # for environ
 
 class EventHandler(pdmt.api.EventHandler):
-	def respond(self,pdmt,data,eventtype):
+	def respond(self,data=None,eventtype=None):
 		if os.environ.get('PDMT_DEBUG') != None:
-			print(pdmt,data,eventtype)
+			print(data,eventtype)

@@ -36,9 +36,9 @@ class Mgr:
 	''' listener functions start here '''
 	def init_handlers(self):
 		self.handlers=set()
-	def notify(self,data,eventtype):
+	def notify(self,data=None,eventtype=None):
 		for h in self.handlers:
-			h.respond(self,data,eventtype)
+			h.respond(data=data,eventtype=eventtype)
 	def addHandler(self,handler):
 		self.handlers.add(handler)
 	def delHandler(self,handler):
@@ -53,21 +53,21 @@ class Mgr:
 
 	''' modification functions '''
 	def addNode(self,node):
-		self.notify(node, pdmt.api.Event.nodepreadd)
+		self.notify(data=node, eventtype=pdmt.api.Event.nodepreadd)
 		self.graph.add_node(node)
-		self.notify(node, pdmt.api.Event.nodepostadd)
+		self.notify(data=node, eventtype=pdmt.api.Event.nodepostadd)
 	def delNode(self,node):
-		self.notify(node, pdmt.api.Event.nodepredel)
+		self.notify(data=node, eventtype=pdmt.api.Event.nodepredel)
 		self.graph.remove_node(node)
-		self.notify(node, pdmt.api.Event.nodepostdel)
+		self.notify(data=node, eventtype=pdmt.api.Event.nodepostdel)
 	def addEdge(self,edge):
-		self.notify(edge, pdmt.api.Event.edgepreadd)
+		self.notify(data=edge, eventtype=pdmt.api.Event.edgepreadd)
 		self.graph.add_edge(edge)
-		self.notify(edge, pdmt.api.Event.edgepostadd)
+		self.notify(data=edge, eventtype=pdmt.api.Event.edgepostadd)
 	def delEdge(self,edge):
-		self.notify(edge, pdmt.api.Event.edgepredel)
+		self.notify(data=edge, eventtype=pdmt.api.Event.edgepredel)
 		self.graph.remove_edge(edge)
-		self.notify(edge, pdmt.api.Event.edgepostdel)
+		self.notify(data=edge, eventtype=pdmt.api.Event.edgepostdel)
 
 	''' debugging methods '''
 

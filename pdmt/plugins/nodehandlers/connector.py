@@ -12,16 +12,18 @@ and remove itself when it is removed.
 
 class NodeHandler(pdmt.api.NodeHandler):
 	def __init__(self,cnode=None,type=None,regexp=None):
+		super().__init__()
 		self.cnode=cnode
 		self.type=type
 		self.regexp=regexp
 		if self.regexp is not None:
 			self.regexp=re.compile(self.regexp)
-	def respond(self,mgr,node,eventtype):
+	def respond(self,data=None,eventtype=None):
 		if eventtype!=pdmt.api.Event.nodepostadd:
 			return
+		node=data
 		if self.type is not None and not isinstance(node,self.type):
 			return
 		if self.regexp is not None and not self.regexp.match(node.name):
 			return
-		mgr.addEdge((self.cnode,node))
+		self.mgr.addEdge((self.cnode,node))

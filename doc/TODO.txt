@@ -1,3 +1,25 @@
+- start building distribution capabilities into the system.
+	rsync to other machines
+	and issue remote commands to them.
+- do docbook generation for this project using this project.
+- do an auto generation example.
+	A single file that generates multiple c output files
+	which then get compiled. 
+- make the nodes not run the build but rather return the commands
+	that need to be run to build them.
+	This means that we could run stuff on other machines,
+	create a script to build the system and more
+- make each node decalre the resources that it generates.
+	Most file nodes have one file that they generate
+	but some are different (ts, cfg, and I can think
+	of nodes which will have multiple files).
+	What is the advantage of this?
+	I will be able to list all files that were build (for
+	instance).
+	I will be able to check that all resources were built
+	after the "build" method ends. Currently I do this
+	only for single files.
+	I could do clean without going through the nodes.
 - do a soft config system which is better than the current one.
 	this means for pdmt itself and not for the products.
 	this means that when a config value changes it is pdmt
@@ -8,7 +30,7 @@
 	* LONG TODO ITEM
 - declarative configs
 	each plugin will decleratively say which config
-	it has using a static method. add descriptions to these
+	it is using a static method. add descriptions to these
 	configs.
 	start with the compiler and linker which will declare
 	their own configs.

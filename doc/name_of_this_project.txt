@@ -1,0 +1,4 @@
+This is currently called "PDMT": Project Dependency Management Tool.
+I think that the word "Project" is superfluous.
+
+I'm thinking of renaming it to "DMT".

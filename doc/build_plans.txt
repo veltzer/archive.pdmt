@@ -1,4 +1,4 @@
-This document describes the concept of plans in PDMT
+This document describes the concept of build plans in PDMT
 
 - instead of issuing the commands (subproc.check_call), gather them
 	into a plan.
@@ -10,7 +10,7 @@ This document describes the concept of plans in PDMT
 	- avoid race conditions on the graph structure. Notice that
 	making the build plan is very short (less than 1 minute
 	even for large projects) while building the software is
-	a long time (1 hours - 10 hours on big projects). and also
+	a long time (1 hour - 10 hours on big projects). and also
 	notice that while we are making the build plan we are
 	examining the graph which should not change. So we will
 	need to take a lock over the graph for that time.
@@ -26,3 +26,4 @@ It is also obvious that (2) is more flexible because it will allow
 us to use multi-core/multi-machine better.
 
 descision:
+	2) but I need to read about the topic more.

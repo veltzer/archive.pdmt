@@ -232,7 +232,7 @@ class PdmtGraph(EventGraph):
 				completions.append(m)
 		return completions
 	def bashcomplete(self, prefix):
-		completions=self.get_completions(prefix, True)
+		completions=self.get_completions(prefix, True, False, None)
 		for completion in completions:
 			print(completion)
 	def bashcomplete_with_prefix(self, prefix):

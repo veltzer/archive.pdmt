@@ -49,8 +49,13 @@ def check_output(arg,**kw):
 def check_call(arg,**kw):
 	debug('check_call ['+str(arg)+']')
 	subprocess.check_call(arg,**kw)
-def system(s):
+def system_list(args,**kw):
+	debug('system_list ['+str(args)+']')
+	pr=subprocess.Popen(args,stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+	(output,errout)=pr.communicate()
+	return (pr.returncode, output.decode(), errout.decode())
+def system_string(s):
+	debug('system ['+str(s)+']')
 	pr=subprocess.Popen(s,stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
 	(output,errout)=pr.communicate()
-	status=pr.returncode
-	return (status, output.decode(), errout.decode())
+	return (pr.returncode, output.decode(), errout.decode())

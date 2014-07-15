@@ -5,7 +5,8 @@ If this will be the case then it will be very easy to debug all file operations.
 
 import pdmt.config # for ns_fileops
 import shutil # for rmtree, copy
-import os # for unlink, mkdir, chmod
+import os # for unlink, mkdir, chmod, stat
+import stat # for S_IWUSR, S_IWGRP, S_IWOTH
 import os.path # for isdir, dirname, split, getmtime
 import gzip # for open
 import pdmt.utils.printer # for print_msg
@@ -83,6 +84,9 @@ def mkdircopysoft(p_file,p_dir):
 def chmod(p_file,p_mode):
 	debug('chmod ['+p_file+','+str(p_mode)+']')
 	os.chmod(p_file,p_mode)
+def chmod_mw(p_file):
+	mode=os.stat(p_file).st_mode
+	os.chmod(p_file, mode & ~(stat.S_IWUSR | stat.S_IWGRP | stat.S_IWOTH))
 def create_empty_file(p_file):
 	debug('create_empty_file ['+p_file+']')
 	mkdirparent(os.path.split(p_file)[0])

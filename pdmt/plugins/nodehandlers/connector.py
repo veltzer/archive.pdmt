@@ -19,7 +19,7 @@ class NodeHandler(pdmt.api.NodeHandler):
 		if self.regexp is not None:
 			self.regexp=re.compile(self.regexp)
 	def respond(self,data=None,eventtype=None):
-		if eventtype!=pdmt.api.Event.nodepostadd:
+		if eventtype!=pdmt.event.Event.nodepostadd:
 			return
 		node=data
 		if self.type is not None and not isinstance(node,self.type):

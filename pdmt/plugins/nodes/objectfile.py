@@ -1,7 +1,6 @@
-import pdmt.plugins.nodes.buildfile
-import pdmt.plugins.nodes.cfile
-import pdmt.utils.subproc
-import pdmt.types
+import pdmt.plugins.nodes.buildfile # for NodeType
+import pdmt.plugins.nodes.cfile # for NodeType
+import pdmt.utils.subproc # for check_call
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
 	# new way of doing things

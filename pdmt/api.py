@@ -1,4 +1,3 @@
-import enum # for Enum
 import pdmt.prn # for create
 import pdmt.mgr # for Mgr
 
@@ -118,18 +117,3 @@ class Cache(object):
 	def put_filename(self, checksum, filename):
 		raise ValueError('must override')
 
-'''
-These are events which a user of the core can register
-to
-'''
-class Event(enum.Enum):
-	nodepreadd=1
-	nodepostadd=2
-	nodepredel=3
-	nodepostdel=4
-	edgepreadd=5
-	edgepostadd=6
-	edgepredel=7
-	edgepostdel=8
-	nodeprebuild=9
-	nodepostbuild=10

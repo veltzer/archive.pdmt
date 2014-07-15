@@ -66,9 +66,9 @@ class Mgr(pdmt.graph.PdmtGraph):
 				todo.append(node)
 		return todo
 	def buildNode(self,node):
-		self.notify(node, pdmt.api.Event.nodeprebuild)
+		self.notify(node, pdmt.event.Event.nodeprebuild)
 		node.build()
-		self.notify(node, pdmt.api.Event.nodepostbuild)
+		self.notify(node, pdmt.event.Event.nodepostbuild)
 	def build_node_list(self, node_list):
 		self.progress('going to scan [{len}] {plural}...'.format(
 			len=len(node_list),

@@ -1,4 +1,5 @@
-import pdmt.api # for Event.nodeprebuild, NodeHandler
+import pdmt.api # for NodeHandler
+import pdmt.event # for Event
 import pdmt.plugins.nodes.buildfile # for NodeType
 import pdmt.utils.fileops # for mkdirparent_file
 
@@ -12,7 +13,7 @@ after building each target that it is there.
 
 class NodeHandler(pdmt.api.NodeHandler):
 	def respond(self,data=None,eventtype=None):
-		if eventtype!=pdmt.api.Event.nodeprebuild:
+		if eventtype!=pdmt.event.Event.nodeprebuild:
 			return
 		node=data
 		if not isinstance(node,pdmt.plugins.nodes.buildfile.NodeType):

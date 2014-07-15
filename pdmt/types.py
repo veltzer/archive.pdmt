@@ -1,7 +1,0 @@
-t_c='c'
-t_cpp='c++'
-t_object='object'
-t_exe='exe'
-t_mako='mako'
-t_makot='makot'
-t_unknown='unknown'

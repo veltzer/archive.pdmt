@@ -1,16 +1,10 @@
-import pdmt.plugins.nodes.buildfile
-import pdmt.plugins.nodes.makofile
-import pdmt.types
-
-import pdmt.config
-
-import mako.template
-import mako.lookup
-import pdmt.utils.fileops
+import pdmt.plugins.nodes.buildfile # for NodeType
+import pdmt.plugins.nodes.makofile # for NodeType
+import mako.template # for Template
+import mako.lookup # for TemplateLookup
+import pdmt.utils.fileops # for unlinksoft
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
-	def deps(self):
-		p_input=getSingleSourceOfType(self,makofilenode.MakoFileNode)
 	def filebuild(self):
 		p_input=self.getSourceOfType(pdmt.plugins.nodes.makofile.NodeType).name
 		input_encoding='utf-8'

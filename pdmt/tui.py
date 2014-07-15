@@ -166,16 +166,13 @@ class Pdmt(cmd.Cmd):
 		self.print('whatdependson [nodes]: show what nodes depend on nodes (1 level)')
 	def do_whatdependson(self, arg):
 		names=arg.split()
-		errors=self.mgr.nodenames_to_nodes(names, False)
-		if errors:
-			for error in errors:
-				self.print(error)
-		else:
-			for name in names:
-				node=self.mgr.get_node_by_name(name)
+		try:
+			for node in self.mgr.nodenames_to_nodes(arg.split()):
 				self.raw_print(node.get_name())
 				for an in self.mgr.get_rv_for_node(node):
 					self.raw_print('\t'+an.get_name())
+		except pdmt.exceptions.CommandLineInputException as e:
+			e.print()
 	def help_exit(self):
 		self.print('exit pdmt shell')
 	def do_exit(self, arg):

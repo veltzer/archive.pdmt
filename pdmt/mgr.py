@@ -9,9 +9,9 @@ import pdmt.api # for Event.prebuild, Event.postbuild
 import pdmt.exceptions # for CommandLineInputException
 import types # for FunctionType
 
-class Mgr:
+class Mgr(pdmt.graph.PdmtGraph):
 	def __init__(self, loadinternalplugins=True, cache=None):
-		self.graph=pdmt.graph.PdmtGraph()
+		super().__init__()
 		self.opbyname={}
 		self.defaultNodeList=[]
 		self.plugins=[]
@@ -33,9 +33,9 @@ class Mgr:
 
 	''' getting all dependencies for a node '''
 	def deps(self,node):
-		return [node for node in self.graph.get_adjacent_for_node(node)]
+		return [node for node in self.get_adjacent_for_node(node)]
 	def depsYield(self,node):
-		for n in self.graph.get_adjacent_for_node(node):
+		for n in self.get_adjacent_for_node(node):
 			yield n
 
 	''' debugging methods '''
@@ -60,15 +60,15 @@ class Mgr:
 	'''
 	def build_todolist(self, node_list):
 		todo=[]
-		for node in self.graph.dfs(node_list=node_list):
+		for node in self.dfs(node_list=node_list):
 			self.debug('examining ['+str(node)+']')
 			if node.needbuild(todo):
 				todo.append(node)
 		return todo
 	def buildNode(self,node):
-		self.graph.notify(node, pdmt.api.Event.nodeprebuild)
+		self.notify(node, pdmt.api.Event.nodeprebuild)
 		node.build()
-		self.graph.notify(node, pdmt.api.Event.nodepostbuild)
+		self.notify(node, pdmt.api.Event.nodepostbuild)
 	def build_node_list(self, node_list):
 		self.progress('going to scan [{len}] {plural}...'.format(
 			len=len(node_list),
@@ -82,8 +82,8 @@ class Mgr:
 		errors=[]
 		ret=[]
 		for name in names:
-			if self.graph.has_name(name):
-				ret.append(self.graph.get_node_by_name(name))
+			if self.has_name(name):
+				ret.append(self.get_node_by_name(name))
 			else:
 				errors.append('do not have node of name [{0}]'.format(name))
 		if errors:
@@ -91,8 +91,8 @@ class Mgr:
 		return ret
 	def build(self, node_list=None):
 		self.progress('going to scan [{len}] {plural}...'.format(
-			len=self.graph.get_node_num(),
-			plural=pdmt.utils.lang.plural('node', self.graph.get_node_num()),
+			len=self.get_node_num(),
+			plural=pdmt.utils.lang.plural('node', self.get_node_num()),
 		))
 		if node_list is None:
 			node_list=self.defaultNodeList

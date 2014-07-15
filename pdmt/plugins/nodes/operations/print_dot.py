@@ -8,4 +8,4 @@ class NodeType(pdmt.plugins.nodes.operation.NodeType):
 	def __init__(self, **kw):
 		super().__init__(name='print_dot', description='print graph in dot notation', **kw)
 	def build(self):
-		self.mgr.graph.print_dot()
+		self.mgr.print_dot()

@@ -10,7 +10,7 @@ class NodeType(pdmt.plugins.nodes.operation.NodeType):
 	def __init__(self, **kw):
 		super().__init__(name='clean', description='clean all nodes', **kw)
 	def build(self):
-		build_list=self.mgr.graph.get_clean_node_list_sorted()
+		build_list=self.mgr.get_clean_node_list_sorted()
 		lst_len=len(build_list)
 		self.mgr.progress('going to clean [{lst_len}] {plural}...'.format(
 			lst_len=lst_len,

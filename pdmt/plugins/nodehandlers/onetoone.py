@@ -22,4 +22,4 @@ class NodeHandler(pdmt.api.NodeHandler):
 		else:
 			newname=pdmt.utils.filenames.replace_suffix_new_folder(node.name, self.suffix, self.folder)
 		newnode=self.target_type(mgr=self.mgr, name=newname)
-		self.mgr.graph.add_edge((newnode,node))
+		self.mgr.add_edge((newnode,node))

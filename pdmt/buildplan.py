@@ -6,7 +6,7 @@ add a method call as a BuildPlanElement type.
 '''
 
 import pdmt.utils.subproc # for check_call
-import pdmt.utils.printer # for print_msg_noeol
+import pdmt.utils.printer # for print_msg_noeol_flush, print_msg, print_raw
 import pdmt.utils.lang # for plural, book_to_ok
 
 class BuildPlanElement(object):
@@ -95,14 +95,17 @@ class BuildPlan(object):
 			plural=pdmt.utils.lang.plural('node', len_list),
 		))
 		for num, nbp in enumerate(self.list):
-			pdmt.utils.printer.print_msg_noeol('building ({num}/{len_list}) [{name}]...'.format(
+			pdmt.utils.printer.print_msg_noeol_flush('building ({num}/{len_list}) [{name}]...'.format(
 				num=num+1,
 				len_list=len_list,
 				name=nbp.node.get_name(),
 			))
 			# FIXME - very simplistic approach
 			ret=nbp.execute()
-			pdmt.utils.printer.print_raw(pdmt.utils.lang.bool_to_ok(ret))
+			s='['+pdmt.utils.lang.bool_to_ok(ret)+']'
+			if nbp.node.txt_err!='' or nbp.node.txt_out!='':
+				s+=' [OUTPUT]'
+			pdmt.utils.printer.print_raw(s)
 			if ret:
 				self.mgr.error_add(nbp.node)
 				break

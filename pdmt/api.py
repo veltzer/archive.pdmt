@@ -26,7 +26,7 @@ class NodeType(object):
 			self.description='unset'
 		else:
 			self.description=description
-		self.mgr.graph.add_node(self)
+		self.mgr.add_node(self)
 	def get_name(self):
 		return pdmt.prl.create(
 			proto=self.proto,
@@ -71,14 +71,14 @@ class NodeType(object):
 		return ret[0]
 	def getConfigNode(self, name):
 		nodename='cfg://'+name
-		if self.mgr.graph.has_name(nodename):
-			return self.mgr.graph.get_node_by_name(nodename)
+		if self.mgr.has_name(nodename):
+			return self.mgr.get_node_by_name(nodename)
 		else:
 			return pdmt.plugins.nodes.cfg.NodeType(name=name, mgr=self.mgr)
 	def getConfig(self, name):
-		return self.mgr.graph.get_node_by_name('cfg://'+name).get_value()
+		return self.mgr.get_node_by_name('cfg://'+name).get_value()
 	def add_edge(self, node):
-		self.mgr.graph.add_edge((self, node))
+		self.mgr.add_edge((self, node))
 
 '''
 This is the base class of all node handlers within the system
@@ -89,7 +89,7 @@ class NodeHandler(object):
 		if mgr is None:
 			raise ValueError('must get Mgr')
 		self.mgr=mgr
-		self.mgr.graph.addHandler(self)
+		self.mgr.addHandler(self)
 	def respond(self,data=None,eventtype=None):
 		raise ValueError('must override')
 

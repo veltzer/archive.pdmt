@@ -41,21 +41,21 @@ class Pdmt(cmd.Cmd):
 	def do_listbuildnodes(self, arg):
 		if self.no_args('listbuildnodes', arg):
 			return
-		self.mgr.graph.listbuildnodes()
+		self.mgr.listbuildnodes()
 	def help_listnodes(self):
 		self.print('show all nodes in the current graph')
 	def do_listnodes(self, arg):
 		if self.no_args('listnodes', arg):
 			return
-		self.mgr.graph.listnodes()
+		self.mgr.listnodes()
 	def help_listall(self):
 		self.print('show the current graph')
 	def do_listall(self, arg):
 		if self.no_args('listall', arg):
 			return
-		for node in self.mgr.graph.get_nodes():
+		for node in self.mgr.get_nodes():
 			self.raw_print(node.get_name())
-			for an in self.mgr.graph.get_adjacent_for_node(node):
+			for an in self.mgr.get_adjacent_for_node(node):
 				self.raw_print('\t'+an.get_name())
 	def complete_getcfg(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
@@ -67,10 +67,10 @@ class Pdmt(cmd.Cmd):
 			return
 		name=arg.split()[0].strip()
 		nodename='cfg://'+name
-		if not self.mgr.graph.has_name(nodename):
+		if not self.mgr.has_name(nodename):
 			self.error('do not have config named [{0}]'.format(name))
 			return
-		node=self.mgr.graph.get_node_by_name(nodename)
+		node=self.mgr.get_node_by_name(nodename)
 		self.raw_print(node.get_value(None))
 	def complete_setcfg(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
@@ -85,10 +85,10 @@ class Pdmt(cmd.Cmd):
 		if value[0]=='"' and value[-1]=='"':
 			value=value[1:-1]
 		nodename='cfg://'+name
-		if not self.mgr.graph.has_name(nodename):
+		if not self.mgr.has_name(nodename):
 			self.error('do not have config named [{0}]'.format(name))
 			return
-		node=self.mgr.graph.get_node_by_name(nodename)
+		node=self.mgr.get_node_by_name(nodename)
 		node.set_value(value)
 	def help_stats(self):
 		self.print('show stats for the current graph')
@@ -96,10 +96,10 @@ class Pdmt(cmd.Cmd):
 		if self.no_args('stats', arg):
 			return
 		self.print('graph has [{0}] nodes'.format(
-			self.mgr.graph.get_node_num(),
+			self.mgr.get_node_num(),
 		))
 		self.print('graph has [{0}] edges'.format(
-			self.mgr.graph.get_edge_num(),
+			self.mgr.get_edge_num(),
 		))
 	def help_ts_print_all_entries(self):
 		self.print('print all time stamp entries')
@@ -118,7 +118,7 @@ class Pdmt(cmd.Cmd):
 	def do_getsizeof(self, arg):
 		if self.no_args('getsizeof', arg):
 			return
-		self.print('getsizeof is [{0}]'.format(self.mgr.graph.getsizeof()))
+		self.print('getsizeof is [{0}]'.format(self.mgr.getsizeof()))
 	def help_clean(self):
 		self.print('clean everything')
 	def do_clean(self, arg):
@@ -137,7 +137,7 @@ class Pdmt(cmd.Cmd):
 			last_arg=''
 		else:
 			last_arg=parts[-1]
-		completions=self.mgr.graph.get_completions(last_arg, canbuild, onlyName, filter_type)
+		completions=self.mgr.get_completions(last_arg, canbuild, onlyName, filter_type)
 		return [c[len(last_arg)-len(text):] for c in completions]
 	def complete_buildnodes(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, True, False, None)
@@ -156,7 +156,7 @@ class Pdmt(cmd.Cmd):
 		try:
 			for node in self.mgr.nodenames_to_nodes(arg.split()):
 				self.raw_print(node.get_name())
-				for an in self.mgr.graph.get_adjacent_for_node(node):
+				for an in self.mgr.get_adjacent_for_node(node):
 					self.raw_print('\t'+an.get_name())
 		except pdmt.exceptions.CommandLineInputException as e:
 			e.print()
@@ -172,9 +172,9 @@ class Pdmt(cmd.Cmd):
 				self.print(error)
 		else:
 			for name in names:
-				node=self.mgr.graph.get_node_by_name(name)
+				node=self.mgr.get_node_by_name(name)
 				self.raw_print(node.get_name())
-				for an in self.mgr.graph.get_rv_for_node(node):
+				for an in self.mgr.get_rv_for_node(node):
 					self.raw_print('\t'+an.get_name())
 	def help_exit(self):
 		self.print('exit pdmt shell')

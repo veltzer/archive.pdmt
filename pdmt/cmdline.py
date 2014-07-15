@@ -49,8 +49,8 @@ def parse(mgr):
 			if options.nodes:
 				parser.error('no node names with --bashcomplete {0}'.format(str(options.nodes)))
 			else:
-				mgr.graph.bashcomplete(options.bashcomplete[0])
+				mgr.bashcomplete(options.bashcomplete[0])
 		if options.listnodes:
-			mgr.graph.listnodes()
+			mgr.listnodes()
 		if options.tui:
 			pdmt.tui.go(mgr)

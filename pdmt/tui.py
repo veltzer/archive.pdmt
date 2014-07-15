@@ -82,6 +82,8 @@ class Pdmt(cmd.Cmd):
 			return
 		name=arg.split()[0].strip()
 		value=arg.split()[1].strip()
+		if value[0]=='"' and value[-1]=='"':
+			value=value[1:-1]
 		nodename='cfg://'+name
 		if not self.mgr.graph.has_name(nodename):
 			self.error('do not have config named [{0}]'.format(name))

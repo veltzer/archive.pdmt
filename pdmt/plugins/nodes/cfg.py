@@ -33,12 +33,8 @@ class NodeType(pdmt.api.NodeType):
 			return self.get_data()[0]
 		else:
 			return float(0)
-	def get_value(self, default):
-		if self.name in handle:
-			return self.get_data()[1]
-		else:
-			self.set_value(default)
-			return default
+	def get_value(self):
+		return self.get_data()[1]
 	def set_value(self, value):
 		tup=(time.time(), value)
 		self.set_data(tup)

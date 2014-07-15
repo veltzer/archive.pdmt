@@ -20,8 +20,8 @@ def fini(mgr):
 	handle.close()
 
 class NodeType(pdmt.api.NodeType):
-	def __init__(self, name=None):
-		super().__init__(name=name, proto='cfg')
+	def __init__(self, **kw):
+		super().__init__(proto='cfg', **kw)
 	def get_data(self):
 		global handle
 		return ast.literal_eval(handle[self.name].decode())

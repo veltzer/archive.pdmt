@@ -8,8 +8,8 @@ class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
 	#@staticmethod
 	#def init(mgr):
 	#	mgr.addTypedConfigDep('cfg://CCFLAGS')
-	def __init__(self, name=None):
-		super().__init__(name=name)
+	def __init__(self, **kw):
+		super().__init__(**kw)
 		self.add_edge(self.getConfigNode('CCFLAGS'))
 	def filebuild(self):
 		args=[]

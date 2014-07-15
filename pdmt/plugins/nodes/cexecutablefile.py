@@ -3,8 +3,8 @@ import pdmt.plugins.nodes.objectfile # for NodeType
 import pdmt.utils.subproc # for check_call
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
-	def __init__(self, name=None):
-		super().__init__(name=name)
+	def __init__(self, **kw):
+		super().__init__(**kw)
 		self.add_edge(self.getConfigNode('LDFLAGS'))
 	def filebuild(self):
 		args=[]

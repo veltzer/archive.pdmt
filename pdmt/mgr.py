@@ -10,7 +10,6 @@ import pdmt.exceptions # for CommandLineInputException
 import types # for FunctionType
 
 class Mgr:
-	default=None
 	def __init__(self, loadinternalplugins=True, cache=None):
 		self.graph=pdmt.graph.PdmtGraph()
 		self.opbyname={}
@@ -22,7 +21,6 @@ class Mgr:
 		#	self.cache=pdmt.plugins.cache.null.NullCache()
 		#else:
 		#	self.cache=cache
-		Mgr.default=self
 
 	def setDefaultNodeList(self, nodelist):
 		self.defaultNodeList=nodelist

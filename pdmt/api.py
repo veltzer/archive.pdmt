@@ -7,6 +7,9 @@ import pdmt.mgr # for Mgr
 class NodeType(object):
 	def __init__(self, type=None, name=None, description=None, proto=None, mgr=None):
 		super().__init__()
+		if mgr is None:
+			raise ValueError('must get mgr')
+		self.mgr=mgr
 		if type is None:
 			self.type='unset'
 		else:
@@ -23,10 +26,6 @@ class NodeType(object):
 			self.description='unset'
 		else:
 			self.description=description
-		if mgr is None:
-			self.mgr=pdmt.mgr.Mgr.default
-		else:
-			self.mgr=mgr
 		self.mgr.graph.add_node(self)
 	def get_name(self):
 		return pdmt.prl.create(
@@ -75,7 +74,7 @@ class NodeType(object):
 		if self.mgr.graph.has_name(nodename):
 			return self.mgr.graph.get_node_by_name(nodename)
 		else:
-			return pdmt.plugins.nodes.cfg.NodeType(name=name)
+			return pdmt.plugins.nodes.cfg.NodeType(name=name, mgr=self.mgr)
 	def getConfig(self, name):
 		return self.mgr.graph.get_node_by_name('cfg://'+name).get_value()
 	def add_edge(self, node):
@@ -88,9 +87,9 @@ This is the base class of all node handlers within the system
 class NodeHandler(object):
 	def __init__(self, mgr=None):
 		if mgr is None:
-			self.mgr=pdmt.mgr.Mgr.default
-		else:
-			self.mgr=mgr
+			raise ValueError('must get Mgr')
+		self.mgr=mgr
+		self.mgr.graph.addHandler(self)
 	def respond(self,data=None,eventtype=None):
 		raise ValueError('must override')
 
@@ -102,9 +101,8 @@ This is the base class of all event handlers within the system
 class EventHandler(object):
 	def __init__(self, mgr=None):
 		if mgr is None:
-			self.mgr=pdmt.mgr.Mgr.default
-		else:
-			self.mgr=mgr
+			raise ValueError('must get Mgr')
+		self.mgr=mgr
 	def respond(self,data=None,eventtype=None):
 		raise ValueError('must override')
 

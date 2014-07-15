@@ -39,10 +39,9 @@ def parse(mgr):
 	if mysum==0:
 		if options.nodes:
 			try:
-				mgr.verify_node_names(options.nodes, True)
+				mgr.build_node_names(options.nodes)
 			except pdmt.exceptions.CommandLineInputException as e:
 				e.print_and_exit()
-			mgr.build_node_names(options.nodes)
 		else:
 			mgr.build()
 	else:

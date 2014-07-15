@@ -7,12 +7,12 @@ import inspect # for isclass
 import pdmt.utils.lang # for plural
 import pdmt.api # for Event.prebuild, Event.postbuild
 import pdmt.exceptions # for CommandLineInputException
+import types # for FunctionType
 
 class Mgr:
 	default=None
 	def __init__(self, loadinternalplugins=True, cache=None):
 		self.graph=pdmt.graph.PdmtGraph()
-		self.init_handlers()
 		self.opbyname={}
 		self.defaultNodeList=[]
 		self.plugins=[]
@@ -33,17 +33,6 @@ class Mgr:
 	def set_cache(self, cache):
 		self.cache=cache
 
-	''' listener functions start here '''
-	def init_handlers(self):
-		self.handlers=set()
-	def notify(self,data=None,eventtype=None):
-		for h in self.handlers:
-			h.respond(data=data,eventtype=eventtype)
-	def addHandler(self,handler):
-		self.handlers.add(handler)
-	def delHandler(self,handler):
-		self.handlers.remove(handler)
-
 	''' getting all dependencies for a node '''
 	def deps(self,node):
 		return [node for node in self.graph.get_adjacent_for_node(node)]
@@ -51,26 +40,7 @@ class Mgr:
 		for n in self.graph.get_adjacent_for_node(node):
 			yield n
 
-	''' modification functions '''
-	def addNode(self,node):
-		self.notify(data=node, eventtype=pdmt.api.Event.nodepreadd)
-		self.graph.add_node(node)
-		self.notify(data=node, eventtype=pdmt.api.Event.nodepostadd)
-	def delNode(self,node):
-		self.notify(data=node, eventtype=pdmt.api.Event.nodepredel)
-		self.graph.remove_node(node)
-		self.notify(data=node, eventtype=pdmt.api.Event.nodepostdel)
-	def addEdge(self,edge):
-		self.notify(data=edge, eventtype=pdmt.api.Event.edgepreadd)
-		self.graph.add_edge(edge)
-		self.notify(data=edge, eventtype=pdmt.api.Event.edgepostadd)
-	def delEdge(self,edge):
-		self.notify(data=edge, eventtype=pdmt.api.Event.edgepredel)
-		self.graph.remove_edge(edge)
-		self.notify(data=edge, eventtype=pdmt.api.Event.edgepostdel)
-
 	''' debugging methods '''
-
 	def msg(self,message):
 		print('pdmt:',message)
 	def progress(self,message):
@@ -98,9 +68,9 @@ class Mgr:
 				todo.append(node)
 		return todo
 	def buildNode(self,node):
-		self.notify(node, pdmt.api.Event.nodeprebuild)
+		self.graph.notify(node, pdmt.api.Event.nodeprebuild)
 		node.build()
-		self.notify(node, pdmt.api.Event.nodepostbuild)
+		self.graph.notify(node, pdmt.api.Event.nodepostbuild)
 	def build_node_list(self, node_list):
 		self.progress('going to scan [{len}] {plural}...'.format(
 			len=len(node_list),
@@ -146,8 +116,14 @@ class Mgr:
 				prefix=namespace,
 			):
 			module=importlib.import_module(modname)
-			if 'init' in module.__dict__:
-				module.init()
+			if 'init' in module.__dict__ and type(module.init) is types.FunctionType:
+				module.init(self)
+			# search for classes that have initializers
+			for name,t in module.__dict__.items():
+				# is it a new type
+				if type(t) is type:
+					if 'init' in t.__dict__ and type(t.init) is types.FunctionType:
+						t.init(self)
 			self.plugins.append(module)
 	def loadInternalPlugins(self):
 		self.loadPlugins('pdmt/plugins/', 'pdmt.plugins.')
@@ -159,5 +135,5 @@ class Mgr:
 	'''shutdown method to clean up, currently does nothing'''
 	def shutdown(self):
 		for module in reversed(self.plugins):
-			if 'fini' in module.__dict__:
-				module.fini()
+			if 'fini' in module.__dict__ and type(module.fini) is types.FunctionType:
+				module.fini(self)

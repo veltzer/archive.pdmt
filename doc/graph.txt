@@ -1,15 +1,22 @@
 In order to build pdmt we will need a python graph object.
 
 I had issues with pygraph and so I built my own graph object.
-We should recosider this descision since python3 now carries
+We should reconsider this descision since python3 now carries
 pygraph.
 
 the graph and locking.
 Currenly we have no locking issues with the graph since we are using
-it only from one thread. It is possible that entire core of PDMT
+it only from one thread. It is possible that the entire core of PDMT
 will continue to run in just one thread. It seems enough.
 
 Callbacks to the single thread of PDMT:
 - inotify - to notify of files changing.
 - tools - to notify of failure or success of building.
 - gui - ?!?
+
+Should the graph hold reverse edges?
+====================================
+It seems that so far the only use I found for this is the guy.
+Currently I do hold reverse edges because premature optimization
+is the root of all evil. We may need to revert that decision once
+we get really big graphs.

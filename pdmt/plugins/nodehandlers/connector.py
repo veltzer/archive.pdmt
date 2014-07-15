@@ -26,4 +26,4 @@ class NodeHandler(pdmt.api.NodeHandler):
 			return
 		if self.regexp is not None and not self.regexp.match(node.name):
 			return
-		self.mgr.addEdge((self.cnode,node))
+		self.mgr.graph.add_edge((self.cnode,node))

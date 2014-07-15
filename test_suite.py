@@ -9,7 +9,7 @@ https://docs.python.org/3/library/unittest.html
 
 import unittest # for TestCase
 import pdmt.graph # for Graph
-import pdmt.stack # for Stack
+import pdmt.utils.stack # for Stack
 import pdmt.utils.subproc # for system_pipe
 import pdmt.utils.string # for common_prefix
 
@@ -25,7 +25,7 @@ class TestSequenceFunctions(unittest.TestCase):
 			count+=1
 		self.assertEqual(count,2)
 	def test_stack(self):
-		s=pdmt.stack.Stack()
+		s=pdmt.utils.stack.Stack()
 		s.push(3)
 		s.push(4)
 		s.push(5)

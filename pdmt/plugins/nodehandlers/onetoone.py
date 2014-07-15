@@ -1,4 +1,5 @@
-import pdmt.api # for Event.nodepostadd, NodeHandler
+import pdmt.api # for NodeHandler
+import pdmt.event # for Event
 import pdmt.plugins.nodes.cfile # for NodeType
 import pdmt.plugins.nodes.objectfile # for NodeType
 import pdmt.utils.filenames # for replace_suffix, replace_suffix_new_folder
@@ -12,7 +13,7 @@ class NodeHandler(pdmt.api.NodeHandler):
 		self.target_type=target_type
 		self.folder=folder
 	def respond(self,data=None,eventtype=None):
-		if eventtype!=pdmt.api.Event.nodepostadd:
+		if eventtype!=pdmt.event.Event.nodepostadd:
 			return
 		node=data
 		if not isinstance(node,self.type):

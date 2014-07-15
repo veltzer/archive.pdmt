@@ -1,5 +1,4 @@
 import pdmt.plugins.nodes.sourcefile # for NodeType
-import pdmt.types # for t_c
 
 '''
 This node represents C source code

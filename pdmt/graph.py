@@ -11,7 +11,7 @@ Properties:
 import pdmt.utils.string # for common_prefix
 import pdmt.utils.printer # for print_raw
 import sys # for getsizeof
-import pdmt.api # for Event
+import pdmt.event # for Event
 
 class Graph(object):
 	def __init__(self):
@@ -166,21 +166,21 @@ class EventGraph(NamedGraph):
 
 	''' modification functions '''
 	def add_node(self,node):
-		self.notify(data=node, eventtype=pdmt.api.Event.nodepreadd)
+		self.notify(data=node, eventtype=pdmt.event.Event.nodepreadd)
 		super().add_node(node)
-		self.notify(data=node, eventtype=pdmt.api.Event.nodepostadd)
+		self.notify(data=node, eventtype=pdmt.event.Event.nodepostadd)
 	def remove_node(self,node):
-		self.notify(data=node, eventtype=pdmt.api.Event.nodepredel)
+		self.notify(data=node, eventtype=pdmt.event.Event.nodepredel)
 		super().remove_node(node)
-		self.notify(data=node, eventtype=pdmt.api.Event.nodepostdel)
+		self.notify(data=node, eventtype=pdmt.event.Event.nodepostdel)
 	def add_edge(self,edge):
-		self.notify(data=edge, eventtype=pdmt.api.Event.edgepreadd)
+		self.notify(data=edge, eventtype=pdmt.event.Event.edgepreadd)
 		super().add_edge(edge)
-		self.notify(data=edge, eventtype=pdmt.api.Event.edgepostadd)
+		self.notify(data=edge, eventtype=pdmt.event.Event.edgepostadd)
 	def remove_edge(self,edge):
-		self.notify(data=edge, eventtype=pdmt.api.Event.edgepredel)
+		self.notify(data=edge, eventtype=pdmt.event.Event.edgepredel)
 		super().remove_edge(edge)
-		self.notify(data=edge, eventtype=pdmt.api.Event.edgepostdel)
+		self.notify(data=edge, eventtype=pdmt.event.Event.edgepostdel)
 
 class PdmtGraph(EventGraph):
 	'''

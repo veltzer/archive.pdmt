@@ -13,9 +13,7 @@ class NodeType(pdmt.api.NodeType):
 		return True
 	def canBuild(self):
 		return True
-	def build(self):
+	def build(self, nbp):
 		pass
 	def canClean(self):
 		return False
-	def clean(self):
-		pass

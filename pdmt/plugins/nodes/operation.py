@@ -15,5 +15,3 @@ class NodeType(pdmt.api.NodeType):
 		return True
 	def canClean(self):
 		return False
-	def clean(self):
-		pass

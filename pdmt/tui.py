@@ -131,6 +131,12 @@ class Pdmt(cmd.Cmd):
 		if self.no_args('build', arg):
 			return
 		self.mgr.build()
+	def help_plan(self):
+		self.print('show plan to build the default target')
+	def do_plan(self, arg):
+		if self.no_args('plan', arg):
+			return
+		self.mgr.createPlan().print()
 	def complete_nodes(self, text, line, begidx, endidx, canbuild, onlyName, filter_type):
 		parts=line.split()
 		if len(parts)==1:

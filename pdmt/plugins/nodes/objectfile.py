@@ -1,6 +1,5 @@
 import pdmt.plugins.nodes.buildfile # for NodeType
 import pdmt.plugins.nodes.cfile # for NodeType
-import pdmt.utils.subproc # for check_call
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
 	# new way of doing things
@@ -10,7 +9,7 @@ class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
 	def __init__(self, **kw):
 		super().__init__(**kw)
 		self.add_edge(self.getConfigNode('CCFLAGS'))
-	def filebuild(self):
+	def filebuild(self, nbp):
 		args=[]
 		args.append('gcc')
 		args.append('-c')
@@ -21,4 +20,4 @@ class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
 			args.append(cfg_CCFLAGS)
 		# this assumes we have only a single source file
 		args.append(self.getSourceOfType(pdmt.plugins.nodes.cfile.NodeType).name)
-		pdmt.utils.subproc.check_call(args)
+		nbp.addCmdList(args)

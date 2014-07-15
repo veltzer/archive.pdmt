@@ -94,7 +94,7 @@ class ns_subproc:
 	p_debug=True
 	p_debug=False
 class ns_mgr:
-	p_prog=True
+	p_prog=False
 	p_dbg=False
 class ns_release:
 	p_email=False

@@ -1,12 +1,11 @@
 import pdmt.plugins.nodes.buildfile # for NodeType
 import pdmt.plugins.nodes.objectfile # for NodeType
-import pdmt.utils.subproc # for check_call
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
 	def __init__(self, **kw):
 		super().__init__(**kw)
 		self.add_edge(self.getConfigNode('LDFLAGS'))
-	def filebuild(self):
+	def filebuild(self, nbp):
 		args=[]
 		args.append('gcc')
 		args.append('-o')
@@ -16,4 +15,4 @@ class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
 			args.append(cfg_LDFLAGS)
 		for node in self.getSourcesOfType(pdmt.plugins.nodes.objectfile.NodeType):
 			args.append(node.name)
-		pdmt.utils.subproc.check_call(args)
+		nbp.addCmdList(args)

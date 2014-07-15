@@ -45,10 +45,12 @@ class NodeType(pdmt.api.NodeType):
 		#return True
 	# we don't really want to clean cfg nodes for now...
 	'''
-	def clean(self):
-		global handle
-		if self.name in handle:
-			del handle[self.name]
+	def clean(self, nbp):
+		def dowork():
+			global handle
+			if self.name in handle:
+				del handle[self.name]
+		nbp.addFunction(nbp)
 	'''
 
 

@@ -12,6 +12,8 @@
 - do an auto generation example.
 	A single file that generates multiple c output files
 	which then get compiled. 
+	The extra edges for the node will not be in the general edges collection
+	of the graph but rather will be special, attached edges.
 - make the nodes not run the build but rather return the commands
 	that need to be run to build them.
 	This means that we could run stuff on other machines,

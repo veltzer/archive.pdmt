@@ -149,12 +149,15 @@ class NamedGraph(Graph):
 This graph adds event handling being able to notify listeners when interesting stuff happens
 to it
 '''
+debugEvents=False
 class EventGraph(NamedGraph):
 	def __init__(self):
 		super().__init__()
 		self.handlers=set()
 	def notify(self,data=None,eventtype=None):
 		for h in self.handlers:
+			if debugEvents:
+				print('dispatching', data, eventtype, 'to', h)
 			h.respond(data=data,eventtype=eventtype)
 	def addHandler(self,handler):
 		self.handlers.add(handler)

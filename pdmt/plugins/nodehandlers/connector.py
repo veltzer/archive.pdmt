@@ -11,8 +11,8 @@ and remove itself when it is removed.
 '''
 
 class NodeHandler(pdmt.api.NodeHandler):
-	def __init__(self,cnode=None,type=None,regexp=None):
-		super().__init__()
+	def __init__(self,cnode=None,type=None,regexp=None, **kw):
+		super().__init__(**kw)
 		self.cnode=cnode
 		self.type=type
 		self.regexp=regexp

@@ -20,8 +20,8 @@ def fini(mgr):
 	handle.close()
 
 class NodeType(pdmt.api.NodeType):
-	def __init__(self, name=None):
-		super().__init__(name=name, proto='ts')
+	def __init__(self, **kw):
+		super().__init__(proto='ts', **kw)
 	def get_lmt(self):
 		if self.name in handle:
 			return float(handle[self.name])

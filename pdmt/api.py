@@ -76,8 +76,8 @@ class NodeType(object):
 			return self.mgr.graph.get_node_by_name(nodename)
 		else:
 			return pdmt.plugins.nodes.cfg.NodeType(name=name)
-	def getConfig(self, name, default):
-		return self.mgr.graph.get_node_by_name('cfg://'+name).get_value(default)
+	def getConfig(self, name):
+		return self.mgr.graph.get_node_by_name('cfg://'+name).get_value()
 	def add_edge(self, node):
 		self.mgr.graph.add_edge((self, node))
 

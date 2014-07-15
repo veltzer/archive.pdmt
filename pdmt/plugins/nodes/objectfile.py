@@ -17,7 +17,7 @@ class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
 		args.append('-c')
 		args.append('-o')
 		args.append(self.name)
-		cfg_CCFLAGS=self.getConfig('CCFLAGS', '-O2')
+		cfg_CCFLAGS=self.getConfig('CCFLAGS')
 		if cfg_CCFLAGS!='':
 			args.append(cfg_CCFLAGS)
 		# this assumes we have only a single source file

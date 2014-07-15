@@ -6,8 +6,8 @@ add a method call as a BuildPlanElement type.
 '''
 
 import pdmt.utils.subproc # for check_call
-import pdmt.utils.printer # for print_msg
-import pdmt.utils.lang # for plural
+import pdmt.utils.printer # for print_msg_noeol
+import pdmt.utils.lang # for plural, book_to_ok
 
 class BuildPlanElement(object):
 	def execute():
@@ -65,8 +65,8 @@ class NodeBuildPlan(object):
 			(err, txt_out, txt_err)=l.execute()
 			self.node.txt_out+=txt_out
 			self.node.txt_err+=txt_err
+			self.node.last_err=err
 			if err:
-				self.node.last_err=err
 				haveError=True
 				break
 		return haveError
@@ -82,9 +82,10 @@ build plan.
 Currently it is just a list of NodeBuildPlan
 '''
 class BuildPlan(object):
-	def __init__(self):
+	def __init__(self, mgr=None):
 		super().__init__()
 		self.list=[]
+		self.mgr=mgr
 	def append(self, nbp):
 		self.list.append(nbp)
 	def execute(self):
@@ -94,13 +95,19 @@ class BuildPlan(object):
 			plural=pdmt.utils.lang.plural('node', len_list),
 		))
 		for num, nbp in enumerate(self.list):
-			pdmt.utils.printer.print_msg('building ({num}/{len_list}) [{name}]'.format(
+			pdmt.utils.printer.print_msg_noeol('building ({num}/{len_list}) [{name}]...'.format(
 				num=num+1,
 				len_list=len_list,
 				name=nbp.node.get_name(),
 			))
-			if nbp.execute():
+			# FIXME - very simplistic approach
+			ret=nbp.execute()
+			pdmt.utils.printer.print_raw(pdmt.utils.lang.bool_to_ok(ret))
+			if ret:
+				self.mgr.error_add(nbp.node)
 				break
+			else:
+				self.mgr.error_remove(nbp.node)
 	def print(self):
 		for nbp in self.list:
 			nbp.print()

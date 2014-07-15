@@ -125,6 +125,23 @@ class Pdmt(cmd.Cmd):
 		if self.no_args('clean', arg):
 			return
 		self.mgr.build_node_names(['op://clean'])
+	def help_errors(self):
+		self.print('show nodes in errors')
+	def do_errors(self, arg):
+		if self.no_args('errors', arg):
+			return
+		for node in self.mgr.errors:
+			print(node.get_name())
+	def help_showerrors(self):
+		self.print('show errors errored nodes')
+	def do_showerrors(self, arg):
+		if self.no_args('showerrors', arg):
+			return
+		for node in self.mgr.errors:
+			print(node.get_name())
+			print('\t'+node.txt_err)
+			print('\t'+node.txt_out)
+			print('\t'+str(node.last_err))
 	def help_build(self):
 		self.print('build the default target')
 	def do_build(self, arg):

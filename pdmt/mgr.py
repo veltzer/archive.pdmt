@@ -16,6 +16,7 @@ class Mgr(pdmt.graph.PdmtGraph):
 		self.opbyname={}
 		self.defaultNodeList=[]
 		self.plugins=[]
+		self.errors=set()
 		if loadinternalplugins:
 			self.loadInternalPlugins()
 		#if cache is None:
@@ -101,7 +102,7 @@ class Mgr(pdmt.graph.PdmtGraph):
 			len_todo=len_todo,
 			plural=pdmt.utils.lang.plural('node', len_todo),
 		))
-		bp=pdmt.buildplan.BuildPlan()
+		bp=pdmt.buildplan.BuildPlan(mgr=self)
 		for num,node in enumerate(todo):
 			self.progress('building plan for ({num}/{len_todo}) [{name}]'.format(
 				num=num+1,
@@ -144,3 +145,10 @@ class Mgr(pdmt.graph.PdmtGraph):
 		for module in reversed(self.plugins):
 			if 'fini' in module.__dict__ and type(module.fini) is types.FunctionType:
 				module.fini(self)
+
+	'''error handling code'''
+	def error_add(self, node):
+		self.errors.add(node)
+	def error_remove(self, node):
+		if node in self.errors:
+			self.errors.remove(node)

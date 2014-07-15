@@ -1,3 +1,7 @@
+- implement showerrorsfor tui command with completion of node names.
+- look at how a full build looks.
+	Do you see the numbers running not in straight lines?
+	fix this...:)
 - do docbook generation for this project using this project.
 	gather the output of the last build (both stdout and stderr) into buffers when build.
 		then we could transmit those buffers back to the mother build system.

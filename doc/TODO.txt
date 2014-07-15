@@ -1,3 +1,8 @@
+- solve the mgr conundrum. Stop the default mgr.
+	do a __postinit__ method in the objects where they
+	are assured to be connected to the mgr.
+- maybe the mgr should be THE GRAPH? then I wont have to
+	do mgr.graph all the time...
 - stop running the commands and generate build plans.
 	allow to not build but rather see the plan via the tui.
 	currently make it simple: the plan is just a linear set of

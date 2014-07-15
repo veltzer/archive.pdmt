@@ -4,6 +4,11 @@
 	commands to be given.
 	problem: what about inheritance?
 	no problem! the parent will add to the build plan of the child.
+	Each elemnt of the build plan could be:
+		subprocess with list
+		subprocess with string
+		python function (with function and params)
+		python method (with object and method and params)
 - create porcelain for ts://allfiles which will act
 	as the default.
 	do roughly what I do in the pdmt.py file.

@@ -1,5 +1,5 @@
 import enum # for Enum
-import pdmt.prl # for create
+import pdmt.prn # for create
 import pdmt.mgr # for Mgr
 
 # the inheritance from 'object' is very important to get the __class__
@@ -28,7 +28,7 @@ class NodeType(object):
 			self.description=description
 		self.mgr.add_node(self)
 	def get_name(self):
-		return pdmt.prl.create(
+		return pdmt.prn.create(
 			proto=self.proto,
 			name=self.name
 		)

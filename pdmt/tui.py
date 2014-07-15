@@ -145,34 +145,28 @@ class Pdmt(cmd.Cmd):
 		self.print('buildnodes [nodes]: build nodes by specific names')
 	def do_buildnodes(self, arg):
 		names=arg.split()
-		errors=self.mgr.verify_node_names(names, False)
-		if errors:
-			for error in errors:
-				self.print(error)
-		else:
-			self.mgr.build_node_names(names)
+		try:
+			self.mgr.build_node_names(arg.split())
+		except pdmt.exceptions.CommandLineInputException as e:
+			e.print()
 	complete_depends=complete_buildnodes
 	def help_depends(self):
 		self.print('depends [nodes]: show what do nodes depend on (1 level)')
 	def do_depends(self, arg):
-		names=arg.split()
-		errors=self.mgr.verify_node_names(names, False)
-		if errors:
-			for error in errors:
-				self.print(error)
-		else:
-			for name in names:
-				node=self.mgr.graph.get_node_by_name(name)
+		try:
+			for node in self.mgr.nodenames_to_nodes(arg.split()):
 				self.raw_print(node.get_name())
 				for an in self.mgr.graph.get_adjacent_for_node(node):
 					self.raw_print('\t'+an.get_name())
+		except pdmt.exceptions.CommandLineInputException as e:
+			e.print()
 	def complete_whatdependson(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, False, None)
 	def help_whatdependson(self):
 		self.print('whatdependson [nodes]: show what nodes depend on nodes (1 level)')
 	def do_whatdependson(self, arg):
 		names=arg.split()
-		errors=self.mgr.verify_node_names(names, False)
+		errors=self.mgr.nodenames_to_nodes(names, False)
 		if errors:
 			for error in errors:
 				self.print(error)

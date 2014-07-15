@@ -1,6 +1,4 @@
 import pdmt.plugins.nodes.operation # for NodeType
-import pdmt.utils.lang # for plural
-import pdmt.utils.printer # for print_msg
 
 '''
 A generic clean node for Pdmt
@@ -9,7 +7,7 @@ A generic clean node for Pdmt
 class NodeType(pdmt.plugins.nodes.operation.NodeType):
 	def __init__(self, **kw):
 		super().__init__(name='clean', description='clean all nodes', **kw)
-	def build(self):
+	def build(self, nbp):
 		build_list=self.mgr.get_clean_node_list_sorted()
 		lst_len=len(build_list)
 		self.mgr.progress('going to clean [{lst_len}] {plural}...'.format(
@@ -17,9 +15,4 @@ class NodeType(pdmt.plugins.nodes.operation.NodeType):
 			plural=pdmt.utils.lang.plural('node', lst_len),
 		))
 		for i,node in enumerate(build_list):
-			pdmt.utils.printer.print_msg('cleaning ({num}/{len_todo}) [{name}]'.format(
-				num=i+1,
-				len_todo=lst_len,
-				name=node.get_name(),
-			))
-			node.clean()
+			node.clean(nbp)

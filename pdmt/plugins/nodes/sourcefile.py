@@ -19,8 +19,6 @@ class NodeType(pdmt.plugins.nodes.file.NodeType):
 		return False
 	def canClean(self):
 		return False
-	def clean(self):
-		pass
 	''' maybe we can checkout the source files...:) ?!? '''
-	def build(self):
+	def build(self, nbp):
 		raise ValueError('dont know how to build a source file')

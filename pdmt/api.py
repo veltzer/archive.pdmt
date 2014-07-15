@@ -44,11 +44,11 @@ class NodeType(object):
 		return rebuild
 	def canBuild(self):
 		raise ValueError('must override')
-	def build(self):
+	def build(self, nbp):
 		raise ValueError('must override')
 	def canClean(self):
 		raise ValueError('must override')
-	def clean(self):
+	def clean(self, nbp):
 		raise ValueError('must override')
 	def get_lmt(self):
 		return float(0)

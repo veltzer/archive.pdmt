@@ -29,15 +29,19 @@ class NodeType(pdmt.api.NodeType):
 			return float(0)
 	def canBuild(self):
 		return True
-	def build(self):
-		global handle
-		handle[self.name]=str(time.time())
+	def build(self, nbp):
+		def dowork():
+			global handle
+			handle[self.name]=str(time.time())
+		nbp.addFunction(dowork)
 	def canClean(self):
 		return True
-	def clean(self):
-		global handle
-		if self.name in handle:
-			del handle[self.name]
+	def clean(self, nbp):
+		def dowork():
+			global handle
+			if self.name in handle:
+				del handle[self.name]
+		nbp.addFunction(dowork)
 
 
 ''' a method to debug this module '''

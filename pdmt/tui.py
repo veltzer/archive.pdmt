@@ -190,7 +190,7 @@ class Pdmt(cmd.Cmd):
 		os.system(arg)
 
 def go(mgr):
-	sys.argv.remove('--tui')
+	#sys.argv.remove('--tui')
 	ins=Pdmt(mgr)
 	banner='Welcome to pdmt [{0}]...'.format(
 		pdmt.config.ns_pdmt.p_version,

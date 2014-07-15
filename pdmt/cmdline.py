@@ -21,6 +21,12 @@ def parse(mgr):
 		help='list all nodes in the graph',
 	)
 	parser.add_argument(
+		'--build',
+		action='store_true',
+		default=False,
+		help='build stuff',
+	)
+	parser.add_argument(
 		'--tui',
 		action='store_true',
 		default=False,
@@ -32,11 +38,25 @@ def parse(mgr):
 	mysum=sum([
                 options.bashcomplete is not None,
 		options.listnodes,
+		options.build,
 		options.tui,
         ])
 	if mysum>1:
-		parser.error('only one option at a time')
+		parser.error('not more than one option at a time')
+	# tui is the default option
 	if mysum==0:
+		options.tui=True
+
+	if options.bashcomplete is not None:
+		if options.nodes:
+			parser.error('no node names with --bashcomplete {0}'.format(str(options.nodes)))
+		else:
+			mgr.bashcomplete(options.bashcomplete[0])
+
+	if options.listnodes:
+		mgr.listnodes()
+
+	if options.build:
 		if options.nodes:
 			try:
 				mgr.build_node_names(options.nodes)
@@ -44,13 +64,6 @@ def parse(mgr):
 				e.print_and_exit()
 		else:
 			mgr.build()
-	else:
-		if options.bashcomplete is not None:
-			if options.nodes:
-				parser.error('no node names with --bashcomplete {0}'.format(str(options.nodes)))
-			else:
-				mgr.bashcomplete(options.bashcomplete[0])
-		if options.listnodes:
-			mgr.listnodes()
-		if options.tui:
-			pdmt.tui.go(mgr)
+
+	if options.tui:
+		pdmt.tui.go(mgr)

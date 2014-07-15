@@ -20,7 +20,8 @@
 # docbook stuff
 *.pdf
 *.fo
-*.stamp
 
+# stamps
+*.stamp
 /.ts.gdbm
 /.cfg.gdbm

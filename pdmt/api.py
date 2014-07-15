@@ -63,6 +63,11 @@ class NodeType(object):
 			if isinstance(node,type):
 				ret.append(node)
 		return ret
+	def getSource(self):
+		ret=self.getDeps()
+		if len(ret)!=1:
+			raise ValueError('too many sources')
+		return ret[0]
 	def getSourceOfType(self, type):
 		ret=self.getSourcesOfType(type)
 		if len(ret)!=1:

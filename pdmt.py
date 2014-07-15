@@ -47,6 +47,11 @@ pdmt.plugins.nodehandlers.onetoone.NodeHandler(
 for name in glob.glob('mako/*.mako'):
 	pdmt.plugins.nodes.makofile.NodeType(mgr=mgr, name=name)
 
+# docbook stuff
+docbook_xml=pdmt.plugins.nodes.sourcefile.NodeType(mgr=mgr, name='docbook/pdmt.xml')
+docbook_pdf=pdmt.plugins.nodes.docbook.NodeType(mgr=mgr, name='docbook/pdmt.pdf')
+mgr.add_edge((docbook_pdf, docbook_xml))
+
 # operations
 pdmt.plugins.nodes.operations.clean.NodeType(mgr=mgr)
 pdmt.plugins.nodes.operations.print_dot.NodeType(mgr=mgr)

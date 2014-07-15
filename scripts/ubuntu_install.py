@@ -21,12 +21,14 @@ packs=[
 	# docbook stuff
 	'docbook5-xml',
 	'docbook-xsl-ns',
-	#'docbook5-defguide',
+	'docbook-defguide',
 	'xsltproc',
 	'fop',
 	'xmlto',
 	'libxml2-utils',
 	'xmlstarlet',
+
+	# cmd2 stuff
 	'python3-cmd2',
 	'python-cmd2',
 

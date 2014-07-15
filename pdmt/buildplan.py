@@ -19,6 +19,7 @@ class CmdList(BuildPlanElement):
 		self.l=l
 	def execute(self):
 		pdmt.utils.subproc.check_call(self.l)
+		return (False, '', '')
 	def __str__(self):
 		return ' '.join(self.l)
 
@@ -27,7 +28,9 @@ class CmdString(BuildPlanElement):
 		super().__init__()
 		self.s=s
 	def execute(self):
-		pdmt.utils.subproc.check_call(self.s)
+		return pdmt.utils.subproc.system(self.s)
+	def __str__(self):
+		return self.s
 
 class Function(BuildPlanElement):
 	def __init__(self, f):
@@ -35,6 +38,9 @@ class Function(BuildPlanElement):
 		self.f=f
 	def execute(self):
 		self.f()
+		return (0, '', '')
+	def __str__(self):
+		return self.f
 
 '''
 this is a build plan for a single node
@@ -46,11 +52,24 @@ class NodeBuildPlan(object):
 		self.list=[]
 	def addCmdList(self, l):
 		self.list.append(CmdList(l))
+	def addCmdString(self, s):
+		self.list.append(CmdString(s))
 	def addFunction(self, f):
 		self.list.append(Function(f))
 	def execute(self):
+		haveError=False
+		self.node.last_err=0
+		self.node.txt_out=''
+		self.node.txt_err=''
 		for l in self.list:
-			l.execute()
+			(err, txt_out, txt_err)=l.execute()
+			self.node.txt_out+=txt_out
+			self.node.txt_err+=txt_err
+			if err:
+				self.node.last_err=err
+				haveError=True
+				break
+		return haveError
 	def print(self):
 		print(self.node.get_name())
 		for l in self.list:
@@ -80,7 +99,8 @@ class BuildPlan(object):
 				len_list=len_list,
 				name=nbp.node.get_name(),
 			))
-			nbp.execute()
+			if nbp.execute():
+				break
 	def print(self):
 		for nbp in self.list:
 			nbp.print()

@@ -1,23 +1,22 @@
+- do docbook generation for this project using this project.
+	gather the output of the last build (both stdout and stderr) into buffers when build.
+		then we could transmit those buffers back to the mother build system.
+		or print them out with locks.
+	show on the tui if a command build generated output or not.
+	add tui command to print the output of the last build for any node.
+- create new template node which does similar stuff to the docbook stuff.
+	rewrite the docbook stuff using the template stuff.
 - create porcelain for ts://allfiles which will act
 	as the default.
 	do roughly what I do in the pdmt.py file.
 - start building distribution capabilities into the system.
 	rsync to other machines
 	and issue remote commands to them.
-- do docbook generation for this project using this project.
-	do it using a new type of node:	TemplateNode
-	it receives a string that it will run for the command
-	where it will replace the source and target with the
-	right paths.
 - do an auto generation example.
 	A single file that generates multiple c output files
-	which then get compiled. 
+	which then get compiled.
 	The extra edges for the node will not be in the general edges collection
 	of the graph but rather will be special, attached edges.
-- make the nodes not run the build but rather return the commands
-	that need to be run to build them.
-	This means that we could run stuff on other machines,
-	create a script to build the system and more
 - make each node decalre the resources that it generates.
 	Most file nodes have one file that they generate
 	but some are different (ts, cfg, and I can think

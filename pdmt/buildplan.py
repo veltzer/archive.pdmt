@@ -18,8 +18,7 @@ class CmdList(BuildPlanElement):
 		super().__init__()
 		self.l=l
 	def execute(self):
-		pdmt.utils.subproc.check_call(self.l)
-		return (False, '', '')
+		return pdmt.utils.subproc.system_list(self.l)
 	def __str__(self):
 		return ' '.join(self.l)
 
@@ -28,7 +27,7 @@ class CmdString(BuildPlanElement):
 		super().__init__()
 		self.s=s
 	def execute(self):
-		return pdmt.utils.subproc.system(self.s)
+		return pdmt.utils.subproc.system_string(self.s)
 	def __str__(self):
 		return self.s
 

@@ -65,6 +65,11 @@ def checkexist_and_updatecache(filename):
 def mkdir(p_dir):
 	debug('mkdir ['+p_dir+']')
 	os.mkdir(p_dir)
+''' create all the folders necessary for a file '''
+def mkdirp(p_file):
+	dir=os.path.dirname(p_file)
+	if not os.path.isdir(dir):
+		os.makedirs(dir)
 def mkdirparent(p_dir):
 	debug('mkdirparent ['+p_dir+']')
 	to_create=[]

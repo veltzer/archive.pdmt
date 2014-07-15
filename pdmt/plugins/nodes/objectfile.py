@@ -4,9 +4,13 @@ import pdmt.utils.subproc
 import pdmt.types
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
+	# new way of doing things
+	#@staticmethod
+	#def init(mgr):
+	#	mgr.addTypedConfigDep('cfg://CCFLAGS')
 	def __init__(self, name=None):
 		super().__init__(name=name)
-		self.addEdge(self.getConfigNode('CCFLAGS'))
+		self.add_edge(self.getConfigNode('CCFLAGS'))
 	def filebuild(self):
 		args=[]
 		args.append('gcc')

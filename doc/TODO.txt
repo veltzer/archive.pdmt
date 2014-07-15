@@ -1,3 +1,6 @@
+- create porcelain for ts://allfiles which will act
+	as the default.
+	do roughly what I do in the pdmt.py file.
 - start building distribution capabilities into the system.
 	rsync to other machines
 	and issue remote commands to them.

@@ -6,26 +6,26 @@ import glob # for glob
 mgr=pdmt.mgr.Mgr()
 
 # debugging
-mgr.addHandler(pdmt.plugins.eventhandlers.debugger.EventHandler())
-mgr.addHandler(pdmt.plugins.nodehandlers.dirmaker.NodeHandler())
+mgr.graph.addHandler(pdmt.plugins.eventhandlers.debugger.EventHandler())
+mgr.graph.addHandler(pdmt.plugins.nodehandlers.dirmaker.NodeHandler())
 
 # the 'all' target
 node_all=pdmt.plugins.nodes.ts.NodeType(name='all')
-mgr.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
+mgr.graph.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
 	cnode=node_all,
 	type=pdmt.plugins.nodes.buildfile.NodeType,
 ))
 mgr.setDefaultNodeList([node_all])
 
 # c stuff
-mgr.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
+mgr.graph.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
 	type=pdmt.plugins.nodes.cfile.NodeType,
 	suffix='.o',
 	same_folder=True,
 	target_type=pdmt.plugins.nodes.objectfile.NodeType,
 ))
 node_exe=pdmt.plugins.nodes.cexecutablefile.NodeType(name='tests/main.elf')
-mgr.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
+mgr.graph.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
 	cnode=node_exe,
 	type=pdmt.plugins.nodes.objectfile.NodeType,
 	regexp='^tests/.*\.o$',
@@ -33,7 +33,7 @@ mgr.addHandler(pdmt.plugins.nodehandlers.connector.NodeHandler(
 node_c=pdmt.plugins.nodes.cfile.NodeType(name='tests/main.c')
 
 # mako stuff
-mgr.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
+mgr.graph.addHandler(pdmt.plugins.nodehandlers.onetoone.NodeHandler(
 	type=pdmt.plugins.nodes.makofile.NodeType,
 	suffix='',
 	same_folder=False,

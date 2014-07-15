@@ -11,6 +11,7 @@ Properties:
 import pdmt.utils.string # for common_prefix
 import pdmt.utils.printer # for print_raw
 import sys # for getsizeof
+import pdmt.api # for Event
 
 class Graph(object):
 	def __init__(self):
@@ -122,22 +123,63 @@ class Graph(object):
 			if not w in visited:
 				yield w
 		yield v
+
+'''
+This graph add names to the nodes. It assumes that each node has a name and holds a map
+between names and nodes. nodes must not have the same name or you will get an exception
+'''
 class NamedGraph(Graph):
 	def __init__(self):
 		super().__init__()
 		self.mymap={}
 	def add_node(self,node):
 		super().add_node(node)
+		if node.get_name() in self.mymap:
+			raise ValueError('already got', node.get_name())
 		self.mymap[node.get_name()]=node
 	def remove_node(self,node):
-		super().remove_node(node)
 		del self.mymap[node.get_name()]
+		super().remove_node(node)
 	def has_name(self, name):
 		return name in self.mymap
 	def get_node_by_name(self, name):
 		return self.mymap[name]
-		
-class PdmtGraph(NamedGraph):
+
+'''
+This graph adds event handling being able to notify listeners when interesting stuff happens
+to it
+'''
+class EventGraph(NamedGraph):
+	def __init__(self):
+		super().__init__()
+		self.handlers=set()
+	def notify(self,data=None,eventtype=None):
+		for h in self.handlers:
+			h.respond(data=data,eventtype=eventtype)
+	def addHandler(self,handler):
+		self.handlers.add(handler)
+	def delHandler(self,handler):
+		self.handlers.remove(handler)
+
+	''' modification functions '''
+	def add_node(self,node):
+		self.notify(data=node, eventtype=pdmt.api.Event.nodepreadd)
+		super().add_node(node)
+		self.notify(data=node, eventtype=pdmt.api.Event.nodepostadd)
+	def remove_node(self,node):
+		self.notify(data=node, eventtype=pdmt.api.Event.nodepredel)
+		super().remove_node(node)
+		self.notify(data=node, eventtype=pdmt.api.Event.nodepostdel)
+	def add_edge(self,edge):
+		self.notify(data=edge, eventtype=pdmt.api.Event.edgepreadd)
+		super().add_edge(edge)
+		self.notify(data=edge, eventtype=pdmt.api.Event.edgepostadd)
+	def remove_edge(self,edge):
+		self.notify(data=edge, eventtype=pdmt.api.Event.edgepredel)
+		super().remove_edge(edge)
+		self.notify(data=edge, eventtype=pdmt.api.Event.edgepostdel)
+
+class PdmtGraph(EventGraph):
 	'''
 	dump the graph in dot notation
 

@@ -27,7 +27,7 @@ class NodeType(object):
 			self.mgr=pdmt.mgr.Mgr.default
 		else:
 			self.mgr=mgr
-		self.mgr.addNode(self)
+		self.mgr.graph.add_node(self)
 	def get_name(self):
 		return pdmt.prl.create(
 			proto=self.proto,
@@ -78,8 +78,8 @@ class NodeType(object):
 			return pdmt.plugins.nodes.cfg.NodeType(name=name)
 	def getConfig(self, name, default):
 		return self.mgr.graph.get_node_by_name('cfg://'+name).get_value(default)
-	def addEdge(self, node):
-		self.mgr.addEdge((self, node))
+	def add_edge(self, node):
+		self.mgr.graph.add_edge((self, node))
 
 '''
 This is the base class of all node handlers within the system

@@ -1,4 +1,4 @@
-- add default values for cfgs after hard boot.
+- add default values for cfgs after hard clean.
 - implement the git clean op.
 	then see that we really can't build from clean.
 	fix all so that we could:

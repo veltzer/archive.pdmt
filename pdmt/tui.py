@@ -120,7 +120,7 @@ class Pdmt(cmd.Cmd):
 	def do_clean(self, arg):
 		if self.no_args('clean', arg):
 			return
-		self.mgr.build_node_names(['op://clean'])
+		self.build_one_node('phony://clean')
 	def help_errors(self):
 		self.print('show nodes in errors')
 	def do_errors(self, arg):
@@ -128,22 +128,36 @@ class Pdmt(cmd.Cmd):
 			return
 		for node in self.mgr.errors:
 			print(node.get_name())
+	def help_showoutputs(self):
+		self.print('show outputs of outputed nodes')
+	def do_showoutputs(self, arg):
+		if self.no_args('showoutputs', arg):
+			return
+		for node in self.mgr.nodes_outputs:
+			print(node.get_name())
+			print('\t'+node.txt_err)
+			print('\t'+node.txt_out)
 	def help_showerrors(self):
-		self.print('show errors errored nodes')
+		self.print('show errors of errored nodes')
 	def do_showerrors(self, arg):
 		if self.no_args('showerrors', arg):
 			return
-		for node in self.mgr.errors:
+		for node in self.mgr.nodes_errors:
 			print(node.get_name())
 			print('\t'+node.txt_err)
 			print('\t'+node.txt_out)
 			print('\t'+str(node.last_err))
+	def build_one_node(self, name):
+		if self.mgr.has_name(name):
+			self.mgr.build_node_names([name])
+		else:
+			self.print('for clean to work please defined a node [{name}]...'.format(name=name))
 	def help_build(self):
 		self.print('build the default target')
 	def do_build(self, arg):
 		if self.no_args('build', arg):
 			return
-		self.mgr.build()
+		self.build_one_node('phony://all')
 	def help_plan(self):
 		self.print('show plan to build the default target')
 	def do_plan(self, arg):

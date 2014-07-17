@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE article PUBLIC "-//OASIS//DTD DocBook XML V5.0//EN" "/usr/share/xml/docbook/schema/dtd/5.0/docbook.dtd">
 <book version="5.0" xmlns='http://docbook.org/ns/docbook'>
-	<title>My Example Book</title>
-	<titleabbrev>Example</titleabbrev>
+	<title>PDMT documentation and user manual</title>
+	<titleabbrev>PDMT documentation</titleabbrev>
 	<info>
 		<author>
-		<personname>
-		<firstname>Nathan</firstname>
-		<surname>Good</surname>
-		</personname>
+			<personname>
+				<firstname>Mark</firstname>
+				<surname>Veltzer</surname>
+			</personname>
 		</author>
 	</info>
 	<preface>
-		<title>Required Preface</title>
-		<para>You will like my book (I think).</para>
+		<title>Preface</title>
+		<para>PDMT is a tool to...</para>
 	</preface>
 	<chapter>
-		<title>Your First Chapter</title>
-		<para>You must include at least one chapter in your book.</para>
+		<title>Why PDMT?</title>
+		<para>This is the first paragraph.</para>
 		<para>Here is another paragraph.</para>
 		<important>
 			<para>This is some really important text.</para>

@@ -1,10 +1,10 @@
-- add default values for cfgs after hard clean.
-- implement the git clean op.
-	then see that we really can't build from clean.
-	fix all so that we could:
-		- default values for cfgs.
-- implement showerrorsfor tui command with completion of node names.
-- implement showoutputfor tui command with completion of node names.
+- get to clean build after gitclean.
+	add default values for cfgs after hard clean.
+- commit and version
+
+- implement shownodeoutputs and shownodeerrors with completion.
+	improve the outputs of showerrors, showoutputs
+	and the two new commands.
 - look at how a full build looks.
 	Do you see the numbers running not in straight lines?
 	fix this...:)

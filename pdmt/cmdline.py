@@ -66,4 +66,6 @@ def parse(mgr):
 			mgr.build()
 
 	if options.tui:
+		if options.nodes:
+			parser.error('no command line args with tui')
 		pdmt.tui.go(mgr)

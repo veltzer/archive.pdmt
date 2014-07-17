@@ -10,13 +10,12 @@ pdmt.plugins.eventhandlers.debugger.EventHandler(mgr=mgr)
 pdmt.plugins.nodehandlers.dirmaker.NodeHandler(mgr=mgr)
 
 # the 'all' target
-node_all=pdmt.plugins.nodes.ts.NodeType(mgr=mgr,name='all')
+node_ts_all=pdmt.plugins.nodes.ts.NodeType(mgr=mgr,name='all')
 pdmt.plugins.nodehandlers.connector.NodeHandler(
 	mgr=mgr,
-	cnode=node_all,
+	cnode=node_ts_all,
 	type=pdmt.plugins.nodes.buildfile.NodeType,
 )
-mgr.setDefaultNodeList([node_all])
 
 # c stuff
 pdmt.plugins.nodehandlers.onetoone.NodeHandler(
@@ -53,9 +52,18 @@ docbook_pdf=pdmt.plugins.nodes.docbook.NodeType(mgr=mgr, name='docbook/pdmt.pdf'
 mgr.add_edge((docbook_pdf, docbook_xml))
 
 # operations
-pdmt.plugins.nodes.operations.clean.NodeType(mgr=mgr)
-pdmt.plugins.nodes.operations.print_dot.NodeType(mgr=mgr)
-pdmt.plugins.nodes.operations.gitclean.NodeType(mgr=mgr)
+node_op_clean=pdmt.plugins.nodes.operations.clean.NodeType(mgr=mgr)
+node_op_print_dot=pdmt.plugins.nodes.operations.print_dot.NodeType(mgr=mgr)
+node_op_gitclean=pdmt.plugins.nodes.operations.gitclean.NodeType(mgr=mgr)
+
+# clean
+node_phony_clean=pdmt.plugins.nodes.phony.NodeType(mgr=mgr, name='clean')
+mgr.add_edge((node_phony_clean, node_op_clean))
+mgr.add_edge((node_phony_clean, node_op_gitclean))
+
+# all
+node_phony_all=pdmt.plugins.nodes.phony.NodeType(mgr=mgr, name='all')
+mgr.add_edge((node_phony_all, node_ts_all))
 
 mgr.parseCmdline()
 

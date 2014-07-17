@@ -14,18 +14,16 @@ class Mgr(pdmt.graph.PdmtGraph):
 	def __init__(self, loadinternalplugins=True, cache=None):
 		super().__init__()
 		self.opbyname={}
-		self.defaultNodeList=[]
 		self.plugins=[]
-		self.errors=set()
+		# nodes with errors and nodes with outputs
+		self.nodes_errors=set()
+		self.nodes_outputs=set()
 		if loadinternalplugins:
 			self.loadInternalPlugins()
 		#if cache is None:
 		#	self.cache=pdmt.plugins.cache.null.NullCache()
 		#else:
 		#	self.cache=cache
-
-	def setDefaultNodeList(self, nodelist):
-		self.defaultNodeList=nodelist
 
 	''' cache methods '''
 	def get_cache(self):
@@ -94,8 +92,6 @@ class Mgr(pdmt.graph.PdmtGraph):
 			len=self.get_node_num(),
 			plural=pdmt.utils.lang.plural('node', self.get_node_num()),
 		))
-		if node_list is None:
-			node_list=self.defaultNodeList
 		todo=self.build_todolist(node_list)
 		len_todo=len(todo)
 		self.msg('creating a plan to build [{len_todo}] {plural}...'.format(
@@ -146,12 +142,17 @@ class Mgr(pdmt.graph.PdmtGraph):
 			if 'fini' in module.__dict__ and type(module.fini) is types.FunctionType:
 				module.fini(self)
 
-	'''error handling code'''
+	'''errors and outputs handling code'''
 	def error_add(self, node):
-		self.errors.add(node)
+		self.nodes_errors.add(node)
 	def error_remove(self, node):
-		if node in self.errors:
-			self.errors.remove(node)
+		if node in self.nodes_errors:
+			self.nodes_errors.remove(node)
+	def output_add(self, node):
+		self.nodes_outputs.add(node)
+	def output_remove(self, node):
+		if node in self.nodes_outputs:
+			self.nodes_outputs.remove(node)
 
 	def getConfigNode(self, name):
 		nodename='cfg://'+name

@@ -103,7 +103,10 @@ class BuildPlan(object):
 			ret=nbp.execute()
 			s='['+pdmt.utils.lang.bool_to_ok(ret)+']'
 			if nbp.node.txt_err!='' or nbp.node.txt_out!='':
+				self.mgr.output_add(nbp.node)
 				s+=' [OUTPUT]'
+			else:
+				self.mgr.output_remove(nbp.node)
 			pdmt.utils.printer.print_raw(s)
 			if ret:
 				self.mgr.error_add(nbp.node)

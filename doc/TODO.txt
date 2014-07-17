@@ -1,3 +1,7 @@
+- do function for printing message wide screen.
+	use it in showoutputs/showerrros and more
+- showoutputs/showerrors does not distinguish between
+	different commands.
 - the todo list should be a graph.
 	start documentation about scheduing algorithms.
 - should we store the last command(s) used to generate any target?
@@ -7,8 +11,6 @@
 	init the cfg://[name] nodes from it.
 	use that config system to be able to turn verbosity of commands on
 	and off.
-- showoutputs does not distinguish between
-	different commands.
 - get to clean build after gitclean.
 	add default values for cfgs after hard clean.
 - commit and version

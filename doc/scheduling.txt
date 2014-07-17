@@ -1,0 +1,6 @@
+This document deals with how we schedule jobs in PDMT
+
+some interesting references:
+http://stackoverflow.com/questions/18314250/optimized-algorithm-to-schedule-tasks-with-dependency
+http://en.wikipedia.org/wiki/Dependency_graph
+http://python-rq.org

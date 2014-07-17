@@ -224,6 +224,15 @@ class Pdmt(cmd.Cmd):
 		self.print_msg('run a shell command')
 	def do_shell(self, arg):
 		os.system(arg)
+	def help_playground(self):
+		self.print_msg('developer playground')
+	def do_playground(self, arg):
+		import os
+		e = os.popen('stty size', 'r').read().split()
+		print(e)
+		#import console
+		#e = console.getTerminalSize()
+		#print(e)
 
 def go(mgr):
 	#sys.argv.remove('--tui')

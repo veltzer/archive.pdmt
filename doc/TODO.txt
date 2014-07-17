@@ -2,6 +2,9 @@
 	add default values for cfgs after hard clean.
 - commit and version
 
+- think about clearing the errors and outputs before every build
+	is it wise?
+	What about clearing them on clean?
 - implement shownodeoutputs and shownodeerrors with completion.
 	improve the outputs of showerrors, showoutputs
 	and the two new commands.

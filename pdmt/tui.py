@@ -82,14 +82,10 @@ class Pdmt(cmd.Cmd):
 			return
 		name=arg.split()[0].strip()
 		value=arg.split()[1].strip()
+		# handle empty values
 		if value[0]=='"' and value[-1]=='"':
 			value=value[1:-1]
-		nodename='cfg://'+name
-		if not self.mgr.has_name(nodename):
-			self.error('do not have config named [{0}]'.format(name))
-			return
-		node=self.mgr.get_node_by_name(nodename)
-		node.set_value(value)
+		self.mgr.getConfigNode(name).set_value(value)
 	def help_stats(self):
 		self.print('show stats for the current graph')
 	def do_stats(self, arg):

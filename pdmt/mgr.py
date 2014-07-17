@@ -152,3 +152,10 @@ class Mgr(pdmt.graph.PdmtGraph):
 	def error_remove(self, node):
 		if node in self.errors:
 			self.errors.remove(node)
+
+	def getConfigNode(self, name):
+		nodename='cfg://'+name
+		if self.has_name(nodename):
+			return self.get_node_by_name(nodename)
+		else:
+			return pdmt.plugins.nodes.cfg.NodeType(name=name, mgr=self)

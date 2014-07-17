@@ -74,11 +74,7 @@ class NodeType(object):
 			raise ValueError('too many sources')
 		return ret[0]
 	def getConfigNode(self, name):
-		nodename='cfg://'+name
-		if self.mgr.has_name(nodename):
-			return self.mgr.get_node_by_name(nodename)
-		else:
-			return pdmt.plugins.nodes.cfg.NodeType(name=name, mgr=self.mgr)
+		return self.mgr.getConfigNode(name)
 	def getConfig(self, name):
 		return self.mgr.get_node_by_name('cfg://'+name).get_value()
 	def add_edge(self, node):

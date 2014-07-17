@@ -16,11 +16,11 @@ class Pdmt(cmd.Cmd):
 		self.prompt='pdmt> '
 
 	''' all prints should go through this method '''
-	def print(self, msg):
+	def print_msg(self, msg):
 		pdmt.utils.printer.print_msg(msg)
 	''' special print function for special situations when you don't
 	want anything special added '''
-	def raw_print(self, msg):
+	def print_raw(self, msg):
 		print(msg)
 	''' print errors '''
 	def error(self, msg):
@@ -30,37 +30,37 @@ class Pdmt(cmd.Cmd):
 		return stop
 	def no_args(self, cmd, arg):
 		if arg!='':
-			self.print('command [{0}] does not take any arguments'.format(cmd))
+			self.print_msg('command [{0}] does not take any arguments'.format(cmd))
 			return True
 		else:
 			return False
 	def check_args(self, arg, num):
 		return len(arg.split())==num
 	def help_listbuildnodes(self):
-		self.print('show all build nodes in the current graph')
+		self.print_msg('show all build nodes in the current graph')
 	def do_listbuildnodes(self, arg):
 		if self.no_args('listbuildnodes', arg):
 			return
 		self.mgr.listbuildnodes()
 	def help_listnodes(self):
-		self.print('show all nodes in the current graph')
+		self.print_msg('show all nodes in the current graph')
 	def do_listnodes(self, arg):
 		if self.no_args('listnodes', arg):
 			return
 		self.mgr.listnodes()
 	def help_listall(self):
-		self.print('show the current graph')
+		self.print_msg('show the current graph')
 	def do_listall(self, arg):
 		if self.no_args('listall', arg):
 			return
 		for node in self.mgr.get_nodes():
-			self.raw_print(node.get_name())
+			self.print_raw(node.get_name())
 			for an in self.mgr.get_adjacent_for_node(node):
-				self.raw_print('\t'+an.get_name())
+				self.print_raw('\t'+an.get_name())
 	def complete_getcfg(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
 	def help_getcfg(self):
-		self.print('get config values')
+		self.print_msg('get config values')
 	def do_getcfg(self, arg):
 		if not self.check_args(arg, 1):
 			self.error('please supply a cfg name')
@@ -71,11 +71,11 @@ class Pdmt(cmd.Cmd):
 			self.error('do not have config named [{0}]'.format(name))
 			return
 		node=self.mgr.get_node_by_name(nodename)
-		self.raw_print(node.get_value(None))
+		self.print_raw(node.get_value(None))
 	def complete_setcfg(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
 	def help_setcfg(self):
-		self.print('set config values')
+		self.print_msg('set config values')
 	def do_setcfg(self, arg):
 		if not self.check_args(arg, 2):
 			self.error('please supply a cfg name and a value')
@@ -87,79 +87,85 @@ class Pdmt(cmd.Cmd):
 			value=value[1:-1]
 		self.mgr.getConfigNode(name).set_value(value)
 	def help_stats(self):
-		self.print('show stats for the current graph')
+		self.print_msg('show stats for the current graph')
 	def do_stats(self, arg):
 		if self.no_args('stats', arg):
 			return
-		self.print('graph has [{0}] nodes'.format(
+		self.print_msg('graph has [{0}] nodes'.format(
 			self.mgr.get_node_num(),
 		))
-		self.print('graph has [{0}] edges'.format(
+		self.print_msg('graph has [{0}] edges'.format(
 			self.mgr.get_edge_num(),
 		))
 	def help_ts_print_all_entries(self):
-		self.print('print all time stamp entries')
+		self.print_msg('print all time stamp entries')
 	def do_ts_print_all_entries(self, arg):
 		if self.no_args('ts_print_all_entries', arg):
 			return
 		pdmt.plugins.nodes.ts.print_all_entries()
 	def help_cfg_print_all_entries(self):
-		self.print('print all cfg entries')
+		self.print_msg('print all cfg entries')
 	def do_cfg_print_all_entries(self, arg):
 		if self.no_args('cfg_print_all_entries', arg):
 			return
 		pdmt.plugins.nodes.cfg.print_all_entries()
 	def help_getsizeof(self):
-		self.print('print the size that the graph takes in bytes')
+		self.print_msg('print the size that the graph takes in bytes')
 	def do_getsizeof(self, arg):
 		if self.no_args('getsizeof', arg):
 			return
-		self.print('getsizeof is [{0}]'.format(self.mgr.getsizeof()))
+		self.print_msg('getsizeof is [{0}]'.format(self.mgr.getsizeof()))
 	def help_clean(self):
-		self.print('clean everything')
+		self.print_msg('clean everything')
 	def do_clean(self, arg):
 		if self.no_args('clean', arg):
 			return
 		self.build_one_node('phony://clean')
 	def help_errors(self):
-		self.print('show nodes in errors')
+		self.print_msg('show nodes in errors')
 	def do_errors(self, arg):
 		if self.no_args('errors', arg):
 			return
 		for node in self.mgr.errors:
-			print(node.get_name())
+			self.print_raw(node.get_name())
 	def help_showoutputs(self):
-		self.print('show outputs of outputed nodes')
+		self.print_msg('show outputs of outputed nodes')
 	def do_showoutputs(self, arg):
 		if self.no_args('showoutputs', arg):
 			return
 		for node in self.mgr.nodes_outputs:
-			print(node.get_name())
-			print('\t'+node.txt_err)
-			print('\t'+node.txt_out)
+			self.print_raw(node.get_name())
+			self.print_raw('================ STDERR ==================')
+			self.print_raw(node.txt_err)
+			self.print_raw('================ STDOUT ==================')
+			self.print_raw(node.txt_out)
+			self.print_raw('==========================================')
 	def help_showerrors(self):
-		self.print('show errors of errored nodes')
+		self.print_msg('show errors of errored nodes')
 	def do_showerrors(self, arg):
 		if self.no_args('showerrors', arg):
 			return
 		for node in self.mgr.nodes_errors:
-			print(node.get_name())
-			print('\t'+node.txt_err)
-			print('\t'+node.txt_out)
-			print('\t'+str(node.last_err))
+			self.print_raw(node.get_name())
+			self.print_raw('================ STDERR ==================')
+			self.print_raw(node.txt_err)
+			self.print_raw('================ STDOUT ==================')
+			self.print_raw(node.txt_out)
+			self.print_raw('==========================================')
+			self.print_raw(str(node.last_err))
 	def build_one_node(self, name):
 		if self.mgr.has_name(name):
 			self.mgr.build_node_names([name])
 		else:
-			self.print('for clean to work please defined a node [{name}]...'.format(name=name))
+			self.print_msg('for clean to work please defined a node [{name}]...'.format(name=name))
 	def help_build(self):
-		self.print('build the default target')
+		self.print_msg('build the default target')
 	def do_build(self, arg):
 		if self.no_args('build', arg):
 			return
 		self.build_one_node('phony://all')
 	def help_plan(self):
-		self.print('show plan to build the default target')
+		self.print_msg('show plan to build the default target')
 	def do_plan(self, arg):
 		if self.no_args('plan', arg):
 			return
@@ -175,7 +181,7 @@ class Pdmt(cmd.Cmd):
 	def complete_buildnodes(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, True, False, None)
 	def help_buildnodes(self):
-		self.print('buildnodes [nodes]: build nodes by specific names')
+		self.print_msg('buildnodes [nodes]: build nodes by specific names')
 	def do_buildnodes(self, arg):
 		names=arg.split()
 		try:
@@ -184,38 +190,38 @@ class Pdmt(cmd.Cmd):
 			e.print()
 	complete_depends=complete_buildnodes
 	def help_depends(self):
-		self.print('depends [nodes]: show what do nodes depend on (1 level)')
+		self.print_msg('depends [nodes]: show what do nodes depend on (1 level)')
 	def do_depends(self, arg):
 		try:
 			for node in self.mgr.nodenames_to_nodes(arg.split()):
-				self.raw_print(node.get_name())
+				self.print_raw(node.get_name())
 				for an in self.mgr.get_adjacent_for_node(node):
-					self.raw_print('\t'+an.get_name())
+					self.print_raw('\t'+an.get_name())
 		except pdmt.exceptions.CommandLineInputException as e:
 			e.print()
 	def complete_whatdependson(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, False, None)
 	def help_whatdependson(self):
-		self.print('whatdependson [nodes]: show what nodes depend on nodes (1 level)')
+		self.print_msg('whatdependson [nodes]: show what nodes depend on nodes (1 level)')
 	def do_whatdependson(self, arg):
 		names=arg.split()
 		try:
 			for node in self.mgr.nodenames_to_nodes(arg.split()):
-				self.raw_print(node.get_name())
+				self.print_raw(node.get_name())
 				for an in self.mgr.get_rv_for_node(node):
-					self.raw_print('\t'+an.get_name())
+					self.print_raw('\t'+an.get_name())
 		except pdmt.exceptions.CommandLineInputException as e:
 			e.print()
 	def help_exit(self):
-		self.print('exit pdmt shell')
+		self.print_msg('exit pdmt shell')
 	def do_exit(self, arg):
 		return True
 	help_EOF=help_exit
 	def do_EOF(self, arg):
-		self.raw_print('')
+		self.print_raw('')
 		return True
 	def help_shell(self):
-		self.print('run a shell command')
+		self.print_msg('run a shell command')
 	def do_shell(self, arg):
 		os.system(arg)
 
@@ -225,5 +231,5 @@ def go(mgr):
 	banner='Welcome to pdmt [{0}]...'.format(
 		pdmt.config.ns_pdmt.p_version,
 	)
-	ins.print(banner)
+	ins.print_msg(banner)
 	ins.cmdloop()

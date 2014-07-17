@@ -1,3 +1,14 @@
+- the todo list should be a graph.
+	start documentation about scheduing algorithms.
+- should we store the last command(s) used to generate any target?
+	should we limit building of nodes just to external commands?
+- do a config system that I can control via the command line and that shows
+	me all the configs that are possible.
+	init the cfg://[name] nodes from it.
+	use that config system to be able to turn verbosity of commands on
+	and off.
+- showoutputs does not distinguish between
+	different commands.
 - get to clean build after gitclean.
 	add default values for cfgs after hard clean.
 - commit and version

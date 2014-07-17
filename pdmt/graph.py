@@ -104,6 +104,7 @@ class Graph(object):
 				ret.append(n)
 		return ret
 
+class AlgoGraph(Graph):
 	''' depth first search algorithm '''
 	def dfs(self, node_list=None):
 		visited=set()
@@ -113,12 +114,12 @@ class Graph(object):
 			if not node in visited:
 				for v in self.dfs_unvisited_node(visited,node):
 					yield v
-	def dfs_unvisited_node(self,visited,v):
+	def dfs_unvisited_node(self, visited, v):
 		if v in visited:
 			return
 		visited.add(v)
 		for w in self.get_adjacent_for_node(v):
-			for s in self.dfs_unvisited_node(visited,w):
+			for s in self.dfs_unvisited_node(visited, w):
 				yield s
 			if not w in visited:
 				yield w
@@ -128,7 +129,7 @@ class Graph(object):
 This graph add names to the nodes. It assumes that each node has a name and holds a map
 between names and nodes. nodes must not have the same name or you will get an exception
 '''
-class NamedGraph(Graph):
+class NamedGraph(AlgoGraph):
 	def __init__(self):
 		super().__init__()
 		self.mymap={}

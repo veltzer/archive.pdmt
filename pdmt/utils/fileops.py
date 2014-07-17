@@ -11,6 +11,8 @@ import os.path # for isdir, dirname, split, getmtime
 import gzip # for open
 import pdmt.utils.printer # for print_msg
 
+doCache=False
+
 def debug(msg):
 	if pdmt.config.ns_fileops.p_debug:
 		print(msg)
@@ -31,7 +33,7 @@ def unlink(p_file):
 	print_msg('unlinking [{name}]'.format(name=p_file))
 	debug('unlink ['+p_file+']')
 	os.unlink(p_file)
-def unlinksoft_straight(p_file):
+def unlinksoft_nocache(p_file):
 	debug('unlinksoft ['+p_file+']')
 	if os.path.isfile(p_file):
 		print_msg('unlinksoft [{name}] (really)'.format(name=p_file))
@@ -39,7 +41,7 @@ def unlinksoft_straight(p_file):
 	else:
 		print_msg('unlinksoft [{name}] (notthere)'.format(name=p_file))
 files=dict()
-def unlinksoft(filename):
+def unlinksoft_cache(filename):
 	global files
 	if filename not in files:
 		if os.path.isfile(filename):
@@ -60,8 +62,9 @@ def checkexist_and_updatecache(filename):
 	global files, mtimes
 	if not os.path.isfile(filename):
 		raise ValueError('do not have file after build', filename)
-	files[filename]=True
-	mtimes[filename]=os.path.getmtime(filename)
+	if doCache:
+		files[filename]=True
+		mtimes[filename]=os.path.getmtime(filename)
 def mkdir(p_dir):
 	debug('mkdir ['+p_dir+']')
 	os.mkdir(p_dir)
@@ -103,10 +106,22 @@ def create_empty_filegz(p_file):
 	f=gzip.open(p_file,'w')
 	f.close()
 mtimes=dict()
-def getmtime(filename):
+def getmtime_cache(filename):
 	if filename in mtimes:
 		return mtimes[filename]
 	else:
 		ret=os.path.getmtime(filename)
 		mtimes[filename]=ret
 		return ret
+def getmtime_nocache(filename):
+	return os.path.getmtime(filename)
+
+########################
+# handle cache/nocache #
+########################
+if doCache:
+	unlinksoft=unlinksoft_cache
+	getmtime=getmtime_cache
+else:
+	unlinksoft=unlinksoft_nocache
+	getmtime=getmtime_nocache

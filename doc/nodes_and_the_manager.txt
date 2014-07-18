@@ -23,3 +23,6 @@ rather call get_manager(). But then how would we have more than one
 manager? Using a manager policy which says how {get/set/new}_manager
 works. You can create your own policy and say, store an instance of a
 manager in TLS for everythread etc.
+
+If you want to see something similar see the main loop policy in tulip/asyncio
+in python. This is still not implemented in PDMT.

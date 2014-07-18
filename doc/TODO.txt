@@ -1,3 +1,6 @@
+- do function for printing message wide screen.
+	use it in showoutputs/showerrros and more
+- produce HTML from pdmt documentation and put it up on the website.
 - take care of bug in building where the ts node gets created again.
 - do example of a multiprocessing pool in demos-python
 	and use it in this project to do parallel building.
@@ -9,8 +12,6 @@
 	that throwing exceptions in python is not a lot
 	slower than passing error codes.
 	(throw exceptions without stack traces for that...).
-- do function for printing message wide screen.
-	use it in showoutputs/showerrros and more
 - showoutputs/showerrors does not distinguish between
 	different commands.
 - the todo list should be a graph.

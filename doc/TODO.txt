@@ -1,3 +1,11 @@
+- command line organization:
+	every function that shows something should be called
+		show*
+	this means rename all the list functions.
+	all function that have to do with configuration should
+	be called cfg_
+	make the cfg plugin contribute to the tui instead of the tui
+	functions that concern cfg being hardcoded in the tui.
 - do function for printing message wide screen.
 	use it in showoutputs/showerrros and more
 - produce HTML from pdmt documentation and put it up on the website.

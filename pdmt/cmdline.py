@@ -68,4 +68,4 @@ def parse(mgr):
 	if options.tui:
 		if options.nodes:
 			parser.error('no command line args with tui')
-		pdmt.tui.go(mgr)
+		pdmt.tui.go()

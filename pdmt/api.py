@@ -4,11 +4,9 @@ import pdmt.mgr # for Mgr
 # the inheritance from 'object' is very important to get the __class__
 # and other stuff we need in order for OO to work properly...
 class NodeType(object):
-	def __init__(self, type=None, name=None, description=None, proto=None, mgr=None):
+	def __init__(self, type=None, name=None, description=None, proto=None):
 		super().__init__()
-		if mgr is None:
-			raise ValueError('must get mgr')
-		self.mgr=mgr
+		self.mgr=pdmt.mgr.Mgr.get_manager()
 		if type is None:
 			self.type='unset'
 		else:
@@ -85,10 +83,9 @@ This is the base class of all node handlers within the system
 '''
 
 class NodeHandler(object):
-	def __init__(self, mgr=None):
-		if mgr is None:
-			raise ValueError('must get Mgr')
-		self.mgr=mgr
+	def __init__(self):
+		super().__init__()
+		self.mgr=pdmt.mgr.Mgr.get_manager()
 		self.mgr.addHandler(self)
 	def respond(self,data=None,eventtype=None):
 		raise ValueError('must override')
@@ -99,10 +96,9 @@ This is the base class of all event handlers within the system
 '''
 
 class EventHandler(object):
-	def __init__(self, mgr=None):
-		if mgr is None:
-			raise ValueError('must get Mgr')
-		self.mgr=mgr
+	def __init__(self):
+		super().__init__()
+		self.mgr=pdmt.mgr.Mgr.get_manager()
 	def respond(self,data=None,eventtype=None):
 		raise ValueError('must override')
 
@@ -111,10 +107,12 @@ This is the cache handler
 '''
 
 class Cache(object):
+	def __init__(self):
+		super().__init__()
+		self.mgr=pdmt.mgr.Mgr.get_manager()
 	def has_checksum(self, checksum):
 		raise ValueError('must override')
 	def get_filename(self, checksum, filename):
 		raise ValueError('must override')
 	def put_filename(self, checksum, filename):
 		raise ValueError('must override')
-

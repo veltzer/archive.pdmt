@@ -2,6 +2,7 @@ import cmd # for Cmd
 import os # for system
 import pdmt.config # for ns_pdmt
 import pdmt.utils.printer # for print_msg
+import pdmt.mgr # for Mgr
 import sys # for argv
 
 '''
@@ -10,9 +11,9 @@ http://bioportal.weizmann.ac.il/course/python/PyMOTW/PyMOTW/docs/cmd/index.html
 '''
 
 class Pdmt(cmd.Cmd):
-	def __init__(self, mgr):
+	def __init__(self):
 		super().__init__()
-		self.mgr=mgr
+		self.mgr=pdmt.mgr.Mgr.get_manager()
 		self.prompt='pdmt> '
 
 	''' all prints should go through this method '''
@@ -234,9 +235,8 @@ class Pdmt(cmd.Cmd):
 		#e = console.getTerminalSize()
 		#print(e)
 
-def go(mgr):
-	#sys.argv.remove('--tui')
-	ins=Pdmt(mgr)
+def go():
+	ins=Pdmt()
 	banner='Welcome to pdmt [{0}]...'.format(
 		pdmt.config.ns_pdmt.p_version,
 	)

@@ -3,3 +3,18 @@ It does not seem to hinder anything as I don't forsee a situation where a single
 Actually even the fact that the manager is not a singleton is an overkill because I can
 hardly forsee a situation where there is more than one manager.
 So each node should have access to the manager it is a part of.
+
+How will that work?
+Each node will have an .mgr property.
+
+How will it be set? static methods of pdmt namespace.
+
+get the current manager (in the constructor of nodes, right at the begining)
+	get_manager()
+if you want more than one manager:
+	set_manager()
+when you create a manager (sets it as a default manager)
+	new_manager()
+
+every instantiation of a manager will set the default manager.
+

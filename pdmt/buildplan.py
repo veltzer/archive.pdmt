@@ -81,10 +81,10 @@ build plan.
 Currently it is just a list of NodeBuildPlan
 '''
 class BuildPlan(object):
-	def __init__(self, mgr=None):
+	def __init__(self):
 		super().__init__()
+		self.mgr=pdmt.mgr.Mgr.get_manager()
 		self.list=[]
-		self.mgr=mgr
 	def append(self, nbp):
 		self.list.append(nbp)
 	def execute(self):

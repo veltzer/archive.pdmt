@@ -1,3 +1,4 @@
+- take care of bug in building where the ts node gets created again.
 - do example of a multiprocessing pool in demos-python
 	and use it in this project to do parallel building.
 - maybe use exception handling when running

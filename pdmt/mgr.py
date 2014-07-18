@@ -11,6 +11,22 @@ import types # for FunctionType
 import pdmt.buildplan # for BuildPlan, NodeBuildPlan
 
 class Mgr(pdmt.graph.PdmtGraph):
+	''' static methods to take care of the mgr instance '''
+	default=None
+	@staticmethod
+	def new_manager(**kw):
+		ret=Mgr(**kw)
+		Mgr.set_manager(ret)
+		return ret
+	@staticmethod
+	def set_manager(mgr):
+		Mgr.default=mgr
+	@staticmethod
+	def get_manager():
+		if Mgr.default is None:
+			raise ValueError('do not have a manager yet')
+		return Mgr.default
+
 	def __init__(self, loadinternalplugins=True, cache=None):
 		super().__init__()
 		self.opbyname={}
@@ -20,10 +36,8 @@ class Mgr(pdmt.graph.PdmtGraph):
 		self.nodes_outputs=set()
 		if loadinternalplugins:
 			self.loadInternalPlugins()
-		#if cache is None:
-		#	self.cache=pdmt.plugins.cache.null.NullCache()
-		#else:
-		#	self.cache=cache
+		if cache is not None:
+			selt.set_cache(cache)
 
 	''' cache methods '''
 	def get_cache(self):
@@ -98,7 +112,7 @@ class Mgr(pdmt.graph.PdmtGraph):
 			len_todo=len_todo,
 			plural=pdmt.utils.lang.plural('node', len_todo),
 		))
-		bp=pdmt.buildplan.BuildPlan(mgr=self)
+		bp=pdmt.buildplan.BuildPlan()
 		for num,node in enumerate(todo):
 			self.progress('building plan for ({num}/{len_todo}) [{name}]'.format(
 				num=num+1,
@@ -159,4 +173,4 @@ class Mgr(pdmt.graph.PdmtGraph):
 		if self.has_name(nodename):
 			return self.get_node_by_name(nodename)
 		else:
-			return pdmt.plugins.nodes.cfg.NodeType(name=name, mgr=self)
+			return pdmt.plugins.nodes.cfg.NodeType(name=name)

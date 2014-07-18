@@ -21,8 +21,8 @@ class Pdmt(cmd.Cmd):
 		pdmt.utils.printer.print_msg(msg)
 	''' special print function for special situations when you don't
 	want anything special added '''
-	def print_raw(self, msg):
-		print(msg)
+	def print_raw(self, msg, **kw):
+		print(msg, **kw)
 	''' print errors '''
 	def error(self, msg):
 		pdmt.utils.printer.print_msg(msg)
@@ -137,9 +137,9 @@ class Pdmt(cmd.Cmd):
 		for node in self.mgr.nodes_outputs:
 			self.print_raw(node.get_name())
 			self.print_raw('================ STDERR ==================')
-			self.print_raw(node.txt_err)
+			self.print_raw(node.txt_err, end='')
 			self.print_raw('================ STDOUT ==================')
-			self.print_raw(node.txt_out)
+			self.print_raw(node.txt_out, end='')
 			self.print_raw('==========================================')
 	def help_showerrors(self):
 		self.print_msg('show errors of errored nodes')
@@ -149,9 +149,15 @@ class Pdmt(cmd.Cmd):
 		for node in self.mgr.nodes_errors:
 			self.print_raw(node.get_name())
 			self.print_raw('================ STDERR ==================')
-			self.print_raw(node.txt_err)
+			if node.txt_err[-1]=='\n':
+				self.print_raw(node.txt_err, end='')
+			else:
+				self.print_raw(node.txt_err)
 			self.print_raw('================ STDOUT ==================')
-			self.print_raw(node.txt_out)
+			if node.txt_out[-1]=='\n':
+				self.print_raw(node.txt_out, end='')
+			else:
+				self.print_raw(node.txt_out)
 			self.print_raw('==========================================')
 			self.print_raw(str(node.last_err))
 	def build_one_node(self, name):

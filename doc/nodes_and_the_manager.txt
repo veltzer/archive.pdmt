@@ -18,3 +18,8 @@ when you create a manager (sets it as a default manager)
 
 every instantiation of a manager will set the default manager.
 
+Another idea is for each node NOT to have a link to the manager but
+rather call get_manager(). But then how would we have more than one
+manager? Using a manager policy which says how {get/set/new}_manager
+works. You can create your own policy and say, store an instance of a
+manager in TLS for everythread etc.

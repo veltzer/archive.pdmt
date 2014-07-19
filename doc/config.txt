@@ -1,0 +1,43 @@
+This is a document describing various types of configs in pdmt
+
+softconfig
+==========
+these are variables stored in RAM by pdmt at run time. You can change them.
+They influence how pdmt runs (verbose/nonverbose, logging more).
+THEY DO NOT EFFECT THE FINAL OUTPUTS OF PDMT.
+
+what happens when you change them?
+nothing
+
+do they have dependencies between them?
+no
+
+config nodes
+============
+are nodes within the graph that have dates.
+They are persistent and stored between each run.
+You can also init their value from some source file if you like.
+THEY EFFECT THE OUTPUTS OF PDMT.
+
+what happens when you change them?
+possibly you will need to rebuild some of your nodes (but there is no need
+to do anything special as the next build will calculate everything properly).
+
+do they have dependencies between them?
+possibly.
+
+graph config
+============
+This is a new idea: these are configs which influence the structure of the graph like
+in "menu config" in the kernel. when you change them the strcture of the graph changes.
+
+what happens when you change them?
+I need to think about this.
+One obvious answer is recreate the whole graph.
+One more 
+
+do they have dependencies between them?
+yes. Just like in the linux kernel if one variable is turned on it means something about other variables.
+They are not just "dependant". there are rules to describe which config is possible and which is not.
+the UI and core should be designed in such a way as not to allow to make configs which are contrary to
+these rules.

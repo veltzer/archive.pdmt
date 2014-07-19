@@ -23,8 +23,11 @@
 - showoutputs/showerrors does not distinguish between
 	different commands.
 - the todo list should be a graph.
-	start documentation about scheduing algorithms.
+	start moving to some scheduling algorithm.
+- start designing a graphical config system (make menuconfig)
+	that allows to control the whole system.
 - should we store the last command(s) used to generate any target?
+	This will allow us to show the commands which failed.
 	should we limit building of nodes just to external commands?
 - do a config system that I can control via the command line and that shows
 	me all the configs that are possible.

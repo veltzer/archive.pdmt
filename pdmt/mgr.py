@@ -17,6 +17,7 @@ class Mgr(pdmt.graph.PdmtGraph):
 	def new_manager(**kw):
 		ret=Mgr(**kw)
 		Mgr.set_manager(ret)
+		ret.postinit()
 		return ret
 	@staticmethod
 	def set_manager(mgr):
@@ -134,15 +135,20 @@ class Mgr(pdmt.graph.PdmtGraph):
 				prefix=namespace,
 			):
 			module=importlib.import_module(modname)
+			self.plugins.append(module)
+	def postinit(self):
+		# first call init on ALL the modules
+		for module in self.plugins:
 			if 'init' in module.__dict__ and type(module.init) is types.FunctionType:
 				module.init(self)
-			# search for classes that have initializers
+		# then call init on ALL classes
+		# search for classes that have initializers
+		for module in self.plugins:
 			for name,t in module.__dict__.items():
 				# is it a new type
 				if type(t) is type:
-					if 'init' in t.__dict__ and type(t.init) is types.FunctionType:
+					if 'init' in t.__dict__ and type(t.init) is types.MethodType:
 						t.init(self)
-			self.plugins.append(module)
 	def loadInternalPlugins(self):
 		self.loadPlugins('pdmt/plugins/', 'pdmt.plugins.')
 

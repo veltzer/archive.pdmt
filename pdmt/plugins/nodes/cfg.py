@@ -2,6 +2,7 @@ import pdmt.api # for NodeType
 import dbm.gnu # for open
 import ast # for literal_eval
 import time # for time
+import os.path # for isfile
 
 '''
 This node is a node for which we have a time stamp and a value
@@ -12,8 +13,31 @@ It is usually used as a config node for plugins.
 handle=None
 def init(mgr):
 	global handle
+	filename='.cfg.gdbm'
+	haveFile=os.path.isfile(filename)
 	# 'c' means rw + create if needed
-	handle=dbm.gnu.open('.cfg.gdbm', 'c')
+	handle=dbm.gnu.open(filename, 'c')
+	# put defaults inside
+	if not haveFile:
+		set_value('CC', 'gcc')
+		set_value('CCFLAGS', '-O2')
+		set_value('LD', 'gcc')
+		set_value('LDFLAGS', '')
+	# add all nodes to the graph
+	k=handle.firstkey()
+	while k is not None:
+		(key, value)=(k.decode(), handle[k].decode())
+		NodeType(name=key)
+		k=handle.nextkey(k)
+
+def set_value(name, value):
+	global handle
+	tup=(time.time(), value)
+	handle[name]=str(tup)
+
+def get_value(name):
+	global handle
+	return ast.literal_eval(handle[name].decode())
 
 def fini(mgr):
 	global handle
@@ -22,28 +46,27 @@ def fini(mgr):
 class NodeType(pdmt.api.NodeType):
 	def __init__(self, **kw):
 		super().__init__(proto='cfg', **kw)
+		(self.lmt, self.value)=get_value(self.name)
+	'''
 	def get_data(self):
-		global handle
-		return ast.literal_eval(handle[self.name].decode())
+		return get_value(self.name)
 	def set_data(self, value):
-		global handle
-		handle[self.name]=str(value)
+		set_value(self.name, value)
 	def get_lmt(self):
-		if self.name in handle:
-			return self.get_data()[0]
-		else:
-			return float(0)
+		return self.get_data()[0]
 	def get_value(self):
 		return self.get_data()[1]
-	def set_value(self, value):
-		tup=(time.time(), value)
-		self.set_data(tup)
+	'''
+	def get_lmt(self):
+		return self.lmt
+	def get_value(self):
+		return self.value
 	def canBuild(self):
 		return False
+	# we don't really want to clean cfg nodes for now...
 	def canClean(self):
 		return False
 		#return True
-	# we don't really want to clean cfg nodes for now...
 	'''
 	def clean(self, nbp):
 		def dowork():

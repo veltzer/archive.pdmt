@@ -55,7 +55,7 @@ node_op_gitclean=pdmt.plugins.nodes.operations.gitclean.NodeType()
 # clean
 node_phony_clean=pdmt.plugins.nodes.phony.NodeType(name='clean')
 mgr.add_edge((node_phony_clean, node_op_clean))
-mgr.add_edge((node_phony_clean, node_op_gitclean))
+#mgr.add_edge((node_phony_clean, node_op_gitclean))
 
 # all
 node_phony_all=pdmt.plugins.nodes.phony.NodeType(name='all')

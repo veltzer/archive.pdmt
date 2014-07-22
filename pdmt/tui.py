@@ -58,11 +58,11 @@ class Pdmt(cmd.Cmd):
 			self.print_raw(node.get_name())
 			for an in self.mgr.get_adjacent_for_node(node):
 				self.print_raw('\t'+an.get_name())
-	def complete_getcfg(self, text, line, begidx, endidx):
+	def complete_cfgget(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
-	def help_getcfg(self):
+	def help_cfgget(self):
 		self.print_msg('get config values')
-	def do_getcfg(self, arg):
+	def do_cfgget(self, arg):
 		if not self.check_args(arg, 1):
 			self.error('please supply a cfg name')
 			return
@@ -73,11 +73,11 @@ class Pdmt(cmd.Cmd):
 			return
 		node=self.mgr.get_node_by_name(nodename)
 		self.print_raw(node.get_value(None))
-	def complete_setcfg(self, text, line, begidx, endidx):
+	def complete_cfgset(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
-	def help_setcfg(self):
+	def help_cfgset(self):
 		self.print_msg('set config values')
-	def do_setcfg(self, arg):
+	def do_cfgset(self, arg):
 		if not self.check_args(arg, 2):
 			self.error('please supply a cfg name and a value')
 			return
@@ -104,9 +104,9 @@ class Pdmt(cmd.Cmd):
 		if self.no_args('ts_print_all_entries', arg):
 			return
 		pdmt.plugins.nodes.ts.print_all_entries()
-	def help_cfg_print_all_entries(self):
+	def help_cfgshow(self):
 		self.print_msg('print all cfg entries')
-	def do_cfg_print_all_entries(self, arg):
+	def do_cfgshow(self, arg):
 		if self.no_args('cfg_print_all_entries', arg):
 			return
 		pdmt.plugins.nodes.cfg.print_all_entries()

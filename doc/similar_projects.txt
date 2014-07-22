@@ -1,0 +1,15 @@
+Scons is a major inspiration for this project.
+	scons website:
+		http://www.scons.org/
+	to clone scons use:
+		hg clone https://bitbucket.org/scons/scons
+
+waf is also a project which is similar.
+	website:
+		https://code.google.com/p/waf/
+	api docs:
+		http://docs.waf.googlecode.com/git/apidocs_17/index.html
+	book:
+		http://docs.waf.googlecode.com/git/book_17/waf.pdf
+	source code:
+		git clone https://code.google.com/p/waf/

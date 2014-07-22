@@ -10,7 +10,7 @@ class NodeType(pdmt.plugins.nodes.operation.NodeType):
 	def __init__(self, **kw):
 		super().__init__(name='gitclean', description='very forceful git clean of a repository', **kw)
 	def build(self, nbp):
-		args=[]
+		args=self.createArgs()
 		args.append('git')
 		args.append('clean')
 		args.append('-xdf')

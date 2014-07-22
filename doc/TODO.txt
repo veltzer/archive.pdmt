@@ -1,3 +1,6 @@
+- declarative configs
+	enable to see all plugins on the tui.
+	enable to see all configs of every plugin in the tui.
 - command line organization:
 	every function that shows something should be called
 		show*
@@ -10,6 +13,8 @@
 	use it in showoutputs/showerrros and more
 - produce HTML from pdmt documentation and put it up on the website.
 - take care of bug in building where the ts node gets created again.
+	(just do lots of clean/build with restart of pdmt to see
+	it happening)
 - do example of a multiprocessing pool in demos-python
 	and use it in this project to do parallel building.
 - maybe use exception handling when running
@@ -29,15 +34,6 @@
 - should we store the last command(s) used to generate any target?
 	This will allow us to show the commands which failed.
 	should we limit building of nodes just to external commands?
-- do a config system that I can control via the command line and that shows
-	me all the configs that are possible.
-	init the cfg://[name] nodes from it.
-	use that config system to be able to turn verbosity of commands on
-	and off.
-- get to clean build after gitclean.
-	add default values for cfgs after hard clean.
-- commit and version
-
 - think about clearing the errors and outputs before every build
 	is it wise?
 	What about clearing them on clean?
@@ -78,17 +74,9 @@
 	rebuild anything.
 	allow to change these soft configs at runtime.
 	make these config declarative as well with descriptions.
+	make one such config control the verbosity of command lines.
+	make completions of all of those configs on the command line.
 	* LONG TODO ITEM
-- declarative configs
-	each plugin will decleratively say which config
-	it is using a static method. add descriptions to these
-	configs.
-	start with the compiler and linker which will declare
-	their own configs.
-	We need this as we want to be able to show all plugins
-	and config
-	enable to see all plugins on the tui.
-	enable to see all configs of every plugin in the tui.
 - start thinking about flavours of compilation and how
 	to solve the flavour problem.
 	push this to the user. Don't worry - we will have procelain.

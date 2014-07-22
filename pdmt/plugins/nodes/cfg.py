@@ -19,10 +19,10 @@ def init(mgr):
 	handle=dbm.gnu.open(filename, 'c')
 	# put defaults inside
 	if not haveFile:
-		set_value('CC', 'gcc')
-		set_value('CCFLAGS', '-O2')
-		set_value('LD', 'gcc')
-		set_value('LDFLAGS', '')
+		set_val('CC', 'gcc')
+		set_val('CCFLAGS', '-O2')
+		set_val('LD', 'gcc')
+		set_val('LDFLAGS', '')
 	# add all nodes to the graph
 	k=handle.firstkey()
 	while k is not None:
@@ -30,12 +30,12 @@ def init(mgr):
 		NodeType(name=key)
 		k=handle.nextkey(k)
 
-def set_value(name, value):
+def set_val(name, value):
 	global handle
 	tup=(time.time(), value)
 	handle[name]=str(tup)
 
-def get_value(name):
+def get_val(name):
 	global handle
 	return ast.literal_eval(handle[name].decode())
 
@@ -46,10 +46,10 @@ def fini(mgr):
 class NodeType(pdmt.api.NodeType):
 	def __init__(self, **kw):
 		super().__init__(proto='cfg', **kw)
-		(self.lmt, self.value)=get_value(self.name)
+		(self.lmt, self.value)=get_val(self.name)
 	'''
 	def get_data(self):
-		return get_value(self.name)
+		return get_val(self.name)
 	def set_data(self, value):
 		set_value(self.name, value)
 	def get_lmt(self):
@@ -61,6 +61,10 @@ class NodeType(pdmt.api.NodeType):
 		return self.lmt
 	def get_value(self):
 		return self.value
+	def set_value(self, value):
+		self.value=value
+		set_val(self.name, self.value)
+		self.lmt=time.time()
 	def canBuild(self):
 		return False
 	# we don't really want to clean cfg nodes for now...

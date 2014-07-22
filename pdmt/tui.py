@@ -16,6 +16,10 @@ class Pdmt(cmd.Cmd):
 		self.mgr=pdmt.mgr.Mgr.get_manager()
 		self.prompt='pdmt> '
 
+	'''
+	HELPER METHODS
+	'''
+
 	''' all prints should go through this method '''
 	def print_msg(self, msg):
 		pdmt.utils.printer.print_msg(msg)
@@ -37,18 +41,37 @@ class Pdmt(cmd.Cmd):
 			return False
 	def check_args(self, arg, num):
 		return len(arg.split())==num
+	def build_one_node(self, name):
+		if self.mgr.has_name(name):
+			self.mgr.build_node_names([name])
+		else:
+			self.print_msg('for clean to work please defined a node [{name}]...'.format(name=name))
+	def complete_nodes(self, text, line, begidx, endidx, canbuild, onlyName, filter_type):
+		parts=line.split()
+		if len(parts)==1:
+			last_arg=''
+		else:
+			last_arg=parts[-1]
+		completions=self.mgr.get_completions(last_arg, canbuild, onlyName, filter_type)
+		return [c[len(last_arg)-len(text):] for c in completions]
+
+	'''
+	COMMANDS
+	'''
 	def help_listbuildnodes(self):
 		self.print_msg('show all build nodes in the current graph')
 	def do_listbuildnodes(self, arg):
 		if self.no_args('listbuildnodes', arg):
 			return
 		self.mgr.listbuildnodes()
+
 	def help_listnodes(self):
 		self.print_msg('show all nodes in the current graph')
 	def do_listnodes(self, arg):
 		if self.no_args('listnodes', arg):
 			return
 		self.mgr.listnodes()
+
 	def help_listall(self):
 		self.print_msg('show the current graph')
 	def do_listall(self, arg):
@@ -58,6 +81,7 @@ class Pdmt(cmd.Cmd):
 			self.print_raw(node.get_name())
 			for an in self.mgr.get_adjacent_for_node(node):
 				self.print_raw('\t'+an.get_name())
+
 	def complete_cfgget(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
 	def help_cfgget(self):
@@ -73,6 +97,7 @@ class Pdmt(cmd.Cmd):
 			return
 		node=self.mgr.get_node_by_name(nodename)
 		self.print_raw(node.get_value(None))
+
 	def complete_cfgset(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, True, pdmt.plugins.nodes.cfg.NodeType)
 	def help_cfgset(self):
@@ -87,6 +112,7 @@ class Pdmt(cmd.Cmd):
 		if value[0]=='"' and value[-1]=='"':
 			value=value[1:-1]
 		self.mgr.getConfigNode(name).set_value(value)
+
 	def help_stats(self):
 		self.print_msg('show stats for the current graph')
 	def do_stats(self, arg):
@@ -98,30 +124,35 @@ class Pdmt(cmd.Cmd):
 		self.print_msg('graph has [{0}] edges'.format(
 			self.mgr.get_edge_num(),
 		))
+
 	def help_ts_print_all_entries(self):
 		self.print_msg('print all time stamp entries')
 	def do_ts_print_all_entries(self, arg):
 		if self.no_args('ts_print_all_entries', arg):
 			return
 		pdmt.plugins.nodes.ts.print_all_entries()
+
 	def help_cfgshow(self):
 		self.print_msg('print all cfg entries')
 	def do_cfgshow(self, arg):
 		if self.no_args('cfg_print_all_entries', arg):
 			return
 		pdmt.plugins.nodes.cfg.print_all_entries()
+
 	def help_getsizeof(self):
 		self.print_msg('print the size that the graph takes in bytes')
 	def do_getsizeof(self, arg):
 		if self.no_args('getsizeof', arg):
 			return
 		self.print_msg('getsizeof is [{0}]'.format(self.mgr.getsizeof()))
+
 	def help_clean(self):
 		self.print_msg('clean everything')
 	def do_clean(self, arg):
 		if self.no_args('clean', arg):
 			return
 		self.build_one_node('phony://clean')
+
 	def help_errors(self):
 		self.print_msg('show nodes in errors')
 	def do_errors(self, arg):
@@ -129,6 +160,7 @@ class Pdmt(cmd.Cmd):
 			return
 		for node in self.mgr.errors:
 			self.print_raw(node.get_name())
+
 	def help_showoutputs(self):
 		self.print_msg('show outputs of outputed nodes')
 	def do_showoutputs(self, arg):
@@ -141,6 +173,7 @@ class Pdmt(cmd.Cmd):
 			self.print_raw('================ STDOUT ==================')
 			self.print_raw(node.txt_out, end='')
 			self.print_raw('==========================================')
+
 	def help_showerrors(self):
 		self.print_msg('show errors of errored nodes')
 	def do_showerrors(self, arg):
@@ -160,31 +193,21 @@ class Pdmt(cmd.Cmd):
 				self.print_raw(node.txt_out)
 			self.print_raw('==========================================')
 			self.print_raw(str(node.last_err))
-	def build_one_node(self, name):
-		if self.mgr.has_name(name):
-			self.mgr.build_node_names([name])
-		else:
-			self.print_msg('for clean to work please defined a node [{name}]...'.format(name=name))
+
 	def help_build(self):
 		self.print_msg('build the default target')
 	def do_build(self, arg):
 		if self.no_args('build', arg):
 			return
 		self.build_one_node('phony://all')
+
 	def help_plan(self):
 		self.print_msg('show plan to build the default target')
 	def do_plan(self, arg):
 		if self.no_args('plan', arg):
 			return
 		self.mgr.createPlan().print()
-	def complete_nodes(self, text, line, begidx, endidx, canbuild, onlyName, filter_type):
-		parts=line.split()
-		if len(parts)==1:
-			last_arg=''
-		else:
-			last_arg=parts[-1]
-		completions=self.mgr.get_completions(last_arg, canbuild, onlyName, filter_type)
-		return [c[len(last_arg)-len(text):] for c in completions]
+
 	def complete_buildnodes(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, True, False, None)
 	def help_buildnodes(self):
@@ -195,7 +218,9 @@ class Pdmt(cmd.Cmd):
 			self.mgr.build_node_names(arg.split())
 		except pdmt.exceptions.CommandLineInputException as e:
 			e.print()
-	complete_depends=complete_buildnodes
+
+	def complete_depends(self, text, line, begidx, endidx):
+		return self.complete_nodes(text, line, begidx, endidx, True, False, None)
 	def help_depends(self):
 		self.print_msg('depends [nodes]: show what do nodes depend on (1 level)')
 	def do_depends(self, arg):
@@ -206,6 +231,7 @@ class Pdmt(cmd.Cmd):
 					self.print_raw('\t'+an.get_name())
 		except pdmt.exceptions.CommandLineInputException as e:
 			e.print()
+
 	def complete_whatdependson(self, text, line, begidx, endidx):
 		return self.complete_nodes(text, line, begidx, endidx, False, False, None)
 	def help_whatdependson(self):
@@ -219,18 +245,23 @@ class Pdmt(cmd.Cmd):
 					self.print_raw('\t'+an.get_name())
 		except pdmt.exceptions.CommandLineInputException as e:
 			e.print()
+
 	def help_exit(self):
 		self.print_msg('exit pdmt shell')
 	def do_exit(self, arg):
 		return True
-	help_EOF=help_exit
+
+	def help_EOF(self):
+		self.print_msg('exit pdmt shell')
 	def do_EOF(self, arg):
 		self.print_raw('')
 		return True
+
 	def help_shell(self):
 		self.print_msg('run a shell command')
 	def do_shell(self, arg):
 		os.system(arg)
+
 	def help_playground(self):
 		self.print_msg('developer playground')
 	def do_playground(self, arg):

@@ -9,6 +9,9 @@
 - do function for printing message wide screen.
 	use it in showoutputs/showerrros and more
 - produce HTML from pdmt documentation and put it up on the website.
+	(and have a website!)
+	have an install target that copies to the website root.
+	get the sources of waf.
 - take care of bug in building where the ts node gets created again.
 	(just do lots of clean/build with restart of pdmt to see
 	it happening)

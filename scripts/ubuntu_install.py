@@ -27,6 +27,7 @@ packs=[
 	'xmlto',
 	'libxml2-utils',
 	'xmlstarlet',
+	'pandoc',
 
 	# cmd2 stuff
 	'python3-cmd2',

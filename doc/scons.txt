@@ -1,7 +1,0 @@
-Scons is a major inspiration for this project.
-
-scons website:
-	http://www.scons.org/
-
-to clone scons use:
-	hg clone https://bitbucket.org/scons/scons

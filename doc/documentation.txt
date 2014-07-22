@@ -1,0 +1,5 @@
+in what tool should we write the documentation for pdmt?
+
+http://stackoverflow.com/questions/12537/what-tools-are-used-to-write-documentation
+
+sphinx, docbook, latex, asciidoc, markdown, confluence

@@ -14,13 +14,13 @@ class BuildPlanElement(object):
 		raise ValueError('must override')
 
 class CmdList(BuildPlanElement):
-	def __init__(self, l):
+	def __init__(self, arguments):
 		super().__init__()
-		self.l=l
+		self.arguments=arguments
 	def execute(self):
-		return pdmt.utils.subproc.system_list(self.l)
+		return pdmt.utils.subproc.system_list(self.arguments.args)
 	def __str__(self):
-		return ' '.join(self.l)
+		return ' '.join(self.arguments.args)
 
 class CmdString(BuildPlanElement):
 	def __init__(self, s):
@@ -49,8 +49,8 @@ class NodeBuildPlan(object):
 		super().__init__()
 		self.node=node
 		self.list=[]
-	def addCmdList(self, l):
-		self.list.append(CmdList(l))
+	def addCmdList(self, arguments):
+		self.list.append(CmdList(arguments))
 	def addCmdString(self, s):
 		self.list.append(CmdString(s))
 	def addFunction(self, f):

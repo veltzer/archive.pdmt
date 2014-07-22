@@ -1,5 +1,6 @@
 import pdmt.prn # for create
 import pdmt.mgr # for Mgr
+import pdmt.arguments # for Arguments
 
 # the inheritance from 'object' is very important to get the __class__
 # and other stuff we need in order for OO to work properly...
@@ -55,28 +56,24 @@ class NodeType(object):
 	def getDepsYield(self):
 		for node in self.mgr.depsYield(self):
 			yield node
+	def getSource(self):
+		ret=self.getDeps()
+		if len(ret)!=1:
+			raise ValueError('too many sources')
+		return ret[0]
 	def getSourcesOfType(self, type):
 		ret=[]
 		for node in self.getDeps():
 			if isinstance(node,type):
 				ret.append(node)
 		return ret
-	def getSource(self):
-		ret=self.getDeps()
-		if len(ret)!=1:
-			raise ValueError('too many sources')
-		return ret[0]
 	def getSourceOfType(self, type):
 		ret=self.getSourcesOfType(type)
 		if len(ret)!=1:
 			raise ValueError('too many sources')
 		return ret[0]
-	def getConfigNode(self, name):
-		return self.mgr.getConfigNode(name)
-	def getConfig(self, name):
-		return self.mgr.get_node_by_name('cfg://'+name).get_value()
-	def add_edge(self, node):
-		self.mgr.add_edge((self, node))
+	def createArgs(self):
+		return pdmt.arguments.Arguments(self.mgr)
 
 '''
 This is the base class of all node handlers within the system

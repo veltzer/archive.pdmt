@@ -1,6 +1,3 @@
-- declarative configs
-	enable to see all plugins on the tui.
-	enable to see all configs of every plugin in the tui.
 - command line organization:
 	every function that shows something should be called
 		show*

@@ -9,6 +9,7 @@ import pdmt.api # for Event.prebuild, Event.postbuild
 import pdmt.exceptions # for CommandLineInputException
 import types # for FunctionType
 import pdmt.buildplan # for BuildPlan, NodeBuildPlan
+import pdmt.utils.printer # for print_raw
 
 class Mgr(pdmt.graph.PdmtGraph):
 	''' static methods to take care of the mgr instance '''
@@ -32,6 +33,7 @@ class Mgr(pdmt.graph.PdmtGraph):
 		super().__init__()
 		self.opbyname={}
 		self.plugins=[]
+		self.nodetypes=[]
 		# nodes with errors and nodes with outputs
 		self.nodes_errors=set()
 		self.nodes_outputs=set()
@@ -135,6 +137,9 @@ class Mgr(pdmt.graph.PdmtGraph):
 				prefix=namespace,
 			):
 			module=importlib.import_module(modname)
+			for name,t in module.__dict__.items():
+				if type(t) is type and issubclass(t, pdmt.api.NodeType):
+					self.nodetypes.append(t)
 			self.plugins.append(module)
 	def postinit(self):
 		# first call init on ALL the modules
@@ -142,15 +147,18 @@ class Mgr(pdmt.graph.PdmtGraph):
 			if 'init' in module.__dict__ and type(module.init) is types.FunctionType:
 				module.init(self)
 		# then call init on ALL classes
-		# search for classes that have initializers
-		for module in self.plugins:
-			for name,t in module.__dict__.items():
-				# is it a new type
-				if type(t) is type:
-					if 'init' in t.__dict__ and type(t.init) is types.MethodType:
-						t.init(self)
+		for nodetype in self.nodetypes:
+			#if 'init' in t.__dict__ and type(t.init) is types.MethodType:
+			if 'init' in nodetype.__dict__:
+				nodetype.init(self)
 	def loadInternalPlugins(self):
 		self.loadPlugins('pdmt/plugins/', 'pdmt.plugins.')
+	def listPlugins(self):
+		for module in self.plugins:
+			pdmt.utils.printer.print_raw(module)
+	def listNodetypes(self):
+		for nodetype in self.nodetypes:
+			pdmt.utils.printer.print_raw(nodetype)
 
 	''' command line parsing '''
 	def parseCmdline(self):

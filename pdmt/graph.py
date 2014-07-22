@@ -135,6 +135,11 @@ class TypedGraph(Graph):
 			for n in self.get_nodes():
 				if type(n)==cls:
 					yield n
+	def liststaticdeps(self):
+		for t in self.typemap:
+			pdmt.utils.printer.print_raw(t)
+			for node in self.typemap[t]:
+				pdmt.utils.printer.print_raw('\t'+node.get_name())
 
 '''
 Some algorithms on the graph

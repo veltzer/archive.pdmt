@@ -2,6 +2,7 @@
 
 import distutils.core # for setup
 import setuptools # for find_packages
+import subprocess # for check_output
 
 distutils.core.setup(
 	name='pdmt',
@@ -18,7 +19,7 @@ distutils.core.setup(
 		'build',
 		'tool',
 	],
-	url='http://www.veltzer.net/pdmt',
+	url='https://www.veltzer.net/pdmt',
 	license='LGPL',
 	platforms=[
 		'ALL',
@@ -27,7 +28,7 @@ distutils.core.setup(
 	#	'pdmt',
 	#],
 	packages=setuptools.find_packages(),
-	version='2.2',
+	version=subprocess.check_output(['git','describe']).decode().rstrip(),
 	classifiers=[
 		'Development Status :: 4 - Beta',
 		'Environment :: Console',

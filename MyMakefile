@@ -5,15 +5,12 @@
 # Since we are using ?= for assignment it means that you can just
 # set this from the command line and avoid changing the makefile...
 DO_MKDBG?=0
+# version
+VER:=$(shell git describe)
 
 #########
 # Logic #
 #########
-DOCBOOK_SRC:=$(shell find docbook -name "*.xml")
-DOCBOOK_STP:=$(addsuffix .stamp,$(basename $(DOCBOOK_SRC)))
-DOCBOOK_FO:=$(addsuffix .fo,$(basename $(DOCBOOK_SRC)))
-DOCBOOK_PDF:=$(addsuffix .pdf,$(basename $(DOCBOOK_SRC)))
-
 # silent stuff
 ifeq ($(DO_MKDBG),1)
 Q:=
@@ -23,35 +20,24 @@ Q:=@
 #.SILENT:
 endif # DO_MKDBG
 
-#################
-# Pattern rules #
-#################
-
-$(DOCBOOK_STP): %.stamp: %.xml scripts/wrapper.py
-	$(info doing [$@])
-	$(Q)scripts/wrapper.py xmlstarlet val --err --xsd /usr/share/xml/docbook/schema/xsd/5.0/docbook.xsd $<
-	$(Q)touch $@
-$(DOCBOOK_FO): %.fo: %.xml scripts/wrapper.py
-	$(info doing [$@])
-	$(Q)scripts/wrapper.py xsltproc --output $@ /usr/share/xml/docbook/stylesheet/docbook-xsl-ns/fo/docbook.xsl $<
-$(DOCBOOK_PDF): %.pdf: %.fo scripts/wrapper.py
-	$(info doing [$@])
-	$(Q)scripts/wrapper.py fop -fo $< -pdf $@
-
 #########
 # Rules #
 #########
 
 .PHONY: all
-all:
-	python setup.py build
+all: deb
 
-.PHONY: docbook
-docbook: $(DOCBOOK_STP) $(DOCBOOK_FO) $(DOCBOOK_PDF)
+.PHONY: debug
+debug:
+	$(info VER is $(VER))
+
+.PHONY: build
+build:
+	./setup.py build
 
 .PHONY: install
 install:
-	python setup.py install
+	./setup.py install
 
 .PHONY: clean_old
 clean_old:
@@ -66,9 +52,6 @@ clean:
 sdist:
 	./setup.py sdist
 
-.PHONY: build
-build:
-	./setup.py build
 .PHONY: debianize
 debianize:
 	\rm -rf debian/source
@@ -102,15 +85,8 @@ purge:
 	sudo dpkg --purge pdmt
 .PHONY: results
 results:
-	dpkg --contents ~/packages/pdmt_2.2_all.deb
-	dpkg --info ~/packages/pdmt_2.2_all.deb
-
-.PHONY: debug
-debug:
-	$(info DOCBOOK_SRC is $(DOCBOOK_SRC))
-	$(info DOCBOOK_STP is $(DOCBOOK_STP))
-	$(info DOCBOOK_FO is $(DOCBOOK_FO))
-	$(info DOCBOOK_PDF is $(DOCBOOK_PDF))
+	dpkg --contents ~/packages/pdmt_$(VER)_all.deb
+	dpkg --info ~/packages/pdmt_$(VER)_all.deb
 
 .PHONY: check_main
 check_main:

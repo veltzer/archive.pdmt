@@ -28,3 +28,5 @@ class Arguments(object):
 		val=self.getConfigValue(cfgname)
 		if val!='':
 			self.args.append(val)
+	def __str__(self):
+		return 'arguments'

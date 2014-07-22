@@ -8,6 +8,7 @@ add a method call as a BuildPlanElement type.
 import pdmt.utils.subproc # for check_call
 import pdmt.utils.printer # for print_msg_noeol_flush, print_msg, print_raw
 import pdmt.utils.lang # for plural, book_to_ok
+import inspect # for getsourcelines
 
 class BuildPlanElement(object):
 	def execute():
@@ -39,7 +40,8 @@ class Function(BuildPlanElement):
 		self.f()
 		return (0, '', '')
 	def __str__(self):
-		return self.f
+		return str(self.f)+'\n'+''.join(inspect.getsourcelines(self.f)[0])
+		#return str(self.f)
 
 '''
 this is a build plan for a single node

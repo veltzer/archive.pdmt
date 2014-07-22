@@ -8,7 +8,7 @@ https://docs.python.org/3/library/unittest.html
 '''
 
 import unittest # for TestCase
-import pdmt.graph # for Graph
+import pdmt.graph # for AlgoGraph
 import pdmt.utils.stack # for Stack
 import pdmt.utils.subproc # for system_pipe
 import pdmt.utils.string # for common_prefix
@@ -17,7 +17,7 @@ class TestSequenceFunctions(unittest.TestCase):
 	def setUp(self):
 		pass
 	def test_graph(self):
-		g=pdmt.graph.Graph()
+		g=pdmt.graph.AlgoGraph()
 		g.add_node('a')
 		g.add_node('b')
 		count=0

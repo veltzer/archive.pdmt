@@ -109,9 +109,33 @@ class Graph(object):
 		return ret
 
 '''
+Some algorithms on the graph
+'''
+class AlgoGraph(Graph):
+	''' depth first search algorithm '''
+	def dfs(self, node_list=None):
+		visited=set()
+		if node_list is None:
+			node_list=self.get_nodes()
+		for node in node_list:
+			if not node in visited:
+				for v in self.dfs_unvisited_node(visited, node):
+					yield v
+	def dfs_unvisited_node(self, visited, v):
+		if v in visited:
+			return
+		visited.add(v)
+		for w in self.get_adjacent_for_node(v):
+			for s in self.dfs_unvisited_node(visited, w):
+				yield s
+			if not w in visited:
+				yield w
+		yield v
+
+'''
 Typed graph. Graph that adds dependencies by type
 '''
-class TypedGraph(Graph):
+class TypedGraph(AlgoGraph):
 	def __init__(self):
 		super().__init__()
 		self.typemap={}
@@ -142,34 +166,10 @@ class TypedGraph(Graph):
 				pdmt.utils.printer.print_raw('\t'+node.get_name())
 
 '''
-Some algorithms on the graph
-'''
-class AlgoGraph(TypedGraph):
-	''' depth first search algorithm '''
-	def dfs(self, node_list=None):
-		visited=set()
-		if node_list is None:
-			node_list=self.get_nodes()
-		for node in node_list:
-			if not node in visited:
-				for v in self.dfs_unvisited_node(visited, node):
-					yield v
-	def dfs_unvisited_node(self, visited, v):
-		if v in visited:
-			return
-		visited.add(v)
-		for w in self.get_adjacent_for_node(v):
-			for s in self.dfs_unvisited_node(visited, w):
-				yield s
-			if not w in visited:
-				yield w
-		yield v
-
-'''
 This graph add names to the nodes. It assumes that each node has a name and holds a map
 between names and nodes. nodes must not have the same name or you will get an exception
 '''
-class NamedGraph(AlgoGraph):
+class NamedGraph(TypedGraph):
 	def __init__(self):
 		super().__init__()
 		self.mymap={}

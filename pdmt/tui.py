@@ -179,7 +179,7 @@ class Pdmt(cmd.Cmd):
 	def do_errors(self, arg):
 		if self.no_args('errors', arg):
 			return
-		for node in self.mgr.errors:
+		for node in self.mgr.nodes_errors:
 			self.print_raw(node.get_name())
 
 	def help_showoutputs(self):

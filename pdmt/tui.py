@@ -58,6 +58,27 @@ class Pdmt(cmd.Cmd):
 	'''
 	COMMANDS
 	'''
+	def help_listplugins(self):
+		self.print_msg('show all plugins')
+	def do_listplugins(self, arg):
+		if self.no_args('listplugins', arg):
+			return
+		self.mgr.listPlugins()
+
+	def help_listnodetypes(self):
+		self.print_msg('show all nodetypes')
+	def do_listnodetypes(self, arg):
+		if self.no_args('listnodetypes', arg):
+			return
+		self.mgr.listNodetypes()
+
+	def help_liststaticdeps(self):
+		self.print_msg('show all static dependencies')
+	def do_liststaticdeps(self, arg):
+		if self.no_args('liststaticdeps', arg):
+			return
+		self.mgr.liststaticdeps()
+
 	def help_listbuildnodes(self):
 		self.print_msg('show all build nodes in the current graph')
 	def do_listbuildnodes(self, arg):

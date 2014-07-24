@@ -1,3 +1,7 @@
+- have a web server built into pdmt that shows you the graph.
+	use d3.js to show the graph.
+- have history in the tui (how do I do that?, how does
+	cmd2 do that?)
 - command line organization:
 	every function that shows something should be called
 		show*
@@ -29,8 +33,10 @@
 	different commands.
 - the todo list should be a graph.
 	start moving to some scheduling algorithm.
+- do regression testing on the order of building.
 - start designing a graphical config system (make menuconfig)
 	that allows to control the whole system.
+	find examples of such stuff in python curses.
 - should we store the last command(s) used to generate any target?
 	This will allow us to show the commands which failed.
 	should we limit building of nodes just to external commands?

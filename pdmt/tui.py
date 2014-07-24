@@ -58,10 +58,10 @@ class Pdmt(cmd.Cmd):
 	'''
 	COMMANDS
 	'''
-	def help_listplugins(self):
+	def help_showplugins(self):
 		self.print_msg('show all plugins')
-	def do_listplugins(self, arg):
-		if self.no_args('listplugins', arg):
+	def do_showplugins(self, arg):
+		if self.no_args('showplugins', arg):
 			return
 		self.mgr.listPlugins()
 

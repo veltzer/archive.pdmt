@@ -6,6 +6,10 @@
 import subprocess # for check_call
 
 packs=[
+	# curses and text gui
+	'python3-progressbar',
+	'python-progressbar',
+
 	# packages needed to build .debs from python code
 	'devscripts',
 	'python-pydot', # for dot graph generation

@@ -1,3 +1,11 @@
+- start working with checksums and do a checksum
+	functions for C/C++ code which only looks at
+	the source compressed and not comments or whitespace.
+	we need to write some python parser to do that.
+	get interested in how to do that.
+- do a demo in demos-python of cmd and see how to
+	directly interact with the readline library
+	below for history and more features.
 - have a web server built into pdmt that shows you the graph.
 	use d3.js to show the graph.
 - have history in the tui (how do I do that?, how does

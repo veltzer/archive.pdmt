@@ -55,6 +55,11 @@ packs=[
 	'python-memprof',
 	'python3-psutil',
 	'python-psutil',
+
+	# other tools
+	'scons',
+	'gradle',
+	'maven',
 ]
 
 args=['sudo','apt-get','install']

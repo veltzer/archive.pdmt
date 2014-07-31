@@ -25,3 +25,4 @@
 *.stamp
 /.ts.gdbm
 /.cfg.gdbm
+/.gradle

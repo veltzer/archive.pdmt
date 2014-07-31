@@ -1,0 +1,24 @@
+Scanners are a way to add scan for dependencies.
+
+Classic example: h files in C files.
+
+How should scanners work?
+
+Without scanners:
+
+
+		[object file node]----------------->[C file node]
+
+With scanner:
+
+		[object file node]----------------->[C file node]
+					|	+-->
+					|	|
+					+--->[scanner node]--------->[h files]*
+
+
+The problem is how to set this all up and handle it.
+
+And another complication is that we need a different setup like this per object file node variant (debug, release, etc).
+
+So we will need some porcelain code to set this part of the graph up whenever we add a C file in.

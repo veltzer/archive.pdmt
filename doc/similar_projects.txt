@@ -13,3 +13,10 @@ waf is also a project which is similar.
 		http://docs.waf.googlecode.com/git/book_17/waf.pdf
 	source code:
 		git clone https://code.google.com/p/waf/
+
+gradle can build c++:
+	http://www.gradleware.com/video/creating-a-world-class-cc-build-system-in-gradle-2/
+	seems quite poor
+
+maven can build c++.
+	also looks poor.

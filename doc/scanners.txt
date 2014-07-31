@@ -16,9 +16,28 @@ With scanner:
 					|	|
 					+--->[scanner node]--------->[h files]*
 
+Maybe this is the better way?
+
+		[object file node]---------->[scanner node]-----+-->[C file node]
+								|
+								+-->[h files]*
+
+What about h files, they depend on h files too, right?!?
+		h files will be scanner nodes as well with a twist.
+
+		[h file node]-------------->[h files]*
 
 The problem is how to set this all up and handle it.
 
 And another complication is that we need a different setup like this per object file node variant (debug, release, etc).
 
 So we will need some porcelain code to set this part of the graph up whenever we add a C file in.
+
+What does the scanner do?
+	The scanner holds the list of h files it is dependant on and create them.
+	In order not to have multiple h file object for the same h file the h file create will not
+	re-create the same object if the object already exists.
+	When a rebuild is triggered the scanner will recreate the list using the compiler/dedicated C parser.
+	The results of the scanner will be stored in an .db file.
+	names of scanner nodes: cscan://[c file to be scanned]
+	h files need to be scanned as well. so when h files are added then need to trigger a scanner too.

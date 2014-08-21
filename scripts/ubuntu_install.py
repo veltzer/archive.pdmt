@@ -58,7 +58,7 @@ packs=[
 
 	# other tools
 	'scons',
-	'gradle',
+	#'gradle',
 	'maven',
 ]
 

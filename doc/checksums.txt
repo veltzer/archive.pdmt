@@ -1,0 +1,18 @@
+pdmt should be able to work with checksums in stead of file modification times.
+
+This document deals with how this should be implemented.
+
+pdmt should store a database with digital signatures
+	each target should store a sig into that database with the signature that
+		created it.
+		that signature should be the concatenation of all signatures
+		of all sources for that target and the process that created
+		the target (flags for instance).
+	when a target is built:
+		- if the target is not there (as file) it should be rebuilt
+		- if the target is there, check the signature of its sources
+			- if the signature is not the same, rebuilt the target
+			- if the signature is the same then check that the
+			target signature is the same.
+				- if it is the same - don't do anything.
+				- if it is not the same - rebuild the target.

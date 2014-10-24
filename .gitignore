@@ -4,6 +4,7 @@
 *.elf
 /makot/*
 
+# packaging stuff
 /dist/*
 /build/*
 /deb_dist/*

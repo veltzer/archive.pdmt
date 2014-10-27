@@ -29,52 +29,52 @@ endif # DO_MKDBG
 .DEFAULT_GOAL=all
 .PHONY: all
 all: $(ALL)
-	$(info doing $@)
+	$(info doing [$@])
 
 # source stuff
 
 .PHONY: source-build
 source-build:
-	$(info doing $@)
+	$(info doing [$@])
 	$(Q)setup.py build
 
 .PHONY: source-install
 source-install:
-	$(info doing $@)
+	$(info doing [$@])
 	$(Q)setup.py install
 
 .PHONY: source-sdist
 source-sdist:
-	$(info doing $@)
+	$(info doing [$@])
 	$(Q)setup.py sdist
 
 # clean
 
 .PHONY: clean_manual
 clean_manual:
-	$(info doing $@)
+	$(info doing [$@])
 	$(Q)rm -rf `find . -name "*.pyc"` `find . -name "*.o"` `find . -name "*.elf"`
 	$(Q)rm -rf build dist deb_dist
 
 .PHONY: clean
 clean:
-	$(info doing $@)
+	$(info doing [$@])
 	$(Q)git clean -xdf
 
 # checking
 
 .PHONY: check_main
 check_main:
-	$(info doing $@)
+	$(info doing [$@])
 	$(Q)-git grep __main -- "*.py"
 .PHONY: check_semicol
 check_semicol:
-	$(info doing $@)
+	$(info doing [$@])
 	$(Q)-git grep ";$$" -- "*.py"
 
 .PHONY: check_all
 check_all: check_main check_semicol
-	$(info doing $@)
+	$(info doing [$@])
 
 # deb building
 

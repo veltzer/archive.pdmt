@@ -51,6 +51,7 @@ class Attr(object):
 
 		# deb
 		cls.deb_pkgname=os.path.basename(os.getcwd())
+		cls.deb_date='Fri, 21 Jun 2013 09:14:32 +0300'
 
 		# apt
 		cls.apt_protocol='https'

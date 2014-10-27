@@ -1,5 +1,9 @@
-Pdmt 2.7 is a dependency management tool
---------------------------------------------------------
+pdmt
+====
+
+version: 2.7
+
+Project Dependency Management Tool
 
 * pdmt is influenced by scons but also very different from scons.
 * pdmt usage is JUST LIKE regular python. Pdmt is a python library first.
@@ -7,7 +11,7 @@ Pdmt 2.7 is a dependency management tool
 * pdmt has a command line interface.
 * pdmt can be used for continuous builds as it can watch files for changes.
 * pdmt doesn't just work on files. It can work on records from databases too.
-	It can watch remote urls.
-	It has dependency on configuration as well.
+It can watch remote urls.
+It has dependency on configuration as well.
 
-	Mark Veltzer <mark.veltzer@gmail.com>, 2012-2014
+	Mark Veltzer <mark.veltzer@gmail.com>, 2010-2014

@@ -58,7 +58,7 @@ class TestSequenceFunctions(unittest.TestCase):
 		pdmt.utils.subproc.system_pipe(
 			['ls','-l'],
 			['wc','-l'],
-			out=open('/dev/null','w'),
+			subprocess.DEVNULL,
 		)
 	def test_common_prefix(self):
 		self.assertEqual('abra', pdmt.utils.string.common_prefix('abrakadabra', 'abracom'))

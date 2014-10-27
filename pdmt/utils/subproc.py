@@ -15,7 +15,7 @@ import pdmt.config
 def debug(msg):
 	if pdmt.config.ns_subproc.p_debug:
 		print(msg)
-def system_pipe(list1,list2,out=None):
+def system_pipe(list1,list2,out):
 	debug('system_pipe ['+str(list1)+','+str(list2)+','+str(out)+']')
 	pr1=subprocess.Popen(
 		list1,

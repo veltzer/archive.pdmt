@@ -4,7 +4,8 @@ Attributes for this project
 
 import datetime # for datetime
 import subprocess # for check_output, DEVNULL
-import os.path # for join, expanduser
+import os.path # for join, expanduser, basename
+import os # for getcwd
 import glob # for glob
 import socket # for gethostname
 import configparser # for ConfigParser
@@ -47,6 +48,9 @@ class Attr(object):
 		# git
 		cls.git_describe=subprocess.check_output(['git', 'describe']).decode().rstrip()
 		cls.git_lasttag=subprocess.check_output(['git', 'tag']).decode().split()[-1].rstrip()
+
+		# deb
+		cls.deb_pkgname=os.path.basename(os.getcwd())
 
 		# apt
 		cls.apt_protocol='https'

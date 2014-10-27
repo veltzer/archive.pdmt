@@ -1,3 +1,8 @@
+include /usr/share/templar/Makefile
+
+ALL:=$(TEMPLAR_ALL)
+ALL_DEP:=$(TEMPLAR_ALL_DEP)
+
 #############
 # Variables #
 #############
@@ -5,8 +10,6 @@
 # Since we are using ?= for assignment it means that you can just
 # set this from the command line and avoid changing the makefile...
 DO_MKDBG?=0
-# version
-VER:=$(shell git describe)
 
 #########
 # Logic #
@@ -23,39 +26,41 @@ endif # DO_MKDBG
 #########
 # Rules #
 #########
-
+.DEFAULT_GOAL=all
 .PHONY: all
-all: deb
+all: $(ALL)
 
-.PHONY: debug
-debug:
-	$(info VER is $(VER))
+# source stuff
 
-.PHONY: build
-build:
-	./setup.py build
+.PHONY: source-build
+source-build:
+	$(info doing $@)
+	$(Q)setup.py build
 
-.PHONY: install
-install:
-	./setup.py install
+.PHONY: source-install
+source-install:
+	$(info doing $@)
+	$(Q)setup.py install
 
-.PHONY: clean_old
-clean_old:
-	rm -rf `find . -name "*.pyc"` `find . -name "*.o"` `find . -name "*.elf"`
-	rm -rf build dist deb_dist
+.PHONY: source-sdist
+source-sdist:
+	$(info doing $@)
+	$(Q)setup.py sdist
+
+# clean
+
+.PHONY: clean_manual
+clean_manual:
+	$(info doing $@)
+	$(Q)rm -rf `find . -name "*.pyc"` `find . -name "*.o"` `find . -name "*.elf"`
+	$(Q)rm -rf build dist deb_dist
 
 .PHONY: clean
 clean:
-	git clean -xdf
+	$(info doing $@)
+	$(Q)git clean -xdf
 
-.PHONY: sdist
-sdist:
-	./setup.py sdist
-
-.PHONY: debianize
-debianize:
-	\rm -rf debian/source
-	python2 ./setup.py --command-packages=stdeb.command debianize
+# creating a debian package
 
 .PHONY: deb2
 deb2:

@@ -1,8 +1,6 @@
 #!/usr/bin/python3
 
 import distutils.core # for setup
-import setuptools # for find_packages
-import subprocess # for check_output
 
 distutils.core.setup(
 	name='pdmt',
@@ -24,11 +22,7 @@ distutils.core.setup(
 	platforms=[
 		'ALL',
 	],
-	#py_modules=[
-	#	'pdmt',
-	#],
-	packages=setuptools.find_packages(),
-	version=subprocess.check_output(['git','describe']).decode().rstrip(),
+	packages=['pdmt'],
 	classifiers=[
 		'Development Status :: 4 - Beta',
 		'Environment :: Console',

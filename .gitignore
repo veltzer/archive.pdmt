@@ -27,3 +27,10 @@
 /.ts.gdbm
 /.cfg.gdbm
 /.gradle
+
+# python
+__pycache__
+
+# created by templar
+/debian/changelog
+.attr.config

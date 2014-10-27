@@ -1,8 +1,16 @@
-*.pyc
-*.pyo
 *.o
 *.elf
 /makot/*
+
+# docbook stuff
+*.pdf
+*.fo
+
+# stamps
+*.stamp
+/.ts.gdbm
+/.cfg.gdbm
+/.gradle
 
 # packaging stuff
 /dist/*
@@ -18,19 +26,16 @@
 /pdmt.egg-info
 /build-indep
 
-# docbook stuff
-*.pdf
-*.fo
+# created by templar
+/debian/changelog
+/.attr.config
 
-# stamps
-*.stamp
-/.ts.gdbm
-/.cfg.gdbm
-/.gradle
+# build folders for my package
+/build.gbp
+/build.source
+/build.all
 
 # python
 __pycache__
-
-# created by templar
-/debian/changelog
-.attr.config
+*.pyc
+*.pyo

@@ -1,4 +1,4 @@
-Pdmt 2.6 is a dependency management tool
+Pdmt 2.7 is a dependency management tool
 --------------------------------------------------------
 
 * pdmt is influenced by scons but also very different from scons.

@@ -1,4 +1,4 @@
-Pdmt 2.6 is a dependency management tool
+Pdmt ${attr.git_lasttag} is a dependency management tool
 --------------------------------------------------------
 
 * pdmt is influenced by scons but also very different from scons.
@@ -10,4 +10,4 @@ Pdmt 2.6 is a dependency management tool
 	It can watch remote urls.
 	It has dependency on configuration as well.
 
-	Mark Veltzer <mark.veltzer@gmail.com>, 2012-2014
+	${attr.personal_origin}, 2012-${attr.general_current_year}

@@ -57,7 +57,7 @@ clean_manual:
 .PHONY: clean
 clean:
 	$(info doing [$@])
-	$(Q)git clean -xdf
+	$(Q)git clean -xdf > /dev/null
 
 # checking
 

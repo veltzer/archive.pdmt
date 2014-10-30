@@ -94,7 +94,6 @@ deb-debug:
 	$(info PKG_CHANGES is $(PKG_CHANGES))
 	$(info PKG_LOCAL is $(PKG_LOCAL))
 
-.PHONY: deb-dput
 # we must do hard clean in the next target because debuild will take everything,
 # including results of building of other stuff, into the source package
 .PHONY: deb-build-gbp
@@ -151,6 +150,7 @@ deb-local-all: deb-local-contents deb-local-info
 
 # move the package to somewhere
 
+.PHONY: deb-dput
 deb-dput: deb-build-debuild-source
 	$(info doing [$@])
 	$(Q)dput $(attr.launchpad_ppa) $(attr.deb_build_source)/$(PKG_CHANGES)

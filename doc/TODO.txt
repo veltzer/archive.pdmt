@@ -1,3 +1,4 @@
+- copy debian package building environment from templar
 - do a website for pdmt and publicize it on my page.
 - start working with checksums and do a checksum
 	functions for C/C++ code which only looks at

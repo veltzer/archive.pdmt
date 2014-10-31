@@ -4,7 +4,7 @@ Section: python
 Priority: optional
 Build-Depends: python3, debhelper
 Standards-Version: 3.9.4
-X-Python3-Version: >= 3.3
+X-Python3-Version: >= 3.4
 
 Package: pdmt
 Architecture: all

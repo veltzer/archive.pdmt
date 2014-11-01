@@ -1,18 +1,19 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
-# run any command line and do not emit it's standard error or output unless there is an error
+'''
+run any command line and do not emit it's standard error or output unless there is an error
+'''
 
-import sys # for argv
-import subprocess # for Popen
+import sys # for argv, exit
+import subprocess # for Popen, PIPE
 
-# this function is here because python2.6 does not have subprocess.check_output
 def system_check_output(args):
 	pr=subprocess.Popen(args,stdout=subprocess.PIPE,stderr=subprocess.PIPE)
 	(output,errout)=pr.communicate()
 	status=pr.returncode
 	if status:
-		print output
-		print errout
+		print(output)
+		print(errout)
 		sys.exit(status)
 		#raise ValueError('error in executing',args)
 

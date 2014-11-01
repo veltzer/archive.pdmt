@@ -1,7 +1,7 @@
 pdmt
 ====
 
-version: 2.9
+version: 2.5
 
 Project Dependency Management Tool
 
@@ -14,4 +14,4 @@ Project Dependency Management Tool
 It can watch remote urls.
 It has dependency on configuration as well.
 
-	Mark Veltzer <mark.veltzer@gmail.com>, 2010-2014
+	Mark Veltzer <mark@veltzer.net>, 2010-2014

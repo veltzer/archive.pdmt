@@ -62,6 +62,9 @@ packs=[
 	'scons',
 	#'gradle',
 	'maven',
+
+	# my own
+	'templar',
 ]
 
 args=['sudo','apt-get','install','--assume-yes']

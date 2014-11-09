@@ -28,7 +28,6 @@
 
 # created by templar
 /debian/changelog
-/.attr.config
 
 # build folders for my package
 /build.gbp

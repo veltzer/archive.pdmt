@@ -1,7 +1,7 @@
 pdmt
 ====
 
-version: 2.5
+version: 2.9
 
 Project Dependency Management Tool
 

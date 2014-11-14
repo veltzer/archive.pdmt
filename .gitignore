@@ -1,6 +1,5 @@
 *.o
 *.elf
-/makot/*
 
 # docbook stuff
 *.pdf

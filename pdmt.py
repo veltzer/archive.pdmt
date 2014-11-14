@@ -31,17 +31,6 @@ pdmt.plugins.nodehandlers.connector.NodeHandler(
 )
 pdmt.plugins.nodes.cfile.NodeType(name='tests/main.c')
 
-# mako stuff
-pdmt.plugins.nodehandlers.onetoone.NodeHandler(
-	type=pdmt.plugins.nodes.makofile.NodeType,
-	suffix='',
-	same_folder=False,
-	folder='makot',
-	target_type=pdmt.plugins.nodes.makotfile.NodeType,
-)
-for name in glob.glob('mako/*.mako'):
-	pdmt.plugins.nodes.makofile.NodeType(name=name)
-
 # docbook stuff
 docbook_xml=pdmt.plugins.nodes.sourcefile.NodeType(name='docbook/pdmt.xml')
 docbook_pdf=pdmt.plugins.nodes.docbook.NodeType(name='docbook/pdmt.pdf')

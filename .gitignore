@@ -30,6 +30,7 @@
 /debian/control
 /debian/copyright
 /debian/rules
+/setup.py
 
 # python
 __pycache__

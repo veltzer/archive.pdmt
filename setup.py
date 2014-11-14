@@ -29,5 +29,5 @@ distutils.core.setup(
 	 'pdmt/plugins/nodes/operations': 'src/pdmt/plugins/nodes/operations',
 	 'pdmt/utils': 'src/pdmt/utils'},
 	classifiers=['Development Status :: 4 - Beta', 'Environment :: Console', 'Intended Audience :: Developers', 'License :: OSI Approved :: LGPL', 'Operating System :: OS Independent', 'Programming Language :: Python', 'Programming Language :: Python :: 3', 'Topic :: Software Development :: Building', 'Topic :: Software Development :: Libraries', 'Topic :: Utilities'],
-	data_files=[('/usr/bin', [])],
+	data_files=[('/usr/bin', ['src/pdmt_cmd', 'src/pdmt_test_suite'])],
 )

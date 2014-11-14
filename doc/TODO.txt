@@ -1,3 +1,5 @@
+- make pdmt_cmd auto load plugins by the users too
+	and not just stuff in pdmt.
 - make pdmt be sig based just like git!
 	have a .pdmt/{refs,objects} with same structure as git and same ideas (sha1 etc).
 	this will means that this will be our cache and our output store.
@@ -5,7 +7,6 @@
 	This is revolutionary.
 	This will maybe mean that I don't need stamp storage?
 	Think about all of this.
-- copy debian package building environment from templar
 - do a website for pdmt and publicize it on my page.
 - start working with checksums and do a checksum
 	functions for C/C++ code which only looks at

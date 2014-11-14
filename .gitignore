@@ -2,6 +2,9 @@
 *.pdf
 *.fo
 
+# build folders for my packages
+/out
+
 # stamps
 *.stamp
 /.ts.gdbm
@@ -27,11 +30,6 @@
 /debian/control
 /debian/copyright
 /debian/rules
-
-# build folders for my package
-/build.gbp
-/build.source
-/build.all
 
 # python
 __pycache__

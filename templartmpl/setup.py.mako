@@ -1,0 +1,1 @@
+/usr/share/templar/templartmpl/setup.py.mako

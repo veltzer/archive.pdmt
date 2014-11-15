@@ -1,36 +1,15 @@
-# docbook stuff
-*.pdf
-*.fo
+################
+# from templar #
+################
 
 # build folders for my packages
 /out
 
-# stamps
-*.stamp
-/.ts.gdbm
-/.cfg.gdbm
-/.gradle
-
-# packaging stuff
-/dist/*
-/build/*
-/deb_dist/*
-/debian/pdmt.debhelper.log
-/debian/pdmt.substvars
-/debian/pdmt/
-/debian/patches
-/debian/files
-/debian/pdmt.*.debhelper
-/.pc
-/pdmt.egg-info
-/build-indep
-
-# created by templar
-/debian/changelog
-/debian/control
-/debian/copyright
-/debian/rules
-/setup.py
+# deb package build residue
+/build
+/.pybuild
+/debian/
+/*.egg-info/
 
 # python
 __pycache__
@@ -39,3 +18,17 @@ __pycache__
 
 # templar generated
 /.tdefs.config
+
+########
+# pdmt #
+########
+
+# stamps
+*.stamp
+/.ts.gdbm
+/.cfg.gdbm
+/.gradle
+
+# docbook stuff
+*.pdf
+*.fo

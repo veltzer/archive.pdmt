@@ -114,6 +114,7 @@ It has dependency on configuration as well.'''.format(**d)
 	]
 
 	# deb section
+	d.deb_package=True
 	d.deb_section='python'
 	d.deb_priority='optional'
 	d.deb_architecture='all'

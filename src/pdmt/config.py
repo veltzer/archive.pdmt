@@ -1,7 +1,13 @@
-import imp
-import os
+import imp # for load_source
+import os.path # for isfile, expanduser
 
-imp.load_source('pdmt.config','pdmt/cfg.py')
+if os.path.isfile('pdmt/cfg.py'):
+	imp.load_source('pdmt.config','pdmt/cfg.py')
+else:
+	deb_file='/usr/lib/python3/dist-packages/pdmt/cfg.py'
+	if os.path.isfile(deb_file):
+		imp.load_source('pdmt.config', deb_file)
+
 overridefiles=os.path.expanduser('~/.cfg.py')
 if os.path.isfile(overridefiles):
 	imp.load_source('pdmt.config',overridefiles)

@@ -5,6 +5,7 @@ import pdmt.utils.boot
 
 class ns_pdmt:
 	#p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
+	pass
 class ns_product:
 	p_license='GPL'
 	p_name='pdmt'

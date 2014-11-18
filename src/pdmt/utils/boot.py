@@ -8,7 +8,6 @@ It intentionaly will duplicate code in other utils since it is a boot strapper.
 import subprocess
 import os
 
-# this function is here because python2.6 does not have subprocess.check_output
 def system_check_output(arg):
 	pr=subprocess.Popen(arg,stdout=subprocess.PIPE)
 	(output,errout)=pr.communicate()

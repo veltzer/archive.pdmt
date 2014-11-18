@@ -5,6 +5,7 @@ import glob # for glob
 
 mgr=pdmt.mgr.Mgr.new_manager()
 
+'''
 # debugging
 pdmt.plugins.eventhandlers.debugger.EventHandler()
 pdmt.plugins.nodehandlers.dirmaker.NodeHandler()
@@ -49,6 +50,7 @@ mgr.add_edge((node_phony_clean, node_op_clean))
 # all
 node_phony_all=pdmt.plugins.nodes.phony.NodeType(name='all')
 mgr.add_edge((node_phony_all, node_ts_all))
+'''
 
 mgr.parseCmdline()
 

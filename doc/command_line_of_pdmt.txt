@@ -1,0 +1,4 @@
+This is an analysis of the command line usage of pdmt
+
+- what should be the default goal of the command line in pdmt?
+	It seems like build, right?!?

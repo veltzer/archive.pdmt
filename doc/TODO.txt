@@ -1,3 +1,9 @@
+- the users of pdmt have to use 'pdmt_cmd'
+	this is extremely nasty.
+	I want the command line to be called pdmt and not pdmt_cmd.
+	the problem is that 'pdmt' is a file in the same folder where there
+	is already a folder called 'pdmt'.
+	we need to work this out.
 - make pdmt_cmd auto load plugins by the users too
 	and not just stuff in pdmt.
 - make pdmt be sig based just like git!

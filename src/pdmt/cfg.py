@@ -4,12 +4,17 @@
 import pdmt.utils.boot
 
 class ns_pdmt:
-	#p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
-	pass
+	try:
+		p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
+	except:
+		p_version='0'
 class ns_product:
 	p_license='GPL'
 	p_name='pdmt'
-	#p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
+	try:
+		p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
+	except:
+		p_version='0'
 	p_description='Project Dependency Management Tool'
 	p_long_description='Project Dependency Management Tool long description'
 	p_keywords=[

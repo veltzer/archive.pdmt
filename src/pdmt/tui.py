@@ -45,7 +45,7 @@ class Pdmt(cmd.Cmd):
 		if self.mgr.has_name(name):
 			self.mgr.build_node_names([name])
 		else:
-			self.print_msg('for clean to work please defined a node [{name}]...'.format(name=name))
+			self.print_msg('do not have a node named [{name}]...'.format(name=name))
 	def complete_nodes(self, text, line, begidx, endidx, canbuild, onlyName, filter_type):
 		parts=line.split()
 		if len(parts)==1:

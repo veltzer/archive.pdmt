@@ -45,7 +45,8 @@ def parse(mgr):
 		parser.error('not more than one option at a time')
 	# tui is the default option
 	if mysum==0:
-		options.tui=True
+		#options.tui=True
+		options.build=True
 
 	if options.bashcomplete is not None:
 		if options.nodes:

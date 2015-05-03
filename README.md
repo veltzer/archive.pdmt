@@ -1,7 +1,7 @@
 pdmt
 ====
 
-version: 6
+version: 7
 
 Project Dependency Management Tool (long_description)
 

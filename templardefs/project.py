@@ -123,6 +123,7 @@ It has dependency on configuration as well.'''.format(**d)
 	d.deb_series=[
 		'utopic',
 		'trusty',
+		'vivid',
 	]
 	d.deb_depends='${misc:Depends}, ${python3:Depends}, python3-mako'
 	d.deb_builddepends='python3-all, python3-setuptools, python-all, python-setuptools, debhelper, dh-python'

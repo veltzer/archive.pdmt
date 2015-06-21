@@ -127,6 +127,9 @@ It has dependency on configuration as well.'''.format(**d)
 	]
 	d.deb_depends='${misc:Depends}, ${python3:Depends}, python3-mako'
 	d.deb_builddepends='python3-all, python3-setuptools, python-all, python-setuptools, debhelper, dh-python'
+	# for ubuntu 14.10
+	d.deb_standards_version='3.9.5'
+	# for ubuntu 15.04
 	d.deb_standards_version='3.9.6'
 	d.deb_x_python_version='>= 3.4'
 	d.deb_x_python3_version='>= 3.4'

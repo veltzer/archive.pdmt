@@ -24,3 +24,12 @@ maven can build c++.
 dependency manager for C++:
 	https://www.biicode.com/
 	https://github.com/ryppl
+
+http://gittup.org/tup/
+http://shakebuild.com/
+https://martine.github.io/ninja/manual.html
+http://premake.github.io/
+https://github.com/ThrowTheSwitch/Ceedling
+http://www.cmake.org/
+https://en.wikipedia.org/wiki/Qmake
+http://www.scons.org/

@@ -121,6 +121,7 @@ It has dependency on configuration as well.'''.format(**d)
 	d.deb_pkgname='pdmt'
 	# to which series to publish the package?
 	d.deb_series=[
+		'wily',
 		'utopic',
 		'trusty',
 		'vivid',

@@ -122,7 +122,7 @@ It has dependency on configuration as well.'''.format(**d)
 	# to which series to publish the package?
 	d.deb_series=[
 		'wily',
-		'utopic',
+		#'utopic', end of life
 		'trusty',
 		'vivid',
 	]

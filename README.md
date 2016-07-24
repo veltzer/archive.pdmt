@@ -7,4 +7,4 @@ Project Dependency Management Tool (long_description)
 
 Project Dependency Management Tool (description)
 
-	Mark Veltzer <mark@veltzer.net>, 2010-2015
+	Mark Veltzer <mark.veltzer@gmail.com>, 2010-2016

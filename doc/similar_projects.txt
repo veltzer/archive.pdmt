@@ -18,6 +18,9 @@ gradle can build c++:
 	http://www.gradleware.com/video/creating-a-world-class-cc-build-system-in-gradle-2/
 	seems quite poor
 
+http://gulpjs.com
+	a build tool but I'm not sure it can build C++ or how good is it under the covers.
+
 maven can build c++.
 	also looks poor.
 
@@ -33,3 +36,6 @@ https://github.com/ThrowTheSwitch/Ceedling
 http://www.cmake.org/
 https://en.wikipedia.org/wiki/Qmake
 http://www.scons.org/
+
+This is the heavy hitter now:
+	http://www.bazel.io/

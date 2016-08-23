@@ -8,12 +8,12 @@ This makes talking to the user nicer
 A function that knows how to do plural in the english language
 '''
 def plural(name, num):
-	if num>1 or num==0:
-		name+='s'
-	return name
+    if num>1 or num==0:
+        name+='s'
+    return name
 
 def bool_to_ok(b):
-	if b:
-		return 'FAIL'
-	else:
-		return 'OK'
+    if b:
+        return 'FAIL'
+    else:
+        return 'OK'

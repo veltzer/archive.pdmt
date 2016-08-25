@@ -39,3 +39,7 @@ http://www.scons.org/
 
 This is the heavy hitter now:
 	http://www.bazel.io/
+
+https://pypi.python.org/pypi/luigi
+	strictly not a project building tool but has a lot
+	of the infrastructure to be one.

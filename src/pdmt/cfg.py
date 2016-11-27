@@ -3,11 +3,14 @@
 # of python you will be using
 import pdmt.utils.boot
 
+
 class ns_pdmt:
     try:
         p_version=pdmt.utils.boot.system_check_output(['git','describe']).rstrip()
     except:
         p_version='0'
+
+
 class ns_product:
     p_license='GPL'
     p_name='pdmt'

@@ -1,7 +1,5 @@
-#!/usr/bin/python3
-
-import pdmt.mgr # for Mgr
-import glob # for glob
+import pdmt.mgr
+import glob
 
 mgr=pdmt.mgr.Mgr.new_manager()
 

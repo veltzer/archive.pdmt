@@ -1,13 +1,15 @@
-import pdmt.api # for NodeType
-import os.path # for getmtime, isfile
+import os.path
 
-'''
-A file node. Anything which is a file should mix in this one.
-'''
+import pdmt.api
+
 
 class NodeType(pdmt.api.NodeType):
+    """
+    A file node. Anything which is a file should mix in this one.
+    """
     def __init__(self, **kw):
         super().__init__(proto='file', **kw)
+
     def get_lmt(self):
         # if the file does not exist then lmt is very old:
         if not os.path.isfile(self.name):

@@ -1,13 +1,15 @@
-import pdmt.plugins.nodes.buildfile # for NodeType
-import pdmt.plugins.nodes.cfile # for NodeType
+import pdmt.plugins.nodes.buildfile
+import pdmt.plugins.nodes.cfile
+
 
 class NodeType(pdmt.plugins.nodes.buildfile.NodeType):
     @classmethod
     def init(cls, mgr):
         mgr.addTypedConfigDep(cls, 'CC')
         mgr.addTypedConfigDep(cls, 'CCFLAGS')
+
     def filebuild(self, nbp):
-        args=self.createArgs()
+        args = self.createArgs()
         args.appendConfig('CC')
         args.append('-c')
         args.append('-o')

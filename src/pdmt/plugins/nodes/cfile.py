@@ -1,8 +1,7 @@
-import pdmt.plugins.nodes.sourcefile # for NodeType
+import pdmt.plugins.nodes.sourcefile
 
-'''
-This node represents C source code
-'''
 
 class NodeType(pdmt.plugins.nodes.sourcefile.NodeType):
-    pass
+    """
+    This node represents C source code
+    """

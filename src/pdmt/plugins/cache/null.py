@@ -1,4 +1,4 @@
-import pdmt.api # for Cache
+import pdmt.api
 
 '''
 This is the a null cache handler handler

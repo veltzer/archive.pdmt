@@ -1,14 +1,15 @@
-import argparse # for ArgumentParser
-import pdmt.exceptions # for CommandLineInputException
-import pdmt.tui # for go
+import argparse
+import pdmt.exceptions
+import pdmt.tui
 
-'''
+"""
 argparse seems to be the right argument parser for python
 see documentation in http://docs.python.org/library/argparse.html
-'''
+"""
+
 
 def parse(mgr):
-    parser=argparse.ArgumentParser(description='Project Dependency Management Tool')
+    parser = argparse.ArgumentParser(description='Project Dependency Management Tool')
     parser.add_argument(
         '--bashcomplete',
         nargs=1,
@@ -34,19 +35,19 @@ def parse(mgr):
     )
     # all other arguments are gathered into options.nodes
     parser.add_argument('nodes', nargs=argparse.REMAINDER)
-    options=parser.parse_args()
-    mysum=sum([
-                options.bashcomplete is not None,
+    options = parser.parse_args()
+    mysum = sum([
+        options.bashcomplete is not None,
         options.listnodes,
         options.build,
         options.tui,
-        ])
-    if mysum>1:
+    ])
+    if mysum > 1:
         parser.error('not more than one option at a time')
     # tui is the default option
-    if mysum==0:
-        #options.tui=True
-        options.build=True
+    if mysum == 0:
+        # options.tui=True
+        options.build = True
 
     if options.bashcomplete is not None:
         if options.nodes:

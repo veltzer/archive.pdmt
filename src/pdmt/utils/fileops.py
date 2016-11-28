@@ -69,7 +69,7 @@ def unlinksoft_cache(filename):
             print_msg('unlinksoft [{name}] (notthere)'.format(name=filename))
             files[filename] = False
     else:
-        if files[filename] == True:
+        if files[filename]:
             print_msg('unlinksoft [{name}] (really)'.format(name=filename))
             os.unlink(filename)
             files[filename] = False

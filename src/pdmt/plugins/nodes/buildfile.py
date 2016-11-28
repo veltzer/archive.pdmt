@@ -17,7 +17,7 @@ class NodeType(pdmt.plugins.nodes.file.NodeType, pdmt.plugins.nodes.build.NodeTy
 
         nbp.addFunction(dowork)
 
-    def filebuild():
+    def filebuild(self, nbp):
         raise ValueError('must override')
 
     def build(self, nbp):

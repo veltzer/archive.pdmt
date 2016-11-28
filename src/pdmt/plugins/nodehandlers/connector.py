@@ -18,7 +18,7 @@ class NodeHandler(pdmt.api.NodeHandler):
         self.type = type
         self.regexp = regexp
         if self.regexp is not None:
-            self.regexp = re.compile(self.regexp)
+            self.cregexp = re.compile(self.regexp)
 
     def respond(self, data=None, event_type=None):
         if event_type != pdmt.event.Event.nodepostadd:
@@ -26,6 +26,6 @@ class NodeHandler(pdmt.api.NodeHandler):
         node = data
         if self.type is not None and not isinstance(node, self.type):
             return
-        if self.regexp is not None and not self.regexp.match(node.name):
+        if self.regexp is not None and not self.cregexp.match(node.name):
             return
         self.mgr.add_edge((self.cnode, node))

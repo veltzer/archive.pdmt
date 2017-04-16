@@ -52,7 +52,7 @@ It has dependency on configuration as well.'''.format(**d)
         'Topic :: Utilities',
     ]
     d.project_data_files = []
-    d.project_data_files.append(templar.utils.hlp_files_under('/usr/bin', 'src/*'))
+    # d.project_data_files.append(templar.utils.hlp_files_under('/usr/bin', 'src/*'))
 
     d.project_prereqs = [
         # curses and text gui

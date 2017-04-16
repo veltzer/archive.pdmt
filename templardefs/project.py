@@ -125,7 +125,7 @@ It has dependency on configuration as well.'''.format(**d)
         'zesty',
         'yakkety',
         'xenial',
-        'wily',
+        #'wily',
         'vivid',
         # end of life
         # 'utopic',

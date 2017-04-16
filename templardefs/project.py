@@ -141,6 +141,10 @@ It has dependency on configuration as well.'''.format(**d)
     d.deb_x_python_version = '>= 3.4'
     d.deb_x_python3_version = '>= 3.4'
     d.deb_urgency = 'low'
+    d.entry_points = {
+        'console_scripts': [
+        ],
+    }
 
 
 def get_deps():

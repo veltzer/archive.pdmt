@@ -17,9 +17,6 @@ __pycache__
 *.pyc
 *.pyo
 
-# templar generated
-/.tdefs.config
-
 ########
 # pdmt #
 ########

@@ -30,5 +30,3 @@ __pycache__
 # docbook stuff
 *.pdf
 *.fo
-
-/.idea/workspace.xml

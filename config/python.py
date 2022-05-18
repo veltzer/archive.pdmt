@@ -1,6 +1,6 @@
 import config.project
 
-package_name = config.project.project_name
+package_name = config.project.name
 
 config_requires = [
     "pyclassifiers",

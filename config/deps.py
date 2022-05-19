@@ -1,11 +1,11 @@
 packages = [
     # curses and text gui
     "python3-progressbar",
-    "python-progressbar",
+    # "python-progressbar",
 
     # packages needed to build .debs from python code
     "devscripts",
-    "python-pydot",  # for dot graph generation
+    # "python-pydot",  # for dot graph generation
     "python-all-dev",
     "python-stdeb",
     "build-essential",
@@ -28,26 +28,26 @@ packages = [
 
     # cmd2 stuff
     "python3-cmd2",
-    "python-cmd2",
+    # "python-cmd2",
 
     # inotify
-    "python-pyinotify",
+    # "python-pyinotify",
     "python3-pyinotify",
     "python-pyinotify-doc",
 
     # graph
-    "python3-pygraph",
-    "python-pygraph",
-    "python-igraph",
+    # "python3-pygraph",
+    # "python-pygraph",
+    # "python-igraph",
 
     # profiling
     "python3-objgraph",
-    "python-objgraph",
+    # "python-objgraph",
     "python-objgraph-doc",
     "python3-memprof",
-    "python-memprof",
+    # "python-memprof",
     "python3-psutil",
-    "python-psutil",
+    # "python-psutil",
 
     # other tools
     "scons",
@@ -55,5 +55,5 @@ packages = [
     "maven",
 
     # my own
-    "templar",
+    # "templar",
 ]

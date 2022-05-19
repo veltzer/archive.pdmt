@@ -7,7 +7,7 @@ packages = [
     "devscripts",
     # "python-pydot",  # for dot graph generation
     "python-all-dev",
-    "python-stdeb",
+    # "python-stdeb",
     "build-essential",
     "dpkg-dev",
     "debhelper",

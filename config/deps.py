@@ -44,7 +44,7 @@ packages = [
     "python3-objgraph",
     # "python-objgraph",
     "python-objgraph-doc",
-    "python3-memprof",
+    # "python3-memprof",
     # "python-memprof",
     "python3-psutil",
     # "python-psutil",

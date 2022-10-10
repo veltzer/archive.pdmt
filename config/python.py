@@ -3,4 +3,6 @@ config_requires = [
 ]
 make_requires = [
     "pymakehelper",
+    "pydmt",
+    "pyclassifiers",
 ]

@@ -1,7 +1,4 @@
 packages = [
-]
-
-old_packages = [
     # curses and text gui
     "python3-progressbar",
     # "python-progressbar",

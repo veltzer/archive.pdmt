@@ -6,7 +6,7 @@ packages = [
     # packages needed to build .debs from python code
     "devscripts",
     # "python-pydot",  # for dot graph generation
-    "python-all-dev",
+    # "python-all-dev",
     # "python-stdeb",
     "build-essential",
     "dpkg-dev",

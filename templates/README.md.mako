@@ -3,7 +3,7 @@
     import pydmt.helpers.misc
     import pydmt.helpers.signature
     import config.project
-    import user.personal
+    import config.personal
     line = "=" * len(pydmt.helpers.project.get_name())
 %>${pydmt.helpers.project.get_name()}
 ${line}
@@ -16,4 +16,4 @@ description: ${config.project.description_short}
 ${config.project.description_long}
 % endif
 
-	${user.personal.origin}, ${pydmt.helpers.signature.get_copyright_years_long()}
+	${config.personal.origin}, ${pydmt.helpers.signature.get_copyright_years_long()}

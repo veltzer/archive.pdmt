@@ -1,3 +1,4 @@
+name = "pdmt"
 description_short = "Project Dependency Management Tool"
 description_long = """* pdmt is influenced by scons but also very different from scons.
 * pdmt usage is regular python. Pdmt is a python library first.

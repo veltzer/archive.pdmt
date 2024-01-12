@@ -1,7 +1,7 @@
 config_requires = [
     "pyclassifiers",
 ]
-make_requires = [
+build_requires = [
     "pymakehelper",
     "pydmt",
     "pyclassifiers",

@@ -6,3 +6,4 @@ build_requires = [
     "pydmt",
     "pyclassifiers",
 ]
+requires = config_requires + build_requires

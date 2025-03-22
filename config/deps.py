@@ -1,3 +1,7 @@
+"""
+Ubuntu system level depenencies for this project
+"""
+
 packages = [
     # curses and text gui
     "python3-progressbar",

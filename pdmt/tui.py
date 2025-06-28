@@ -41,7 +41,7 @@ class Pdmt(cmd.Cmd):
 
     def no_args(self, cmd, arg):
         if arg != '':
-            self.print_msg('command [{0}] does not take any arguments'.format(cmd))
+            self.print_msg(f'command [{cmd}] does not take any arguments')
             return True
         else:
             return False
@@ -53,7 +53,7 @@ class Pdmt(cmd.Cmd):
         if self.mgr.has_name(name):
             self.mgr.build_node_names([name])
         else:
-            self.print_msg('do not have a node named [{name}]...'.format(name=name))
+            self.print_msg(f'do not have a node named [{name}]...')
 
     def complete_nodes(self, text, line, begidx, endidx, canbuild, onlyName, filter_type):
         parts = line.split()
@@ -132,7 +132,7 @@ class Pdmt(cmd.Cmd):
         name = arg.split()[0].strip()
         nodename = 'cfg://' + name
         if not self.mgr.has_name(nodename):
-            self.error('do not have config named [{0}]'.format(name))
+            self.error(f'do not have config named [{name}]')
             return
         node = self.mgr.get_node_by_name(nodename)
         self.print_raw(node.get_value(None))
@@ -160,10 +160,10 @@ class Pdmt(cmd.Cmd):
     def do_stats(self, arg):
         if self.no_args('stats', arg):
             return
-        self.print_msg('graph has [{0}] nodes'.format(
+        self.print_msg('graph has [{}] nodes'.format(
             self.mgr.get_node_num(),
         ))
-        self.print_msg('graph has [{0}] edges'.format(
+        self.print_msg('graph has [{}] edges'.format(
             self.mgr.get_edge_num(),
         ))
 
@@ -189,7 +189,7 @@ class Pdmt(cmd.Cmd):
     def do_getsizeof(self, arg):
         if self.no_args('getsizeof', arg):
             return
-        self.print_msg('getsizeof is [{0}]'.format(self.mgr.getsizeof()))
+        self.print_msg(f'getsizeof is [{self.mgr.getsizeof()}]')
 
     def help_clean(self):
         self.print_msg('clean everything')
@@ -336,7 +336,7 @@ class Pdmt(cmd.Cmd):
 
 def go():
     ins = Pdmt()
-    banner = 'Welcome to pdmt [{0}]...'.format(
+    banner = 'Welcome to pdmt [{}]...'.format(
         pdmt.config.ns_pdmt.p_version,
     )
     ins.print_msg(banner)

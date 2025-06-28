@@ -26,7 +26,7 @@ check = True
 project = pdmt.config.ns_product.p_name
 
 
-class Operation(object):
+class Operation:
     def __init__(self):
         super().__init__(
             'release',

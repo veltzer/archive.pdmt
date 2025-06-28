@@ -6,11 +6,11 @@ import sys
 
 
 def print_msg(msg):
-    print('pdmt: {msg}'.format(msg=msg))
+    print(f'pdmt: {msg}')
 
 
 def print_msg_noeol_flush(msg):
-    print('pdmt: {msg}'.format(msg=msg), end='')
+    print(f'pdmt: {msg}', end='')
     sys.stdout.flush()
 
 

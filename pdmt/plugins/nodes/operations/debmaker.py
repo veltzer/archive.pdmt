@@ -4,7 +4,7 @@ import pdmt.config
 import pdmt.utils.subproc
 
 
-class Operation(object):
+class Operation:
     """
     This operation knows how to make a debian package.
     """

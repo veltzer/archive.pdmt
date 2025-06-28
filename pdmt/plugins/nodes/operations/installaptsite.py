@@ -13,7 +13,7 @@ $ chgrp $USER -R /var/www
 '''
 
 
-class Operation(object):
+class Operation:
     def __init__(self):
         super().__init__(
             'installaptsite',

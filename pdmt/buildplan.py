@@ -11,7 +11,7 @@ import pdmt.utils.lang
 import inspect
 
 
-class BuildPlanElement(object):
+class BuildPlanElement:
     def execute():
         raise ValueError('must override')
 
@@ -59,7 +59,7 @@ this is a build plan for a single node
 '''
 
 
-class NodeBuildPlan(object):
+class NodeBuildPlan:
     def __init__(self, node):
         super().__init__()
         self.node = node
@@ -103,7 +103,7 @@ Currently it is just a list of NodeBuildPlan
 '''
 
 
-class BuildPlan(object):
+class BuildPlan:
     def __init__(self):
         super().__init__()
         self.mgr = pdmt.mgr.Mgr.get_manager()

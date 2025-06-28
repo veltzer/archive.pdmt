@@ -5,7 +5,7 @@ import pdmt.arguments
 
 # the inheritance from 'object' is very important to get the __class__
 # and other stuff we need in order for OO to work properly...
-class NodeType(object):
+class NodeType:
     def __init__(self, type=None, name=None, description=None, proto=None):
         super().__init__()
         self.mgr = pdmt.mgr.Mgr.get_manager()
@@ -64,8 +64,7 @@ class NodeType(object):
         return self.mgr.deps(self)
 
     def getDepsYield(self):
-        for node in self.mgr.depsYield(self):
-            yield node
+        yield from self.mgr.depsYield(self)
 
     def getSource(self):
         ret = self.getDeps()
@@ -95,7 +94,7 @@ This is the base class of all node handlers within the system
 '''
 
 
-class NodeHandler(object):
+class NodeHandler:
     def __init__(self):
         super().__init__()
         self.mgr = pdmt.mgr.Mgr.get_manager()
@@ -110,7 +109,7 @@ This is the base class of all event handlers within the system
 '''
 
 
-class EventHandler(object):
+class EventHandler:
     def __init__(self):
         super().__init__()
         self.mgr = pdmt.mgr.Mgr.get_manager()
@@ -119,7 +118,7 @@ class EventHandler(object):
         raise ValueError('must override')
 
 
-class Cache(object):
+class Cache:
     """
     This is the cache handler
     """

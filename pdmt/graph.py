@@ -14,7 +14,7 @@ import sys
 import pdmt.event
 
 
-class Graph(object):
+class Graph:
     def __init__(self):
         self.nodes = set()
         self.edges = dict()
@@ -109,8 +109,7 @@ class Graph(object):
             yield node
 
     def get_nodes(self):
-        for node in self.nodes:
-            yield node
+        yield from self.nodes
 
     def get_edges(self):
         for fr in self.get_nodes():
@@ -147,16 +146,14 @@ class AlgoGraph(Graph):
             node_list = self.get_nodes()
         for node in node_list:
             if not node in visited:
-                for v in self.dfs_unvisited_node(visited, node):
-                    yield v
+                yield from self.dfs_unvisited_node(visited, node)
 
     def dfs_unvisited_node(self, visited, v):
         if v in visited:
             return
         visited.add(v)
         for w in self.get_adjacent_for_node(v):
-            for s in self.dfs_unvisited_node(visited, w):
-                yield s
+            yield from self.dfs_unvisited_node(visited, w)
             if not w in visited:
                 yield w
         yield v
@@ -183,8 +180,7 @@ class TypedGraph(AlgoGraph):
     def get_adjacent_for_node(self, node):
         yield from super().get_adjacent_for_node(node)
         if type(node) in self.typemap:
-            for n in self.typemap[type(node)]:
-                yield n
+            yield from self.typemap[type(node)]
 
     def get_rv_for_node(self, node):
         yield from super().get_rv_for_node(node)

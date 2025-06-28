@@ -51,7 +51,7 @@ def parse(mgr):
 
     if options.bashcomplete is not None:
         if options.nodes:
-            parser.error('no node names with --bashcomplete {0}'.format(str(options.nodes)))
+            parser.error(f'no node names with --bashcomplete {str(options.nodes)}')
         else:
             mgr.bashcomplete(options.bashcomplete[0])
 

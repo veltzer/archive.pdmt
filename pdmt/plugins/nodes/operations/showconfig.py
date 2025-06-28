@@ -3,7 +3,7 @@ Show the config of Pdmt
 '''
 
 
-class Operation(object):
+class Operation:
     def __init__(self):
         super().__init__(
             'hello',

@@ -59,8 +59,7 @@ class Mgr(pdmt.graph.PdmtGraph):
         return [node for node in self.get_adjacent_for_node(node)]
 
     def depsYield(self, node):
-        for n in self.get_adjacent_for_node(node):
-            yield n
+        yield from self.get_adjacent_for_node(node)
 
     ''' debugging methods '''
 
@@ -116,7 +115,7 @@ class Mgr(pdmt.graph.PdmtGraph):
             if self.has_name(name):
                 ret.append(self.get_node_by_name(name))
             else:
-                errors.append('do not have node of name [{0}]'.format(name))
+                errors.append(f'do not have node of name [{name}]')
         if errors:
             raise pdmt.exceptions.CommandLineInputException(errors)
         return ret

@@ -9,7 +9,7 @@ This module handles publishing and unpublishing a deb package from an apt reposi
 '''
 
 
-class Operation(object):
+class Operation:
     def __init__(self):
         super().__init__(
             'debinstaller',

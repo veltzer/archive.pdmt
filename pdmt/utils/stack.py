@@ -1,4 +1,4 @@
-class Stack(object):
+class Stack:
     def __init__(self):
         self.storage = list()
 
@@ -12,5 +12,4 @@ class Stack(object):
         return self.storage.pop()
 
     def yield_all(self):
-        for x in self.storage:
-            yield x
+        yield from self.storage

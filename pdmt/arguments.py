@@ -13,7 +13,7 @@ Why do we need such an object?
 """
 
 
-class Arguments(object):
+class Arguments:
     def __init__(self, mgr=None):
         super().__init__()
         self.mgr = mgr

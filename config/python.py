@@ -1,9 +1,10 @@
-config_requires = [
+""" python deps for this project """
+
+config_requires: list[str] = [
     "pyclassifiers",
 ]
-build_requires = [
-    "pymakehelper",
+build_requires: list[str] = [
     "pydmt",
-    "pyclassifiers",
+    "pymakehelper",
 ]
 requires = config_requires + build_requires
